@@ -37,3 +37,4 @@ Resource/
 SDK/
 ipch/
 *.db
+*.suo
