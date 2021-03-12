@@ -1,7 +1,8 @@
 #pragma once
 
-#include"..//..//ESGLib.h"
+#include"../../ESGLib.h"
 #include"EnemyBase.h"
+#include"Enemy.h"
 
 class EnemyManeger {
 public:
@@ -15,4 +16,5 @@ private:
     void OnCollisionEnter();
 
     std::vector<EnemyBase*> _enemy;
+    float time = 0;
 };

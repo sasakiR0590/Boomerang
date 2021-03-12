@@ -1,14 +1,15 @@
 #pragma once
 
-#include"..//..//ESGLib.h"
+#include"../../ESGLib.h"
+#include "EnemyBase.h"
 
-class Enemy {
+class Enemy : public EnemyBase{
 public:
     Enemy::Enemy();
     Enemy::~Enemy();
-    bool   Initialize();
-    int    Update();
-    void   Draw();
+    bool   Initialize() override;
+    int    Update() override;
+    void   Draw() override;
 private:
     void    Move();
 };
