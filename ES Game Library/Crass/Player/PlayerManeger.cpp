@@ -35,7 +35,7 @@ bool PlayerManeger::Initialize()
 	mat.Specular = Color(1, 1, 1);
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetMaterial(mat);
-	_collision->SetScale(10);
+	_collision->SetScale(3.0f, 6.0f, 3.0f);
 	return true;
 }
 
@@ -74,7 +74,7 @@ int PlayerManeger::Update()
 
 	}
 
-	_collision->SetPosition(_model->GetPosition());
+	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 20.0f, 0.0f));
 
 	return 0;
 }
