@@ -10,6 +10,11 @@ public:
     bool    Initialize();
     int     Update();
     void    Draw();
+
+    Vector3 Position();
+    Vector3 GetFrontVector();
+    Vector3 GetUpVector();
+
 private:
     Vector3 Move();
     Vector3 Angle();
