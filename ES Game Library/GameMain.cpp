@@ -12,6 +12,19 @@ bool GameMain::Initialize()
 	WindowTitle(_T("ES Game Library"));
 	playerManeger->Initialize();
 	enemyManeger->Initialize();
+
+	Light light;
+	light.Type = Light_Directional;
+	light.Direction = Vector3(1.0f, 1.0f, 1.0f);
+	light.Ambient = Color(1.0f, 1.0f, 1.0f);
+	light.Diffuse = Color(1.0f, 1.0f, 1.0f);
+	light.Specular = Color(1.0f, 1.0f, 1.0f);
+	GraphicsDevice.SetLight(light);
+
+	camera->SetView(Vector3(0, 0, -650), Vector3(0, 0, 0));
+	camera->SetPerspectiveFieldOfView(45.0f, 16.0f / 9.0f, 1.0f, 10000.0f);
+	GraphicsDevice.SetCamera(camera);
+
 	return true;
 }
 
@@ -36,6 +49,8 @@ int GameMain::Update()
 	playerManeger->Update();
 	enemyManeger->Update();
 	ovserver->Update();
+
+	GraphicsDevice.SetCamera(camera);
 	return 0;
 }
 

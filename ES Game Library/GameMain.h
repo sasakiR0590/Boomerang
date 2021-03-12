@@ -62,4 +62,6 @@ private:
 	EnemyManeger*  enemyManeger;
 	Ovserver*      ovserver;
 
+	CAMERA camera;
+
 };
