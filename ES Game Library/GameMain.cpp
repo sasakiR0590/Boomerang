@@ -62,9 +62,23 @@ void GameMain::Draw()
 	GraphicsDevice.Clear(Color_CornflowerBlue);
 
 	GraphicsDevice.BeginScene();
+
+	Vector3 player_position    = playerManeger->Position();
+	Vector3 player_FrontVector = playerManeger->GetFrontVector();
+	Vector3 player_UpVector    = playerManeger->GetUpVector();
+
+	camera->SetLookAt(player_position + -player_FrontVector * 300 + Vector3(0, 200, 0), player_position + player_UpVector * 100, Vector3_Up);
 	GraphicsDevice.SetCamera(camera);
 
 	playerManeger->Draw();
 	enemyManeger->Draw();
+
+	SpriteBatch.Begin();
+	
+	SpriteBatch.DrawString(DefaultFont, Vector2(500, 200), Color(255, 255, 255), _T("ポジションX　%f"), player_position.x);
+	SpriteBatch.DrawString(DefaultFont, Vector2(700, 200), Color(255, 255, 255), _T("ポジションZ　%f"), player_position.z);
+	
+	SpriteBatch.End();
+
 	GraphicsDevice.EndScene();
 }

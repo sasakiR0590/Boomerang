@@ -14,7 +14,7 @@ public:
     Vector3 Position();
     Vector3 GetFrontVector();
     Vector3 GetUpVector();
-
+    MODEL GetCollision() { return _collision; }
 private:
     Vector3 Move();
     Vector3 Angle();
@@ -29,7 +29,8 @@ private:
     int        _hp;
     bool       _shootstate;
     //Boomerang* _boomerang;
-    MODEL      _colision;
-    MODEL      _model;
 
+    MODEL      _collision;
+    MODEL      _model;
+    
 };

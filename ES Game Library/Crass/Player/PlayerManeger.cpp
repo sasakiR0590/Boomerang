@@ -12,6 +12,7 @@ PlayerManeger::~PlayerManeger()
 
 bool PlayerManeger::Initialize()
 {
+	GraphicsDevice.SetRenderState(CullMode_None);
 
 	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Player/kariMan_1.X"));
 
@@ -22,6 +23,19 @@ bool PlayerManeger::Initialize()
 	if (_model == nullptr)
 		return false;
 
+    SimpleShape shape;
+	shape.Type = Shape_Box;
+	shape.Width = 10;
+	shape.Height = 10;
+	shape.Depth = 10;
+
+	Material mat;
+	mat.Diffuse = Color(1, 1, 1);
+	mat.Ambient = Color(1, 1, 1);
+	mat.Specular = Color(1, 1, 1);
+	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
+	_collision->SetMaterial(mat);
+	_collision->SetScale(10);
 	return true;
 }
 
@@ -49,12 +63,26 @@ int PlayerManeger::Update()
 		_model->Move(1.0f, 0.0f, 0.0f);
 
 	}
+
+	if (key.IsKeyDown(Keys_Right)) {
+		_model->Rotation(0.0f, 5.0f, 0.0f);
+
+	}
+
+	if (key.IsKeyDown(Keys_Left)) {
+		_model->Rotation(0.0f, -5.0f, 0.0f);
+
+	}
+
+	_collision->SetPosition(_model->GetPosition());
+
 	return 0;
 }
 
 void PlayerManeger::Draw()
 {
 	_model->Draw();
+	_collision->Draw();
 }
 
 Vector3 PlayerManeger::Position()
