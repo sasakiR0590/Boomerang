@@ -10,6 +10,8 @@ class GameMain : public CGameScene {
 public:
 	GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 	{
+		playerManeger = new PlayerManeger;
+		enemyManeger = new EnemyManeger;
 //		ContentRootDirectory(_T("Content"));
 	}
 
@@ -45,6 +47,8 @@ public:
 		GraphicsDevice.ReleaseAllEffects();
 
 		Finalize();
+		delete enemyManeger;
+		delete playerManeger;
 	}
 
 public:

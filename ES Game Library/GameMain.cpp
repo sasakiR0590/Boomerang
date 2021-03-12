@@ -62,6 +62,8 @@ void GameMain::Draw()
 	GraphicsDevice.Clear(Color_CornflowerBlue);
 
 	GraphicsDevice.BeginScene();
+	GraphicsDevice.SetCamera(camera);
+
 	playerManeger->Draw();
 	enemyManeger->Draw();
 	GraphicsDevice.EndScene();

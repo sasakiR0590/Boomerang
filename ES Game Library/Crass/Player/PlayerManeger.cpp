@@ -1,9 +1,8 @@
 #include"PlayerManeger.h"
-#include "Boomerang.h"
 
 PlayerManeger::PlayerManeger()
 {
-
+	_model = nullptr;
 }
 
 PlayerManeger::~PlayerManeger()
@@ -13,8 +12,15 @@ PlayerManeger::~PlayerManeger()
 
 bool PlayerManeger::Initialize()
 {
-	//if (_model == nullptr)
-	//	return false;
+
+	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Player/kariMan_1.X"));
+
+	_model->SetScale(1.0f, 1.0f, 1.0f);
+	_model->SetPosition(0, 0, 0);
+	_model->SetRotation(0, 0, 0);
+
+	if (_model == nullptr)
+		return false;
 
 	return true;
 }
@@ -27,5 +33,5 @@ int PlayerManeger::Update()
 
 void PlayerManeger::Draw()
 {
-
+	_model->Draw();
 }
