@@ -3,6 +3,8 @@
 PlayerManeger::PlayerManeger()
 {
 	_model = nullptr;
+	_boomerang = new Boomerang;
+
 }
 
 PlayerManeger::~PlayerManeger()
@@ -12,6 +14,7 @@ PlayerManeger::~PlayerManeger()
 
 bool PlayerManeger::Initialize()
 {
+	_boomerang->Initialize();
 
 	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Player/kariMan_1.X"));
 
@@ -40,6 +43,8 @@ bool PlayerManeger::Initialize()
 
 int PlayerManeger::Update()
 {
+	_boomerang->Update();
+
 	KeyboardState key = Keyboard->GetState();
 	KeyboardBuffer key_buffer = Keyboard->GetBuffer();
 
@@ -82,7 +87,7 @@ void PlayerManeger::Draw()
 {
 	_model->Draw();
 	_collision->Draw();
-
+	_boomerang->Draw();
 }
 
 Vector3 PlayerManeger::Position()

@@ -1,6 +1,7 @@
 #pragma once
 
 #include"../../ESGLib.h"
+#include"Boomerang.h"
 
 class PlayerManeger {
 public:
@@ -28,7 +29,7 @@ private:
     int        _power;
     int        _hp;
     bool       _shootstate;
-    //Boomerang* _boomerang;
+    Boomerang* _boomerang;
 
     MODEL      _collision;
     MODEL      _model;
