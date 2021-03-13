@@ -3,8 +3,7 @@
 PlayerManeger::PlayerManeger()
 {
 	_model = nullptr;
-	_boomerang = new Boomerang;
-
+	//start_position, control_position1, control_position2, end_position
 }
 
 PlayerManeger::~PlayerManeger()
@@ -14,7 +13,7 @@ PlayerManeger::~PlayerManeger()
 
 bool PlayerManeger::Initialize()
 {
-	_boomerang->Initialize();
+	//_boomerang->Initialize();
 
 	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Player/kariMan_1.X"));
 
@@ -38,12 +37,13 @@ bool PlayerManeger::Initialize()
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetMaterial(mat);
 	_collision->SetScale(3.0f, 6.0f, 3.0f);
+
+	_shootstate = false;
 	return true;
 }
 
 int PlayerManeger::Update()
 {
-	_boomerang->Update();
 
 	KeyboardState key = Keyboard->GetState();
 	KeyboardBuffer key_buffer = Keyboard->GetBuffer();
@@ -78,6 +78,15 @@ int PlayerManeger::Update()
 
 	}
 
+	if (key.IsKeyDown(Keys_Space)) {
+		Shoot();
+
+	}
+
+	if (_shootstate) {
+		_boomerang->Update();
+	}
+
 	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 20.0f, 0.0f));
 
 	return 0;
@@ -87,7 +96,11 @@ void PlayerManeger::Draw()
 {
 	_model->Draw();
 	_collision->Draw();
-	_boomerang->Draw();
+
+	if (_shootstate) {
+		_boomerang->Draw();
+	}
+	//_boomerang->Draw();
 }
 
 Vector3 PlayerManeger::Position()
@@ -103,4 +116,16 @@ Vector3 PlayerManeger::GetFrontVector()
 Vector3 PlayerManeger::GetUpVector()
 {
 	return _model->GetUpVector();
+}
+
+void PlayerManeger::Shoot()
+{
+	_shootstate = true;
+	Vector3 start_position    = _model->GetPosition();
+	Vector3 control_position1 = start_position + Vector3(10.0f,0.0f,0.0f);
+	Vector3 control_position2 = control_position1 + Vector3(0.0f,0.0f,10.0f);
+	Vector3 end_position      = start_position + Vector3(0.0f,0.0f,30.0f);
+
+	_boomerang = new Boomerang(start_position, control_position1, control_position2, end_position);
+	_boomerang->Initialize();
 }

@@ -16,11 +16,12 @@ public:
     Vector3 GetFrontVector();
     Vector3 GetUpVector();
     MODEL GetCollision() { return _collision; }
+
+    void    Shoot();
 private:
     Vector3 Move();
     Vector3 Angle();
     int     Power();
-    void    Shoot();
     void    Damage();
     void    OnCollisionEnter();
 
@@ -33,5 +34,4 @@ private:
 
     MODEL      _collision;
     MODEL      _model;
-    
 };
