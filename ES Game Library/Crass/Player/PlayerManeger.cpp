@@ -12,7 +12,6 @@ PlayerManeger::~PlayerManeger()
 
 bool PlayerManeger::Initialize()
 {
-	GraphicsDevice.SetRenderState(CullMode_None);
 
 	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Player/kariMan_1.X"));
 
@@ -83,6 +82,7 @@ void PlayerManeger::Draw()
 {
 	_model->Draw();
 	_collision->Draw();
+
 }
 
 Vector3 PlayerManeger::Position()
