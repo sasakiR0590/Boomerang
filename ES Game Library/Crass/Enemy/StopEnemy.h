@@ -11,5 +11,5 @@ public:
     int    Update() override;
     void   Draw() override;
 private:
-
+    int destroy_time = 0;
 };

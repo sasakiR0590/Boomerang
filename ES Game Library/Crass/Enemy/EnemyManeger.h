@@ -15,7 +15,6 @@ public:
 private:
     void Generate();
     void OnCollisionEnter();
-    void remove();
     std::vector<EnemyBase*> _enemy;
     EnemyBase eb;
     float time = 0;

@@ -7,9 +7,10 @@ public:
     EnemyBase::EnemyBase();
     EnemyBase::~EnemyBase();
     virtual bool Initialize() { return true; };
-    virtual int  Update()     {return 0;}
+    virtual int  Update();
     virtual void Draw()       {};
     MODEL GetCollision()      { return _collision; }
+    Vector3 GetPosition()     { return _position; }
 protected:
     Vector3 Move();
     Vector3 Angle();
@@ -19,5 +20,4 @@ protected:
     int     _hp;
     MODEL   _collision;
     MODEL   _model;
-
 };

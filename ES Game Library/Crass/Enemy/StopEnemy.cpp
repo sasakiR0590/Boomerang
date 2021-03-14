@@ -28,8 +28,8 @@ bool StopEnemy::Initialize()
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetScale(3, 6, 3);
 	_collision->SetMaterial(mtrl);
-	float random_x = MathHelper_Random(-500, 500);
-	float random_z = MathHelper_Random(-500, 500);
+	float random_x = MathHelper_Random(-500.0f, 500.0f);
+	float random_z = MathHelper_Random(-500.0f, 500.0f);
 	_position =  Vector3(random_x, 0, random_z);
 	_model->SetPosition(_position);
 	_hp = 10;
@@ -38,7 +38,17 @@ bool StopEnemy::Initialize()
 
 int StopEnemy::Update()
 {
+	if (destroy_time < 960) {
+		destroy_time++;
+	}
+	else {
+		destroy_time = 0;
+		return 1;
+	}
+
+
 	_collision->SetPosition(_model->GetPosition() + Vector3(0,20.0f,0));
+	_position = _model->GetPosition();
 	return 0;
 }
 
@@ -47,3 +57,4 @@ void StopEnemy::Draw()
 	_model->Draw();
 	_collision->Draw();
 }
+

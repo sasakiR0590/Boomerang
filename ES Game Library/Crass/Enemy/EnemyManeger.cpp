@@ -7,10 +7,10 @@ EnemyManeger::EnemyManeger()
 
 EnemyManeger::~EnemyManeger()
 {
-	for (int i = 0; i < _enemy.size(); i++)
-	{
-		delete _enemy[i];
-	}
+	//for (int i = 0; i < _enemy.size(); i++)
+	//{
+	//	delete _enemy[i];
+	//}
 }
 
 bool EnemyManeger::Initialize()
@@ -22,11 +22,17 @@ int EnemyManeger::Update()
 {
 	time++;
 	Generate();
+
 	for (int i = 0; i < _enemy.size(); i++)
 	{
-		_enemy[i]->Update();
-
+		//“G‚ª“|‚³‚ê‚½‚Æ‚«
+		if (_enemy[i]->Update() == 1)
+		{
+			_enemy.erase(_enemy.begin() + i);
+			OnCollisionEnter();
+		}
 	}
+
 	return 0;
 }
 
@@ -34,7 +40,7 @@ void EnemyManeger::Draw()
 {
 	for (int i = 0; i < _enemy.size(); i++)
 	{
-		_enemy[i]-> Draw();
+		 _enemy[i]-> Draw();
 	}
 }
 
@@ -51,5 +57,5 @@ void EnemyManeger::Generate() {
 }
 
 void EnemyManeger::OnCollisionEnter() {
-
+	
 }
