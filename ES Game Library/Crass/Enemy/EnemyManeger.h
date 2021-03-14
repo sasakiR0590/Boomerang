@@ -2,6 +2,7 @@
 
 #include"../../ESGLib.h"
 #include"EnemyBase.h"
+#include "StopEnemy.h"
 #include"Enemy.h"
 
 class EnemyManeger {
@@ -14,7 +15,7 @@ public:
 private:
     void Generate();
     void OnCollisionEnter();
-
     std::vector<EnemyBase*> _enemy;
+    EnemyBase eb;
     float time = 0;
 };

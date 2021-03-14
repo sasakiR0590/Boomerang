@@ -6,18 +6,18 @@ class EnemyBase {
 public:
     EnemyBase::EnemyBase();
     EnemyBase::~EnemyBase();
-    virtual bool Initialize();
+    virtual bool Initialize() { return true; };
     virtual int  Update();
-    virtual void Draw();
+    virtual void Draw()       {};
+    MODEL GetCollision()      { return _collision; }
+    Vector3 GetPosition()     { return _position; }
 protected:
     Vector3 Move();
     Vector3 Angle();
     void    Damage();
-
-    Vector3 _position;
+     Vector3 _position;
     Vector3 _angle;
     int     _hp;
     MODEL   _collision;
     MODEL   _model;
-
 };
