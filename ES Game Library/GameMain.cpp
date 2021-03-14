@@ -11,7 +11,7 @@ bool GameMain::Initialize()
 {
 	WindowTitle(_T("ES Game Library"));
 	playerManeger->Initialize();
-	//enemyManeger->Initialize();
+	enemyManeger->Initialize();
 
 	Light light;
 	light.Type = Light_Directional;
@@ -47,7 +47,7 @@ void GameMain::Finalize()
 int GameMain::Update()
 {
 	playerManeger->Update();
-	//enemyManeger->Update();
+	enemyManeger->Update();
 	ovserver->Update();
 
 	GraphicsDevice.SetCamera(camera);
@@ -71,7 +71,7 @@ void GameMain::Draw()
 	GraphicsDevice.SetCamera(camera);
 
 	playerManeger->Draw();
-	//enemyManeger->Draw();
+	enemyManeger->Draw();
 
 	SpriteBatch.Begin();
 	
