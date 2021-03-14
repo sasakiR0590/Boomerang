@@ -136,6 +136,9 @@
     <Filter Include="OvserverFolder">
       <UniqueIdentifier>{d8038519-f50e-471e-9915-1b01a7794168}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EnemyFolder\StopEnemy">
+      <UniqueIdentifier>{92929bec-6b00-49c4-aa39-fa43d9b3a725}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -297,6 +300,9 @@
     </ClCompile>
     <ClCompile Include="Crass\Ovserver\Ovserver.cpp">
       <Filter>OvserverFolder</Filter>
+    </ClCompile>
+    <ClCompile Include="Crass\Enemy\StopEnemy.cpp">
+      <Filter>EnemyFolder\StopEnemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -471,6 +477,9 @@
     </ClInclude>
     <ClInclude Include="Crass\Ovserver\Ovserver.h">
       <Filter>OvserverFolder</Filter>
+    </ClInclude>
+    <ClInclude Include="Crass\Enemy\StopEnemy.h">
+      <Filter>EnemyFolder\StopEnemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

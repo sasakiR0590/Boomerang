@@ -1,15 +1,15 @@
-#include"Enemy.h"
+#include"StopEnemy.h"
 #include"EnemyBase.h"
 
-Enemy::Enemy()
+StopEnemy::StopEnemy()
 {
 }
 
-Enemy::~Enemy()
+StopEnemy::~StopEnemy()
 {
 }
 
-bool Enemy::Initialize()
+bool StopEnemy::Initialize()
 {
 	_model		= GraphicsDevice.CreateModelFromFile(_T("kariMan_1.X"));
 
@@ -28,27 +28,22 @@ bool Enemy::Initialize()
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetScale(3, 6, 3);
 	_collision->SetMaterial(mtrl);
-	float rand = MathHelper_Random(-500, 500);
-	_position =  Vector3(rand, 0, 300);
+	float random_x = MathHelper_Random(-500, 500);
+	float random_z = MathHelper_Random(-500, 500);
+	_position =  Vector3(random_x, 0, random_z);
 	_model->SetPosition(_position);
 	_hp = 10;
 	return true;
 }
 
-int Enemy::Update()
+int StopEnemy::Update()
 {
-	Move();
-
 	_collision->SetPosition(_model->GetPosition() + Vector3(0,20.0f,0));
 	return 0;
 }
 
-void Enemy::Draw()
+void StopEnemy::Draw()
 {
 	_model->Draw();
 	_collision->Draw();
-}
-
-void Enemy::Move() {
-	 _model->Move(0, 0, -1);
 }

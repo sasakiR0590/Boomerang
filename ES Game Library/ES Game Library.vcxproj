@@ -113,6 +113,7 @@
     <ClCompile Include="Crass\Enemy\Enemy.cpp" />
     <ClCompile Include="Crass\Enemy\EnemyBase.cpp" />
     <ClCompile Include="Crass\Enemy\EnemyManeger.cpp" />
+    <ClCompile Include="Crass\Enemy\StopEnemy.cpp" />
     <ClCompile Include="Crass\Ovserver\Ovserver.cpp" />
     <ClCompile Include="Crass\Player\Boomerang.cpp" />
     <ClCompile Include="Crass\Player\PlayerManeger.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="Crass\Enemy\Enemy.h" />
     <ClInclude Include="Crass\Enemy\EnemyBase.h" />
     <ClInclude Include="Crass\Enemy\EnemyManeger.h" />
+    <ClInclude Include="Crass\Enemy\StopEnemy.h" />
     <ClInclude Include="Crass\Ovserver\Ovserver.h" />
     <ClInclude Include="Crass\Player\Boomerang.h" />
     <ClInclude Include="Crass\Player\PlayerManeger.h" />

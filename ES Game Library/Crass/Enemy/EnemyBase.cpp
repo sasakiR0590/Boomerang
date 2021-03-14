@@ -7,18 +7,6 @@ EnemyBase::~EnemyBase()
 {
 }
 
-bool EnemyBase::Initialize() {
-	return true;
-}
-
-int EnemyBase::Update() {
-	return 0;
-}
-
-void EnemyBase::Draw() {
-
-}
-
 void EnemyBase::Damage() {
 	_hp -= 1;
 }
