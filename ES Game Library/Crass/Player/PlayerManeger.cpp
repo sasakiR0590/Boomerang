@@ -88,7 +88,7 @@ int PlayerManeger::Update()
 	}
 
 	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 20.0f, 0.0f));
-
+	_collision->SetRotation(_model->GetRotation());
 	return 0;
 }
 
@@ -100,7 +100,6 @@ void PlayerManeger::Draw()
 	if (_shootstate) {
 		_boomerang->Draw();
 	}
-	//_boomerang->Draw();
 }
 
 Vector3 PlayerManeger::Position()
@@ -122,9 +121,9 @@ void PlayerManeger::Shoot()
 {
 	_shootstate = true;
 	Vector3 start_position    = _model->GetPosition();
-	Vector3 control_position1 = start_position + Vector3(10.0f,0.0f,0.0f);
-	Vector3 control_position2 = control_position1 + Vector3(0.0f,0.0f,10.0f);
-	Vector3 end_position      = start_position + Vector3(0.0f,0.0f,30.0f);
+	Vector3 control_position1 = start_position + Vector3(600.0f,0.0f,600.0f);
+	Vector3 control_position2 = start_position + Vector3(-600.0f,0.0f,600.0f);
+	Vector3 end_position      = start_position;
 
 	_boomerang = new Boomerang(start_position, control_position1, control_position2, end_position);
 	_boomerang->Initialize();

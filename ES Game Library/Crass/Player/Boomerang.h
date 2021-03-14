@@ -10,14 +10,17 @@ public:
     int     Update();
     void    Draw();
     Vector3 Move();
+    Vector3 ComeBack();
 private:
 
     Vector3 _position;
     Vector3 _angle;
-    MODEL   _colisition;
+    MODEL   _collision;
     MODEL   _model;
 
     float   _speed;
+    float   _rotatespeed;
 
     Vector3 _point[4];
+    bool    _gobackstate;
 };
