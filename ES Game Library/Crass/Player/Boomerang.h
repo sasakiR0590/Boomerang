@@ -11,6 +11,7 @@ public:
     void    Draw();
     Vector3 Move();
     Vector3 ComeBack();
+    MODEL GetCollision() { return _collision; }
 private:
 
     Vector3 _position;

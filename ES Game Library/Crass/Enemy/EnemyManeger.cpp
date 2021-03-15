@@ -3,6 +3,7 @@
 
 EnemyManeger::EnemyManeger()
 {
+	_enemy = {};
 }
 
 EnemyManeger::~EnemyManeger()
@@ -29,10 +30,8 @@ int EnemyManeger::Update()
 		if (_enemy[i]->Update() == 1)
 		{
 			_enemy.erase(_enemy.begin() + i);
-			OnCollisionEnter();
 		}
 	}
-
 	return 0;
 }
 
@@ -56,6 +55,6 @@ void EnemyManeger::Generate() {
 	}
 }
 
-void EnemyManeger::OnCollisionEnter() {
-	
+void EnemyManeger::OnCollisionEnter(int num) {
+	_enemy.erase(_enemy.begin() + num);
 }

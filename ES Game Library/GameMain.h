@@ -11,7 +11,7 @@ public:
 	GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 	{
 		playerManeger = new PlayerManeger;
-		enemyManeger = new EnemyManeger;
+		enemyManeger  = new EnemyManeger;
 //		ContentRootDirectory(_T("Content"));
 	}
 
@@ -64,7 +64,7 @@ private:
 private:
 	PlayerManeger* playerManeger;
 	EnemyManeger*  enemyManeger;
-	Ovserver*      ovserver;
+	Ovserver      ovserver;
 
 	CAMERA camera;
 
