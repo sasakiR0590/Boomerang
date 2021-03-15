@@ -3,10 +3,10 @@
 #include"../../ESGLib.h"
 #include"Boomerang.h"
 
-class PlayerManeger {
+class PlayerManager {
 public:
-    PlayerManeger::PlayerManeger();
-    PlayerManeger::~PlayerManeger();
+    PlayerManager::PlayerManager();
+    PlayerManager::~PlayerManager();
 
     bool    Initialize();
     int     Update();

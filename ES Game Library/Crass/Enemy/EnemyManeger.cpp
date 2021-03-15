@@ -1,12 +1,12 @@
 #include"EnemyManeger.h"
 #include"EnemyBase.h"
 
-EnemyManeger::EnemyManeger()
+EnemyManager::EnemyManager()
 {
 	_enemy = {};
 }
 
-EnemyManeger::~EnemyManeger()
+EnemyManager::~EnemyManager()
 {
 	//for (int i = 0; i < _enemy.size(); i++)
 	//{
@@ -14,12 +14,12 @@ EnemyManeger::~EnemyManeger()
 	//}
 }
 
-bool EnemyManeger::Initialize()
+bool EnemyManager::Initialize()
 {
 	return true;
 }
 
-int EnemyManeger::Update()
+int EnemyManager::Update()
 {
 	time++;
 	Generate();
@@ -35,7 +35,7 @@ int EnemyManeger::Update()
 	return 0;
 }
 
-void EnemyManeger::Draw()
+void EnemyManager::Draw()
 {
 	for (int i = 0; i < _enemy.size(); i++)
 	{
@@ -43,7 +43,7 @@ void EnemyManeger::Draw()
 	}
 }
 
-void EnemyManeger::Generate() {
+void EnemyManager::Generate() {
 	if (time >= 500)
 	{
 		_enemy.push_back(new Enemy);
@@ -55,6 +55,6 @@ void EnemyManeger::Generate() {
 	}
 }
 
-void EnemyManeger::OnCollisionEnter(int num) {
+void EnemyManager::OnCollisionEnter(int num) {
 	_enemy.erase(_enemy.begin() + num);
 }

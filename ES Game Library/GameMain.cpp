@@ -10,8 +10,8 @@
 bool GameMain::Initialize()
 {
 	WindowTitle(_T("ES Game Library"));
-	playerManeger->Initialize();
-	enemyManeger->Initialize();
+	playermanager->Initialize();
+	enemymanager->Initialize();
 
 	Light light;
 	light.Type = Light_Directional;
@@ -46,9 +46,9 @@ void GameMain::Finalize()
 /// </returns>
 int GameMain::Update()
 {
-	playerManeger->Update();
-	enemyManeger->Update();
-	ovserver.Update();
+	playermanager->Update();
+	enemymanager->Update();
+	ovserver->Update();
 
 	GraphicsDevice.SetCamera(camera);
 	return 0;
@@ -63,15 +63,15 @@ void GameMain::Draw()
 
 	GraphicsDevice.BeginScene();
 
-	Vector3 player_position    = playerManeger->Position();
-	Vector3 player_FrontVector = playerManeger->GetFrontVector();
-	Vector3 player_UpVector    = playerManeger->GetUpVector();
+	Vector3 player_position    = playermanager->Position();
+	Vector3 player_FrontVector = playermanager->GetFrontVector();
+	Vector3 player_UpVector    = playermanager->GetUpVector();
 
 	camera->SetLookAt(player_position + -player_FrontVector * 300 + Vector3(0, 200, 0), player_position + player_UpVector * 100, Vector3_Up);
 	GraphicsDevice.SetCamera(camera);
 
-	playerManeger->Draw();
-	enemyManeger->Draw();
+	playermanager->Draw();
+	enemymanager->Draw();
 
 	SpriteBatch.Begin();
 	

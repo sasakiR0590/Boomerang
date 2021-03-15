@@ -1,18 +1,18 @@
 #include"PlayerManeger.h"
 
-PlayerManeger::PlayerManeger()
+PlayerManager::PlayerManager()
 {
 	_model = nullptr;
 	_boomerang = nullptr;
 	//start_position, control_position1, control_position2, end_position
 }
 
-PlayerManeger::~PlayerManeger()
+PlayerManager::~PlayerManager()
 {
 
 }
 
-bool PlayerManeger::Initialize()
+bool PlayerManager::Initialize()
 {
 	//_boomerang->Initialize();
 
@@ -42,7 +42,7 @@ bool PlayerManeger::Initialize()
 	return true;
 }
 
-int PlayerManeger::Update()
+int PlayerManager::Update()
 {
 
 	KeyboardState key = Keyboard->GetState();
@@ -92,7 +92,7 @@ int PlayerManeger::Update()
 	return 0;
 }
 
-void PlayerManeger::Draw()
+void PlayerManager::Draw()
 {
 	_model->Draw();
 	_collision->Draw();
@@ -102,22 +102,22 @@ void PlayerManeger::Draw()
 	}
 }
 
-Vector3 PlayerManeger::Position()
+Vector3 PlayerManager::Position()
 {
 	return _model->GetPosition();
 }
 
-Vector3 PlayerManeger::GetFrontVector()
+Vector3 PlayerManager::GetFrontVector()
 {
 	return _model->GetFrontVector();
 }
 
-Vector3 PlayerManeger::GetUpVector()
+Vector3 PlayerManager::GetUpVector()
 {
 	return _model->GetUpVector();
 }
 
-void PlayerManeger::Shoot()
+void PlayerManager::Shoot()
 {
 	_animstate = AnimationState::SHOOT;
 	Vector3 start_position    = _model->GetPosition();
@@ -130,6 +130,6 @@ void PlayerManeger::Shoot()
 	_boomerang->Initialize();
 }
 
-void PlayerManeger::OnCollisionEnter()
+void PlayerManager::OnCollisionEnter()
 {
 }

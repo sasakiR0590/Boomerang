@@ -1,4 +1,6 @@
 #include"Ovserver.h"
+#include"../Player/PlayerManeger.h"
+#include"../Enemy/EnemyManeger.h"
 Ovserver::Ovserver()
 {
 }
@@ -9,8 +11,8 @@ Ovserver::~Ovserver()
 
 int Ovserver::Update()
 {
- 	PlayerManeger* playermanager = new PlayerManeger;
-	EnemyManeger*  enemymanager = new EnemyManeger;
+	unique_ptr<PlayerManager> playermanager = std::make_unique<PlayerManager>();
+	unique_ptr<EnemyManager> enemymanager = std::make_unique<EnemyManager>();
 	auto enemy = enemymanager->GetEnemy();
 
 	if (playermanager->GetAnimState() == playermanager->SHOOT)
@@ -35,9 +37,6 @@ int Ovserver::Update()
 			}
 		}
 	}
-
-	delete enemymanager;
-	delete playermanager;
 	return 0;
 }
 

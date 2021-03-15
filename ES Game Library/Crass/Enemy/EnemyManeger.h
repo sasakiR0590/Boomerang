@@ -5,10 +5,10 @@
 #include "StopEnemy.h"
 #include"Enemy.h"
 
-class EnemyManeger {
+class EnemyManager {
 public:
-    EnemyManeger::EnemyManeger();
-    EnemyManeger::~EnemyManeger();
+    EnemyManager::EnemyManager();
+    EnemyManager::~EnemyManager();
     bool Initialize();
     int  Update();
     void Draw();
