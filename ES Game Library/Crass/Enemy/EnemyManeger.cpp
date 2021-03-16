@@ -8,10 +8,10 @@ EnemyManager::EnemyManager()
 
 EnemyManager::~EnemyManager()
 {
-	//for (int i = 0; i < _enemy.size(); i++)
-	//{
-	//	delete _enemy[i];
-	//}
+	for (int i = 0; i < _enemy.size(); i++)
+	{
+		delete _enemy[i];
+	}
 }
 
 bool EnemyManager::Initialize()
@@ -56,5 +56,5 @@ void EnemyManager::Generate() {
 }
 
 void EnemyManager::OnCollisionEnter(int num) {
-	_enemy.erase(_enemy.begin() + num);
+	_enemy[num]->Damage();
 }

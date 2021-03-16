@@ -16,9 +16,9 @@ bool StopEnemy::Initialize()
 	SimpleShape shape;
 	shape.Type = Shape_Box;
 
-	shape.Width  = 10;
-	shape.Height = 10;
-	shape.Length = 10;
+	shape.Width  = 1;
+	shape.Height = 1;
+	shape.Length = 1;
 
 	Material mtrl;
 	mtrl.Diffuse  = Color(0, 0, 0);
@@ -26,7 +26,7 @@ bool StopEnemy::Initialize()
 	mtrl.Specular = Color(0, 0, 0);
 
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
-	_collision->SetScale(3, 6, 3);
+	_collision->SetScale(10);
 	_collision->SetMaterial(mtrl);
 	float random_x = MathHelper_Random(-500.0f, 500.0f);
 	float random_z = MathHelper_Random(-500.0f, 500.0f);
@@ -46,6 +46,9 @@ int StopEnemy::Update()
 		return 1;
 	}
 
+	if (_hp <= 0) {
+		return 1;
+	}
 
 	_collision->SetPosition(_model->GetPosition() + Vector3(0,20.0f,0));
 	_position = _model->GetPosition();

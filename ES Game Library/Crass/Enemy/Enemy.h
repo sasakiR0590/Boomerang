@@ -2,6 +2,7 @@
 
 #include"../../ESGLib.h"
 #include "EnemyBase.h"
+#include "EnemyManeger.h"
 
 class Enemy : public EnemyBase{
 public:
@@ -12,4 +13,5 @@ public:
     void   Draw() override;
 private:
     void    Move();
+    //EnemyManager em;
 };

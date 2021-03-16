@@ -11,10 +11,10 @@ public:
     virtual void Draw()       {};
     MODEL GetCollision()      { return _collision; }
     Vector3 GetPosition()     { return _position; }
+    void    Damage();
 protected:
     Vector3 Move();
     Vector3 Angle();
-    void    Damage();
      Vector3 _position;
     Vector3 _angle;
     int     _hp;

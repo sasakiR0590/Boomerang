@@ -17,6 +17,6 @@ public:
 private:
     void Generate();
     std::vector<EnemyBase*> _enemy;
-    EnemyBase eb;
+    EnemyBase enemy_base;
     float time = 0;
 };
