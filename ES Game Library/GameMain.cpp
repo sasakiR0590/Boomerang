@@ -12,7 +12,6 @@ bool GameMain::Initialize()
 	WindowTitle(_T("ES Game Library"));
 	playermanager->Initialize();
 	enemymanager->Initialize();
-	fieldManeger->Initialize();
 
 	Light light;
 	light.Type = Light_Directional;
@@ -73,7 +72,6 @@ void GameMain::Draw()
 
 	playermanager->Draw();
 	enemymanager->Draw();
-	fieldManeger->Draw();
 
 	SpriteBatch.Begin();
 	

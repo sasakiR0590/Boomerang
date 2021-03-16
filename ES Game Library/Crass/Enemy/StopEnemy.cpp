@@ -26,7 +26,7 @@ bool StopEnemy::Initialize()
 	mtrl.Specular = Color(0, 0, 0);
 
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
-	_collision->SetScale(10);
+	_collision->SetScale(100);
 	_collision->SetMaterial(mtrl);
 	float random_x = MathHelper_Random(-500.0f, 500.0f);
 	float random_z = MathHelper_Random(-500.0f, 500.0f);

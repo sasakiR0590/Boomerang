@@ -5,7 +5,6 @@
 #include "Crass/Player/PlayerManeger.h"
 #include "Crass/Enemy/EnemyManeger.h"
 #include "Crass/Ovserver/Ovserver.h"
-#include "Crass/Field/FieldManager.h"
 
 class GameMain : public CGameScene {
 public:
@@ -14,7 +13,6 @@ public:
 		playermanager = new PlayerManager;
 		enemymanager  = new EnemyManager;
 		ovserver      = new Ovserver;
-		fieldManeger  = new FieldManeger;
 //		ContentRootDirectory(_T("Content"));
 	}
 
@@ -53,7 +51,6 @@ public:
 		delete ovserver;
 		delete enemymanager;
 		delete playermanager;
-		delete fieldManeger;
 	}
 
 public:
@@ -68,9 +65,8 @@ private:
 
 private:
 	PlayerManager* playermanager;
-	EnemyManager*  enemymanager;
+	EnemyManager* enemymanager;
 	Ovserver*      ovserver;
-	FieldManeger* fieldManeger;
 
 	CAMERA camera;
 

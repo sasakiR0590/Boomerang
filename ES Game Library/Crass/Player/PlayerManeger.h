@@ -16,7 +16,7 @@ public:
     Vector3 GetFrontVector();
     Vector3 GetUpVector();
     MODEL GetCollision() { return _collision; }
-    Boomerang GetBoomerang() { return _boomerang; }
+    Boomerang* GetBoomerang() { return _boomerang; }
     void SetAnimState(int state) { _animstate = state; }
     int GetAnimState() { return _animstate; }
     void    Shoot();
@@ -39,11 +39,8 @@ private:
     int        _power;
     int        _hp;
     int        _animstate = 0;
-    Boomerang  _boomerang;
+    Boomerang* _boomerang;
 
     MODEL      _collision;
     MODEL      _model;
-
-    Vector3 start_position;
-    Vector3 end_position;
 };
