@@ -2,6 +2,7 @@
 
 FieldManeger::FieldManeger()
 {
+
 }
 
 FieldManeger::~FieldManeger()

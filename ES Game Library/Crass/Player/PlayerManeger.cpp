@@ -35,7 +35,7 @@ bool PlayerManager::Initialize()
 	mat.Specular = Color(1, 1, 1);
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetMaterial(mat);
-	_collision->SetScale(3.0f, 6.0f, 3.0f);
+	_collision->SetScale(0.5f, 2.0f, 0.5f);
 
 	start_position = Vector3_Zero;
 	end_position   = Vector3_Zero;
@@ -94,7 +94,7 @@ int PlayerManager::Update()
 		}
 	}
 
-	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 20.0f, 0.0f));
+	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 0.0f, 0.0f));
 	_collision->SetRotation(_model->GetRotation());
 	return 0;
 }
@@ -132,8 +132,8 @@ Vector3 PlayerManager::GetUpVector()
 void PlayerManager::Shoot()
 {
 	_animstate = AnimationState::SHOOT;
-	Vector3 control_position1 = start_position + Vector3(600.0f,0.0f,600.0f);
-	Vector3 control_position2 = start_position + Vector3(-600.0f,0.0f,600.0f);
+	Vector3 control_position1 = start_position + Vector3(6.0f,0.0f,6.0f);
+	Vector3 control_position2 = start_position + Vector3(-6.0f,0.0f,6.0f);
 
 	_boomerang.Initialize(start_position, control_position1, control_position2);
 }
