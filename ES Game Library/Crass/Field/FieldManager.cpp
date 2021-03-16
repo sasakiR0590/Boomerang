@@ -19,6 +19,7 @@ bool FieldManeger::Initialize()
 
 	if (_model == nullptr)
 		return false;
+
 }
 
 void FieldManeger::Draw()
