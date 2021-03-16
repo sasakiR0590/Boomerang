@@ -9,7 +9,7 @@ PlayerManager::PlayerManager()
 
 PlayerManager::~PlayerManager()
 {
-
+	delete _boomerang;
 }
 
 bool PlayerManager::Initialize()

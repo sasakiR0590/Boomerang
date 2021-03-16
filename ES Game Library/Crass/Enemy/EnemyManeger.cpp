@@ -8,10 +8,10 @@ EnemyManager::EnemyManager()
 
 EnemyManager::~EnemyManager()
 {
-	//for (int i = 0; i < _enemy.size(); i++)
-	//{
-	//	delete _enemy[i];
-	//}
+	for (int i = 0; i < _enemy.size(); i++)
+	{
+		delete _enemy[i];
+	}
 }
 
 bool EnemyManager::Initialize()

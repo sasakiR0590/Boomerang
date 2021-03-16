@@ -12,7 +12,7 @@ public:
 	{
 		playermanager = new PlayerManager;
 		enemymanager  = new EnemyManager;
-		ovserver      = new Ovserver();
+		ovserver      = new Ovserver;
 //		ContentRootDirectory(_T("Content"));
 	}
 
