@@ -26,6 +26,8 @@ bool GameMain::Initialize()
 	camera->SetPerspectiveFieldOfView(45.0f, 16.0f / 9.0f, 1.0f, 10000.0f);
 	GraphicsDevice.SetCamera(camera);
 
+	_count = 0;
+
 	return true;
 }
 
@@ -52,6 +54,8 @@ int GameMain::Update()
 	ovserver->Update(playermanager, enemymanager);
 
 	GraphicsDevice.SetCamera(camera);
+
+	_count = playermanager->CallOnCollisionEnter();
 	return 0;
 }
 
@@ -76,9 +80,8 @@ void GameMain::Draw()
 	fieldManeger->Draw();
 
 	SpriteBatch.Begin();
-	
-	SpriteBatch.DrawString(DefaultFont, Vector2(500, 200), Color(255, 255, 255), _T("ポジションX　%f"), player_position.x);
-	SpriteBatch.DrawString(DefaultFont, Vector2(700, 200), Color(255, 255, 255), _T("ポジションZ　%f"), player_position.z);
+
+	SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("OnCollisionEnterが呼ばれた回数　%d"), _count);
 	
 	SpriteBatch.End();
 

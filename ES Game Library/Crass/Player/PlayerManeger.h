@@ -20,6 +20,7 @@ public:
     void SetAnimState(int state) { _animstate = state; }
     int GetAnimState() { return _animstate; }
     void    Shoot();
+    int CallOnCollisionEnter();
     enum AnimationState
     {
         WAIT,
@@ -46,4 +47,6 @@ private:
 
     Vector3 start_position;
     Vector3 end_position;
+
+    int _callcount;
 };

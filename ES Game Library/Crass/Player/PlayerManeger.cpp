@@ -40,6 +40,8 @@ bool PlayerManager::Initialize()
 	start_position = Vector3_Zero;
 	end_position   = Vector3_Zero;
 
+	_callcount = 0;
+
 	return true;
 }
 
@@ -140,4 +142,10 @@ void PlayerManager::Shoot()
 
 void PlayerManager::OnCollisionEnter()
 {
+	_callcount += 1;
+}
+
+int PlayerManager::CallOnCollisionEnter()
+{
+	return _callcount;
 }

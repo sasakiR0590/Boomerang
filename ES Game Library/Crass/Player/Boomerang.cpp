@@ -43,6 +43,7 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2)
 	_point[2] = control2;
 	_endposition = Vector3_Zero;
 
+	_angle = Vector3_Zero;
 	return true;
 }
 
@@ -52,11 +53,13 @@ int Boomerang::Update(Vector3 _playerposition)
 	{
 		return 1;
 	}
+
 	_endposition = _playerposition;
+
 	_collision->SetRotation(_model->GetRotation());
+	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 0.0f, 0.0f));
 
 	_model->SetPosition(Move());
-	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 0.0f, 0.0f));
 
 	return 0;
 }
