@@ -41,7 +41,8 @@ bool PlayerManager::Initialize()
 	end_position   = Vector3_Zero;
 
 	_callcount = 0;
-
+	_invincibletime = 0;
+	_invincibleflag = false;
 	return true;
 }
 
@@ -96,6 +97,21 @@ int PlayerManager::Update()
 		}
 	}
 
+	if (_animstate == AnimationState::DAMAGE) {
+		_invincibletime += 1;
+
+		if (_invincibletime <= 180) {
+			_invincibleflag = true;
+		}
+		else {
+			_invincibleflag = false;
+			_animstate = AnimationState::WAIT;
+		}
+	}
+	else {
+		_invincibletime = 0;
+	}
+
 	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 0.0f, 0.0f));
 	return 0;
 }
@@ -141,10 +157,18 @@ void PlayerManager::Shoot()
 
 void PlayerManager::OnCollisionEnter()
 {
+	Damage();
+	_animstate = AnimationState::DAMAGE;
 	_callcount += 1;
 }
 
 int PlayerManager::CallOnCollisionEnter()
 {
 	return _callcount;
+}
+
+void  PlayerManager::Damage()
+{
+	if(!_invincibleflag)
+		_hp -= 1;
 }
