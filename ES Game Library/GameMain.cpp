@@ -68,7 +68,7 @@ void GameMain::Draw()
 	Vector3 player_FrontVector = playermanager->GetFrontVector();
 	Vector3 player_UpVector    = playermanager->GetUpVector();
 
-	camera->SetLookAt(player_position + -player_FrontVector * 300 + Vector3(0, 200, 0), player_position + player_UpVector * 100, Vector3_Up);
+	camera->SetLookAt(player_position + -player_FrontVector * 5 + Vector3(0, 7, 0), player_position + player_UpVector, Vector3_Up);
 	GraphicsDevice.SetCamera(camera);
 
 	playermanager->Draw();

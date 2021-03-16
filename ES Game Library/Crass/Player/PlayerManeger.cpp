@@ -14,7 +14,7 @@ bool PlayerManager::Initialize()
 {
 	//_boomerang->Initialize();
 
-	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Player/kariMan_1.X"));
+	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Player/hero.X"));
 
 	_model->SetScale(1.0f, 1.0f, 1.0f);
 	_model->SetPosition(0, 0, 0);
@@ -54,22 +54,22 @@ int PlayerManager::Update()
 
 
 	if (key.IsKeyDown(Keys_W)) {
-		_model->Move(0.0f, 0.0f, 1.0f);
+		_model->Move(0.0f, 0.0f, 0.1f);
 
 	}
 
 	if (key.IsKeyDown(Keys_A)) {
-		_model->Move(-1.0f, 0.0f, 0.0f);
+		_model->Move(-0.1f, 0.0f, 0.0f);
 
 	}
 
 	if (key.IsKeyDown(Keys_S)) {
-		_model->Move(0.0f, 0.0f, -1.0f);
+		_model->Move(0.0f, 0.0f, -0.1f);
 
 	}
 
 	if (key.IsKeyDown(Keys_D)) {
-		_model->Move(1.0f, 0.0f, 0.0f);
+		_model->Move(0.1f, 0.0f, 0.0f);
 
 	}
 

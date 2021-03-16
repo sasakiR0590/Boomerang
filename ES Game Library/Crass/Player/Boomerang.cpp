@@ -13,7 +13,7 @@ Boomerang::~Boomerang()
 bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2)
 {
 	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Boomerang/ono_boomerang.X"));
-	_model->SetScale(3.0f, 3.0f, 3.0f);
+	_model->SetScale(1.0f, 1.0f, 1.0f);
 	_model->SetPosition(0, 0, 0);
 	_model->SetRotation(0, 0, 0);
 
