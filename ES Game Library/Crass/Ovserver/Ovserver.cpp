@@ -16,7 +16,7 @@ int Ovserver::Update(PlayerManager* playerdata, EnemyManager* enemydata)
 
 	if (_playermanager->GetAnimState() == _playermanager->SHOOT)
 	{
-		auto a = _playermanager->GetBoomerang()->GetCollision();
+		auto a = _playermanager->GetBoomerang().GetCollision();
 		auto a_pos = a->GetPosition();
 		auto a_scale = a->GetScale();
 		for (int i = 0;i < enemy.size();i++ )

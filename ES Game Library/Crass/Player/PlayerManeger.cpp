@@ -3,13 +3,11 @@
 PlayerManager::PlayerManager()
 {
 	_model = nullptr;
-	_boomerang = nullptr;
 	//start_position, control_position1, control_position2, end_position
 }
 
 PlayerManager::~PlayerManager()
 {
-	delete _boomerang;
 }
 
 bool PlayerManager::Initialize()
@@ -39,6 +37,9 @@ bool PlayerManager::Initialize()
 	_collision->SetMaterial(mat);
 	_collision->SetScale(3.0f, 6.0f, 3.0f);
 
+	start_position = Vector3_Zero;
+	end_position   = Vector3_Zero;
+
 	return true;
 }
 
@@ -47,6 +48,10 @@ int PlayerManager::Update()
 
 	KeyboardState key = Keyboard->GetState();
 	KeyboardBuffer key_buffer = Keyboard->GetBuffer();
+
+	start_position = _model->GetPosition();
+	end_position   = _model->GetPosition();
+
 
 	if (key.IsKeyDown(Keys_W)) {
 		_model->Move(0.0f, 0.0f, 1.0f);
@@ -80,11 +85,13 @@ int PlayerManager::Update()
 
 	if (key.IsKeyDown(Keys_Space)) {
 		Shoot();
-
 	}
 
 	if (_animstate == AnimationState::SHOOT) {
-		_boomerang->Update();
+		if (_boomerang.Update(end_position) == 1)
+		{
+			_animstate = AnimationState::WAIT;
+		}
 	}
 
 	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 20.0f, 0.0f));
@@ -98,8 +105,13 @@ void PlayerManager::Draw()
 	_collision->Draw();
 
 	if (_animstate == AnimationState::SHOOT) {
-		_boomerang->Draw();
+		_boomerang.Draw();
 	}
+}
+
+Vector3 PlayerManager::Angle()
+{
+	return _model->GetRotation();
 }
 
 Vector3 PlayerManager::Position()
@@ -120,14 +132,10 @@ Vector3 PlayerManager::GetUpVector()
 void PlayerManager::Shoot()
 {
 	_animstate = AnimationState::SHOOT;
-	Vector3 start_position    = _model->GetPosition();
 	Vector3 control_position1 = start_position + Vector3(600.0f,0.0f,600.0f);
 	Vector3 control_position2 = start_position + Vector3(-600.0f,0.0f,600.0f);
-	Vector3 end_position      = start_position;
 
-	if(_boomerang == nullptr)
-	_boomerang = new Boomerang(start_position, control_position1, control_position2, end_position);
-	_boomerang->Initialize();
+	_boomerang.Initialize(start_position, control_position1, control_position2);
 }
 
 void PlayerManager::OnCollisionEnter()
