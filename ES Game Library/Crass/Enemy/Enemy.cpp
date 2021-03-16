@@ -42,9 +42,9 @@ int Enemy::Update()
 	if (_position.z <= - 300) {
 		return 1;
 	}
+	
 
-
-	if (_hp < 0) {
+	if (_hp <= 0) {
 		return 1;
 	}
 
@@ -62,3 +62,5 @@ void Enemy::Draw()
 void Enemy::Move() {
 		_model->Move(0, 0, -1);
 }
+
+

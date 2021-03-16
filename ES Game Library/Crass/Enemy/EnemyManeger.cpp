@@ -56,5 +56,5 @@ void EnemyManager::Generate() {
 }
 
 void EnemyManager::OnCollisionEnter(int num) {
-	_enemy.erase(_enemy.begin() + num);
+	_enemy[num]->Damage();
 }

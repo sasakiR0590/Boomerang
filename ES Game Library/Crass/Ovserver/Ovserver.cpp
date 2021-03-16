@@ -1,11 +1,14 @@
 #include"Ovserver.h"
 Ovserver::Ovserver()
 {
+	_playermanager = new PlayerManager;
+	_enemymanager = new EnemyManager;
 }
 
 Ovserver::~Ovserver()
 {
-
+	delete _enemymanager;
+	delete _playermanager;
 }
 
 int Ovserver::Update(PlayerManager* playerdata, EnemyManager* enemydata)
