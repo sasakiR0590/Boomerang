@@ -14,7 +14,7 @@ bool PlayerManager::Initialize()
 {
 	//_boomerang->Initialize();
 
-	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Player/kariMan_1.X"));
+	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Player/hero.X"));
 
 	_model->SetScale(1.0f, 1.0f, 1.0f);
 	_model->SetPosition(0, 0, 0);
@@ -35,11 +35,14 @@ bool PlayerManager::Initialize()
 	mat.Specular = Color(1, 1, 1);
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetMaterial(mat);
-	_collision->SetScale(3.0f, 6.0f, 3.0f);
+	_collision->SetScale(1.0f, 2.0f, 1.0f);
 
 	start_position = Vector3_Zero;
 	end_position   = Vector3_Zero;
 
+	_callcount = 0;
+	_invincibletime = 0;
+	_invincibleflag = false;
 	return true;
 }
 
@@ -49,38 +52,38 @@ int PlayerManager::Update()
 	KeyboardState key = Keyboard->GetState();
 	KeyboardBuffer key_buffer = Keyboard->GetBuffer();
 
-	start_position = _model->GetPosition();
+	start_position = _model->GetPosition() + _model->GetFrontVector();
 	end_position   = _model->GetPosition();
 
 
 	if (key.IsKeyDown(Keys_W)) {
-		_model->Move(0.0f, 0.0f, 1.0f);
+		_model->Move(0.0f, 0.0f, 0.1f);
 
 	}
 
 	if (key.IsKeyDown(Keys_A)) {
-		_model->Move(-1.0f, 0.0f, 0.0f);
+		_model->Move(-0.1f, 0.0f, 0.0f);
 
 	}
 
 	if (key.IsKeyDown(Keys_S)) {
-		_model->Move(0.0f, 0.0f, -1.0f);
+		_model->Move(0.0f, 0.0f, -0.1f);
 
 	}
 
 	if (key.IsKeyDown(Keys_D)) {
-		_model->Move(1.0f, 0.0f, 0.0f);
+		_model->Move(0.1f, 0.0f, 0.0f);
 
 	}
 
 	if (key.IsKeyDown(Keys_Right)) {
-		_model->Rotation(0.0f, 5.0f, 0.0f);
-
+		_model->Rotation(0.0f, 1.0f, 0.0f);
+		_collision->Rotation(0.0f, 1.0f, 0.0f);
 	}
 
 	if (key.IsKeyDown(Keys_Left)) {
-		_model->Rotation(0.0f, -5.0f, 0.0f);
-
+		_model->Rotation(0.0f, -1.0f, 0.0f);
+		_collision->Rotation(0.0f, -1.0f, 0.0f);
 	}
 
 	if (key.IsKeyDown(Keys_Space)) {
@@ -94,8 +97,22 @@ int PlayerManager::Update()
 		}
 	}
 
-	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 20.0f, 0.0f));
-	_collision->SetRotation(_model->GetRotation());
+	if (_animstate == AnimationState::DAMAGE) {
+		_invincibletime += 1;
+
+		if (_invincibletime <= 180) {
+			_invincibleflag = true;
+		}
+		else {
+			_invincibleflag = false;
+			_animstate = AnimationState::WAIT;
+		}
+	}
+	else {
+		_invincibletime = 0;
+	}
+
+	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 0.0f, 0.0f));
 	return 0;
 }
 
@@ -132,12 +149,26 @@ Vector3 PlayerManager::GetUpVector()
 void PlayerManager::Shoot()
 {
 	_animstate = AnimationState::SHOOT;
-	Vector3 control_position1 = start_position + Vector3(600.0f,0.0f,600.0f);
-	Vector3 control_position2 = start_position + Vector3(-600.0f,0.0f,600.0f);
+	Vector3 control_position1 = _model->GetPosition() + _model->GetFrontVector() * 6 + _model->GetRightVector() * 6;
+	Vector3 control_position2 = _model->GetPosition() + _model->GetFrontVector() * 6 + (-_model->GetRightVector()) * 6;
 
 	_boomerang.Initialize(start_position, control_position1, control_position2);
 }
 
 void PlayerManager::OnCollisionEnter()
 {
+	Damage();
+	_animstate = AnimationState::DAMAGE;
+	_callcount += 1;
+}
+
+int PlayerManager::CallOnCollisionEnter()
+{
+	return _callcount;
+}
+
+void  PlayerManager::Damage()
+{
+	if(!_invincibleflag)
+		_hp -= 1;
 }

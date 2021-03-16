@@ -20,6 +20,7 @@ public:
     void SetAnimState(int state) { _animstate = state; }
     int GetAnimState() { return _animstate; }
     void    Shoot();
+    int CallOnCollisionEnter();
     enum AnimationState
     {
         WAIT,
@@ -39,11 +40,15 @@ private:
     int        _power;
     int        _hp;
     int        _animstate = 0;
-    Boomerang  _boomerang;
+    Boomerang _boomerang;
 
     MODEL      _collision;
     MODEL      _model;
 
     Vector3 start_position;
     Vector3 end_position;
+
+    int  _callcount;
+    int  _invincibletime;
+    bool _invincibleflag;
 };

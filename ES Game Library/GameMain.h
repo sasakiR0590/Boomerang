@@ -73,5 +73,6 @@ private:
 	FieldManeger* fieldManeger;
 
 	CAMERA camera;
+	int _count;   //OnCollisionEnter‚ªŒÄ‚Î‚ê‚½‰ñ”
 
 };
