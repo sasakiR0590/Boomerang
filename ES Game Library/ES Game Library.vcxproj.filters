@@ -139,6 +139,9 @@
     <Filter Include="EnemyFolder\StopEnemy">
       <UniqueIdentifier>{92929bec-6b00-49c4-aa39-fa43d9b3a725}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Field">
+      <UniqueIdentifier>{2c936671-a109-447c-a7e5-472575407f78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -303,6 +306,9 @@
     </ClCompile>
     <ClCompile Include="Crass\Enemy\StopEnemy.cpp">
       <Filter>EnemyFolder\StopEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Crass\Field\FieldManager.cpp">
+      <Filter>Field</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -480,6 +486,9 @@
     </ClInclude>
     <ClInclude Include="Crass\Enemy\StopEnemy.h">
       <Filter>EnemyFolder\StopEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Crass\Field\FieldManager.h">
+      <Filter>Field</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
