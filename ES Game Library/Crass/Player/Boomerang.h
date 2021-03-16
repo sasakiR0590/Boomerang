@@ -4,10 +4,10 @@
 
 class Boomerang {
 public:
-    Boomerang::Boomerang(Vector3 start, Vector3 control1, Vector3 control2, Vector3 end);
+    Boomerang::Boomerang();
     Boomerang::~Boomerang();
-    bool    Initialize();
-    int     Update();
+    bool    Initialize(Vector3 start, Vector3 control1, Vector3 control2);
+    int     Update(Vector3 _playerposition);
     void    Draw();
     Vector3 Move();
     Vector3 ComeBack();
@@ -24,4 +24,5 @@ private:
 
     Vector3 _point[4];
     bool    _gobackstate;
+    Vector3 _endposition;
 };
