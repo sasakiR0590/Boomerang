@@ -48,7 +48,7 @@ int GameMain::Update()
 {
 	playermanager->Update();
 	enemymanager->Update();
-	ovserver->Update();
+	ovserver->Update(playermanager, enemymanager);
 
 	GraphicsDevice.SetCamera(camera);
 	return 0;

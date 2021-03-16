@@ -18,7 +18,7 @@ public:
     MODEL GetCollision() { return _collision; }
     Boomerang* GetBoomerang() { return _boomerang; }
     void SetAnimState(int state) { _animstate = state; }
-    bool GetAnimState() { return _animstate; }
+    int GetAnimState() { return _animstate; }
     void    Shoot();
     enum AnimationState
     {

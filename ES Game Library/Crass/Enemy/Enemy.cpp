@@ -16,9 +16,9 @@ bool Enemy::Initialize()
 	SimpleShape shape;
 	shape.Type = Shape_Box;
 
-	shape.Width  = 10;
-	shape.Height = 10;
-	shape.Length = 10;
+	shape.Width  = 1;
+	shape.Height = 1;
+	shape.Length = 1;
 
 	Material mtrl;
 	mtrl.Diffuse  = Color(0, 0, 0);
@@ -26,7 +26,7 @@ bool Enemy::Initialize()
 	mtrl.Specular = Color(0, 0, 0);
 
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
-	_collision->SetScale(3, 6, 3);
+	_collision->SetScale(100);
 	_collision->SetMaterial(mtrl);
 	float rand = MathHelper_Random(-500.0f, 500.0f);
 	_position =  Vector3(rand, 0, 300);

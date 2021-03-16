@@ -25,9 +25,9 @@ bool Boomerang::Initialize()
 
 	SimpleShape shape;
 	shape.Type = Shape_Box;
-	shape.Width = 10;
-	shape.Height = 10;
-	shape.Depth = 10;
+	shape.Width  = 1;
+	shape.Height = 1;
+	shape.Depth  = 1;
 
 	Material mat;
 	mat.Diffuse = Color(1, 1, 1);
@@ -35,7 +35,7 @@ bool Boomerang::Initialize()
 	mat.Specular = Color(1, 1, 1);
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetMaterial(mat);
-	_collision->SetScale(2.0f, 1.0f, 5.0f);
+	_collision->SetScale(10);
 
 	_speed = 0.0f;
 	_rotatespeed = 0.0f;

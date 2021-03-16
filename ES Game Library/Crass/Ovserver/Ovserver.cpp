@@ -1,26 +1,28 @@
 #include"Ovserver.h"
-#include"../Player/PlayerManeger.h"
-#include"../Enemy/EnemyManeger.h"
 Ovserver::Ovserver()
 {
+	_playermanager = new PlayerManager;
+	_enemymanager = new EnemyManager;
 }
 
 Ovserver::~Ovserver()
 {
+	delete _enemymanager;
+	delete _playermanager;
 }
 
-int Ovserver::Update()
+int Ovserver::Update(PlayerManager* playerdata, EnemyManager* enemydata)
 {
-	unique_ptr<PlayerManager> playermanager = std::make_unique<PlayerManager>();
-	unique_ptr<EnemyManager> enemymanager = std::make_unique<EnemyManager>();
-	auto enemy = enemymanager->GetEnemy();
+	_playermanager = playerdata;
+	_enemymanager = enemydata;
+	auto enemy = _enemymanager->GetEnemy();
 
-	if (playermanager->GetAnimState() == playermanager->SHOOT)
+	if (_playermanager->GetAnimState() == _playermanager->SHOOT)
 	{
-		auto a = playermanager->GetBoomerang()->GetCollision();
+		auto a = _playermanager->GetBoomerang()->GetCollision();
 		auto a_pos = a->GetPosition();
 		auto a_scale = a->GetScale();
-		for (int i = 0;i > enemy.size();i++ )
+		for (int i = 0;i < enemy.size();i++ )
 		{
 			auto b = enemy[i]->GetCollision();
 			auto b_pos = b->GetPosition();
@@ -33,7 +35,7 @@ int Ovserver::Update()
 				a_pos.z - a_scale.z < b_pos.z + b_scale.z &&
 				a_pos.z + a_scale.z > b_pos.z - b_scale.z)
 			{
-				enemymanager->OnCollisionEnter(i);
+				_enemymanager->OnCollisionEnter(i);
 			}
 		}
 	}
