@@ -32,7 +32,7 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2)
 	mat.Specular = Color(1, 1, 1);
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetMaterial(mat);
-	_collision->SetScale(10);
+	_collision->SetScale(0.5);
 
 	_speed = 0.0f;
 	_rotatespeed = 0.0f;
