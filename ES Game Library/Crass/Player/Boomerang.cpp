@@ -32,7 +32,7 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2)
 	mat.Specular = Color(1, 1, 1);
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetMaterial(mat);
-	_collision->SetScale(0.1);
+	_collision->SetScale(10);
 
 	_speed = 0.0f;
 	_rotatespeed = 0.0f;
@@ -46,7 +46,7 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2)
 	return true;
 }
 
-int Boomerang::Update(Vector3 _playerposition/*, Vector3 _playerrotation*/)
+int Boomerang::Update(Vector3 _playerposition)
 {
 	if (_speed >= 0.5 && Vector3_Distance(_model->GetPosition(), _endposition) <= 1)
 	{
