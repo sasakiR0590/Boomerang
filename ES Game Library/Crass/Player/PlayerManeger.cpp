@@ -25,9 +25,9 @@ bool PlayerManager::Initialize()
 
     SimpleShape shape;
 	shape.Type = Shape_Box;
-	shape.Width = 10;
-	shape.Height = 10;
-	shape.Depth = 10;
+	shape.Width  = 1;
+	shape.Height = 1;
+	shape.Depth  = 1;
 
 	Material mat;
 	mat.Diffuse = Color(1, 1, 1);
