@@ -76,13 +76,13 @@ int PlayerManager::Update()
 	}
 
 	if (key.IsKeyDown(Keys_Right)) {
-		_model->Rotation(0.0f, 5.0f, 0.0f);
-
+		_model->Rotation(0.0f, 1.0f, 0.0f);
+		_collision->Rotation(0.0f, 1.0f, 0.0f);
 	}
 
 	if (key.IsKeyDown(Keys_Left)) {
-		_model->Rotation(0.0f, -5.0f, 0.0f);
-
+		_model->Rotation(0.0f, -1.0f, 0.0f);
+		_collision->Rotation(0.0f, -1.0f, 0.0f);
 	}
 
 	if (key.IsKeyDown(Keys_Space)) {
@@ -97,7 +97,6 @@ int PlayerManager::Update()
 	}
 
 	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 0.0f, 0.0f));
-	_collision->SetRotation(_model->GetRotation());
 	return 0;
 }
 

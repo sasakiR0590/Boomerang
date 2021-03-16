@@ -56,9 +56,7 @@ int Boomerang::Update(Vector3 _playerposition)
 
 	_endposition = _playerposition;
 
-	_collision->SetRotation(_model->GetRotation());
 	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 0.0f, 0.0f));
-
 	_model->SetPosition(Move());
 
 	return 0;
@@ -75,6 +73,7 @@ Vector3 Boomerang::Move()
 	_speed += 0.01f;
 	_rotatespeed += 10.0f;
 	_model->SetRotation(0.0f, _rotatespeed, 0.0f);
+	_collision->SetRotation(0.0f, _rotatespeed, 0.0f);
 	Vector3 _bezier = Vector3_Bezier(_point[0], _point[1], _point[2], _endposition, _speed);
 
 	return _bezier;
