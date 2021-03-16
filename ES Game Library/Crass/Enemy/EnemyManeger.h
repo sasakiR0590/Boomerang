@@ -5,16 +5,17 @@
 #include "StopEnemy.h"
 #include"Enemy.h"
 
-class EnemyManeger {
+class EnemyManager {
 public:
-    EnemyManeger::EnemyManeger();
-    EnemyManeger::~EnemyManeger();
+    EnemyManager::EnemyManager();
+    EnemyManager::~EnemyManager();
     bool Initialize();
     int  Update();
     void Draw();
+    void OnCollisionEnter(int);
+    std::vector<EnemyBase*> GetEnemy() {return _enemy; }
 private:
     void Generate();
-    void OnCollisionEnter();
     std::vector<EnemyBase*> _enemy;
     EnemyBase eb;
     float time = 0;

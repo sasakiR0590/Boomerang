@@ -3,10 +3,10 @@
 #include"../../ESGLib.h"
 #include"Boomerang.h"
 
-class PlayerManeger {
+class PlayerManager {
 public:
-    PlayerManeger::PlayerManeger();
-    PlayerManeger::~PlayerManeger();
+    PlayerManager::PlayerManager();
+    PlayerManager::~PlayerManager();
 
     bool    Initialize();
     int     Update();
@@ -16,8 +16,17 @@ public:
     Vector3 GetFrontVector();
     Vector3 GetUpVector();
     MODEL GetCollision() { return _collision; }
-
+    Boomerang* GetBoomerang() { return _boomerang; }
+    void SetAnimState(int state) { _animstate = state; }
+    int GetAnimState() { return _animstate; }
     void    Shoot();
+    enum AnimationState
+    {
+        WAIT,
+        RUN,
+        SHOOT,
+        DAMAGE
+    };
 private:
     Vector3 Move();
     Vector3 Angle();
@@ -29,7 +38,7 @@ private:
     Vector3    _angle;
     int        _power;
     int        _hp;
-    bool       _shootstate;
+    int        _animstate = 0;
     Boomerang* _boomerang;
 
     MODEL      _collision;

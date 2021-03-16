@@ -10,8 +10,9 @@ class GameMain : public CGameScene {
 public:
 	GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 	{
-		playerManeger = new PlayerManeger;
-		enemyManeger = new EnemyManeger;
+		playermanager = new PlayerManager;
+		enemymanager  = new EnemyManager;
+		ovserver      = new Ovserver();
 //		ContentRootDirectory(_T("Content"));
 	}
 
@@ -47,8 +48,9 @@ public:
 		GraphicsDevice.ReleaseAllEffects();
 
 		Finalize();
-		delete enemyManeger;
-		delete playerManeger;
+		delete ovserver;
+		delete enemymanager;
+		delete playermanager;
 	}
 
 public:
@@ -62,8 +64,8 @@ private:
 	FONT DefaultFont;
 
 private:
-	PlayerManeger* playerManeger;
-	EnemyManeger*  enemyManeger;
+	PlayerManager* playermanager;
+	EnemyManager* enemymanager;
 	Ovserver*      ovserver;
 
 	CAMERA camera;

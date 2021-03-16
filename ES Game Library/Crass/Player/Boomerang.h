@@ -1,6 +1,6 @@
 #pragma once
 
-#include"..//..//ESGLib.h"
+#include"../../ESGLib.h"
 
 class Boomerang {
 public:
@@ -11,6 +11,7 @@ public:
     void    Draw();
     Vector3 Move();
     Vector3 ComeBack();
+    MODEL GetCollision() { return _collision; }
 private:
 
     Vector3 _position;
