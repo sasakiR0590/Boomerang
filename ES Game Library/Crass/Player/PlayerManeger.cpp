@@ -51,7 +51,7 @@ int PlayerManager::Update()
 	KeyboardState key = Keyboard->GetState();
 	KeyboardBuffer key_buffer = Keyboard->GetBuffer();
 
-	start_position = _model->GetPosition();
+	start_position = _model->GetPosition() + _model->GetFrontVector();
 	end_position   = _model->GetPosition();
 
 
@@ -134,8 +134,8 @@ Vector3 PlayerManager::GetUpVector()
 void PlayerManager::Shoot()
 {
 	_animstate = AnimationState::SHOOT;
-	Vector3 control_position1 = start_position + Vector3(6.0f,0.0f,6.0f);
-	Vector3 control_position2 = start_position + Vector3(-6.0f,0.0f,6.0f);
+	Vector3 control_position1 = _model->GetPosition() + _model->GetFrontVector() * 6 + _model->GetRightVector() * 6;
+	Vector3 control_position2 = _model->GetPosition() + _model->GetFrontVector() * 6 + (-_model->GetRightVector()) * 6;
 
 	_boomerang.Initialize(start_position, control_position1, control_position2);
 }
