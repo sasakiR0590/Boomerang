@@ -11,5 +11,5 @@ public:
     void    Draw();
 
 private:
-    MODEL _model;
+    MODEL  _model;
 };
