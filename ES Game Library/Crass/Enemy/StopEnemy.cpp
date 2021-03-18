@@ -11,7 +11,7 @@ StopEnemy::~StopEnemy()
 
 bool StopEnemy::Initialize()
 {
-	_model		= GraphicsDevice.CreateModelFromFile(_T("kariMan_1.X"));
+	_model		= GraphicsDevice.CreateModelFromFile(_T("hero.X"));
 
 	SimpleShape shape;
 	shape.Type = Shape_Box;
@@ -26,10 +26,10 @@ bool StopEnemy::Initialize()
 	mtrl.Specular = Color(0, 0, 0);
 
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
-	_collision->SetScale(100);
+	_collision->SetScale(1);
 	_collision->SetMaterial(mtrl);
-	float random_x = MathHelper_Random(-500.0f, 500.0f);
-	float random_z = MathHelper_Random(-500.0f, 500.0f);
+	float random_x = MathHelper_Random(-7.0f, 7.0f);
+	float random_z = MathHelper_Random(-6.0f, 5.0f);
 	_position =  Vector3(random_x, 0, random_z);
 	_model->SetPosition(_position);
 	_hp = 10;
@@ -50,7 +50,7 @@ int StopEnemy::Update()
 		return 1;
 	}
 
-	_collision->SetPosition(_model->GetPosition() + Vector3(0,20.0f,0));
+	_collision->SetPosition(_model->GetPosition() + Vector3(0, 0, 0));
 	_position = _model->GetPosition();
 	return 0;
 }

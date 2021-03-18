@@ -7,7 +7,8 @@ Ovserver::Ovserver()
 
 Ovserver::~Ovserver()
 {
-
+	//delete _enemymanager;
+	//delete _playermanager;
 }
 
 int Ovserver::Update(PlayerManager* playerdata, EnemyManager* enemydata)
