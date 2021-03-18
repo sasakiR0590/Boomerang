@@ -15,6 +15,12 @@ int Ovserver::Update(PlayerManager* playerdata, EnemyManager* enemydata)
 {
 	_playermanager = playerdata;
 	_enemymanager = enemydata;
+	ColisionDetection();
+	return 0;
+}
+
+void Ovserver::ColisionDetection()
+{
 	auto enemy = _enemymanager->GetEnemy();
 
 	if (_playermanager->GetAnimState() == _playermanager->SHOOT)
@@ -22,11 +28,11 @@ int Ovserver::Update(PlayerManager* playerdata, EnemyManager* enemydata)
 		auto a = _playermanager->GetBoomerang().GetCollision();
 		auto a_pos = a->GetPosition();
 		auto a_scale = a->GetScale();
-		for (int i = 0;i < enemy.size();i++ )
+		for (int i = 0; i < enemy.size(); i++)
 		{
 			auto b = enemy[i]->GetCollision();
 			auto b_pos = b->GetPosition();
-			auto b_scale = b->GetScale();
+			auto b_scale = b->GetScale() / 2;
 			//! aとbのボックスの当たり判定
 			if (a_pos.x - a_scale.x < b_pos.x + b_scale.x &&
 				a_pos.x + a_scale.x > b_pos.x - b_scale.x &&
@@ -39,9 +45,26 @@ int Ovserver::Update(PlayerManager* playerdata, EnemyManager* enemydata)
 			}
 		}
 	}
-	return 0;
-}
 
-void Ovserver::ColisionDetection()
-{
+	if (_playermanager->GetAnimState() != _playermanager->DAMAGE)
+	{
+		auto a_pos = _playermanager->GetCollision()->GetPosition();
+		auto a_scale = _playermanager->GetCollision()->GetScale();
+		for (int i = 0; i < enemy.size(); i++)
+		{
+			auto b = enemy[i]->GetCollision();
+			auto b_pos = b->GetPosition();
+			auto b_scale = b->GetScale() / 2;
+			//! aとbのボックスの当たり判定
+			if (a_pos.x - a_scale.x < b_pos.x + b_scale.x &&
+				a_pos.x + a_scale.x > b_pos.x - b_scale.x &&
+				a_pos.y - a_scale.y < b_pos.y + b_scale.y &&
+				a_pos.y + a_scale.y > b_pos.y - b_scale.y &&
+				a_pos.z - a_scale.z < b_pos.z + b_scale.z &&
+				a_pos.z + a_scale.z > b_pos.z - b_scale.z)
+			{
+				_playermanager->OnCollisionEnter();
+			}
+		}
+	}
 }
