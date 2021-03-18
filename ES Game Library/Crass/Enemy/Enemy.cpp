@@ -28,8 +28,8 @@ bool Enemy::Initialize()
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetScale(1);
 	_collision->SetMaterial(mtrl);
-	float rand = MathHelper_Random(-10.0f, 10.0f);
-	_position =  Vector3(rand, 0, 10);
+	float rand = MathHelper_Random(-7.0f, 7.0f);
+	_position =  Vector3(rand, 0, 5);
 	_model->SetPosition(_position);
 	_hp = 10;
 	return true;
@@ -39,7 +39,7 @@ int Enemy::Update()
 {
 	Move();
 
-	if (_position.z <= - 10) {
+	if (_position.z <= - 6.0f) {
 		return 1;
 	}
 	
