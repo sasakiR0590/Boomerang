@@ -19,8 +19,9 @@ public:
     Boomerang GetBoomerang() { return _boomerang; }
     void SetAnimState(int state) { _animstate = state; }
     int GetAnimState() { return _animstate; }
-    void    Shoot();
+    void Shoot();
     int CallOnCollisionEnter();
+    void OnCollisionEnter();
     enum AnimationState
     {
         WAIT,
@@ -29,11 +30,10 @@ public:
         DAMAGE
     };
 private:
-    Vector3 Move();
+    void Move(KeyboardState);
     Vector3 Angle();
     int     Power();
     void    Damage();
-    void    OnCollisionEnter();
 
     Vector3    _position;
     Vector3    _angle;
