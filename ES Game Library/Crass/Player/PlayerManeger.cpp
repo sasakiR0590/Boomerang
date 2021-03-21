@@ -45,28 +45,32 @@ bool PlayerManager::Initialize()
 	_callcount = 0;
 	_invincibletime = 0;
 	_invincibleflag = false;
+
 	return true;
 }
 
 int PlayerManager::Update()
 {
-
 	KeyboardState key = Keyboard->GetState();
 	KeyboardBuffer key_buffer = Keyboard->GetBuffer();
 
 	start_position = _model->GetPosition() + _model->GetFrontVector();
-	end_position   = _model->GetPosition();
+	end_position = _model->GetPosition();
 
 	Move(key);
-
 	if (key.IsKeyDown(Keys_Space) && _animstate != AnimationState::SHOOT) {
+		_boomerang.AddScale();
+	}
+
+	if (key_buffer.IsReleased(Keys_Space) && _animstate != AnimationState::SHOOT) {
 		Shoot();
 	}
 
 	if (_animstate == AnimationState::SHOOT) {
 		if (_boomerang.Update(end_position) == 1)
 		{
-			_animstate = AnimationState::WAIT;
+			_boomerang.AddScaleReset();
+			_animstate   = AnimationState::WAIT;
 		}
 	}
 
@@ -111,22 +115,18 @@ void PlayerManager::Move(KeyboardState key)
 {
 	if (key.IsKeyDown(Keys_W)) {
 		_model->Move(0.0f, 0.0f, 0.1f);
-
 	}
 
 	if (key.IsKeyDown(Keys_A)) {
 		_model->Move(-0.1f, 0.0f, 0.0f);
-
 	}
 
 	if (key.IsKeyDown(Keys_S)) {
 		_model->Move(0.0f, 0.0f, -0.1f);
-
 	}
 
 	if (key.IsKeyDown(Keys_D)) {
 		_model->Move(0.1f, 0.0f, 0.0f);
-
 	}
 
 	if (key.IsKeyDown(Keys_Right)) {

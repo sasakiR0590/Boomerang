@@ -38,11 +38,14 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2)
 	_endposition = Vector3_Zero;
 
 	_angle = Vector3_Zero;
+
 	return true;
 }
 
 int Boomerang::Update(Vector3 _playerposition)
 {
+	_model->SetScale(_addscale);
+
 	if (_speed >= 0.5 && Vector3_Distance(_model->GetPosition(), _endposition) <= 1)
 	{
 		return 1;
@@ -71,4 +74,14 @@ Vector3 Boomerang::Move()
 	Vector3 _bezier = Vector3_Bezier(_point[0], _point[1], _point[2], _endposition, _speed);
 
 	return _bezier;
+}
+
+void Boomerang::AddScale()
+{
+	_addscale += 0.01f;
+}
+
+void Boomerang::AddScaleReset()
+{
+	_addscale = 1.0f;
 }

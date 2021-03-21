@@ -48,7 +48,7 @@ private:
     Vector3 start_position;
     Vector3 end_position;
 
-    int  _callcount;
-    int  _invincibletime;
-    bool _invincibleflag;
+    int   _callcount;
+    int   _invincibletime;
+    bool  _invincibleflag;
 };
