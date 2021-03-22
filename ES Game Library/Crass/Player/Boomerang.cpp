@@ -10,10 +10,10 @@ Boomerang::~Boomerang()
 
 }
 
-bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2)
+bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2, float power)
 {
 	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Boomerang/ono_boomerang.X"));
-	_model->SetScale(1.0f);
+	_model->SetScale(1.0f + power);
 	_model->SetPosition(0, 0, 0);
 	_model->SetRotation(0, 0, 0);
 
@@ -25,9 +25,16 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2)
 	shape.Width  = 1;
 	shape.Height = 1;
 	shape.Depth  = 1;
-	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
-	_collision->SetScale(0.1);
 
+	Material mat;
+	mat.Diffuse = Color(1, 1, 1);
+	mat.Ambient = Color(1, 1, 1);
+	mat.Specular = Color(1, 1, 1);
+	mat.Power = 10.0f;
+
+	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
+	_collision->SetScale(0.1f + power);
+	_collision->SetMaterial(mat);
 	_speed = 0.0f;
 	_rotatespeed = 0.0f;
 	_gobackstate = false;
@@ -44,7 +51,6 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2)
 
 int Boomerang::Update(Vector3 _playerposition)
 {
-	_model->SetScale(_addscale);
 
 	if (_speed >= 0.5 && Vector3_Distance(_model->GetPosition(), _endposition) <= 1)
 	{
@@ -62,7 +68,10 @@ int Boomerang::Update(Vector3 _playerposition)
 void Boomerang::Draw()
 {
 	_model->Draw();
-	_collision->Draw();
+#ifdef DEBUG
+	GraphicsDevice.BeginAlphaBlend();
+	_collision->DrawAlpha(0.5f);
+#endif
 }
 
 Vector3 Boomerang::Move()
