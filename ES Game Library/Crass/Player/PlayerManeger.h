@@ -37,7 +37,7 @@ private:
 
     Vector3    _position;
     Vector3    _angle;
-    int        _power;
+    float      _power;
     int        _hp;
     int        _animstate = 0;
     Boomerang _boomerang;
@@ -51,4 +51,5 @@ private:
     int   _callcount;
     int   _invincibletime;
     bool  _invincibleflag;
+
 };

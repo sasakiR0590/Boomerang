@@ -59,11 +59,12 @@ int PlayerManager::Update()
 
 	Move(key);
 	if (key.IsKeyDown(Keys_Space) && _animstate != AnimationState::SHOOT) {
-		_boomerang.AddScale();
+		_power += 0.01;
 	}
 
 	if (key_buffer.IsReleased(Keys_Space) && _animstate != AnimationState::SHOOT) {
 		Shoot();
+		_power = 0;
 	}
 
 	if (_animstate == AnimationState::SHOOT) {
@@ -166,7 +167,7 @@ void PlayerManager::Shoot()
 	Vector3 control_position1 = _model->GetPosition() + _model->GetFrontVector() * 6 + _model->GetRightVector() * 6;
 	Vector3 control_position2 = _model->GetPosition() + _model->GetFrontVector() * 6 + (-_model->GetRightVector()) * 6;
 
-	_boomerang.Initialize(start_position, control_position1, control_position2);
+	_boomerang.Initialize(start_position, control_position1, control_position2,_power);
 }
 
 void PlayerManager::OnCollisionEnter()
