@@ -26,6 +26,9 @@ void Ovserver::ColisionDetection()
 	if (_playermanager->GetAnimState() == _playermanager->SHOOT)
 	{
 		auto a = _playermanager->GetBoomerang().GetCollision();
+		if (a == nullptr)
+			return;
+
 		auto a_pos = a->GetPosition();
 		auto a_scale = a->GetScale();
 		for (int i = 0; i < enemy.size(); i++)

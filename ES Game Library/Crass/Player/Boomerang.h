@@ -6,7 +6,7 @@ class Boomerang {
 public:
     Boomerang::Boomerang();
     Boomerang::~Boomerang();
-    bool    Initialize(Vector3 start, Vector3 control1, Vector3 control2,float power);
+    bool    Initialize(Vector3 start, Vector3 control1, Vector3 control2, float power);
     int     Update(Vector3 _playerposition);
     void    Draw();
     Vector3 Move();

@@ -53,8 +53,12 @@ private:
     Vector3 start_position;
     Vector3 end_position;
 
+    Vector3 control_position1;
+    Vector3 control_position2;
+
     int   _callcount;
     int   _invincibletime;
     bool  _invincibleflag;
 
+    bool  _timelagstate;//òrÇêUÇËÇ®ÇÎÇµÇΩÇ©Ç«Ç§Ç©
 };
