@@ -12,7 +12,7 @@ PlayerManager::~PlayerManager()
 
 bool PlayerManager::Initialize()
 {
-	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/player_animation.X"));
+	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/player_animetion.X"));
 
 	_model->SetScale(1.0f, 1.0f, 1.0f);
 	_model->SetPosition(0, 0, 0);
