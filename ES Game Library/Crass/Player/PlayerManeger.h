@@ -35,15 +35,15 @@ private:
     int     Power();
     void    Damage();
 
-    Vector3    _position;
-    Vector3    _angle;
-    float      _power;
-    int        _hp;
-    int        _animstate = 0;
-    Boomerang _boomerang;
+    Vector3         _position;
+    Vector3         _angle;
+    float           _power;
+    int             _hp;
+    int             _animstate = 0;
+    Boomerang       _boomerang;
 
-    MODEL      _collision;
-    MODEL      _model;
+    MODEL           _collision;
+    ANIMATIONMODEL  _model;
 
     Vector3 start_position;
     Vector3 end_position;

@@ -12,8 +12,6 @@ public:
     Vector3 Move();
     Vector3 ComeBack();
     MODEL GetCollision() { return _collision; }
-    void AddScale();
-    void AddScaleReset();
 private:
 
     Vector3 _position;
@@ -27,6 +25,4 @@ private:
     Vector3 _point[4];
     bool    _gobackstate;
     Vector3 _endposition;
-
-    float _addscale = 1.0f;
 };

@@ -84,13 +84,3 @@ Vector3 Boomerang::Move()
 
 	return _bezier;
 }
-
-void Boomerang::AddScale()
-{
-	_addscale += 0.01f;
-}
-
-void Boomerang::AddScaleReset()
-{
-	_addscale = 1.0f;
-}

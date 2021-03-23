@@ -14,7 +14,9 @@ bool PlayerManager::Initialize()
 {
 	//_boomerang->Initialize();
 
-	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Player/hero.X"));
+	//_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero.X"));
+	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/walk_animetion_0323.X"));
+
 
 	_model->SetScale(1.0f, 1.0f, 1.0f);
 	_model->SetPosition(0, 0, 0);
@@ -54,6 +56,8 @@ int PlayerManager::Update()
 	KeyboardState key = Keyboard->GetState();
 	KeyboardBuffer key_buffer = Keyboard->GetBuffer();
 
+	//_model->SetTrackEnable(0, TRUE);
+	
 	start_position = _model->GetPosition() + _model->GetFrontVector();
 	end_position = _model->GetPosition();
 
@@ -70,7 +74,6 @@ int PlayerManager::Update()
 	if (_animstate == AnimationState::SHOOT) {
 		if (_boomerang.Update(end_position) == 1)
 		{
-			_boomerang.AddScaleReset();
 			_animstate   = AnimationState::WAIT;
 		}
 	}
@@ -97,6 +100,8 @@ int PlayerManager::Update()
 void PlayerManager::Draw()
 {
 	_model->Draw();
+	_model->SetTrackEnable(0, TRUE);
+
 #ifdef DEBUG
 	GraphicsDevice.BeginAlphaBlend();
 	if (_animstate == AnimationState::DAMAGE)
@@ -114,30 +119,34 @@ void PlayerManager::Draw()
 
 void PlayerManager::Move(KeyboardState key)
 {
+	_animstate = AnimationState::RUN;
+
 	if (key.IsKeyDown(Keys_W)) {
 		_model->Move(0.0f, 0.0f, 0.1f);
+		_model->SetTrackEnable(0, TRUE);
 	}
 
 	if (key.IsKeyDown(Keys_A)) {
 		_model->Move(-0.1f, 0.0f, 0.0f);
+		_model->SetTrackEnable(0, TRUE);
 	}
 
 	if (key.IsKeyDown(Keys_S)) {
 		_model->Move(0.0f, 0.0f, -0.1f);
+		_model->SetTrackEnable(0, TRUE);
 	}
 
 	if (key.IsKeyDown(Keys_D)) {
 		_model->Move(0.1f, 0.0f, 0.0f);
+		_model->SetTrackEnable(0, TRUE);
 	}
 
 	if (key.IsKeyDown(Keys_Right)) {
 		_model->Rotation(0.0f, 1.0f, 0.0f);
-		_collision->Rotation(0.0f, 1.0f, 0.0f);
 	}
 
 	if (key.IsKeyDown(Keys_Left)) {
 		_model->Rotation(0.0f, -1.0f, 0.0f);
-		_collision->Rotation(0.0f, -1.0f, 0.0f);
 	}
 }
 
@@ -164,6 +173,7 @@ Vector3 PlayerManager::GetUpVector()
 void PlayerManager::Shoot()
 {
 	_animstate = AnimationState::SHOOT;
+
 	Vector3 control_position1 = _model->GetPosition() + _model->GetFrontVector() * 6 + _model->GetRightVector() * 6;
 	Vector3 control_position2 = _model->GetPosition() + _model->GetFrontVector() * 6 + (-_model->GetRightVector()) * 6;
 
