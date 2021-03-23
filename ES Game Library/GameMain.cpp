@@ -56,6 +56,8 @@ int GameMain::Update()
 	GraphicsDevice.SetCamera(camera);
 
 	_count = playermanager->CallOnCollisionEnter();
+	prpos = playermanager->Position();
+	fieldpos = fieldManeger->Position();
 	return 0;
 }
 
@@ -81,7 +83,15 @@ void GameMain::Draw()
 
 	SpriteBatch.Begin();
 
-	SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("OnCollisionEnterが呼ばれた回数　%d"), _count);
+	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("OnCollisionEnterが呼ばれた回数　%d"), _count);
+
+	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("プレイヤーのポジションX　%f"), prpos.x);
+	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 100), Color(255, 255, 255), _T("プレイヤーのポジションY　%f"), prpos.y);
+	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 200), Color(255, 255, 255), _T("プレイヤーのポジションZ　%f"), prpos.z);
+	//
+	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 300), Color(255, 255, 255), _T("フィールドのポジションX　%f"), fieldpos.x);
+	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 400), Color(255, 255, 255), _T("フィールドのポジションY　%f"), fieldpos.y);
+	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 500), Color(255, 255, 255), _T("フィールドのポジションZ　%f"), fieldpos.z);
 	
 	SpriteBatch.End();
 

@@ -9,6 +9,7 @@ public:
 
     bool    Initialize();
     void    Draw();
+    Vector3 Position();
 
 private:
     MODEL  _model;

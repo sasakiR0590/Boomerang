@@ -2,6 +2,7 @@
 
 FieldManeger::FieldManeger()
 {
+	_model = nullptr;
 }
 
 FieldManeger::~FieldManeger()
@@ -26,9 +27,16 @@ bool FieldManeger::Initialize()
 	material.Specular = Color(1.0f, 1.0f, 1.0f);
 	material.Power = 10.0f;
 	_model->SetMaterial(material);
+
+	return true;
 }
 
 void FieldManeger::Draw()
 {
 	_model->Draw();
+}
+
+Vector3 FieldManeger::Position()
+{
+	return _model->GetPosition();
 }
