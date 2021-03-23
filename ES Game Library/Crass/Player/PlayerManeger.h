@@ -20,6 +20,7 @@ public:
     void SetAnimState(int state) { _animstate = state; }
     int GetAnimState() { return _animstate; }
     void Shoot();
+    void ChangeAnimation();
     int CallOnCollisionEnter();
     void OnCollisionEnter();
     enum AnimationState
@@ -27,7 +28,8 @@ public:
         WAIT,
         RUN,
         SHOOT,
-        DAMAGE
+        DAMAGE,
+        ALLTYPE
     };
 private:
     void Move(KeyboardState);
@@ -37,9 +39,12 @@ private:
 
     Vector3         _position;
     Vector3         _angle;
-    float           _power;
-    int             _hp;
+    float           _power = 0;
+    int             _hp = 1;
     int             _animstate = 0;
+    int             _oldanimstate = 0;
+    float           _animation_count = 0;
+    bool            _shootstate = false;
     Boomerang       _boomerang;
 
     MODEL           _collision;

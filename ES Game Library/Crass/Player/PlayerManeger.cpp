@@ -12,7 +12,7 @@ PlayerManager::~PlayerManager()
 
 bool PlayerManager::Initialize()
 {
-	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/animetion_kari.X"));
+	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/player_animation.X"));
 
 	_model->SetScale(1.0f, 1.0f, 1.0f);
 	_model->SetPosition(0, 0, 0);
@@ -44,6 +44,11 @@ bool PlayerManager::Initialize()
 	_invincibletime = 0;
 	_invincibleflag = false;
 
+	for (int i = 0; i < AnimationState::ALLTYPE; i++)
+	{
+		_model->SetTrackPosition(i, 0);
+		_model->SetTrackEnable(i, FALSE);
+	}
 	return true;
 }
 
@@ -55,25 +60,20 @@ int PlayerManager::Update()
 	start_position = _model->GetPosition() + _model->GetFrontVector();
 	end_position = _model->GetPosition();
 
-	_model->SetTrackEnable(0, TRUE);
-	_model->SetTrackEnable(1, FALSE);
-	_model->SetTrackEnable(2, FALSE);
-
-
 	Move(key);
-	if (key.IsKeyDown(Keys_Space) && _animstate != AnimationState::SHOOT) {
+	if (key.IsKeyDown(Keys_Space) && !_shootstate) {
 		_power += 0.01;
 	}
 
-	if (key_buffer.IsReleased(Keys_Space) && _animstate != AnimationState::SHOOT) {
+	if (key_buffer.IsReleased(Keys_Space) && !_shootstate) {
 		Shoot();
 		_power = 0;
 	}
 
-	if (_animstate == AnimationState::SHOOT) {
+	if (_shootstate) {
 		if (_boomerang.Update(end_position) == 1)
 		{
-			_animstate   = AnimationState::WAIT;
+ 			_shootstate = false;
 		}
 	}
 
@@ -98,10 +98,8 @@ int PlayerManager::Update()
 
 void PlayerManager::Draw()
 {
-	_model->AdvanceTime(GameTimer.GetElapsedSecond() * 2);
+	ChangeAnimation();
 	_model->Draw();
-	_model->SetTrackEnable(0, TRUE);
-
 #ifdef DEBUG
 	GraphicsDevice.BeginAlphaBlend();
 	if (_animstate == AnimationState::DAMAGE)
@@ -112,35 +110,28 @@ void PlayerManager::Draw()
 #endif
 	GraphicsDevice.EndAlphaBlend();
 
-	if (_animstate == AnimationState::SHOOT) {
+	if (_shootstate) {
 		_boomerang.Draw();
 	}
 }
 
 void PlayerManager::Move(KeyboardState key)
 {
+	auto old_pos = _model->GetPosition();
 	if (key.IsKeyDown(Keys_W)) {
 		_model->Move(0.0f, 0.0f, 0.1f);
-		_model->SetTrackEnable(0, FALSE);
-		_model->SetTrackEnable(1, TRUE);
 	}
 
 	if (key.IsKeyDown(Keys_A)) {
 		_model->Move(-0.1f, 0.0f, 0.0f);
-		_model->SetTrackEnable(0, FALSE);
-		_model->SetTrackEnable(1, TRUE);
 	}
 
 	if (key.IsKeyDown(Keys_S)) {
 		_model->Move(0.0f, 0.0f, -0.1f);
-		_model->SetTrackEnable(0, FALSE);
-		_model->SetTrackEnable(1, TRUE);
 	}
 
 	if (key.IsKeyDown(Keys_D)) {
 		_model->Move(0.1f, 0.0f, 0.0f);
-		_model->SetTrackEnable(0, FALSE);
-		_model->SetTrackEnable(1, TRUE);
 	}
 
 	if (key.IsKeyDown(Keys_Right)) {
@@ -150,8 +141,47 @@ void PlayerManager::Move(KeyboardState key)
 	if (key.IsKeyDown(Keys_Left)) {
 		_model->Rotation(0.0f, -1.0f, 0.0f);
 	}
+
+	if (_shootstate)
+	{
+		return;
+	}
+	else if (_model->GetPosition() != old_pos)
+	{
+		_animstate = AnimationState::RUN;
+	}
+	else
+	{
+		_animstate = AnimationState::WAIT;
+	}
 }
 
+//! @fn プレイヤーモデルのアニメーション切り替え
+void PlayerManager::ChangeAnimation()
+{
+	auto index = _oldanimstate;
+
+	_animation_count += GameTimer.GetElapsedSecond() * 2;
+
+	//! 全てのアニメーショントラックを停止
+	for (int i = 0; i < AnimationState::ALLTYPE; ++i)
+	{
+		_model->SetTrackEnable(i, FALSE);
+	}
+
+	//! アニメーショントラックと状態が違う場合アニメーショントラックを更新
+	if (_animstate != index)
+	{
+		_oldanimstate = _animstate;
+		_animation_count = 0;
+	}
+	if (_animstate == AnimationState::SHOOT && _animation_count > 2)
+	_animation_count = 2;
+	//! アニメーショントラックのアニメーションを指定した位置から再生
+	_model->SetTrackEnable(_animstate, TRUE);
+
+	_model->SetTrackPosition(_animstate, _animation_count);
+}
 Vector3 PlayerManager::Angle()
 {
 	return _model->GetRotation();
@@ -174,15 +204,13 @@ Vector3 PlayerManager::GetUpVector()
 
 void PlayerManager::Shoot()
 {
-	_animstate = AnimationState::SHOOT;
-	//_model->SetTrackEnable(0, FALSE);
-	//_model->SetTrackEnable(1, FALSE);
-	//_model->SetTrackEnable(2, TRUE);
+	_animstate  = AnimationState::SHOOT;
+	_shootstate = true;
 
 	Vector3 control_position1 = _model->GetPosition() + _model->GetFrontVector() * 6 + _model->GetRightVector() * 6;
 	Vector3 control_position2 = _model->GetPosition() + _model->GetFrontVector() * 6 + (-_model->GetRightVector()) * 6;
 
-	_boomerang.Initialize(start_position, control_position1, control_position2,_power);
+ 	_boomerang.Initialize(start_position, control_position1, control_position2,_power);
 }
 
 void PlayerManager::OnCollisionEnter()
