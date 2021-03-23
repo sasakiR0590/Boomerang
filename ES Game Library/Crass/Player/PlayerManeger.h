@@ -18,6 +18,7 @@ public:
     MODEL GetCollision() { return _collision; }
     Boomerang GetBoomerang() { return _boomerang; }
     void SetAnimState(int state) { _animstate = state; }
+    bool GetShootState() { return _shootstate; }
     int GetAnimState() { return _animstate; }
     void Shoot();
     void ChangeAnimation();

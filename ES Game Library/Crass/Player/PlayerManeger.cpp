@@ -67,20 +67,19 @@ int PlayerManager::Update()
 	
 
 	Move(key);
-	if (key.IsKeyDown(Keys_Space) && !_shootstate) {
+	if (key.IsKeyDown(Keys_Space) && _animstate != AnimationState::SHOOT) {
 		_power += 0.01;
 	}
 
-	if (key_buffer.IsReleased(Keys_Space) && !_shootstate) {
+	if (key_buffer.IsReleased(Keys_Space) && _animstate != AnimationState::SHOOT) {
 		_animstate = AnimationState::SHOOT;
-		_shootstate = true;
 
 		//Shoot();
 		//_timelagstate = true;
 		_power = 0;
 	}
 
-	if (_shootstate && _animation_count >= 2) {
+	if (_shootstate) {
 		if (_boomerang.Update(end_position) == 1)
 		{
  			_shootstate = false;
@@ -121,7 +120,7 @@ void PlayerManager::Draw()
 #endif
 	GraphicsDevice.EndAlphaBlend();
 
-	if (_shootstate && _animation_count >= 2) {
+	if (_shootstate) {
 		_boomerang.Draw();
 	}
 }
@@ -155,7 +154,7 @@ void PlayerManager::Move(KeyboardState key)
 		_collision->Rotation(0.0f, -1.0f, 0.0f);
 	}
 
-	if (_shootstate)
+	if (_animstate == AnimationState::SHOOT)
 	{
 		return;
 	}
@@ -192,7 +191,6 @@ void PlayerManager::ChangeAnimation()
 	if (_animstate == AnimationState::SHOOT && _animation_count > 2)
 	{
 		Shoot();
-		_animation_count = 2;
 	}
 
 	//! アニメーショントラックのアニメーションを指定した位置から再生
@@ -223,14 +221,12 @@ Vector3 PlayerManager::GetUpVector()
 
 void PlayerManager::Shoot()
 {
-	//_animstate  = AnimationState::SHOOT;
-	//_shootstate = true;
 	control_position1 = _model->GetPosition() + _model->GetFrontVector() * 6 + _model->GetRightVector() * 6;
 	control_position2 = _model->GetPosition() + _model->GetFrontVector() * 6 + (-_model->GetRightVector()) * 6;
 	_boomerang.Initialize(start_position, control_position1, control_position2, _power);
 
 	_animstate = AnimationState::WAIT;
-	_shootstate = false;
+	_shootstate = true;
 }
 
 void PlayerManager::OnCollisionEnter()
