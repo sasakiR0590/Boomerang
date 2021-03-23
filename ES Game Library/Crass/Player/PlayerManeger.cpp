@@ -73,15 +73,12 @@ int PlayerManager::Update()
 
 	if (key_buffer.IsReleased(Keys_Space) && _animstate != AnimationState::SHOOT) {
 		_animstate = AnimationState::SHOOT;
-
-		//Shoot();
-		//_timelagstate = true;
-		_power = 0;
 	}
 
 	if (_shootstate) {
 		if (_boomerang.Update(end_position) == 1)
 		{
+			_power = 0;
  			_shootstate = false;
 		}
 	}
