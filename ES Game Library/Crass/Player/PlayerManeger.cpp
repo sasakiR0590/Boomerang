@@ -12,11 +12,7 @@ PlayerManager::~PlayerManager()
 
 bool PlayerManager::Initialize()
 {
-	//_boomerang->Initialize();
-
-	//_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero.X"));
-	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/walk_animetion_0323.X"));
-
+	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/animetion_kari.X"));
 
 	_model->SetScale(1.0f, 1.0f, 1.0f);
 	_model->SetPosition(0, 0, 0);
@@ -56,10 +52,13 @@ int PlayerManager::Update()
 	KeyboardState key = Keyboard->GetState();
 	KeyboardBuffer key_buffer = Keyboard->GetBuffer();
 
-	//_model->SetTrackEnable(0, TRUE);
-	
 	start_position = _model->GetPosition() + _model->GetFrontVector();
 	end_position = _model->GetPosition();
+
+	_model->SetTrackEnable(0, TRUE);
+	_model->SetTrackEnable(1, FALSE);
+	_model->SetTrackEnable(2, FALSE);
+
 
 	Move(key);
 	if (key.IsKeyDown(Keys_Space) && _animstate != AnimationState::SHOOT) {
@@ -99,6 +98,7 @@ int PlayerManager::Update()
 
 void PlayerManager::Draw()
 {
+	_model->AdvanceTime(GameTimer.GetElapsedSecond() * 2);
 	_model->Draw();
 	_model->SetTrackEnable(0, TRUE);
 
@@ -107,8 +107,8 @@ void PlayerManager::Draw()
 	if (_animstate == AnimationState::DAMAGE)
 	{
 	}
-	else
-		_collision->DrawAlpha(0.5f);
+	//else
+		//_collision->DrawAlpha(0.5f);
 #endif
 	GraphicsDevice.EndAlphaBlend();
 
@@ -119,26 +119,28 @@ void PlayerManager::Draw()
 
 void PlayerManager::Move(KeyboardState key)
 {
-	_animstate = AnimationState::RUN;
-
 	if (key.IsKeyDown(Keys_W)) {
 		_model->Move(0.0f, 0.0f, 0.1f);
-		_model->SetTrackEnable(0, TRUE);
+		_model->SetTrackEnable(0, FALSE);
+		_model->SetTrackEnable(1, TRUE);
 	}
 
 	if (key.IsKeyDown(Keys_A)) {
 		_model->Move(-0.1f, 0.0f, 0.0f);
-		_model->SetTrackEnable(0, TRUE);
+		_model->SetTrackEnable(0, FALSE);
+		_model->SetTrackEnable(1, TRUE);
 	}
 
 	if (key.IsKeyDown(Keys_S)) {
 		_model->Move(0.0f, 0.0f, -0.1f);
-		_model->SetTrackEnable(0, TRUE);
+		_model->SetTrackEnable(0, FALSE);
+		_model->SetTrackEnable(1, TRUE);
 	}
 
 	if (key.IsKeyDown(Keys_D)) {
 		_model->Move(0.1f, 0.0f, 0.0f);
-		_model->SetTrackEnable(0, TRUE);
+		_model->SetTrackEnable(0, FALSE);
+		_model->SetTrackEnable(1, TRUE);
 	}
 
 	if (key.IsKeyDown(Keys_Right)) {
@@ -173,6 +175,9 @@ Vector3 PlayerManager::GetUpVector()
 void PlayerManager::Shoot()
 {
 	_animstate = AnimationState::SHOOT;
+	//_model->SetTrackEnable(0, FALSE);
+	//_model->SetTrackEnable(1, FALSE);
+	//_model->SetTrackEnable(2, TRUE);
 
 	Vector3 control_position1 = _model->GetPosition() + _model->GetFrontVector() * 6 + _model->GetRightVector() * 6;
 	Vector3 control_position2 = _model->GetPosition() + _model->GetFrontVector() * 6 + (-_model->GetRightVector()) * 6;
