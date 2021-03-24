@@ -24,6 +24,7 @@ public:
     void ChangeAnimation();
     int CallOnCollisionEnter();
     void OnCollisionEnter();
+    float Power();
     enum AnimationState
     {
         WAIT,
@@ -35,12 +36,11 @@ public:
 private:
     void Move(KeyboardState);
     Vector3 Angle();
-    int     Power();
     void    Damage();
 
     Vector3         _position;
     Vector3         _angle;
-    float           _power = 0;
+    float           _power = 0.0f;
     int             _hp = 1;
     int             _animstate = 0;
     int             _oldanimstate = 0;

@@ -64,11 +64,14 @@ int PlayerManager::Update()
 
 	start_position = _model->GetPosition() + _model->GetFrontVector();
 	end_position = _model->GetPosition();
-	
 
 	Move(key);
 	if (key.IsKeyDown(Keys_Space) && _animstate != AnimationState::SHOOT) {
 		_power += 0.01;
+
+		if (_power >= 2.0f) {
+			_power = 2.0f;
+		}
 	}
 
 	if (key_buffer.IsReleased(Keys_Space) && _animstate != AnimationState::SHOOT) {
@@ -196,26 +199,6 @@ void PlayerManager::ChangeAnimation()
 	_model->SetTrackPosition(_animstate, _animation_count);
 }
 
-Vector3 PlayerManager::Angle()
-{
-	return _model->GetRotation();
-}
-
-Vector3 PlayerManager::Position()
-{
-	return _model->GetPosition();
-}
-
-Vector3 PlayerManager::GetFrontVector()
-{
-	return _model->GetFrontVector();
-}
-
-Vector3 PlayerManager::GetUpVector()
-{
-	return _model->GetUpVector();
-}
-
 void PlayerManager::Shoot()
 {
 	control_position1 = _model->GetPosition() + _model->GetFrontVector() * 6 + _model->GetRightVector() * 6;
@@ -242,4 +225,30 @@ void  PlayerManager::Damage()
 {
 	if(!_invincibleflag)
 		_hp -= 1;
+}
+
+
+Vector3 PlayerManager::Angle()
+{
+	return _model->GetRotation();
+}
+
+Vector3 PlayerManager::Position()
+{
+	return _model->GetPosition();
+}
+
+Vector3 PlayerManager::GetFrontVector()
+{
+	return _model->GetFrontVector();
+}
+
+Vector3 PlayerManager::GetUpVector()
+{
+	return _model->GetUpVector();
+}
+
+float PlayerManager::Power()
+{
+	return _power;
 }

@@ -76,6 +76,7 @@ private:
 	int _count;   //OnCollisionEnterが呼ばれた回数
 	
 	//デバック用
-	Vector3 prpos = Vector3_Zero;
-	Vector3 fieldpos = Vector3_Zero;
+	//Vector3 _prpos;
+	//Vector3 _fieldpos;
+	//float   _boomerangpower;
 };

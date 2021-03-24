@@ -26,8 +26,10 @@ bool GameMain::Initialize()
 	camera->SetPerspectiveFieldOfView(45.0f, 16.0f / 9.0f, 1.0f, 10000.0f);
 	GraphicsDevice.SetCamera(camera);
 
-	_count = 0;
-
+	//_count   = 0;
+	//_prpos    = Vector3_Zero;
+	//_fieldpos = Vector3_Zero;
+	//_boomerangpower = 0.0f;
 	return true;
 }
 
@@ -55,9 +57,10 @@ int GameMain::Update()
 
 	GraphicsDevice.SetCamera(camera);
 
-	_count = playermanager->CallOnCollisionEnter();
-	prpos = playermanager->Position();
-	fieldpos = fieldManeger->Position();
+	//_count = playermanager->CallOnCollisionEnter();
+	//_prpos = playermanager->Position();
+	//_fieldpos = fieldManeger->Position();
+	//_boomerangpower = playermanager->Power();
 	return 0;
 }
 
@@ -92,6 +95,7 @@ void GameMain::Draw()
 	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 300), Color(255, 255, 255), _T("フィールドのポジションX　%f"), fieldpos.x);
 	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 400), Color(255, 255, 255), _T("フィールドのポジションY　%f"), fieldpos.y);
 	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 500), Color(255, 255, 255), _T("フィールドのポジションZ　%f"), fieldpos.z);
+	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 600), Color(255, 255, 255), _T("パワー　%f"), _boomerangpower);
 	
 	SpriteBatch.End();
 
