@@ -262,7 +262,7 @@ float PlayerManager::Power()
 
 void PlayerManager::LoadCSV()
 {
-	std::ifstream infile("csvFile/PlayerStatus.csv");
+	std::ifstream infile("csvFile/Player/PlayerStatus.csv");
 	std::string filename;
 	TCHAR t_filename[256];
 

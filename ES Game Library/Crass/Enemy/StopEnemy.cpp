@@ -9,7 +9,7 @@ StopEnemy::~StopEnemy()
 {
 }
 
-bool StopEnemy::Initialize()
+bool StopEnemy::Initialize(Vector3 speed, int hp)
 {
 	_model		= GraphicsDevice.CreateModelFromFile(_T("hero.X"));
 
@@ -32,7 +32,7 @@ bool StopEnemy::Initialize()
 	float random_z = MathHelper_Random(-6.0f, 5.0f);
 	_position =  Vector3(random_x, 0, random_z);
 	_model->SetPosition(_position);
-	_hp = 10;
+	_hp = hp;
 	return true;
 }
 

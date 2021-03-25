@@ -16,6 +16,15 @@ public:
     std::vector<EnemyBase*> GetEnemy() {return _enemy; }
 private:
     void Generate();
+    void LoadCSV();
     std::vector<EnemyBase*> _enemy;
-    float time = 0;
+    float _time = 0;
+
+    //!動く敵キャラのステータス
+    Vector3 _moveenemy_speed;
+    int     _moveenemy_hp;
+
+    //!動かない敵キャラのステータス
+    Vector3 _stopenemy_speed;
+    int     _stopenemy_hp;
 };

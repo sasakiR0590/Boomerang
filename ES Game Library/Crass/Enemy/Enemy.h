@@ -8,7 +8,7 @@ class Enemy : public EnemyBase{
 public:
     Enemy::Enemy();
     Enemy::~Enemy();
-    bool   Initialize() override;
+    bool   Initialize(Vector3 speed, int hp) override;
     int    Update() override;
     void   Draw() override;
 private:

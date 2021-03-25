@@ -9,7 +9,7 @@ Enemy::~Enemy()
 {
 }
 
-bool Enemy::Initialize()
+bool Enemy::Initialize(Vector3 speed, int hp)
 {
 	_model		= GraphicsDevice.CreateModelFromFile(_T("hero.X"));
 
@@ -31,7 +31,8 @@ bool Enemy::Initialize()
 	float rand = MathHelper_Random(-7.0f, 7.0f);
 	_position =  Vector3(rand, 0, 5);
 	_model->SetPosition(_position);
-	_hp = 10;
+	_hp = hp;
+	_speed.z = speed.z;
 	return true;
 }
 
@@ -60,7 +61,5 @@ void Enemy::Draw()
 }
 
 void Enemy::Move() {
-		_model->Move(0, 0, -0.1);
+		_model->Move(0, 0, -_speed.z);
 }
-
-
