@@ -1,4 +1,5 @@
 #include"PlayerManeger.h"
+#include <fstream>
 
 PlayerManager::PlayerManager()
 {
@@ -54,12 +55,12 @@ bool PlayerManager::Initialize()
 
 	_timelagstate = false;
 
-	_frontdistance = 6.0f;
-	_sidedistance  = 6.0f;
+	_playermove = 0.0f;
+	_max_invincibletime = 0;
+	_frontdistance = 0.0f;
+	_sidedistance = 0.0f;
 
-	_playermove = 0.05f;
-
-	_max_invincibletime = 180;
+	LoadCSV();
 	return true;
 }
 
@@ -257,4 +258,35 @@ Vector3 PlayerManager::GetUpVector()
 float PlayerManager::Power()
 {
 	return _power;
+}
+
+void PlayerManager::LoadCSV()
+{
+	std::ifstream infile("csvFile/PlayerStatus.csv");
+	std::string filename;
+	TCHAR t_filename[256];
+
+	std::string dummy_line;
+    //一行目
+	getline(infile, dummy_line);
+	//二行目
+	getline(infile, dummy_line);
+	//三行目
+	infile >> _playermove;
+	getline(infile, dummy_line);
+	//四行目
+	getline(infile, dummy_line);
+	//五行目
+	infile >> _max_invincibletime;
+	getline(infile, dummy_line);
+	//六行目
+	getline(infile, dummy_line);
+	//七行目
+	infile >> _frontdistance;
+	getline(infile, dummy_line);
+	//八行目
+	getline(infile, dummy_line);
+	//九行目
+	infile >> _sidedistance;
+
 }

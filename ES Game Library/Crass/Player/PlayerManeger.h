@@ -34,9 +34,10 @@ public:
         ALLTYPE
     };
 private:
-    void Move(KeyboardState);
+    void    Move(KeyboardState);
     Vector3 Angle();
     void    Damage();
+    void    LoadCSV();
 
     Vector3         _position;
     Vector3         _angle;
