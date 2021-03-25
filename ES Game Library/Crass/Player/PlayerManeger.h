@@ -62,4 +62,11 @@ private:
     bool  _invincibleflag;
 
     bool  _timelagstate;//˜r‚ğU‚è‚¨‚ë‚µ‚½‚©‚Ç‚¤‚©
+
+    float _frontdistance;
+    float _sidedistance;
+    
+    float _playermove;
+
+    int _max_invincibletime;
 };

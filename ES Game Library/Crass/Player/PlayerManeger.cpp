@@ -54,6 +54,12 @@ bool PlayerManager::Initialize()
 
 	_timelagstate = false;
 
+	_frontdistance = 6.0f;
+	_sidedistance  = 6.0f;
+
+	_playermove = 0.05f;
+
+	_max_invincibletime = 180;
 	return true;
 }
 
@@ -89,7 +95,7 @@ int PlayerManager::Update()
 	if (_animstate == AnimationState::DAMAGE) {
 		_invincibletime += 1;
 
-		if (_invincibletime <= 180) {
+		if (_invincibletime <= _max_invincibletime) {
 			_invincibleflag = true;
 		}
 		else {
@@ -129,19 +135,19 @@ void PlayerManager::Move(KeyboardState key)
 {
 	auto old_pos = _model->GetPosition();
 	if (key.IsKeyDown(Keys_W)) {
-		_model->Move(0.0f, 0.0f, 0.05f);
+		_model->Move(0.0f, 0.0f, _playermove);
 	}
 
 	if (key.IsKeyDown(Keys_A)) {
-		_model->Move(-0.05f, 0.0f, 0.0f);
+		_model->Move(-_playermove, 0.0f, 0.0f);
 	}
 
 	if (key.IsKeyDown(Keys_S)) {
-		_model->Move(0.0f, 0.0f, -0.05f);
+		_model->Move(0.0f, 0.0f, -_playermove);
 	}
 
 	if (key.IsKeyDown(Keys_D)) {
-		_model->Move(0.05f, 0.0f, 0.0f);
+		_model->Move(_playermove, 0.0f, 0.0f);
 	}
 
 	if (key.IsKeyDown(Keys_Right)) {
@@ -201,8 +207,8 @@ void PlayerManager::ChangeAnimation()
 
 void PlayerManager::Shoot()
 {
-	control_position1 = _model->GetPosition() + _model->GetFrontVector() * 6 + _model->GetRightVector() * 6;
-	control_position2 = _model->GetPosition() + _model->GetFrontVector() * 6 + (-_model->GetRightVector()) * 6;
+	control_position1 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance + _model->GetRightVector() * _sidedistance;
+	control_position2 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance + (-_model->GetRightVector()) * _sidedistance;
 	_boomerang.Initialize(start_position, control_position1, control_position2, _power);
 
 	_animstate = AnimationState::WAIT;
