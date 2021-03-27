@@ -38,12 +38,6 @@ bool PlayerManager::Initialize()
 	_collision->SetMaterial(mat);
 	_collision->SetScale(1.0f, 2.0f, 1.0f);
 
-	start_position    = Vector3_Zero;
-	end_position      = Vector3_Zero;
-	control_position1 = Vector3_Zero;
-	control_position2 = Vector3_Zero;
-
-	_callcount = 0;
 	_invincibletime = 0;
 	_invincibleflag = false;
 
@@ -52,8 +46,6 @@ bool PlayerManager::Initialize()
 		_model->SetTrackPosition(i, 0);
 		_model->SetTrackEnable(i, FALSE);
 	}
-
-	_timelagstate = false;
 
 	_playermove = 0.0f;
 	_max_invincibletime = 0;
@@ -69,8 +61,6 @@ int PlayerManager::Update()
 	KeyboardState key = Keyboard->GetState();
 	KeyboardBuffer key_buffer = Keyboard->GetBuffer();
 
-	start_position = _model->GetPosition() + _model->GetFrontVector();
-	end_position = _model->GetPosition();
 
 	Move(key);
 	if (key.IsKeyDown(Keys_Space) && _animstate != AnimationState::SHOOT) {
@@ -86,7 +76,7 @@ int PlayerManager::Update()
 	}
 
 	if (_shootstate) {
-		if (_boomerang.Update(end_position) == 1)
+		if (_boomerang.Update(_model->GetPosition()) == 1)
 		{
 			_power = 0;
  			_shootstate = false;
@@ -208,8 +198,9 @@ void PlayerManager::ChangeAnimation()
 
 void PlayerManager::Shoot()
 {
-	control_position1 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance + _model->GetRightVector() * _sidedistance;
-	control_position2 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance + (-_model->GetRightVector()) * _sidedistance;
+	Vector3 start_position = _model->GetPosition() + _model->GetFrontVector();
+	Vector3 control_position1 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance + _model->GetRightVector() * _sidedistance;
+	Vector3 control_position2 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance + (-_model->GetRightVector()) * _sidedistance;
 	_boomerang.Initialize(start_position, control_position1, control_position2, _power);
 
 	_animstate = AnimationState::WAIT;
@@ -220,12 +211,6 @@ void PlayerManager::OnCollisionEnter()
 {
 	Damage();
 	_animstate = AnimationState::DAMAGE;
-	_callcount += 1;
-}
-
-int PlayerManager::CallOnCollisionEnter()
-{
-	return _callcount;
 }
 
 void  PlayerManager::Damage()
@@ -234,30 +219,9 @@ void  PlayerManager::Damage()
 		_hp -= 1;
 }
 
-
-Vector3 PlayerManager::Angle()
-{
-	return _model->GetRotation();
-}
-
-Vector3 PlayerManager::Position()
+Vector3 PlayerManager::GetPosition()
 {
 	return _model->GetPosition();
-}
-
-Vector3 PlayerManager::GetFrontVector()
-{
-	return _model->GetFrontVector();
-}
-
-Vector3 PlayerManager::GetUpVector()
-{
-	return _model->GetUpVector();
-}
-
-float PlayerManager::Power()
-{
-	return _power;
 }
 
 void PlayerManager::LoadCSV()

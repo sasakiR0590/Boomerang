@@ -13,5 +13,4 @@ public:
     void   Draw() override;
 private:
     void    Move();
-    //EnemyManager em;
 };

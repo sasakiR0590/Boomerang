@@ -6,23 +6,28 @@ class Boomerang {
 public:
     Boomerang::Boomerang();
     Boomerang::~Boomerang();
+
     bool    Initialize(Vector3 start, Vector3 control1, Vector3 control2, float power);
-    int     Update(Vector3 _playerposition);
+    int     Update(Vector3 playerposition);
     void    Draw();
-    Vector3 Move();
-    Vector3 ComeBack();
+
     MODEL GetCollision() { return _collision; }
 private:
+    Vector3 Move(Vector3 endpos);
 
     Vector3 _position;
     Vector3 _angle;
+
+    //! ベジエ用ポイント
+    Vector3 _point[4];
+
     MODEL   _collision;
     MODEL   _model;
 
+    //!スピード
     float   _speed;
     float   _rotatespeed;
 
-    Vector3 _point[4];
+    //!戻ってくるステート切り替え
     bool    _gobackstate;
-    Vector3 _endposition;
 };

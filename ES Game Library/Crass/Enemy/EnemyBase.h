@@ -13,7 +13,6 @@ public:
     Vector3 GetPosition()     { return _position; }
     void    Damage();
 protected:
-    Vector3 Angle();
     Vector3 _position;
     Vector3 _angle;
     Vector3 _speed;

@@ -73,11 +73,9 @@ void GameMain::Draw()
 
 	GraphicsDevice.BeginScene();
 
-	Vector3 player_position    = playermanager->Position();
-	Vector3 player_FrontVector = playermanager->GetFrontVector();
-	Vector3 player_UpVector    = playermanager->GetUpVector();
+	auto player = playermanager->GetModel();
 
-	camera->SetLookAt(player_position + -player_FrontVector * 5 + Vector3(0, 7, 0), player_position + player_UpVector, Vector3_Up);
+	camera->SetLookAt(player->GetPosition() + -player->GetFrontVector() * 5 + Vector3(0, 7, 0), player->GetPosition() + player->GetUpVector(), Vector3_Up);
 	GraphicsDevice.SetCamera(camera);
 
 	playermanager->Draw();
@@ -85,17 +83,6 @@ void GameMain::Draw()
 	fieldManeger->Draw();
 
 	SpriteBatch.Begin();
-
-	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("OnCollisionEnterが呼ばれた回数　%d"), _count);
-
-	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("プレイヤーのポジションX　%f"), prpos.x);
-	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 100), Color(255, 255, 255), _T("プレイヤーのポジションY　%f"), prpos.y);
-	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 200), Color(255, 255, 255), _T("プレイヤーのポジションZ　%f"), prpos.z);
-	//
-	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 300), Color(255, 255, 255), _T("フィールドのポジションX　%f"), fieldpos.x);
-	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 400), Color(255, 255, 255), _T("フィールドのポジションY　%f"), fieldpos.y);
-	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 500), Color(255, 255, 255), _T("フィールドのポジションZ　%f"), fieldpos.z);
-	//SpriteBatch.DrawString(DefaultFont, Vector2(0, 600), Color(255, 255, 255), _T("パワー　%f"), _boomerangpower);
 	
 	SpriteBatch.End();
 
