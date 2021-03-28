@@ -114,8 +114,9 @@ void PlayerManager::Draw()
 	}
 	else
 		_collision->DrawAlpha(0.5f);
-#endif
+
 	GraphicsDevice.EndAlphaBlend();
+#endif
 
 	if (_shootstate) {
 		_boomerang.Draw();
