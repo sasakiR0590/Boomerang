@@ -11,8 +11,7 @@ Enemy::~Enemy()
 
 bool Enemy::Initialize(Vector3 speed, int hp)
 {
-	_model		= GraphicsDevice.CreateModelFromFile(_T("hero.X"));
-
+	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemy/Enemy_animetion.X"));
 	SimpleShape shape;
 	shape.Type = Shape_Box;
 
@@ -39,6 +38,7 @@ bool Enemy::Initialize(Vector3 speed, int hp)
 int Enemy::Update()
 {
 	Move();
+	_animestate = ANIMESTATE::RUN;
 
 	if (_position.z <= - 6.0f) {
 		return 1;
@@ -49,6 +49,7 @@ int Enemy::Update()
 		return 1;
 	}
 
+
 	_collision->SetPosition(_model->GetPosition() + Vector3(0, 0, 0));
 	_position  = _model->GetPosition();
 	return 0;
@@ -56,10 +57,32 @@ int Enemy::Update()
 
 void Enemy::Draw()
 {
-		_model->Draw();
-		_collision->Draw();
+	ChangeAnimation();
+	_model->Draw();
+	_collision->Draw();
 }
 
 void Enemy::Move() {
-		_model->Move(0, 0, -_speed.z);
+	_model->Move(0, 0, -_speed.z);
+}
+
+void Enemy::ChangeAnimation() {
+	auto index = _oldanimestate;
+
+	_animation_count += GameTimer.GetElapsedSecond() * 2;
+
+	//全てのアニメーションの停止
+	for (int i = 0; i < ANIMESTATE::ALLTYPE; ++i) {
+		_model->SetTrackEnable(i, FALSE);
+	}
+
+	//アニメーションの状態が地がければ更新
+	if (_animestate != index) {
+		_oldanimestate = _animestate;
+		_animation_count = 0;
+	}
+
+	//アニメーションの再生
+	_model->SetTrackEnable(_animestate, TRUE);
+	_model->SetTrackPosition(_animestate, _animation_count);
 }

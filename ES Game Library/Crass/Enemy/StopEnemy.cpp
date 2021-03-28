@@ -11,7 +11,7 @@ StopEnemy::~StopEnemy()
 
 bool StopEnemy::Initialize(Vector3 speed, int hp)
 {
-	_model		= GraphicsDevice.CreateModelFromFile(_T("hero.X"));
+	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemy/Enemy_animetion.X"));
 
 	SimpleShape shape;
 	shape.Type = Shape_Box;
@@ -38,6 +38,8 @@ bool StopEnemy::Initialize(Vector3 speed, int hp)
 
 int StopEnemy::Update()
 {
+	_animestate = ANIMESTATE::WAIT;
+
 	if (destroy_time < 960) {
 		destroy_time++;
 	}
@@ -57,7 +59,27 @@ int StopEnemy::Update()
 
 void StopEnemy::Draw()
 {
+	ChangeAnimation();
 	_model->Draw();
 	_collision->Draw();
+}
+
+void StopEnemy::ChangeAnimation() {
+	auto index = _oldanimestate;
+
+	_animation_count += GameTimer.GetElapsedSecond() * 2;
+
+	for (int i = 0; i < ANIMESTATE::ALLTYPE; ++i) {
+		_model->SetTrackEnable(i, FALSE);
+	}
+
+	if (_animestate != index) {
+		_oldanimestate = _animestate;
+		_animation_count = 0;
+	}
+
+	_model->SetTrackEnable(_animestate, TRUE);
+	_model->SetTrackPosition(_animestate, _animation_count);
+
 }
 

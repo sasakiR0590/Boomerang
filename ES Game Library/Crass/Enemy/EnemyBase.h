@@ -18,5 +18,16 @@ protected:
     Vector3 _speed;
     int     _hp;
     MODEL   _collision;
-    MODEL   _model;
+    ANIMATIONMODEL   _model;
+
+    virtual void ChangeAnimation() = 0;
+    int     _animestate = 0;
+    int     _oldanimestate = 0;
+    float   _animation_count = 0.0f;
+    enum  ANIMESTATE
+    {
+        WAIT,
+        RUN,
+        ALLTYPE
+    };
 };

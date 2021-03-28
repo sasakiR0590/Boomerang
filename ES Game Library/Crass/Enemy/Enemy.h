@@ -13,4 +13,5 @@ public:
     void   Draw() override;
 private:
     void    Move();
+    void    ChangeAnimation() override;
 };
