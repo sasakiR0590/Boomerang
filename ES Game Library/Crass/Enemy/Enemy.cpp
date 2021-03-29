@@ -11,7 +11,7 @@ Enemy::~Enemy()
 
 bool Enemy::Initialize(Vector3 speed, int hp)
 {
-	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemy/Enemy_animetion.X"));
+	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemy/Enemy_animetion_0329.X"));
 	SimpleShape shape;
 	shape.Type = Shape_Box;
 
