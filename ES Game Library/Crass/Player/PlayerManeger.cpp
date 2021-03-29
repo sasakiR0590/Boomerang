@@ -71,7 +71,7 @@ int PlayerManager::Update()
 		}
 	}
 
-	if (key_buffer.IsReleased(Keys_Space) && _animstate != AnimationState::SHOOT) {
+	if (key_buffer.IsReleased(Keys_Space) && !_shootstate) {
 		_animstate = AnimationState::SHOOT;
 	}
 
