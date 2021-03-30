@@ -12,7 +12,7 @@ public:
     bool Initialize();
     int  Update();
     void Draw();
-    void OnCollisionEnter(int);
+    void OnCollisionEnter(EnemyBase*);
     std::list<EnemyBase*> GetEnemy() {return _enemy; }
     enum {LIVING,DEATH};
 private:
