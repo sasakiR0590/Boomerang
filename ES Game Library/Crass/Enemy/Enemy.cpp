@@ -42,18 +42,19 @@ int Enemy::Update()
 	_animestate = ANIMESTATE::RUN;
 
 	if (_position.z <= - 6.0f) {
-		return 1;
+		return EnemyManager::DEATH;
 	}
 	
 
 	if (_hp <= 0) {
-		return 1;
+		return EnemyManager::DEATH;
 	}
 
 
 	_collision->SetPosition(_model->GetPosition() + Vector3(0, 0, 0));
 	_position  = _model->GetPosition();
-	return 0;
+
+	return EnemyManager::LIVING;
 }
 
 void Enemy::Draw()

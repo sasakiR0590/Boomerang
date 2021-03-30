@@ -2,6 +2,7 @@
 
 #include"../../ESGLib.h"
 #include "EnemyBase.h"
+#include "EnemyManeger.h"
 
 class StopEnemy : public EnemyBase{
 public:

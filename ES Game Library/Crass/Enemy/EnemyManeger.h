@@ -14,6 +14,7 @@ public:
     void Draw();
     void OnCollisionEnter(int);
     std::list<EnemyBase*> GetEnemy() {return _enemy; }
+    enum {LIVING,DEATH};
 private:
     void Generate();
     void LoadCSV();

@@ -35,7 +35,7 @@ int EnemyManager::Update()
 	while (itr != _enemy.end()) {
 
 		//Updateでreturnされた値 0・・生きてる 1・・消去
-			if ((*itr)->Update() == 0)
+			if ((*itr)->Update() == LIVING)
 				itr++;
 			else
 				//要素数が 1 なら消去
