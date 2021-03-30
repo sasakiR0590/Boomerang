@@ -13,7 +13,9 @@ PlayerManager::~PlayerManager()
 
 bool PlayerManager::Initialize()
 {
-	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/player_animetion.X"));
+	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero_animetions.X"));
+	//_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero_2.X"));
+
 
 	_model->SetScale(1.0f, 1.0f, 1.0f);
 	_model->SetPosition(0, 0, 0);
@@ -29,10 +31,10 @@ bool PlayerManager::Initialize()
 	shape.Depth  = 1;
 
 	Material mat;
-	mat.Diffuse = Color(1, 1, 1);
-	mat.Ambient = Color(1, 1, 1);
-	mat.Specular = Color(1, 1, 1);
-	mat.Power = 10.0f;
+	mat.Diffuse = Color(1.0f, 1.0f, 1.0f);
+	mat.Ambient = Color(1.0f, 1.0f, 1.0f);
+	mat.Specular = Color(1.0f, 1.0f, 1.0f);
+	mat.Power = 1.0f;
 
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetMaterial(mat);
@@ -113,7 +115,7 @@ void PlayerManager::Draw()
 	{
 	}
 	else
-		_collision->DrawAlpha(0.5f);
+		//_collision->DrawAlpha(0.5f);
 
 	GraphicsDevice.EndAlphaBlend();
 #endif

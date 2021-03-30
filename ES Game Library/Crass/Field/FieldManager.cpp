@@ -22,10 +22,10 @@ bool FieldManeger::Initialize()
 		return false;
 
 	Material material;
-	material.Diffuse = Color(0.0f, 0.0f, 1.0f);
-	material.Ambient = Color(0.5f, 0.5f, 0.5f);
+	material.Diffuse = Color(1.0f, 1.0f, 1.0f);
+	material.Ambient = Color(1.0f, 1.0f, 1.0f);
 	material.Specular = Color(1.0f, 1.0f, 1.0f);
-	material.Power = 10.0f;
+	material.Power = 1.0f;
 	_model->SetMaterial(material);
 
 	return true;
