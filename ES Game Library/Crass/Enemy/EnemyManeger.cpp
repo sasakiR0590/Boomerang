@@ -10,9 +10,9 @@ EnemyManager::EnemyManager()
 
 EnemyManager::~EnemyManager()
 {
-	for (int i = 0; i < _enemy.size(); i++)
-	{
-		delete _enemy[i];
+	//範囲for文
+	for (auto& enemy : _enemy) {
+		 delete enemy;
 	}
 }
 
@@ -31,22 +31,24 @@ int EnemyManager::Update()
 	_time++;
 	Generate();
 
-	for (int i = 0; i < _enemy.size(); i++)
-	{
-		//敵が倒されたとき
-		if (_enemy[i]->Update() == 1)
-		{
-			_enemy.erase(_enemy.begin() + i);
-		}
+	auto itr = _enemy.begin();
+	while (itr != _enemy.end()) {
+
+		//Updateでreturnされた値 0・・生きてる 1・・消去
+			if ((*itr)->Update() == 0)
+				itr++;
+			else
+				//要素数が 1 なら消去
+				//itrの値を変更して値を一つ進める
+				itr = _enemy.erase(itr);
 	}
 	return 0;
 }
 
 void EnemyManager::Draw()
 {
-	for (int i = 0; i < _enemy.size(); i++)
-	{
-		 _enemy[i]-> Draw();
+	for (auto& enemy : _enemy) {
+		enemy->Draw();
 	}
 }
 
@@ -55,10 +57,10 @@ void EnemyManager::Generate()
 	if (_time >= 500)
 	{
 		_enemy.push_back(new Enemy);
-		_enemy[_enemy.size() - 1]->Initialize(_moveenemy_speed, _moveenemy_hp);
+		_enemy.back()->Initialize(_moveenemy_speed, _moveenemy_hp);
 
 		_enemy.push_back(new StopEnemy);
-		_enemy[_enemy.size() - 1]->Initialize(_stopenemy_speed, _stopenemy_hp);
+		_enemy.back()->Initialize(_stopenemy_speed, _stopenemy_hp);
 		_time = 0;
 	}
 }
