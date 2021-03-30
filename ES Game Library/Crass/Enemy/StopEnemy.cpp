@@ -46,16 +46,17 @@ int StopEnemy::Update()
 	}
 	else {
 		destroy_time = 0;
-		return 1;
+		return EnemyManager::DEATH;
 	}
 
 	if (_hp <= 0) {
-		return 1;
+		return EnemyManager::DEATH;
 	}
 
 	_collision->SetPosition(_model->GetPosition() + Vector3(0, 0, 0));
 	_position = _model->GetPosition();
-	return 0;
+
+	return EnemyManager::LIVING;
 }
 
 void StopEnemy::Draw()
