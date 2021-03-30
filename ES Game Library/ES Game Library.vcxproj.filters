@@ -142,6 +142,9 @@
     <Filter Include="Field">
       <UniqueIdentifier>{2c936671-a109-447c-a7e5-472575407f78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LoadCSV">
+      <UniqueIdentifier>{b4f2841c-7017-4a95-ae01-14994c003ca6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -309,6 +312,9 @@
     </ClCompile>
     <ClCompile Include="Crass\Field\FieldManager.cpp">
       <Filter>Field</Filter>
+    </ClCompile>
+    <ClCompile Include="Crass\LoadCSV\LoadCSV.cpp">
+      <Filter>LoadCSV</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -489,6 +495,9 @@
     </ClInclude>
     <ClInclude Include="Crass\Field\FieldManager.h">
       <Filter>Field</Filter>
+    </ClInclude>
+    <ClInclude Include="Crass\LoadCSV\LoadCSV.h">
+      <Filter>LoadCSV</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

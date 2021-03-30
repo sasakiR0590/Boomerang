@@ -1,6 +1,5 @@
 #include"PlayerManeger.h"
 #include <fstream>
-
 PlayerManager::PlayerManager()
 {
 	_model = nullptr;
@@ -54,7 +53,13 @@ bool PlayerManager::Initialize()
 
 	_getline_count = 0;
 
-	LoadCSV();
+
+	LoadCSV::Instance().LoadStatus("csvFile/Player/PlayerStatus.csv");
+	_playermove = LoadCSV::Instance()._filedata[0];
+	_max_invincibletime = LoadCSV::Instance()._filedata[1];
+	_frontdistance = LoadCSV::Instance()._filedata[2];
+	_sidedistance = LoadCSV::Instance()._filedata[3];
+
 	return true;
 }
 
@@ -227,34 +232,34 @@ Vector3 PlayerManager::GetPosition()
 	return _model->GetPosition();
 }
 
-void PlayerManager::LoadCSV()
-{
-	std::ifstream infile("csvFile/Player/PlayerStatus.csv");
-	std::string filename;
-	TCHAR t_filename[256];
-
-	std::string dummy_line;
-
-	while (true)
-	{
-		_getline_count++;
-
-		getline(infile, dummy_line);
-
-		if (infile.eof())
-			break;
-
-		if(_getline_count == 2)
-			infile >> _playermove;
-        
-		if(_getline_count == 4)
-			infile >> _max_invincibletime;
-
-		if (_getline_count == 6)
-			infile >> _frontdistance;
-
-		if(_getline_count == 8)
-			infile >> _sidedistance;
-	}
-
-}
+//void PlayerManager::LoadCSV()
+//{
+//	std::ifstream infile("csvFile/Player/PlayerStatus.csv");
+//	std::string filename;
+//	TCHAR t_filename[256];
+//
+//	std::string dummy_line;
+//
+//	while (true)
+//	{
+//		_getline_count++;
+//
+//		getline(infile, dummy_line);
+//
+//		if (infile.eof())
+//			break;
+//
+//		if(_getline_count == 2)
+//			infile >> _playermove;
+//        
+//		if(_getline_count == 4)
+//			infile >> _max_invincibletime;
+//
+//		if (_getline_count == 6)
+//			infile >> _frontdistance;
+//
+//		if(_getline_count == 8)
+//			infile >> _sidedistance;
+//	}
+//
+//}

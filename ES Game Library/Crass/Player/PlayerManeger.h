@@ -2,6 +2,7 @@
 
 #include"../../ESGLib.h"
 #include"Boomerang.h"
+#include"../LoadCSV/LoadCSV.h"
 
 class PlayerManager {
 public:
@@ -32,7 +33,6 @@ public:
 private:
     void    Move(KeyboardState);
     void    Damage();
-    void    LoadCSV();
 
     MODEL           _collision;
     ANIMATIONMODEL  _model;
