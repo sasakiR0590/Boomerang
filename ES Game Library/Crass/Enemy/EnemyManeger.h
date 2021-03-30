@@ -13,11 +13,11 @@ public:
     int  Update();
     void Draw();
     void OnCollisionEnter(int);
-    std::vector<EnemyBase*> GetEnemy() {return _enemy; }
+    std::list<EnemyBase*> GetEnemy() {return _enemy; }
 private:
     void Generate();
     void LoadCSV();
-    std::vector<EnemyBase*> _enemy;
+    std::list<EnemyBase*> _enemy;
     float _time = 0;
 
     //!動く敵キャラのステータス
