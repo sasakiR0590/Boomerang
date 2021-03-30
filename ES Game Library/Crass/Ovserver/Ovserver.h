@@ -8,8 +8,6 @@ public:
     Ovserver::Ovserver();
     Ovserver::~Ovserver();
     int     Update(PlayerManager*, EnemyManager*);
-    void    ColisionDetection();
+    void    ColisionDetection(PlayerManager* playerdata, EnemyManager* enemydata);
 private:
-    PlayerManager* _playermanager;
-    EnemyManager* _enemymanager;
 };

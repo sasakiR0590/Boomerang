@@ -1,31 +1,25 @@
 #include"Ovserver.h"
 Ovserver::Ovserver()
 {
-	_playermanager = new PlayerManager;
-	_enemymanager = new EnemyManager;
 }
 
 Ovserver::~Ovserver()
 {
-	//delete _enemymanager;
-	//delete _playermanager;
 }
 
 int Ovserver::Update(PlayerManager* playerdata, EnemyManager* enemydata)
 {
-	_playermanager = playerdata;
-	_enemymanager = enemydata;
-	ColisionDetection();
+	ColisionDetection(playerdata, enemydata);
 	return 0;
 }
 
-void Ovserver::ColisionDetection()
+void Ovserver::ColisionDetection(PlayerManager* playerdata, EnemyManager* enemydata)
 {
-	auto enemy = _enemymanager->GetEnemy();
+	auto enemy = enemydata->GetEnemy();
 
-	if (_playermanager->GetShootState())
+	if (playerdata->GetShootState())
 	{
-		auto a = _playermanager->GetBoomerang().GetCollision();
+		auto a = playerdata->GetBoomerang().GetCollision();
 
 		auto a_pos = a->GetPosition();
 		auto a_scale = a->GetScale();
@@ -42,15 +36,15 @@ void Ovserver::ColisionDetection()
 				a_pos.z - a_scale.z < b_pos.z + b_scale.z &&
 				a_pos.z + a_scale.z > b_pos.z - b_scale.z)
 			{
-				_enemymanager->OnCollisionEnter(i);
+				enemydata->OnCollisionEnter(i);
 			}
 		}
 	}
 
-	if (_playermanager->GetAnimState() != _playermanager->DAMAGE)
+	if (playerdata->GetAnimState() != playerdata->DAMAGE)
 	{
-		auto a_pos = _playermanager->GetCollision()->GetPosition();
-		auto a_scale = _playermanager->GetCollision()->GetScale();
+		auto a_pos = playerdata->GetCollision()->GetPosition();
+		auto a_scale = playerdata->GetCollision()->GetScale();
 		for (int i = 0; i < enemy.size(); i++)
 		{
 			auto b = enemy[i]->GetCollision();
@@ -64,7 +58,8 @@ void Ovserver::ColisionDetection()
 				a_pos.z - a_scale.z < b_pos.z + b_scale.z &&
 				a_pos.z + a_scale.z > b_pos.z - b_scale.z)
 			{
-				_playermanager->OnCollisionEnter();
+				playerdata->OnCollisionEnter();
+				break;
 			}
 		}
 	}
