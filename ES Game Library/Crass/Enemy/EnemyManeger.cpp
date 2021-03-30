@@ -65,9 +65,9 @@ void EnemyManager::Generate()
 	}
 }
 
-void EnemyManager::OnCollisionEnter(int num)
+void EnemyManager::OnCollisionEnter(EnemyBase* enemy)
 {
-	_enemy[num]->Damage();
+	enemy->Damage();
 }
 
 void EnemyManager::LoadCSV()
