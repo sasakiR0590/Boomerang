@@ -57,4 +57,7 @@ private:
     float _frontdistance;
     float _sidedistance;
     float _playermove;
+
+    //!csvファイルの行数の変数
+    int   _getline_count;
 };

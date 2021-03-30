@@ -13,9 +13,7 @@ PlayerManager::~PlayerManager()
 
 bool PlayerManager::Initialize()
 {
-	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero_animetions.X"));
-	//_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero_2.X"));
-
+	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero_animetion_02.X"));
 
 	_model->SetScale(1.0f, 1.0f, 1.0f);
 	_model->SetPosition(0, 0, 0);
@@ -53,6 +51,8 @@ bool PlayerManager::Initialize()
 	_max_invincibletime = 0;
 	_frontdistance = 0.0f;
 	_sidedistance = 0.0f;
+
+	_getline_count = 0;
 
 	LoadCSV();
 	return true;
@@ -188,7 +188,7 @@ void PlayerManager::ChangeAnimation()
 		_animation_count = 0;
 	}
 
-	if (_animstate == AnimationState::SHOOT && _animation_count > 2)
+	if (_animstate == AnimationState::SHOOT && _animation_count >= 1)
 	{
 		Shoot();
 	}
@@ -234,26 +234,27 @@ void PlayerManager::LoadCSV()
 	TCHAR t_filename[256];
 
 	std::string dummy_line;
-    //一行目
-	getline(infile, dummy_line);
-	//二行目
-	getline(infile, dummy_line);
-	//三行目
-	infile >> _playermove;
-	getline(infile, dummy_line);
-	//四行目
-	getline(infile, dummy_line);
-	//五行目
-	infile >> _max_invincibletime;
-	getline(infile, dummy_line);
-	//六行目
-	getline(infile, dummy_line);
-	//七行目
-	infile >> _frontdistance;
-	getline(infile, dummy_line);
-	//八行目
-	getline(infile, dummy_line);
-	//九行目
-	infile >> _sidedistance;
+
+	while (true)
+	{
+		_getline_count++;
+
+		getline(infile, dummy_line);
+
+		if (infile.eof())
+			break;
+
+		if(_getline_count == 2)
+			infile >> _playermove;
+        
+		if(_getline_count == 4)
+			infile >> _max_invincibletime;
+
+		if (_getline_count == 6)
+			infile >> _frontdistance;
+
+		if(_getline_count == 8)
+			infile >> _sidedistance;
+	}
 
 }
