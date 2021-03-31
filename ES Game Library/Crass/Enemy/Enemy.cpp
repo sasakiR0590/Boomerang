@@ -30,7 +30,6 @@ bool Enemy::Initialize(Vector3 speed, int hp)
 	float rand = MathHelper_Random(-7.0f, 7.0f);
 	_position =  Vector3(rand, 0, 5);
 	_model->SetPosition(_position);
-	_model->SetRotation(0, 180, 0);
 	_hp = hp;
 	_speed.z = speed.z;
 	return true;
@@ -65,7 +64,7 @@ void Enemy::Draw()
 }
 
 void Enemy::Move() {
-	_model->Move(0, 0, _speed.z);
+	_model->Move(0, 0, -_speed.z);
 }
 
 void Enemy::ChangeAnimation() {

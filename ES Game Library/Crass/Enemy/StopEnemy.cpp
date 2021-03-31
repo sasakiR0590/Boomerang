@@ -32,7 +32,6 @@ bool StopEnemy::Initialize(Vector3 speed, int hp)
 	float random_z = MathHelper_Random(-6.0f, 5.0f);
 	_position =  Vector3(random_x, 0, random_z);
 	_model->SetPosition(_position);
-	_model->SetRotation(0, 180, 0);
 	_hp = hp;
 	return true;
 }
