@@ -145,8 +145,11 @@
     <Filter Include="LoadCSV">
       <UniqueIdentifier>{b4f2841c-7017-4a95-ae01-14994c003ca6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EnemyFolder\EnemyFactory">
-      <UniqueIdentifier>{0c872f15-821e-47c7-ac33-80c637b8f305}</UniqueIdentifier>
+    <Filter Include="EffectManager">
+      <UniqueIdentifier>{526521f3-cec3-43e2-a89a-114aeafbd4b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ParticleSystem">
+      <UniqueIdentifier>{0d7cd423-6512-4a8b-a8b4-88b1c71e19ae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -319,8 +322,11 @@
     <ClCompile Include="Crass\LoadCSV\LoadCSV.cpp">
       <Filter>LoadCSV</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\Enemy\EnemyFactory.cpp">
-      <Filter>EnemyFolder\EnemyFactory</Filter>
+    <ClCompile Include="Crass\EffectManager\EffectManager.cpp">
+      <Filter>EffectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Crass\ParticleSystem\Particle.cpp">
+      <Filter>ParticleSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -505,8 +511,11 @@
     <ClInclude Include="Crass\LoadCSV\LoadCSV.h">
       <Filter>LoadCSV</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\Enemy\EnemyFactory.h">
-      <Filter>EnemyFolder\EnemyFactory</Filter>
+    <ClInclude Include="Crass\EffectManager\EffectManager.h">
+      <Filter>EffectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Crass\ParticleSystem\Particle.h">
+      <Filter>ParticleSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

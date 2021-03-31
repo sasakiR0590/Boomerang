@@ -71,6 +71,8 @@ public:
 	{ Move(inHandle, inAdd.x, inAdd.y, inAdd.z); }
 
 	virtual D3DVECTOR GetPosition(const Effekseer::Handle inHandle) = 0;
+
+	virtual void SetColor(const Effekseer::Handle inHandle, DWORD inColor) = 0;
 };
 
 //------------------------------------------------------------------------------
@@ -101,6 +103,7 @@ public:
 
 	virtual D3DVECTOR GetPosition(const Effekseer::Handle inHandle);
 
+	virtual void SetColor(const Effekseer::Handle inHandle, DWORD inColor) = 0;
 private:
 	Effekseer::Manager*   m_manager;
 	Effekseer::Effect*    m_effect;
@@ -133,4 +136,5 @@ public:
 	virtual void Move(const Effekseer::Handle inHandle, const float inAddX, const float inAddY, const float inAddZ) {}
 
 	virtual D3DVECTOR GetPosition(const Effekseer::Handle inHandle);
+	virtual void SetColor(const Effekseer::Handle inHandle, DWORD inColor) {}
 };

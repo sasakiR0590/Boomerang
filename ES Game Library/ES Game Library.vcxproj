@@ -110,6 +110,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Crass\EffectManager\EffectManager.cpp" />
     <ClCompile Include="Crass\Enemy\Enemy.cpp" />
     <ClCompile Include="Crass\Enemy\EnemyBase.cpp" />
     <ClCompile Include="Crass\Enemy\EnemyFactory.cpp" />
@@ -118,6 +119,7 @@
     <ClCompile Include="Crass\Field\FieldManager.cpp" />
     <ClCompile Include="Crass\LoadCSV\LoadCSV.cpp" />
     <ClCompile Include="Crass\Ovserver\Ovserver.cpp" />
+    <ClCompile Include="Crass\ParticleSystem\Particle.cpp" />
     <ClCompile Include="Crass\Player\Boomerang.cpp" />
     <ClCompile Include="Crass\Player\PlayerManeger.cpp" />
     <ClCompile Include="Extension\Direct2D\Direct2D.cpp">
@@ -213,6 +215,7 @@
     <ClCompile Include="Framework\Thread.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Crass\EffectManager\EffectManager.h" />
     <ClInclude Include="Crass\Enemy\Enemy.h" />
     <ClInclude Include="Crass\Enemy\EnemyBase.h" />
     <ClInclude Include="Crass\Enemy\EnemyFactory.h" />
@@ -221,6 +224,7 @@
     <ClInclude Include="Crass\Field\FieldManager.h" />
     <ClInclude Include="Crass\LoadCSV\LoadCSV.h" />
     <ClInclude Include="Crass\Ovserver\Ovserver.h" />
+    <ClInclude Include="Crass\ParticleSystem\Particle.h" />
     <ClInclude Include="Crass\Player\Boomerang.h" />
     <ClInclude Include="Crass\Player\PlayerManeger.h" />
     <ClInclude Include="Extension\Direct2D\Direct2D.hpp" />
