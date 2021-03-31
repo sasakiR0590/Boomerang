@@ -31,7 +31,8 @@ public:
         ALLTYPE
     };
 private:
-    void    Move(KeyboardState);
+    void    KeyboardMove(KeyboardState);
+   // void    PadMove(GamePadState);
     void    Damage();
 
     MODEL           _collision;

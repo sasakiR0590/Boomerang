@@ -53,6 +53,7 @@ bool PlayerManager::Initialize()
 
 	_getline_count = 0;
 
+	//InputDevice.CreateGamePad(1);
 
 	LoadCSV::Instance().LoadStatus("csvFile/Player/PlayerStatus.csv");
 	_playermove = LoadCSV::Instance()._filedata[0];
@@ -68,8 +69,12 @@ int PlayerManager::Update()
 	KeyboardState key = Keyboard->GetState();
 	KeyboardBuffer key_buffer = Keyboard->GetBuffer();
 
+	//GamePadState pad = GamePad(0)->GetState();
+	//GamePadBuffer pad_buffer = GamePad(0)->GetBuffer();
 
-	Move(key);
+	KeyboardMove(key);
+	//PadMove(pad);
+
 	if (key.IsKeyDown(Keys_Space) && _animstate != AnimationState::SHOOT) {
 		_power += 0.01;
 
@@ -130,7 +135,7 @@ void PlayerManager::Draw()
 	}
 }
 
-void PlayerManager::Move(KeyboardState key)
+void PlayerManager::KeyboardMove(KeyboardState key)
 {
 	auto old_pos = _model->GetPosition();
 	if (key.IsKeyDown(Keys_W)) {
@@ -172,6 +177,28 @@ void PlayerManager::Move(KeyboardState key)
 		_animstate = AnimationState::WAIT;
 	}
 }
+
+//void PlayerManager::PadMove(GamePadState pad)
+//{
+//	auto old_pos = _model->GetPosition();
+//
+//	Vector3 vector(pad.X, 0.0f, -pad.Y);
+//	vector = Vector3_Normalize(vector);
+//	_model->Move(vector * _playermove);
+//
+//	if (_animstate == AnimationState::SHOOT)
+//	{
+//		return;
+//	}
+//	else if (_model->GetPosition() != old_pos)
+//	{
+//		_animstate = AnimationState::RUN;
+//	}
+//	else
+//	{
+//		_animstate = AnimationState::WAIT;
+//	}
+//}
 
 //! @fn プレイヤーモデルのアニメーション切り替え
 void PlayerManager::ChangeAnimation()
