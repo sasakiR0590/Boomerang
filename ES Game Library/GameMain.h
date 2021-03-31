@@ -73,10 +73,6 @@ private:
 	FieldManeger* fieldManeger;
 
 	CAMERA camera;
-	int _count;   //OnCollisionEnterが呼ばれた回数
 	
-	//デバック用
-	//Vector3 _prpos;
-	//Vector3 _fieldpos;
-	//float   _boomerangpower;
+	ANIMATIONMODEL player;
 };

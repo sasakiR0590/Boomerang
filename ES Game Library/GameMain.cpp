@@ -14,6 +14,8 @@ bool GameMain::Initialize()
 	enemymanager->Initialize();
 	fieldManeger->Initialize();
 
+	player = playermanager->GetModel();
+
 	Light light;
 	light.Type = Light_Directional;
 	light.Direction = Vector3(1.0f, 1.0f, 1.0f);
@@ -26,10 +28,6 @@ bool GameMain::Initialize()
 	camera->SetPerspectiveFieldOfView(45.0f, 16.0f / 9.0f, 1.0f, 10000.0f);
 	GraphicsDevice.SetCamera(camera);
 
-	//_count   = 0;
-	//_prpos    = Vector3_Zero;
-	//_fieldpos = Vector3_Zero;
-	//_boomerangpower = 0.0f;
 	return true;
 }
 
@@ -57,10 +55,6 @@ int GameMain::Update()
 
 	GraphicsDevice.SetCamera(camera);
 
-	//_count = playermanager->CallOnCollisionEnter();
-	//_prpos = playermanager->Position();
-	//_fieldpos = fieldManeger->Position();
-	//_boomerangpower = playermanager->Power();
 	return 0;
 }
 
@@ -73,9 +67,7 @@ void GameMain::Draw()
 
 	GraphicsDevice.BeginScene();
 
-	auto player = playermanager->GetModel();
-
-	camera->SetLookAt(player->GetPosition() + -player->GetFrontVector() * 5 + Vector3(0, 7, 0), player->GetPosition() + player->GetUpVector(), Vector3_Up);
+	camera->SetLookAt(player->GetPosition() + Vector3_Backward * 5 + Vector3(0.0f, 7.0f, 0.0f), player->GetPosition() + player->GetUpVector(), Vector3_Up);
 	GraphicsDevice.SetCamera(camera);
 
 	playermanager->Draw();
