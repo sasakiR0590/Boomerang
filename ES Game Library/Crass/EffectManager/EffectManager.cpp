@@ -1,11 +1,12 @@
 #include "EffectManager.h"
 EffectManager::EffectManager()
 {
-	_hit_effect.reset(new ParticleSystem);
+	_hit_effect = std::make_unique<ParticleSystem>();
 }
 
 EffectManager::~EffectManager()
 {
+	_hit_effect.reset();
 }
 
 bool EffectManager::Initialize()
@@ -40,9 +41,9 @@ void EffectManager::Draw()
 	}
 }
 
-void EffectManager::Create(string tag, Vector3 pos)
-{
-	if (tag == HITEFFECT) _effect.push_back(_hit_effect);
-	auto&& effect = _effect.back();
-	effect.get()->SetPosition(pos);
-}
+//void EffectManager::Create(string tag, Vector3 pos)
+//{
+//	if (tag == HITEFFECT) _effect.push_back(_hit_effect);
+//	ParticleSystem* effect = _effect.back().get();
+//	effect->SetPosition(pos);
+//}

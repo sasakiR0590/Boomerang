@@ -328,6 +328,9 @@
     <ClCompile Include="Crass\ParticleSystem\Particle.cpp">
       <Filter>ParticleSystem</Filter>
     </ClCompile>
+    <ClCompile Include="Crass\Enemy\EnemyFactory.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h">
@@ -516,6 +519,9 @@
     </ClInclude>
     <ClInclude Include="Crass\ParticleSystem\Particle.h">
       <Filter>ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Crass\Enemy\EnemyFactory.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

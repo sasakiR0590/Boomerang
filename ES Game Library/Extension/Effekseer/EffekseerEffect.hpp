@@ -103,7 +103,7 @@ public:
 
 	virtual D3DVECTOR GetPosition(const Effekseer::Handle inHandle);
 
-	virtual void SetColor(const Effekseer::Handle inHandle, DWORD inColor) = 0;
+	virtual void SetColor(const Effekseer::Handle inHandle, DWORD inColor);
 private:
 	Effekseer::Manager*   m_manager;
 	Effekseer::Effect*    m_effect;
