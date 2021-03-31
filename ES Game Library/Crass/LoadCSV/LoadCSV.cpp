@@ -16,23 +16,24 @@ void LoadCSV::LoadStatus(string filename)
 {
 	std::wstring file_path = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(filename);
 
-	std::ifstream infile(file_path);
+	std::ifstream _infile(file_path);
 
-	std::string dummy_line;
+	std::istringstream _ss;
+
+	std::string _line;
 
 	while (true)
 	{
-		if (infile.eof())
+		if (_infile.eof())
 			break;
 
-		char a;
-		infile >> a;
-		if (a != '#') {
+		getline(_infile, _line);
+
+		if (_line[0] != '#') {
+			_ss = std::istringstream(_line);
 			float date;
-			infile >> date;
+			_ss >> date;
 			_filedata.push_back(date);
 		}
-
-		getline(infile, dummy_line);
 	}
 }
