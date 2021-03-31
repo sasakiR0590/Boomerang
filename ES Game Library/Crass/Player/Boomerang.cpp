@@ -74,7 +74,7 @@ void Boomerang::Draw()
 Vector3 Boomerang::Move(Vector3 endpos)
 {
 	_speed += 0.01f;
-	_rotatespeed += 10.0f;
+	_rotatespeed += 50.0f;
 	_model->SetRotation(0.0f, _rotatespeed, 0.0f);
 	_collision->SetRotation(0.0f, _rotatespeed, 0.0f);
 	Vector3 _bezier = Vector3_Bezier(_point[0], _point[1], _point[2], endpos, _speed);

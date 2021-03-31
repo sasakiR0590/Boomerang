@@ -14,7 +14,7 @@ bool PlayerManager::Initialize()
 {
 	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero_animetion_02.X"));
 
-	_model->SetScale(1.0f, 1.0f, 1.0f);
+	_model->SetScale(1.0f);
 	_model->SetPosition(0, 0, 0);
 	_model->SetRotation(0, 0, 0);
 

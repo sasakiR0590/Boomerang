@@ -21,9 +21,9 @@ bool StopEnemy::Initialize(Vector3 speed, int hp)
 	shape.Length = 1;
 
 	Material mtrl;
-	mtrl.Diffuse  = Color(0, 0, 0);
-	mtrl.Ambient  = Color(0, 0, 0);
-	mtrl.Specular = Color(0, 0, 0);
+	mtrl.Diffuse  = Color(1.0f, 1.0f, 1.0f);
+	mtrl.Ambient  = Color(1.0f, 1.0f, 1.0f);
+	mtrl.Specular = Color(1.0f, 1.0f, 1.0f);
 
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetScale(1);
@@ -63,7 +63,7 @@ void StopEnemy::Draw()
 {
 	ChangeAnimation();
 	_model->Draw();
-	_collision->Draw();
+	//_collision->Draw();
 }
 
 void StopEnemy::ChangeAnimation() {
