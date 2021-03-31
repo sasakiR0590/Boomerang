@@ -56,11 +56,12 @@ void EnemyManager::Generate()
 {
 	if (_time >= 500)
 	{
-		_enemy.push_back(new Enemy);
-		_enemy.back()->Initialize(_moveenemy_speed, _moveenemy_hp);
 
-		_enemy.push_back(new StopEnemy);
-		_enemy.back()->Initialize(_stopenemy_speed, _stopenemy_hp);
+		unique_ptr<EnemyFactory> factory = std::make_unique<EnemyFactory>();
+		_enemy.push_back(factory->Create("move_enemy", Vector3(0, 0, 0), _moveenemy_speed, _moveenemy_hp));
+		_enemy.push_back(factory->Create("stop_enemy", Vector3(0, 0, 0), _stopenemy_speed, _stopenemy_hp));
+		//_enemy.push_back(new StopEnemy);
+		//_enemy.back()->Initialize(_stopenemy_speed, _stopenemy_hp);
 		_time = 0;
 	}
 }

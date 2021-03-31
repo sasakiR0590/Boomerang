@@ -145,6 +145,9 @@
     <Filter Include="LoadCSV">
       <UniqueIdentifier>{b4f2841c-7017-4a95-ae01-14994c003ca6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EnemyFolder\EnemyFactory">
+      <UniqueIdentifier>{0c872f15-821e-47c7-ac33-80c637b8f305}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -315,6 +318,9 @@
     </ClCompile>
     <ClCompile Include="Crass\LoadCSV\LoadCSV.cpp">
       <Filter>LoadCSV</Filter>
+    </ClCompile>
+    <ClCompile Include="Crass\Enemy\EnemyFactory.cpp">
+      <Filter>EnemyFolder\EnemyFactory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -498,6 +504,9 @@
     </ClInclude>
     <ClInclude Include="Crass\LoadCSV\LoadCSV.h">
       <Filter>LoadCSV</Filter>
+    </ClInclude>
+    <ClInclude Include="Crass\Enemy\EnemyFactory.h">
+      <Filter>EnemyFolder\EnemyFactory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
