@@ -30,9 +30,11 @@ public:
         DAMAGE,
         ALLTYPE
     };
+    float TestRotationNow();
+    float TestRotation90();
 private:
     void    KeyboardMove(KeyboardState);
-   // void    PadMove(GamePadState);
+    void    PadMove(GamePadState);
     void    Damage();
 
     MODEL           _collision;
@@ -61,4 +63,15 @@ private:
 
     //!csvファイルの行数の変数
     int   _getline_count;
+
+    //!プレイヤーの挙動
+    float   _rotate_direction;
+    Vector3 _frontvector;
+    float   _rotation;
+    float   _atan2_change;
+
+    //!ローテーション確認用
+    float _test_rotation_now;
+    float _test_rotation_90;
+
 };

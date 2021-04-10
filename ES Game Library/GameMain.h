@@ -75,4 +75,7 @@ private:
 	CAMERA camera;
 	
 	ANIMATIONMODEL player;
+
+	float teat_1;
+	float test_2;
 };

@@ -53,7 +53,16 @@ bool PlayerManager::Initialize()
 
 	_getline_count = 0;
 
-	//InputDevice.CreateGamePad(1);
+	_rotate_direction = 0.0f;
+	_frontvector      = Vector3_Zero;
+	_rotation         = 0.0f;
+	_atan2_change     = 0.0f;
+
+	//!テスト用
+	_test_rotation_now = 0.0f;
+	_test_rotation_90  = 0.0f;
+
+	InputDevice.CreateGamePad(1);
 
 	LoadCSV::Instance().LoadStatus("csvFile/Player/PlayerStatus.csv");
 	_playermove = LoadCSV::Instance()._filedata[0];
@@ -69,21 +78,20 @@ int PlayerManager::Update()
 	KeyboardState key = Keyboard->GetState();
 	KeyboardBuffer key_buffer = Keyboard->GetBuffer();
 
-	//GamePadState pad = GamePad(0)->GetState();
-	//GamePadBuffer pad_buffer = GamePad(0)->GetBuffer();
+	GamePadState pad = GamePad(0)->GetState();
+	GamePadBuffer pad_buffer = GamePad(0)->GetBuffer();
 
 	KeyboardMove(key);
-	//PadMove(pad);
+	PadMove(pad);
 
-	if (key.IsKeyDown(Keys_Space) && _animstate != AnimationState::SHOOT) {
+	if ((key.IsKeyDown(Keys_Space) || pad.Buttons[3]) && _animstate != AnimationState::SHOOT) {
 		_power += 0.01;
-
 		if (_power >= 2.0f) {
 			_power = 2.0f;
 		}
 	}
 
-	if (key_buffer.IsReleased(Keys_Space) && !_shootstate) {
+	if ((key_buffer.IsReleased(Keys_Space) || pad_buffer.IsReleased(GamePad_Button4)) && !_shootstate) {
 		_animstate = AnimationState::SHOOT;
 	}
 
@@ -178,27 +186,38 @@ void PlayerManager::KeyboardMove(KeyboardState key)
 	}
 }
 
-//void PlayerManager::PadMove(GamePadState pad)
-//{
-//	auto old_pos = _model->GetPosition();
-//
-//	Vector3 vector(pad.X, 0.0f, -pad.Y);
-//	vector = Vector3_Normalize(vector);
-//	_model->Move(vector * _playermove);
-//
-//	if (_animstate == AnimationState::SHOOT)
-//	{
-//		return;
-//	}
-//	else if (_model->GetPosition() != old_pos)
-//	{
-//		_animstate = AnimationState::RUN;
-//	}
-//	else
-//	{
-//		_animstate = AnimationState::WAIT;
-//	}
-//}
+void PlayerManager::PadMove(GamePadState pad)
+{
+	auto old_pos = _model->GetPosition();
+
+	if (pad.X != 0.0f || pad.Y != 0.0f) {
+		//!デバック用
+		_test_rotation_now = MathHelper_Atan2(pad.Y, pad.X);
+		_test_rotation_90  = MathHelper_Atan2(pad.Y, pad.X) + 90.0f;
+
+		_rotate_direction = MathHelper_Atan2(pad.Y, pad.X) + 90.0f;
+		if (_rotation >= 0 && _rotate_direction >= -90.0f && _rotate_direction < 0.0f)
+			_rotate_direction += 360.0f;
+
+		_rotation = MathHelper_Lerp(_rotation, _rotate_direction, GameTimer.GetElapsedSecond() * 10);
+
+		_model->SetRotation(0.0f, _rotation, 0.0f);
+		_model->Move(0.0f, 0.0f, _playermove);
+	}
+
+	if (_animstate == AnimationState::SHOOT)
+	{
+		return;
+	}
+	else if (_model->GetPosition() != old_pos)
+	{
+		_animstate = AnimationState::RUN;
+	}
+	else
+	{
+		_animstate = AnimationState::WAIT;
+	}
+}
 
 //! @fn プレイヤーモデルのアニメーション切り替え
 void PlayerManager::ChangeAnimation()
@@ -259,34 +278,13 @@ Vector3 PlayerManager::GetPosition()
 	return _model->GetPosition();
 }
 
-//void PlayerManager::LoadCSV()
-//{
-//	std::ifstream infile("csvFile/Player/PlayerStatus.csv");
-//	std::string filename;
-//	TCHAR t_filename[256];
-//
-//	std::string dummy_line;
-//
-//	while (true)
-//	{
-//		_getline_count++;
-//
-//		getline(infile, dummy_line);
-//
-//		if (infile.eof())
-//			break;
-//
-//		if(_getline_count == 2)
-//			infile >> _playermove;
-//        
-//		if(_getline_count == 4)
-//			infile >> _max_invincibletime;
-//
-//		if (_getline_count == 6)
-//			infile >> _frontdistance;
-//
-//		if(_getline_count == 8)
-//			infile >> _sidedistance;
-//	}
-//
-//}
+
+float PlayerManager::TestRotationNow()
+{
+	return _rotation;
+}
+
+float PlayerManager::TestRotation90()
+{
+	return _test_rotation_90;
+}
