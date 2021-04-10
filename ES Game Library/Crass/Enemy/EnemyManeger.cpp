@@ -22,14 +22,27 @@ bool EnemyManager::Initialize()
 	_moveenemy_hp    = 0;
 	_stopenemy_speed = Vector3_Zero;
 	_stopenemy_hp    = 0;
+
+	for (int i = 0; i < ENEMY_NUM; ++i) {
+		appear_pos [i] = Vector3_Zero;
+		tag[i]         = INT_MAX;
+		appear_time[i] = INT_MAX;
+		appear_flag[i] = false;
+	}
+
 	LoadCSV();
+	LoadPosition_AppearTimeCSV();
 	return true;
 }
 
 int EnemyManager::Update()
 {
 	_time++;
-	Generate();
+
+	if (_time > appear_time[count] && count < ENEMY_NUM) {
+		Generate();
+		count++;
+	}
 
 	auto itr = _enemy.begin();
 	while (itr != _enemy.end()) {
@@ -54,16 +67,24 @@ void EnemyManager::Draw()
 
 void EnemyManager::Generate()
 {
-	if (_time >= 500)
-	{
+	unique_ptr<EnemyFactory> factory = std::make_unique<EnemyFactory>();
 
-		unique_ptr<EnemyFactory> factory = std::make_unique<EnemyFactory>();
-		_enemy.push_back(factory->Create("move_enemy", Vector3(0, 0, 0), _moveenemy_speed, _moveenemy_hp));
-		_enemy.push_back(factory->Create("stop_enemy", Vector3(0, 0, 0), _stopenemy_speed, _stopenemy_hp));
-		//_enemy.push_back(new StopEnemy);
-		//_enemy.back()->Initialize(_stopenemy_speed, _stopenemy_hp);
-		_time = 0;
+	if (!appear_flag[count])
+	{		
+		switch (tag[count])
+		{
+		case MOVE_ENEMY:
+			_enemy.push_back(factory->Create("move_enemy", appear_pos[count], _moveenemy_speed, _moveenemy_hp));
+			appear_flag[count] = true;
+			break;
+		case STOP_ENEMY:
+			_enemy.push_back(factory->Create("stop_enemy", appear_pos[count], _stopenemy_speed, _stopenemy_hp));
+			appear_flag[count] = true;
+			break;
+
+		}
 	}
+
 }
 
 void EnemyManager::OnCollisionEnter(EnemyBase* enemy)
@@ -97,4 +118,19 @@ void EnemyManager::LoadCSV()
 	getline(stopenemy_infile, dummy_line);
 	//三行目
 	stopenemy_infile >> _stopenemy_hp;
+}
+
+void EnemyManager::LoadPosition_AppearTimeCSV() {
+	std::ifstream pos_time_infile("csvFile/Enemy/EnemyPosition_AppearTime.txt");
+
+	std::string dummy_line;
+	
+	//1・2行目
+	getline(pos_time_infile, dummy_line);
+	getline(pos_time_infile, dummy_line);
+	
+	//データ読み込み
+	for (int i = 0; i < ENEMY_NUM; ++i) {
+		pos_time_infile >> tag[i] >> appear_pos[i].x >> appear_pos[i].y >> appear_pos[i].z >> appear_time[i];
+	}
 }

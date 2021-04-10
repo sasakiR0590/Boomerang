@@ -9,7 +9,7 @@ Enemy::~Enemy()
 {
 }
 
-bool Enemy::Initialize(Vector3 speed, int hp)
+bool Enemy::Initialize(Vector3 position, Vector3 speed, int hp)
 {
 	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemy/Enemy_animetion_0329.X"));
 	SimpleShape shape;
@@ -27,8 +27,7 @@ bool Enemy::Initialize(Vector3 speed, int hp)
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetScale(1);
 	_collision->SetMaterial(mtrl);
-	float rand = MathHelper_Random(-7.0f, 7.0f);
-	_position =  Vector3(rand, 0, 5);
+	_position = position;
 	_model->SetPosition(_position);
 	_hp = hp;
 	_speed.z = speed.z;
@@ -40,7 +39,7 @@ int Enemy::Update()
 	Move();
 	_animestate = ANIMESTATE::RUN;
 
-	if (_position.z <= - 6.0f) {
+	if (_position.z <= - 8.8f) {
 		return EnemyManager::DEATH;
 	}
 	

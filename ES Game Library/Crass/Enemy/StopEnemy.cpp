@@ -9,7 +9,7 @@ StopEnemy::~StopEnemy()
 {
 }
 
-bool StopEnemy::Initialize(Vector3 speed, int hp)
+bool StopEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 {
 	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemy/Enemy_animetion_0329.X"));
 
@@ -28,9 +28,7 @@ bool StopEnemy::Initialize(Vector3 speed, int hp)
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetScale(1);
 	_collision->SetMaterial(mtrl);
-	float random_x = MathHelper_Random(-7.0f, 7.0f);
-	float random_z = MathHelper_Random(-6.0f, 5.0f);
-	_position =  Vector3(random_x, 0, random_z);
+	_position =  position;
 	_model->SetPosition(_position);
 	_hp = hp;
 	return true;
