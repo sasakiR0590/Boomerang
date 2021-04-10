@@ -11,7 +11,7 @@ EnemyFactory::~EnemyFactory() {
 EnemyBase* EnemyFactory::Create(string tag, Vector3 _position, Vector3 speed, int hp)
 {
 	EnemyBase* enemy_factory = CreateProduct(tag, _position);
-	enemy_factory->Initialize(speed, hp);
+	enemy_factory->Initialize(_position, speed, hp);
 	return enemy_factory;
 }
 
