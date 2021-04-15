@@ -61,9 +61,6 @@ private:
     float _sidedistance;
     float _playermove;
 
-    //!csvファイルの行数の変数
-    int   _getline_count;
-
     //!プレイヤーの挙動
     float   _rotate_direction;
     Vector3 _frontvector;

@@ -14,7 +14,5 @@ public:
 
     void LoadStatus(string filename);
 
-	std::vector<float> _filedata;
-
-	int   _linecount;
+	std::map<string, float> _status;
 };

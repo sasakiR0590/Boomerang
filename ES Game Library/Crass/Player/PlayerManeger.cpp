@@ -51,8 +51,6 @@ bool PlayerManager::Initialize()
 	_frontdistance = 0.0f;
 	_sidedistance = 0.0f;
 
-	_getline_count = 0;
-
 	_rotate_direction = 0.0f;
 	_frontvector      = Vector3_Zero;
 	_rotation         = 0.0f;
@@ -64,11 +62,12 @@ bool PlayerManager::Initialize()
 
 	InputDevice.CreateGamePad(1);
 
+	//↓ここでCSVの数値を使う変数にいれてます。
 	LoadCSV::Instance().LoadStatus("csvFile/Player/PlayerStatus.csv");
-	_playermove = LoadCSV::Instance()._filedata[0];
-	_max_invincibletime = LoadCSV::Instance()._filedata[1];
-	_frontdistance = LoadCSV::Instance()._filedata[2];
-	_sidedistance = LoadCSV::Instance()._filedata[3];
+	_playermove = LoadCSV::Instance()._status.at("#動く速度");
+	_max_invincibletime = LoadCSV::Instance()._status.at("#無敵時間");
+	_frontdistance = LoadCSV::Instance()._status.at("#ブーメランを飛ばす距離(前)");
+	_sidedistance = LoadCSV::Instance()._status.at("#ブーメランを飛ばす距離(横)");
 
 	return true;
 }

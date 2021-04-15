@@ -2,9 +2,12 @@
 #include<fstream>
 #include<sstream>
 #include<codecvt>
+#include<map>
+#include<stdlib.h>
+
 LoadCSV::LoadCSV()
 {
-	_linecount   = 0;
+
 }
 
 LoadCSV::~LoadCSV()
@@ -14,26 +17,21 @@ LoadCSV::~LoadCSV()
 
 void LoadCSV::LoadStatus(string filename)
 {
-	std::wstring file_path = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(filename);
+	FILE* file;
+	file = fopen(filename.c_str(), "r");
 
-	std::ifstream _infile(file_path);
+	char buffer[512];
 
-	std::istringstream _ss;
+	char _char_status_name[256];
 
-	std::string _line;
-
-	while (true)
+	while(fgets(buffer, sizeof(buffer), file) != NULL)
 	{
-		if (_infile.eof())
-			break;
+		float _data = 0.0f;
 
-		getline(_infile, _line);
-
-		if (_line[0] != '#') {
-			_ss = std::istringstream(_line);
-			float date;
-			_ss >> date;
-			_filedata.push_back(date);
-		}
+		sscanf(buffer, "%s %f", &_char_status_name, &_data);
+		std::string _status_name = _char_status_name;
+		_status.insert(make_pair(_status_name, _data));
 	}
+
+	fclose(file);
 }
