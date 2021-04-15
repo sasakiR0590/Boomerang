@@ -1,7 +1,7 @@
 #include "EffectManager.h"
 EffectManager::EffectManager()
 {
-	_hit_effect = std::make_unique<ParticleSystem>();
+	_hit_effect.reset(new ParticleSystem);
 }
 
 EffectManager::~EffectManager()
@@ -11,7 +11,8 @@ EffectManager::~EffectManager()
 
 bool EffectManager::Initialize()
 {
-	EFFEKSEER hit = Effekseer.CreateEffectFromFile(_T("Effect/damage_effect01/damege_0127.efk"));
+	Effekseer.Attach(GraphicsDevice, 8192);
+	auto&& hit = Effekseer.CreateEffectFromFile(_T("Effect/damage_effect01/damege_0127.efk"));
 	_hit_effect->RegisterParticle(hit);
 	_hit_effect->SetNomalEffect();
 
@@ -39,11 +40,12 @@ void EffectManager::Draw()
 			//itrの値を変更して値を一つ進める
 			itr = _effect.erase(itr);
 	}
+	_hit_effect->Draw();
 }
 
-//void EffectManager::Create(string tag, Vector3 pos)
-//{
-//	if (tag == HITEFFECT) _effect.push_back(_hit_effect);
-//	ParticleSystem* effect = _effect.back().get();
-//	effect->SetPosition(pos);
-//}
+void EffectManager::Create(string tag, Vector3 pos)
+{
+	if (tag == HITEFFECT) _hit_effect->Play();
+	//ParticleSystem* effect = _effect.back().get();
+	//effect->SetPosition(pos);
+}
