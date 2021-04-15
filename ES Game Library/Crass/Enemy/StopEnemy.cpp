@@ -11,7 +11,7 @@ StopEnemy::~StopEnemy()
 
 bool StopEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 {
-	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemy/Enemy_animetion_0329.X"));
+	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemy/teki_3.X"));
 
 	SimpleShape shape;
 	shape.Type = Shape_Box;

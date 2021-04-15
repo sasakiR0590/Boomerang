@@ -18,11 +18,6 @@ EnemyManager::~EnemyManager()
 
 bool EnemyManager::Initialize()
 {
-	_moveenemy_speed = Vector3_Zero;
-	_moveenemy_hp    = 0;
-	_stopenemy_speed = Vector3_Zero;
-	_stopenemy_hp    = 0;
-
 	for (int i = 0; i < ENEMY_NUM; ++i) {
 		appear_pos [i] = Vector3_Zero;
 		tag[i]         = INT_MAX;
@@ -31,7 +26,6 @@ bool EnemyManager::Initialize()
 	}
 
 	LoadCSV();
-	LoadPosition_AppearTimeCSV();
 	return true;
 }
 
@@ -74,11 +68,11 @@ void EnemyManager::Generate()
 		switch (tag[count])
 		{
 		case MOVE_ENEMY:
-			_enemy.push_back(factory->Create("move_enemy", appear_pos[count], _moveenemy_speed, _moveenemy_hp));
+			_enemy.push_back(factory->Create("move_enemy", appear_pos[count]));
 			appear_flag[count] = true;
 			break;
 		case STOP_ENEMY:
-			_enemy.push_back(factory->Create("stop_enemy", appear_pos[count], _stopenemy_speed, _stopenemy_hp));
+			_enemy.push_back(factory->Create("stop_enemy", appear_pos[count]));
 			appear_flag[count] = true;
 			break;
 
@@ -92,35 +86,7 @@ void EnemyManager::OnCollisionEnter(EnemyBase* enemy)
 	enemy->Damage();
 }
 
-void EnemyManager::LoadCSV()
-{
-	std::ifstream moveenemy_infile("csvFile/Enemy/EnemyStatus.csv");
-	std::ifstream stopenemy_infile("csvFile/Enemy/StopEnemyStatus.csv");
-
-	std::string filename;
-	TCHAR t_filename[256];
-
-	std::string dummy_line;
-	char conma;
-
-	//!動く敵のステータス読み込み
-	//一行目
-	getline(moveenemy_infile, dummy_line);
-	//二行目
-	getline(moveenemy_infile, dummy_line);
-    //三行目
-	moveenemy_infile >> _moveenemy_speed.x >> conma >> _moveenemy_speed.y >> conma >> _moveenemy_speed.z >> conma >> _moveenemy_hp;
-
-	//!動かない敵のステータス読み込み
-	//一行目
-	getline(stopenemy_infile, dummy_line);
-	//二行目
-	getline(stopenemy_infile, dummy_line);
-	//三行目
-	stopenemy_infile >> _stopenemy_hp;
-}
-
-void EnemyManager::LoadPosition_AppearTimeCSV() {
+void EnemyManager::LoadCSV() {
 	std::ifstream pos_time_infile("csvFile/Enemy/EnemyPosition_AppearTime.txt");
 
 	std::string dummy_line;

@@ -19,26 +19,16 @@ public:
 private:
     void Generate();
     void LoadCSV();
-    void LoadPosition_AppearTimeCSV();
 
     std::list<EnemyBase*> _enemy;
     int _time = 0;
 
-    //!動く敵キャラのステータス
-    Vector3 _moveenemy_speed;
-    int     _moveenemy_hp;
-
-    //!動かない敵キャラのステータス
-    Vector3 _stopenemy_speed;
-    int     _stopenemy_hp;
-
     enum { MOVE_ENEMY, STOP_ENEMY };
     enum { ENEMY_NUM = 100 };
    
-    //敵の累計出現数カウント、種類、出現座標、出現時間、出現フラグ
-    int count = 0;                    
-    int     tag[ENEMY_NUM];           
-    Vector3 appear_pos[ENEMY_NUM];    
-    int     appear_time[ENEMY_NUM];   
-    bool    appear_flag[ENEMY_NUM];   
+    int count = 0;                   //敵の累計出現数カウント 
+    int     tag[ENEMY_NUM];          //敵の種類         
+    Vector3 appear_pos[ENEMY_NUM];   //敵の出現座標  
+    int     appear_time[ENEMY_NUM];  //敵の出現時間
+    bool    appear_flag[ENEMY_NUM];  //敵の出現フラグ 
 };
