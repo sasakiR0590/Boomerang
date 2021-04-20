@@ -151,6 +151,9 @@
     <Filter Include="ParticleSystem">
       <UniqueIdentifier>{0d7cd423-6512-4a8b-a8b4-88b1c71e19ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EnemyFolder\EnemyFactory">
+      <UniqueIdentifier>{d5e44f37-7868-4b1b-ac96-33d6b67c8160}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -329,7 +332,7 @@
       <Filter>ParticleSystem</Filter>
     </ClCompile>
     <ClCompile Include="Crass\Enemy\EnemyFactory.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>EnemyFolder\EnemyFactory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -521,7 +524,7 @@
       <Filter>ParticleSystem</Filter>
     </ClInclude>
     <ClInclude Include="Crass\Enemy\EnemyFactory.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>EnemyFolder\EnemyFactory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
