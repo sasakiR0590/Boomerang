@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../ESGLib.h"
+#include "../LoadCSV/LoadCSV.h"
 #include"EnemyBase.h"
 #include "StopEnemy.h"
 #include"Enemy.h"
@@ -15,8 +16,6 @@ public:
 	Vector3 SetSpeed(string tag);
 	int     SetHp(string tag);
 private:
-	void LoadCSV();
-
 	Vector3 _speed;
 	int     _hp;
 

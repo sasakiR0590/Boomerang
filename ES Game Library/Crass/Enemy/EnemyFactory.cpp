@@ -2,7 +2,17 @@
 #include <fstream>
 
 EnemyFactory::EnemyFactory() {
-	LoadCSV();
+	LoadCSV::Instance().LoadStatus("csvFile/Enemy/EnemyStatus.csv");
+	_moveenemy_speed.x = LoadCSV::Instance()._status.at("#動く方向(X座標)");
+	_moveenemy_speed.y = LoadCSV::Instance()._status.at("#動く方向(Y座標)");
+	_moveenemy_speed.z = LoadCSV::Instance()._status.at("#動く方向(Z座標)");
+	_moveenemy_hp = LoadCSV::Instance()._status.at("#動く敵のHP");
+
+	LoadCSV::Instance().LoadStatus("csvFile/Enemy/StopEnemyStatus.csv");
+	_stopenemy_speed.x = LoadCSV::Instance()._status.at("#動く方向(X座標)");
+	_stopenemy_speed.y = LoadCSV::Instance()._status.at("#動く方向(Y座標)");
+	_stopenemy_speed.z = LoadCSV::Instance()._status.at("#動く方向(Z座標)");
+	_stopenemy_hp = LoadCSV::Instance()._status.at("#止まっている敵のHP");
 }
 
 EnemyFactory::~EnemyFactory() {
@@ -35,31 +45,4 @@ int EnemyFactory::SetHp(string tag) {
 	if (tag == "stop_enemy") { _hp = _stopenemy_hp; }
 
 	return _hp;
-}
-
-void EnemyFactory::LoadCSV() {
-	std::ifstream moveenemy_infile("csvFile/Enemy/EnemyStatus.csv");
-	std::ifstream stopenemy_infile("csvFile/Enemy/StopEnemyStatus.csv");
-
-	std::string filename;
-	TCHAR t_filename[256];
-
-	std::string dummy_line;
-	char conma;
-
-	//!動く敵のステータス読み込み
-	//一行目
-	getline(moveenemy_infile, dummy_line);
-	//二行目
-	getline(moveenemy_infile, dummy_line);
-	//三行目
-	moveenemy_infile >> _moveenemy_speed.x >> conma >> _moveenemy_speed.y >> conma >> _moveenemy_speed.z >> conma >> _moveenemy_hp;
-
-	//!動かない敵のステータス読み込み
-	//一行目
-	getline(stopenemy_infile, dummy_line);
-	//二行目
-	getline(stopenemy_infile, dummy_line);
-	//三行目
-	stopenemy_infile >> _stopenemy_hp;
 }
