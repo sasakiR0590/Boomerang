@@ -8,7 +8,8 @@ ParticleSystem::ParticleSystem()
 
 ParticleSystem::~ParticleSystem()
 {
-	_particle->Stop(_handle);
+	//if(_particle)
+	//	_particle->Stop(_handle);
 }
 
 void ParticleSystem::RegisterParticle(EFFEKSEER& particle)

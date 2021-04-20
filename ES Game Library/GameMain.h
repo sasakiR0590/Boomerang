@@ -6,7 +6,7 @@
 #include "Crass/Enemy/EnemyManeger.h"
 #include "Crass/Ovserver/Ovserver.h"
 #include "Crass/Field/FieldManager.h"
-
+#include "Crass/EffectManager/EffectManager.h"
 class GameMain : public CGameScene {
 public:
 	GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
@@ -20,6 +20,7 @@ public:
 
 	virtual ~GameMain()
 	{
+		Finalize();
 #ifdef _INC_SQUIRREL
 		Squirrel.ReleaseAllScripts();
 #endif
@@ -49,11 +50,8 @@ public:
 		GraphicsDevice.ReleaseAllVertexBuffers();
 		GraphicsDevice.ReleaseAllEffects();
 
-		Finalize();
-		delete ovserver;
-		delete enemymanager;
-		delete playermanager;
-		delete fieldManeger;
+		
+
 	}
 
 public:
