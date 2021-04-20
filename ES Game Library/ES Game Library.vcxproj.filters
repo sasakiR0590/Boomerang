@@ -152,7 +152,7 @@
       <UniqueIdentifier>{0d7cd423-6512-4a8b-a8b4-88b1c71e19ae}</UniqueIdentifier>
     </Filter>
     <Filter Include="EnemyFolder\EnemyFactory">
-      <UniqueIdentifier>{d5e44f37-7868-4b1b-ac96-33d6b67c8160}</UniqueIdentifier>
+      <UniqueIdentifier>{fcd47412-7b48-470e-b02b-2d45e342e416}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
