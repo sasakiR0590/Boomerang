@@ -6,13 +6,13 @@ EnemyFactory::EnemyFactory() {
 	_moveenemy_speed.x = LoadCSV::Instance()._status.at("#“®‚­•ûŒü(XÀ•W)");
 	_moveenemy_speed.y = LoadCSV::Instance()._status.at("#“®‚­•ûŒü(YÀ•W)");
 	_moveenemy_speed.z = LoadCSV::Instance()._status.at("#“®‚­•ûŒü(ZÀ•W)");
-	_moveenemy_hp = LoadCSV::Instance()._status.at("#“®‚­“G‚ÌHP");
+	_moveenemy_hp      = LoadCSV::Instance()._status.at("#“®‚­“G‚ÌHP");
 
 	LoadCSV::Instance().LoadStatus("csvFile/Enemy/StopEnemyStatus.csv");
 	_stopenemy_speed.x = LoadCSV::Instance()._status.at("#“®‚­•ûŒü(XÀ•W)");
 	_stopenemy_speed.y = LoadCSV::Instance()._status.at("#“®‚­•ûŒü(YÀ•W)");
 	_stopenemy_speed.z = LoadCSV::Instance()._status.at("#“®‚­•ûŒü(ZÀ•W)");
-	_stopenemy_hp = LoadCSV::Instance()._status.at("#~‚Ü‚Á‚Ä‚¢‚é“G‚ÌHP");
+	_stopenemy_hp      = LoadCSV::Instance()._status.at("#~‚Ü‚Á‚Ä‚¢‚é“G‚ÌHP");
 }
 
 EnemyFactory::~EnemyFactory() {

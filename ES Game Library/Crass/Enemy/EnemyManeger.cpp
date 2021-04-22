@@ -31,7 +31,12 @@ bool EnemyManager::Initialize()
 
 int EnemyManager::Update()
 {
-	_time++;
+	if(_frame < 60)
+	   _frame++;
+	else {
+		_frame = 0;
+		_time++;
+	}
 
 	if (_time > appear_time[count] && count < ENEMY_NUM) {
 		Generate();
