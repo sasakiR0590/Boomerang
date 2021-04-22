@@ -198,8 +198,6 @@ void PlayerManager::PadMove(GamePadState pad)
 
 		if (_rotation >= 0 && _rotate_direction >= -90.0f && _rotate_direction < 0.0f)
 			_rotate_direction += 360.0f;
-		else if (_rotation >= _rotate_direction && _rotate_direction >= 180.0f )
-			_rotate_direction -= 360.0f;
 
 		_rotation = MathHelper_Lerp(_rotation, _rotate_direction, GameTimer.GetElapsedSecond() * 10);
 
