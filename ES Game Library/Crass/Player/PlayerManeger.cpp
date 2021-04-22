@@ -62,7 +62,6 @@ bool PlayerManager::Initialize()
 
 	InputDevice.CreateGamePad(1);
 
-	//↓ここでCSVの数値を使う変数にいれてます。
 	LoadCSV::Instance().LoadStatus("csvFile/Player/PlayerStatus.csv");
 	_playermove = LoadCSV::Instance()._status.at("#動く速度");
 	_max_invincibletime = LoadCSV::Instance()._status.at("#無敵時間");
@@ -190,13 +189,17 @@ void PlayerManager::PadMove(GamePadState pad)
 	auto old_pos = _model->GetPosition();
 
 	if (pad.X != 0.0f || pad.Y != 0.0f) {
-		//!デバック用
+#ifdef _DEBUG
 		_test_rotation_now = MathHelper_Atan2(pad.Y, pad.X);
 		_test_rotation_90  = MathHelper_Atan2(pad.Y, pad.X) + 90.0f;
+#endif
 
 		_rotate_direction = MathHelper_Atan2(pad.Y, pad.X) + 90.0f;
+
 		if (_rotation >= 0 && _rotate_direction >= -90.0f && _rotate_direction < 0.0f)
 			_rotate_direction += 360.0f;
+		else if (_rotation >= _rotate_direction && _rotate_direction >= 180.0f )
+			_rotate_direction -= 360.0f;
 
 		_rotation = MathHelper_Lerp(_rotation, _rotate_direction, GameTimer.GetElapsedSecond() * 10);
 

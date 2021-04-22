@@ -21,8 +21,8 @@ private:
     void LoadCSV();
 
     std::list<EnemyBase*> _enemy;
-    int _frame = 0;
-    int _time  = 0;
+    float _frame = 0.0f;
+    float _time  = 0.0f;
 
     enum { MOVE_ENEMY, STOP_ENEMY };
     enum { ENEMY_NUM = 100 };
@@ -30,6 +30,6 @@ private:
     int count = 0;                   //敵の累計出現数カウント 
     int     tag[ENEMY_NUM];          //敵の種類         
     Vector3 appear_pos[ENEMY_NUM];   //敵の出現座標  
-    int     appear_time[ENEMY_NUM];  //敵の出現時間
+    float   appear_time[ENEMY_NUM];  //敵の出現時間
     bool    appear_flag[ENEMY_NUM];  //敵の出現フラグ 
 };

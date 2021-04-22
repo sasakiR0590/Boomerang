@@ -1,7 +1,7 @@
 #include"EnemyManeger.h"
 #include"EnemyBase.h"
 #include <fstream>
-
+#include"../EffectManager/EffectManager.h"
 EnemyManager::EnemyManager()
 {
 	_enemy = {};
@@ -89,6 +89,7 @@ void EnemyManager::Generate()
 void EnemyManager::OnCollisionEnter(EnemyBase* enemy)
 {
 	enemy->Damage();
+	EffectManager::Instance().Create("debug", enemy->GetPosition());
 }
 
 void EnemyManager::LoadCSV() {

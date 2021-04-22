@@ -13,7 +13,7 @@ bool GameMain::Initialize()
 	playermanager->Initialize();
 	enemymanager->Initialize();
 	fieldManeger->Initialize();
-
+	EffectManager::Instance().Initialize();
 	player = playermanager->GetModel();
 
 	Light light;
@@ -27,7 +27,7 @@ bool GameMain::Initialize()
 	camera->SetView(Vector3(0, 0, -650), Vector3(0, 0, 0));
 	camera->SetPerspectiveFieldOfView(45.0f, 16.0f / 9.0f, 1.0f, 10000.0f);
 	GraphicsDevice.SetCamera(camera);
-
+	
 	return true;
 }
 
@@ -37,7 +37,10 @@ bool GameMain::Initialize()
 /// </summary>
 void GameMain::Finalize()
 {
-	
+	delete ovserver;
+	delete enemymanager;
+	delete playermanager;
+	delete fieldManeger;
 }
 
 /// <summary>
@@ -52,12 +55,12 @@ int GameMain::Update()
 	playermanager->Update();
 	enemymanager->Update();
 	ovserver->Update(playermanager, enemymanager);
+	EffectManager::Instance().Update();
 
 	teat_1 = playermanager->TestRotationNow();
 	test_2 = playermanager->TestRotation90();
 
-	GraphicsDevice.SetCamera(camera);
-
+	Effekseer.Update();
 	return 0;
 }
 
@@ -72,10 +75,17 @@ void GameMain::Draw()
 
 	camera->SetLookAt(player->GetPosition() + Vector3_Backward * 5 + Vector3(0.0f, 7.0f, 0.0f), player->GetPosition() + player->GetUpVector(), Vector3_Up);
 	GraphicsDevice.SetCamera(camera);
-
 	playermanager->Draw();
 	enemymanager->Draw();
 	fieldManeger->Draw();
+	EffectManager::Instance().Draw();
+
+	GraphicsDevice.SetRenderState(DepthBuffer_Disable);
+	GraphicsDevice.SetRenderState(DepthBufferFunction_Always);
+	Effekseer.SetCamera(camera);
+	Effekseer.Draw();
+	GraphicsDevice.SetRenderState(DepthBufferFunction_Less);
+	GraphicsDevice.SetRenderState(DepthBuffer_Enable);
 
 	SpriteBatch.Begin();
 	SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("Atan2 %f"), teat_1);
