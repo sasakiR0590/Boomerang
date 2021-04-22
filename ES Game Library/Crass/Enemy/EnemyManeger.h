@@ -21,7 +21,8 @@ private:
     void LoadCSV();
 
     std::list<EnemyBase*> _enemy;
-    int _time = 0;
+    int _frame = 0;
+    int _time  = 0;
 
     enum { MOVE_ENEMY, STOP_ENEMY };
     enum { ENEMY_NUM = 100 };
