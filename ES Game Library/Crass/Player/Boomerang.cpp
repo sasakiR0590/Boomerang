@@ -37,7 +37,6 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2, fl
 	_collision->SetMaterial(mat);
 	_speed = 0.0f;
 	_rotatespeed = 0.0f;
-	_gobackstate = false;
 
 	_point[0] = start;
 	_point[1] = control1;

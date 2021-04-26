@@ -27,7 +27,4 @@ private:
     //!スピード
     float   _speed;
     float   _rotatespeed;
-
-    //!戻ってくるステート切り替え
-    bool    _gobackstate;
 };

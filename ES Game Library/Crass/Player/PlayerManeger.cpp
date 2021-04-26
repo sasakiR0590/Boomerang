@@ -62,6 +62,7 @@ bool PlayerManager::Initialize()
 
 	InputDevice.CreateGamePad(1);
 
+	//データ読み込み
 	LoadCSV::Instance().LoadStatus("csvFile/Player/PlayerStatus.csv");
 	_playermove = LoadCSV::Instance()._status.at("#動く速度");
 	_max_invincibletime = LoadCSV::Instance()._status.at("#無敵時間");
@@ -195,11 +196,10 @@ void PlayerManager::PadMove(GamePadState pad)
 #endif
 
 		_rotate_direction = MathHelper_Atan2(pad.Y, pad.X) + 90.0f;
-
-		if (_rotation >= 0 && _rotate_direction >= -90.0f && _rotate_direction < 0.0f)
-			_rotate_direction += 360.0f;
-
-		_rotation = MathHelper_Lerp(_rotation, _rotate_direction, GameTimer.GetElapsedSecond() * 10);
+		Vector3 target_foward(MathHelper_Cos(_rotate_direction), 0.0f, MathHelper_Sin(_rotate_direction));
+		Vector3 rotate_foward(MathHelper_Cos(_rotation), 0.0f, MathHelper_Sin(_rotation));
+		rotate_foward = Vector3_Hermite(rotate_foward, target_foward, GameTimer.GetElapsedSecond() * 10);
+		_rotation = MathHelper_Atan2(rotate_foward.z, rotate_foward.x);
 
 		_model->SetRotation(0.0f, _rotation, 0.0f);
 		_model->Move(0.0f, 0.0f, _playermove);
@@ -281,7 +281,7 @@ Vector3 PlayerManager::GetPosition()
 
 float PlayerManager::TestRotationNow()
 {
-	return _rotation;
+	return _rotate_direction;
 }
 
 float PlayerManager::TestRotation90()
