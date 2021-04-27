@@ -298,14 +298,8 @@
     <ClCompile Include="Extension\Direct2D\Direct2D.cpp">
       <Filter>ソース ファイル\拡張\Direct2D</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\Enemy\EnemyManeger.cpp">
-      <Filter>EnemyFolder\EnemyManeger</Filter>
-    </ClCompile>
     <ClCompile Include="Crass\Player\PlayerManeger.cpp">
       <Filter>PlayerFolder\PlayerManeger</Filter>
-    </ClCompile>
-    <ClCompile Include="Crass\Enemy\EnemyBase.cpp">
-      <Filter>EnemyFolder\EnemyBase</Filter>
     </ClCompile>
     <ClCompile Include="Crass\Enemy\Enemy.cpp">
       <Filter>EnemyFolder\Enemy</Filter>
@@ -315,9 +309,6 @@
     </ClCompile>
     <ClCompile Include="Crass\Ovserver\Ovserver.cpp">
       <Filter>OvserverFolder</Filter>
-    </ClCompile>
-    <ClCompile Include="Crass\Enemy\StopEnemy.cpp">
-      <Filter>EnemyFolder\StopEnemy</Filter>
     </ClCompile>
     <ClCompile Include="Crass\Field\FieldManager.cpp">
       <Filter>Field</Filter>
@@ -333,6 +324,15 @@
     </ClCompile>
     <ClCompile Include="Crass\Enemy\EnemyFactory.cpp">
       <Filter>EnemyFolder\EnemyFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Crass\Enemy\EnemyBase\EnemyBase.cpp">
+      <Filter>EnemyFolder\EnemyBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Crass\Enemy\StopEnemy\StopEnemy.cpp">
+      <Filter>EnemyFolder\StopEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Crass\Enemy\EnemyManager\EnemyManeger.cpp">
+      <Filter>EnemyFolder\EnemyManeger</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -490,14 +490,8 @@
     <ClInclude Include="Extension\Direct2D\Direct2D.hpp">
       <Filter>ヘッダー ファイル\拡張\Direct2D</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\Enemy\EnemyManeger.h">
-      <Filter>EnemyFolder\EnemyManeger</Filter>
-    </ClInclude>
     <ClInclude Include="Crass\Player\PlayerManeger.h">
       <Filter>PlayerFolder\PlayerManeger</Filter>
-    </ClInclude>
-    <ClInclude Include="Crass\Enemy\EnemyBase.h">
-      <Filter>EnemyFolder\EnemyBase</Filter>
     </ClInclude>
     <ClInclude Include="Crass\Enemy\Enemy.h">
       <Filter>EnemyFolder\Enemy</Filter>
@@ -507,9 +501,6 @@
     </ClInclude>
     <ClInclude Include="Crass\Ovserver\Ovserver.h">
       <Filter>OvserverFolder</Filter>
-    </ClInclude>
-    <ClInclude Include="Crass\Enemy\StopEnemy.h">
-      <Filter>EnemyFolder\StopEnemy</Filter>
     </ClInclude>
     <ClInclude Include="Crass\Field\FieldManager.h">
       <Filter>Field</Filter>
@@ -525,6 +516,15 @@
     </ClInclude>
     <ClInclude Include="Crass\Enemy\EnemyFactory.h">
       <Filter>EnemyFolder\EnemyFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Crass\Enemy\EnemyBase\EnemyBase.h">
+      <Filter>EnemyFolder\EnemyBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Crass\Enemy\StopEnemy\StopEnemy.h">
+      <Filter>EnemyFolder\StopEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Crass\Enemy\EnemyManager\EnemyManeger.h">
+      <Filter>EnemyFolder\EnemyManeger</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
 #include"StopEnemy.h"
-#include"EnemyBase.h"
+#include"../EnemyBase/EnemyBase.h"
 
 StopEnemy::StopEnemy()
 {

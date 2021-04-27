@@ -2,7 +2,7 @@
 
 #include"../../ESGLib.h"
 #include"../Player/PlayerManeger.h"
-#include"../Enemy/EnemyManeger.h"
+#include"../Enemy/EnemyManager/EnemyManeger.h";
 class Ovserver {
 public:
     Ovserver::Ovserver();
