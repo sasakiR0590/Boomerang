@@ -57,9 +57,6 @@ int GameMain::Update()
 	ovserver->Update(playermanager, enemymanager);
 	EffectManager::Instance().Update();
 
-	teat_1 = playermanager->TestRotationNow();
-	test_2 = playermanager->TestRotation90();
-
 	Effekseer.Update();
 	return 0;
 }
@@ -88,8 +85,6 @@ void GameMain::Draw()
 	GraphicsDevice.SetRenderState(DepthBuffer_Enable);
 
 	SpriteBatch.Begin();
-	SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("Atan2 %f"), teat_1);
-	SpriteBatch.DrawString(DefaultFont, Vector2(0, 50), Color(255, 255, 255), _T("Atan2+90 %f"), test_2);
 	SpriteBatch.End();
 
 	GraphicsDevice.EndScene();

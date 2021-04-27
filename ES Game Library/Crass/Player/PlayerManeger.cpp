@@ -56,9 +56,9 @@ bool PlayerManager::Initialize()
 	_rotation         = 0.0f;
 	_atan2_change     = 0.0f;
 
-	//!テスト用
-	_test_rotation_now = 0.0f;
-	_test_rotation_90  = 0.0f;
+	_attack_pattern   = 0;//０…サイズが大きくなる
+	                      //１…飛距離が伸びる
+	                      //２…移動速度が上がる
 
 	InputDevice.CreateGamePad(1);
 
@@ -190,10 +190,6 @@ void PlayerManager::PadMove(GamePadState pad)
 	auto old_pos = _model->GetPosition();
 
 	if (pad.X != 0.0f || pad.Y != 0.0f) {
-#ifdef _DEBUG
-		_test_rotation_now = MathHelper_Atan2(pad.Y, pad.X);
-		_test_rotation_90  = MathHelper_Atan2(pad.Y, pad.X) + 90.0f;
-#endif
 
 		_rotate_direction = MathHelper_Atan2(pad.Y, pad.X) + 90.0f;
 		Vector3 target_foward(MathHelper_Cos(_rotate_direction), 0.0f, MathHelper_Sin(_rotate_direction));
@@ -276,15 +272,4 @@ void  PlayerManager::Damage()
 Vector3 PlayerManager::GetPosition()
 {
 	return _model->GetPosition();
-}
-
-
-float PlayerManager::TestRotationNow()
-{
-	return _rotate_direction;
-}
-
-float PlayerManager::TestRotation90()
-{
-	return _test_rotation_90;
 }

@@ -36,6 +36,7 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2, fl
 	_collision->SetScale(0.1f + power);
 	_collision->SetMaterial(mat);
 	_speed = 0.0f;
+	_max_speed = 0.5f;
 	_rotatespeed = 0.0f;
 
 	_point[0] = start;
@@ -51,13 +52,10 @@ int Boomerang::Update(Vector3 playerposition)
 {
 
 	if (_speed >= 0.5f && Vector3_Distance(_model->GetPosition(), playerposition) <= 1)
-	{
 		return 1;
-	}
 
 	if (_speed >= 0.1f)
 		_speed += 0.005f;
-
 
 	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 0.0f, 0.0f));
 	_model->SetPosition(Move(playerposition));

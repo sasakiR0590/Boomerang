@@ -30,8 +30,6 @@ public:
         DAMAGE,
         ALLTYPE
     };
-    float TestRotationNow();
-    float TestRotation90();
 private:
     void    KeyboardMove(KeyboardState);
     void    PadMove(GamePadState);
@@ -67,8 +65,6 @@ private:
     float   _rotation;
     float   _atan2_change;
 
-    //!ローテーション確認用
-    float _test_rotation_now;
-    float _test_rotation_90;
-
+    //!ブーメランの性質を切り替える
+    int _attack_pattern;
 };
