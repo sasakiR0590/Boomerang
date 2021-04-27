@@ -3,7 +3,7 @@
 #include "ESGLib.h"
 #include "GameScene/GameScene.hpp"
 #include "Crass/Player/PlayerManeger.h"
-#include "Crass/Enemy/EnemyManeger.h"
+#include "Crass/Enemy/EnemyManager/EnemyManeger.h"
 #include "Crass/Ovserver/Ovserver.h"
 #include "Crass/Field/FieldManager.h"
 #include "Crass/EffectManager/EffectManager.h"

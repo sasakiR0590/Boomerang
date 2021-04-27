@@ -1,7 +1,7 @@
 #include"EnemyManeger.h"
-#include"EnemyBase.h"
+#include"../EnemyBase/EnemyBase.h"
 #include <fstream>
-#include"../EffectManager/EffectManager.h"
+#include"../../EffectManager/EffectManager.h"
 EnemyManager::EnemyManager()
 {
 	_enemy = {};

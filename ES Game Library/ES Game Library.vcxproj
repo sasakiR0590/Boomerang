@@ -112,10 +112,10 @@
   <ItemGroup>
     <ClCompile Include="Crass\EffectManager\EffectManager.cpp" />
     <ClCompile Include="Crass\Enemy\Enemy.cpp" />
-    <ClCompile Include="Crass\Enemy\EnemyBase.cpp" />
+    <ClCompile Include="Crass\Enemy\EnemyBase\EnemyBase.cpp" />
     <ClCompile Include="Crass\Enemy\EnemyFactory.cpp" />
-    <ClCompile Include="Crass\Enemy\EnemyManeger.cpp" />
-    <ClCompile Include="Crass\Enemy\StopEnemy.cpp" />
+    <ClCompile Include="Crass\Enemy\EnemyManager\EnemyManeger.cpp" />
+    <ClCompile Include="Crass\Enemy\StopEnemy\StopEnemy.cpp" />
     <ClCompile Include="Crass\Field\FieldManager.cpp" />
     <ClCompile Include="Crass\LoadCSV\LoadCSV.cpp" />
     <ClCompile Include="Crass\Ovserver\Ovserver.cpp" />
@@ -217,10 +217,10 @@
   <ItemGroup>
     <ClInclude Include="Crass\EffectManager\EffectManager.h" />
     <ClInclude Include="Crass\Enemy\Enemy.h" />
-    <ClInclude Include="Crass\Enemy\EnemyBase.h" />
+    <ClInclude Include="Crass\Enemy\EnemyBase\EnemyBase.h" />
     <ClInclude Include="Crass\Enemy\EnemyFactory.h" />
-    <ClInclude Include="Crass\Enemy\EnemyManeger.h" />
-    <ClInclude Include="Crass\Enemy\StopEnemy.h" />
+    <ClInclude Include="Crass\Enemy\EnemyManager\EnemyManeger.h" />
+    <ClInclude Include="Crass\Enemy\StopEnemy\StopEnemy.h" />
     <ClInclude Include="Crass\Field\FieldManager.h" />
     <ClInclude Include="Crass\LoadCSV\LoadCSV.h" />
     <ClInclude Include="Crass\Ovserver\Ovserver.h" />

@@ -1,6 +1,6 @@
 #pragma once
 
-#include"..//..//ESGLib.h"
+#include "../../../ESGLib.h"
 
 class EnemyBase {
 public:
@@ -11,7 +11,6 @@ public:
     virtual void Draw()       {};
     MODEL GetCollision()      { return _collision; }
     Vector3 GetPosition()     { return _position; }
-    Vector3 EnemyPosition(Vector3 pos);
     void Damage();
 protected:
     Vector3 _position;

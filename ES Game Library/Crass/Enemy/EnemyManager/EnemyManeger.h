@@ -1,7 +1,7 @@
 #pragma once
 
-#include"../../ESGLib.h"
-#include "EnemyFactory.h"
+#include"../../../ESGLib.h"
+#include "../EnemyFactory/EnemyFactory.h"
 
 class EnemyManager {
 public:
@@ -14,8 +14,6 @@ public:
     std::list<EnemyBase*> GetEnemy() {return _enemy; }
     enum {LIVING,DEATH};
 
-  // string MOVE_ENEMY = "move_enemy";
-  // string STOP_ENEMY = "stop_enemy";
 private:
     void Generate();
     void LoadCSV();

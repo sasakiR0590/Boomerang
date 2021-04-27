@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../../ESGLib.h"
-#include "../LoadCSV/LoadCSV.h"
-#include "EnemyBase/EnemyBase.h"
-#include "StopEnemy/StopEnemy.h"
-#include "Enemy/Enemy.h"
+#include "../../../ESGLib.h"
+#include "../../LoadCSV/LoadCSV.h"
+#include "../EnemyBase/EnemyBase.h"
+#include "../StopEnemy/StopEnemy.h"
+#include "../Enemy/Enemy.h"
 
 class EnemyFactory {
 public:
