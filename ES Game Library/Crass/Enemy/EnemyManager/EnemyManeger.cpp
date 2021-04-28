@@ -80,7 +80,14 @@ void EnemyManager::Generate()
 			_enemy.push_back(factory->Create("stop_enemy", appear_pos[count]));
 			appear_flag[count] = true;
 			break;
-
+		case HOMING_ENEMY:
+			_enemy.push_back(factory->Create("homing_enemy", appear_pos[count]));
+			appear_flag[count] = true;
+			break;
+		case DIST_HOMING_ENEMY:
+			_enemy.push_back(factory->Create("dist_homing_enemy", appear_pos[count]));
+			appear_flag[count] = true;
+			break;
 		}
 	}
 
@@ -97,9 +104,10 @@ void EnemyManager::LoadCSV() {
 
 	std::string dummy_line;
 	
-	//1・2行目
-	getline(pos_time_infile, dummy_line);
-	getline(pos_time_infile, dummy_line);
+	//1～3行を読み飛ばし
+	for (int i = 0; i < 3; i++) {
+		getline(pos_time_infile, dummy_line);
+	}
 	
 	//データ読み込み
 	for (int i = 0; i < ENEMY_NUM; ++i) {

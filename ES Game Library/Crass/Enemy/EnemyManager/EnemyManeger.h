@@ -22,7 +22,7 @@ private:
     float _frame = 0.0f;
     float _time  = 0.0f;
 
-    enum { MOVE_ENEMY, STOP_ENEMY };
+    enum { MOVE_ENEMY, STOP_ENEMY,HOMING_ENEMY,DIST_HOMING_ENEMY };
     enum { ENEMY_NUM = 100 };
    
     int count = 0;                   //敵の累計出現数カウント 

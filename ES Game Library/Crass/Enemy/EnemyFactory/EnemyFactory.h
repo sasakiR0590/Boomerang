@@ -5,6 +5,8 @@
 #include "../EnemyBase/EnemyBase.h"
 #include "../StopEnemy/StopEnemy.h"
 #include "../Enemy/Enemy.h"
+#include "../HomingEnemy/HomingEnemy.h"
+#include "../DistHomingEnemy/DistHomingEnemy.h"
 
 class EnemyFactory {
 public:

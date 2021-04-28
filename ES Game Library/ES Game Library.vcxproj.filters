@@ -154,6 +154,12 @@
     <Filter Include="EnemyFolder\EnemyFactory">
       <UniqueIdentifier>{fcd47412-7b48-470e-b02b-2d45e342e416}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EnemyFolder\HomingEnemy">
+      <UniqueIdentifier>{02eae122-99f7-4349-adfd-c7a93dcd6ece}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EnemyFolder\DistHomingEnemy">
+      <UniqueIdentifier>{d2e5a513-1e97-4787-b3ff-b7cb9fb62442}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -301,9 +307,6 @@
     <ClCompile Include="Crass\Player\PlayerManeger.cpp">
       <Filter>PlayerFolder\PlayerManeger</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\Enemy\Enemy.cpp">
-      <Filter>EnemyFolder\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Crass\Player\Boomerang.cpp">
       <Filter>PlayerFolder\Boomerang</Filter>
     </ClCompile>
@@ -322,9 +325,6 @@
     <ClCompile Include="Crass\ParticleSystem\Particle.cpp">
       <Filter>ParticleSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\Enemy\EnemyFactory.cpp">
-      <Filter>EnemyFolder\EnemyFactory</Filter>
-    </ClCompile>
     <ClCompile Include="Crass\Enemy\EnemyBase\EnemyBase.cpp">
       <Filter>EnemyFolder\EnemyBase</Filter>
     </ClCompile>
@@ -333,6 +333,18 @@
     </ClCompile>
     <ClCompile Include="Crass\Enemy\EnemyManager\EnemyManeger.cpp">
       <Filter>EnemyFolder\EnemyManeger</Filter>
+    </ClCompile>
+    <ClCompile Include="Crass\Enemy\Enemy\Enemy.cpp">
+      <Filter>EnemyFolder\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Crass\Enemy\EnemyFactory\EnemyFactory.cpp">
+      <Filter>EnemyFolder\EnemyFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="Crass\Enemy\DistHomingEnemy\DistHomingEnemy.cpp">
+      <Filter>EnemyFolder\DistHomingEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Crass\Enemy\HomingEnemy\HomingEnemy.cpp">
+      <Filter>EnemyFolder\HomingEnemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -514,9 +526,6 @@
     <ClInclude Include="Crass\ParticleSystem\Particle.h">
       <Filter>ParticleSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\Enemy\EnemyFactory.h">
-      <Filter>EnemyFolder\EnemyFactory</Filter>
-    </ClInclude>
     <ClInclude Include="Crass\Enemy\EnemyBase\EnemyBase.h">
       <Filter>EnemyFolder\EnemyBase</Filter>
     </ClInclude>
@@ -525,6 +534,15 @@
     </ClInclude>
     <ClInclude Include="Crass\Enemy\EnemyManager\EnemyManeger.h">
       <Filter>EnemyFolder\EnemyManeger</Filter>
+    </ClInclude>
+    <ClInclude Include="Crass\Enemy\EnemyFactory\EnemyFactory.h">
+      <Filter>EnemyFolder\EnemyFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Crass\Enemy\DistHomingEnemy\DistHomingEnemy.h">
+      <Filter>EnemyFolder\DistHomingEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Crass\Enemy\HomingEnemy\HomingEnemy.h">
+      <Filter>EnemyFolder\HomingEnemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
