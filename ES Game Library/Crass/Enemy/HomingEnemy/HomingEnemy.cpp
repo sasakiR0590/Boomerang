@@ -1,15 +1,15 @@
-#include"../Enemy/Enemy.h"
+#include"HomingEnemy.h"
 #include"../EnemyBase/EnemyBase.h"
 
-Enemy::Enemy()
+HomingEnemy::HomingEnemy()
 {
 }
 
-Enemy::~Enemy()
+HomingEnemy::~HomingEnemy()
 {
 }
 
-bool Enemy::Initialize(Vector3 position, Vector3 speed, int hp)
+bool HomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 {
 	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemy/enemy_White.X"));
 	SimpleShape shape;
@@ -29,13 +29,12 @@ bool Enemy::Initialize(Vector3 position, Vector3 speed, int hp)
 	_collision->SetMaterial(mtrl);
 	_position = position;
 	_model->SetPosition(_position);
-
 	_hp = hp;
 	_speed.z = speed.z;
 	return true;
 }
 
-int Enemy::Update()
+int HomingEnemy::Update()
 {
 	Move();
 	_animestate = ANIMESTATE::RUN;
@@ -56,18 +55,19 @@ int Enemy::Update()
 	return EnemyManager::LIVING;
 }
 
-void Enemy::Draw()
+void HomingEnemy::Draw()
 {
 	ChangeAnimation();
 	_model->Draw();
 	//_collision->Draw();
 }
 
-void Enemy::Move() {
+void HomingEnemy::Move() {
+
 	_model->Move(0, 0, -_speed.z);
 }
 
-void Enemy::ChangeAnimation() {
+void HomingEnemy::ChangeAnimation() {
 	auto index = _oldanimestate;
 
 	_animation_count += GameTimer.GetElapsedSecond() * 2;
