@@ -297,7 +297,7 @@ void  PlayerManager::Damage()
 		_hp -= 1;
 }
 
-Vector3 PlayerManager::GetPosition()
+Vector3 PlayerManager::PlayerGetPosition()
 {
 	_position = _model->GetPosition();
 	return _position;

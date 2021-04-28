@@ -13,7 +13,7 @@ public:
     int     Update();
     void    Draw();
 
-    Vector3 GetPosition();
+    Vector3 PlayerGetPosition();
     ANIMATIONMODEL GetModel() { return _model; }
     MODEL GetCollision() { return _collision; }
     Boomerang GetBoomerang() { return _boomerang; }
