@@ -7,7 +7,7 @@ public:
     Boomerang::Boomerang();
     Boomerang::~Boomerang();
 
-    bool    Initialize(Vector3 start, Vector3 control1, Vector3 control2, float power);
+    bool    Initialize(Vector3 start, Vector3 control1, Vector3 control2, float power, float speed);
     int     Update(Vector3 playerposition);
     void    Draw();
 
@@ -26,6 +26,5 @@ private:
 
     //!スピード
     float   _speed;
-    float   _max_speed;
     float   _rotatespeed;
 };

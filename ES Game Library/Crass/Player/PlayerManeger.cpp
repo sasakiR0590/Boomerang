@@ -60,6 +60,11 @@ bool PlayerManager::Initialize()
 	                      //‚Pc”ò‹——£‚ªL‚Ñ‚é
 	                      //‚QcˆÚ“®‘¬“x‚ªã‚ª‚é
 
+	_boomerang_addspeed    = 0.0f;
+	_boomerang_adddistance = 0.0f;
+
+	_position = _model->GetPosition();
+
 	InputDevice.CreateGamePad(1);
 
 	//ƒf[ƒ^“Ç‚Ýž‚Ý
@@ -84,9 +89,30 @@ int PlayerManager::Update()
 	PadMove(pad);
 
 	if ((key.IsKeyDown(Keys_Space) || pad.Buttons[3]) && _animstate != AnimationState::SHOOT) {
-		_power += 0.01;
-		if (_power >= 2.0f) {
-			_power = 2.0f;
+		if (_attack_pattern == 0) {
+			_power += 0.01;
+			if (_power >= 2.0f) {
+				_power = 2.0f;
+			}
+		}
+		else if (_attack_pattern == 1) {
+			_boomerang_adddistance += 0.1f;
+			if (_boomerang_adddistance >= 5.0f) {
+				_boomerang_adddistance = 5.0f;
+			}
+		}
+		else if (_attack_pattern == 2) {
+			_boomerang_addspeed += 0.001f;
+			if (_boomerang_addspeed >= 0.02f) {
+				_boomerang_addspeed = 0.02f;
+			}
+		}
+	}
+
+	if (pad_buffer.IsPressed(GamePad_Button2) && !pad.Buttons[3] && _animstate != AnimationState::SHOOT) {
+		_attack_pattern += 1;
+		if (_attack_pattern == 3) {
+			_attack_pattern = 0;
 		}
 	}
 
@@ -97,7 +123,9 @@ int PlayerManager::Update()
 	if (_shootstate) {
 		if (_boomerang.Update(_model->GetPosition()) == 1)
 		{
-			_power = 0;
+			_power = 0.0f;
+			_boomerang_adddistance = 0.0f;
+			_boomerang_addspeed = 0.0f;
  			_shootstate = false;
 		}
 	}
@@ -249,9 +277,9 @@ void PlayerManager::ChangeAnimation()
 void PlayerManager::Shoot()
 {
 	Vector3 start_position = _model->GetPosition() + _model->GetFrontVector();
-	Vector3 control_position1 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance + _model->GetRightVector() * _sidedistance;
-	Vector3 control_position2 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance + (-_model->GetRightVector()) * _sidedistance;
-	_boomerang.Initialize(start_position, control_position1, control_position2, _power);
+	Vector3 control_position1 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance + _model->GetRightVector() * (_sidedistance += _boomerang_adddistance);
+	Vector3 control_position2 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance + (-_model->GetRightVector()) * (_sidedistance += _boomerang_adddistance);
+	_boomerang.Initialize(start_position, control_position1, control_position2, _power, _boomerang_addspeed);
 
 	_animstate = AnimationState::WAIT;
 	_shootstate = true;
@@ -271,5 +299,11 @@ void  PlayerManager::Damage()
 
 Vector3 PlayerManager::GetPosition()
 {
-	return _model->GetPosition();
+	_position = _model->GetPosition();
+	return _position;
+}
+
+int PlayerManager::AttackPattern()
+{
+	return _attack_pattern;
 }

@@ -27,7 +27,7 @@ bool GameMain::Initialize()
 	camera->SetView(Vector3(0, 0, -650), Vector3(0, 0, 0));
 	camera->SetPerspectiveFieldOfView(45.0f, 16.0f / 9.0f, 1.0f, 10000.0f);
 	GraphicsDevice.SetCamera(camera);
-	
+
 	return true;
 }
 
@@ -56,7 +56,6 @@ int GameMain::Update()
 	enemymanager->Update();
 	ovserver->Update(playermanager, enemymanager);
 	EffectManager::Instance().Update();
-
 	Effekseer.Update();
 	return 0;
 }
@@ -85,6 +84,16 @@ void GameMain::Draw()
 	GraphicsDevice.SetRenderState(DepthBuffer_Enable);
 
 	SpriteBatch.Begin();
+	if (playermanager->AttackPattern() == 0) {
+		SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("サイズ拡大"));
+	}
+	else if (playermanager->AttackPattern() == 1) {
+		SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("飛距離が伸びる"));
+	}
+	else if (playermanager->AttackPattern() == 2) {
+		SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("速度が上がる"));
+	}
+
 	SpriteBatch.End();
 
 	GraphicsDevice.EndScene();

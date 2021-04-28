@@ -10,7 +10,7 @@ Boomerang::~Boomerang()
 
 }
 
-bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2, float power)
+bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2, float power, float speed)
 {
 	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Boomerang/ono_boomerang.X"));
 	_model->SetScale(1.0f + power);
@@ -35,8 +35,7 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2, fl
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetScale(0.1f + power);
 	_collision->SetMaterial(mat);
-	_speed = 0.0f;
-	_max_speed = 0.5f;
+	_speed = speed;
 	_rotatespeed = 0.0f;
 
 	_point[0] = start;
@@ -74,7 +73,7 @@ void Boomerang::Draw()
 
 Vector3 Boomerang::Move(Vector3 endpos)
 {
-	_speed += 0.0075f;
+	_speed += 0.005f;
 	_rotatespeed += 50.0f;
 	_model->SetRotation(0.0f, _rotatespeed, 0.0f);
 	_collision->SetRotation(0.0f, _rotatespeed, 0.0f);

@@ -22,6 +22,7 @@ public:
     void Shoot();
     void ChangeAnimation();
     void OnCollisionEnter();
+    int AttackPattern();
     enum AnimationState
     {
         WAIT,
@@ -59,6 +60,8 @@ private:
     float _sidedistance;
     float _playermove;
 
+    Vector3 _position;
+
     //!プレイヤーの挙動
     float   _rotate_direction;
     Vector3 _frontvector;
@@ -67,4 +70,8 @@ private:
 
     //!ブーメランの性質を切り替える
     int _attack_pattern;
+
+    //!ブーメランの性質変化用の数値を入れる
+    float _boomerang_addspeed;
+    float _boomerang_adddistance;
 };
