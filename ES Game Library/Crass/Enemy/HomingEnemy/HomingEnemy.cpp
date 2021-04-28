@@ -31,12 +31,14 @@ bool HomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 	_model->SetPosition(_position);
 	_hp = hp;
 	_speed.z = speed.z;
+
+	player_pos = Vector3_Zero;
 	return true;
 }
 
-int HomingEnemy::Update()
+int HomingEnemy::Update(PlayerManager* player_manager)
 {
-	player_pos = pm.PlayerGetPosition();
+	player_pos = player_manager->PlayerGetPosition();
 
 	Move();
 	_animestate = ANIMESTATE::RUN;

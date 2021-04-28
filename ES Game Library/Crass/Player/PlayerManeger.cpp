@@ -63,7 +63,7 @@ bool PlayerManager::Initialize()
 	_boomerang_addspeed    = 0.0f;
 	_boomerang_adddistance = 0.0f;
 
-	_position = _model->GetPosition();
+	_player_position = Vector3_Zero;
 
 	InputDevice.CreateGamePad(1);
 
@@ -79,6 +79,9 @@ bool PlayerManager::Initialize()
 
 int PlayerManager::Update()
 {
+	_player_position = _model->GetPosition();
+	PlayerGetPosition();
+
 	KeyboardState key = Keyboard->GetState();
 	KeyboardBuffer key_buffer = Keyboard->GetBuffer();
 
@@ -87,6 +90,7 @@ int PlayerManager::Update()
 
 	KeyboardMove(key);
 	PadMove(pad);
+
 
 	if ((key.IsKeyDown(Keys_Space) || pad.Buttons[3]) && _animstate != AnimationState::SHOOT) {
 		if (_attack_pattern == 0) {
@@ -229,6 +233,7 @@ void PlayerManager::PadMove(GamePadState pad)
 		_model->Move(0.0f, 0.0f, _playermove);
 	}
 
+
 	if (_animstate == AnimationState::SHOOT)
 	{
 		return;
@@ -299,9 +304,7 @@ void  PlayerManager::Damage()
 
 Vector3 PlayerManager::PlayerGetPosition()
 {
-	if(_model != nullptr)
-	_position = _model->GetPosition();
-	return _position;
+	return _player_position;
 }
 
 int PlayerManager::AttackPattern()

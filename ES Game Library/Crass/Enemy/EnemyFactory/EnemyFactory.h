@@ -13,7 +13,7 @@ public:
 	EnemyFactory::EnemyFactory();
 	EnemyFactory::~EnemyFactory();
 
-	EnemyBase* Create(string tag, Vector3 _position);
+	EnemyBase* Create(string tag, Vector3 _position, PlayerManager* player_manager);
 	EnemyBase* CreateProduct(string tag,Vector3 _position);
 	Vector3 SetSpeed(string tag);
 	int     SetHp(string tag);

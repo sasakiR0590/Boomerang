@@ -29,7 +29,7 @@ bool EnemyManager::Initialize()
 	return true;
 }
 
-int EnemyManager::Update()
+int EnemyManager::Update(PlayerManager* playermanager)
 {
 	if(_frame < 60)
 	   _frame++;
@@ -39,7 +39,7 @@ int EnemyManager::Update()
 	}
 
 	if (_time > appear_time[count] && count < ENEMY_NUM) {
-		Generate();
+		Generate(playermanager);
 		count++;
 	}
 
@@ -47,7 +47,7 @@ int EnemyManager::Update()
 	while (itr != _enemy.end()) {
 
 		//Updateでreturnされた値 0・・生きてる 1・・消去
-			if ((*itr)->Update() == LIVING)
+			if ((*itr)->Update(playermanager) == LIVING)
 				itr++;
 			else
 				//要素数が 1 なら消去
@@ -64,7 +64,7 @@ void EnemyManager::Draw()
 	}
 }
 
-void EnemyManager::Generate()
+void EnemyManager::Generate(PlayerManager* player_manager)
 {
 	unique_ptr<EnemyFactory> factory = std::make_unique<EnemyFactory>();
 
@@ -73,19 +73,19 @@ void EnemyManager::Generate()
 		switch (tag[count])
 		{
 		case MOVE_ENEMY:
-			_enemy.push_back(factory->Create("move_enemy", appear_pos[count]));
+			_enemy.push_back(factory->Create("move_enemy", appear_pos[count], player_manager));
 			appear_flag[count] = true;
 			break;
 		case STOP_ENEMY:
-			_enemy.push_back(factory->Create("stop_enemy", appear_pos[count]));
+			_enemy.push_back(factory->Create("stop_enemy", appear_pos[count], player_manager));
 			appear_flag[count] = true;
 			break;
 		case HOMING_ENEMY:
-			_enemy.push_back(factory->Create("homing_enemy", appear_pos[count]));
+			_enemy.push_back(factory->Create("homing_enemy", appear_pos[count], player_manager));
 			appear_flag[count] = true;
 			break;
 		case DIST_HOMING_ENEMY:
-			_enemy.push_back(factory->Create("dist_homing_enemy", appear_pos[count]));
+			_enemy.push_back(factory->Create("dist_homing_enemy", appear_pos[count], player_manager));
 			appear_flag[count] = true;
 			break;
 		}

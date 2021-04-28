@@ -7,7 +7,7 @@ EnemyBase::~EnemyBase()
 {
 }
 
-int EnemyBase::Update() {
+int EnemyBase::Update(PlayerManager* playermanager) {
 	return 0;
 }
 

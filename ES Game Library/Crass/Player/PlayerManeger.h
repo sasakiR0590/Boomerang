@@ -13,7 +13,6 @@ public:
     int     Update();
     void    Draw();
 
-    Vector3 PlayerGetPosition();
     ANIMATIONMODEL GetModel() { return _model; }
     MODEL GetCollision() { return _collision; }
     Boomerang GetBoomerang() { return _boomerang; }
@@ -23,6 +22,7 @@ public:
     void ChangeAnimation();
     void OnCollisionEnter();
     int AttackPattern();
+    Vector3 PlayerGetPosition();
     enum AnimationState
     {
         WAIT,
@@ -60,7 +60,7 @@ private:
     float _sidedistance;
     float _playermove;
 
-    Vector3 _position;
+    Vector3 _player_position;
 
     //!ÉvÉåÉCÉÑÅ[ÇÃãììÆ
     float   _rotate_direction;

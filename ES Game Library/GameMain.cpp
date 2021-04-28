@@ -53,7 +53,7 @@ void GameMain::Finalize()
 int GameMain::Update()
 {
 	playermanager->Update();
-	enemymanager->Update();
+	enemymanager->Update(playermanager);
 	ovserver->Update(playermanager, enemymanager);
 	EffectManager::Instance().Update();
 	Effekseer.Update();

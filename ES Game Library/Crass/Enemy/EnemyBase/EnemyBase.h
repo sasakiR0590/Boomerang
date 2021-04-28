@@ -1,13 +1,14 @@
 #pragma once
 
 #include "../../../ESGLib.h"
+#include"../../Player/PlayerManeger.h"
 
 class EnemyBase {
 public:
     EnemyBase::EnemyBase();
     EnemyBase::~EnemyBase();
     virtual bool Initialize(Vector3 position, Vector3 speed, int hp) { return true; };
-    virtual int  Update();
+    virtual int  Update(PlayerManager* playermanager);
     virtual void Draw()       {};
     MODEL GetCollision()      { return _collision; }
     Vector3 GetPosition()     { return _position; }

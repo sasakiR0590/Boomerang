@@ -34,7 +34,7 @@ bool StopEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 	return true;
 }
 
-int StopEnemy::Update()
+int StopEnemy::Update(PlayerManager* player_manager)
 {
 	_animestate = ANIMESTATE::WAIT;
 

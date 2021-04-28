@@ -19,7 +19,7 @@ EnemyFactory::~EnemyFactory() {
 
 }
 
-EnemyBase* EnemyFactory::Create(string tag, Vector3 _position)
+EnemyBase* EnemyFactory::Create(string tag, Vector3 _position, PlayerManager* player_manager)
 {
 	SetSpeed(tag);
 	SetHp(tag);

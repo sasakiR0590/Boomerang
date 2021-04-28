@@ -8,14 +8,14 @@ public:
     EnemyManager::EnemyManager();
     EnemyManager::~EnemyManager();
     bool Initialize();
-    int  Update();
+    int  Update(PlayerManager* playermanager);
     void Draw();
     void OnCollisionEnter(EnemyBase*);
     std::list<EnemyBase*> GetEnemy() {return _enemy; }
     enum {LIVING,DEATH};
 
 private:
-    void Generate();
+    void Generate(PlayerManager* player_manager);
     void LoadCSV();
 
     std::list<EnemyBase*> _enemy;

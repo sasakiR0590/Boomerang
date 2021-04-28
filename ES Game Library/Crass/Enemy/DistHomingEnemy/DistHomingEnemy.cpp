@@ -35,7 +35,7 @@ bool DistHomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 	return true;
 }
 
-int DistHomingEnemy::Update()
+int DistHomingEnemy::Update(PlayerManager* player_manager)
 {
 	Move();
 	_animestate = ANIMESTATE::RUN;

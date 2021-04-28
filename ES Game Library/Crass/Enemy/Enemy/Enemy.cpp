@@ -35,7 +35,7 @@ bool Enemy::Initialize(Vector3 position, Vector3 speed, int hp)
 	return true;
 }
 
-int Enemy::Update()
+int Enemy::Update(PlayerManager* player_manager)
 {
 	Move();
 	_animestate = ANIMESTATE::RUN;

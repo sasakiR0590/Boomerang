@@ -9,7 +9,7 @@ public:
     Enemy::Enemy();
     Enemy::~Enemy();
     bool   Initialize(Vector3 position, Vector3 speed, int hp) override;
-    int    Update() override;
+    int    Update(PlayerManager* player_manager) override;
     void   Draw() override;
 private:
     void    Move();
