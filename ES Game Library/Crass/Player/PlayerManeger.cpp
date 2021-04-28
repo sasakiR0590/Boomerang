@@ -299,6 +299,7 @@ void  PlayerManager::Damage()
 
 Vector3 PlayerManager::PlayerGetPosition()
 {
+	if(_model != nullptr)
 	_position = _model->GetPosition();
 	return _position;
 }
