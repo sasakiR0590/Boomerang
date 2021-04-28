@@ -36,6 +36,8 @@ bool HomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 
 int HomingEnemy::Update()
 {
+	player_pos = pm.PlayerGetPosition();
+
 	Move();
 	_animestate = ANIMESTATE::RUN;
 

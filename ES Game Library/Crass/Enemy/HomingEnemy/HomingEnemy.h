@@ -16,5 +16,7 @@ private:
     void    Move();
     void    ChangeAnimation() override;
 
-    Vector3 player_pos = Vector3(0,0,0);
+
+    Vector3 player_pos;
+    PlayerManager pm;
 };
