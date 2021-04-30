@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../EnemyBase/EnemyBase.h"
-#include "../../EnemyManeger.h"
 
 class HomingEnemy : public EnemyBase{
 public:

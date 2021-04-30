@@ -1,5 +1,4 @@
 #include"StopEnemy.h"
-
 StopEnemy::StopEnemy()
 {
 }
@@ -37,22 +36,14 @@ int StopEnemy::Update(PlayerManager* player_manager)
 {
 	_animestate = ANIMESTATE::WAIT;
 
-	if (destroy_time < 960) {
-		destroy_time++;
-	}
-	else {
-		destroy_time = 0;
-		return EnemyManager::DEATH;
-	}
-
 	if (_hp <= 0) {
-		return EnemyManager::DEATH;
+		return EnemyBase::DEATH;
 	}
 
 	_collision->SetPosition(_model->GetPosition() + Vector3(0, 0, 0));
 	_position = _model->GetPosition();
 
-	return EnemyManager::LIVING;
+	return EnemyBase::LIVING;
 }
 
 void StopEnemy::Draw()

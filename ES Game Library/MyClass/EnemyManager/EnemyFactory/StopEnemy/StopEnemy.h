@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../EnemyBase/EnemyBase.h"
-#include "../../EnemyManeger.h"
 
 class StopEnemy : public EnemyBase{
 public:
@@ -12,5 +11,4 @@ public:
     void   Draw() override;
 private:
     void ChangeAnimation() override;
-    int destroy_time = 0;
 };

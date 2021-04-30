@@ -47,13 +47,14 @@ int EnemyManager::Update(PlayerManager* playermanager)
 	while (itr != _enemy.end()) {
 
 		//Updateでreturnされた値 0・・生きてる 1・・消去
-			if ((*itr)->Update(playermanager) == LIVING)
+			if ((*itr)->Update(playermanager) == LIVING && (*itr)->AutoDead() == LIVING)
 				itr++;
 			else
 				//要素数が 1 なら消去
 				//itrの値を変更して値を一つ進める
 				itr = _enemy.erase(itr);
 	}
+
 	return 0;
 }
 
@@ -105,7 +106,7 @@ void EnemyManager::LoadCSV() {
 	std::string dummy_line;
 	
 	//1～3行を読み飛ばし
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < DUMMYLINENUM; i++) {
 		getline(pos_time_infile, dummy_line);
 	}
 	

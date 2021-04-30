@@ -13,7 +13,10 @@ public:
     MODEL GetCollision()      { return _collision; }
     Vector3 GetPosition()     { return _position; }
     void Damage();
+    virtual int AutoDead();
 protected:
+    virtual void ChangeAnimation() = 0;
+
     Vector3 _position;
     Vector3 _angle;
     Vector3 _speed;
@@ -21,7 +24,6 @@ protected:
     MODEL   _collision;
     ANIMATIONMODEL   _model;
 
-    virtual void ChangeAnimation() = 0;
     int     _animestate = 0;
     int     _oldanimestate = 0;
     float   _animation_count = 0.0f;
@@ -32,5 +34,11 @@ protected:
         RUN,
         ALLTYPE
     };
+    enum { LIVING, DEATH };
 private:
+    enum {
+        AUTODEADTIME = 970
+    };
+    bool IsDead();
+    int _destroy_time = 0;
 };

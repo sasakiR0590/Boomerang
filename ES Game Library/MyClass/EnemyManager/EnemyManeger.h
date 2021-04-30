@@ -11,8 +11,6 @@ public:
     void Draw();
     void OnCollisionEnter(EnemyBase*);
     std::list<EnemyBase*> GetEnemy() {return _enemy; }
-    enum {LIVING,DEATH};
-
 private:
     void Generate(PlayerManager* player_manager);
     void LoadCSV();
@@ -21,8 +19,8 @@ private:
     float _frame = 0.0f;
     float _time  = 0.0f;
 
-    enum { MOVE_ENEMY, STOP_ENEMY,HOMING_ENEMY,DIST_HOMING_ENEMY };
-    enum { ENEMY_NUM = 100 };
+    enum EnemyType{ MOVE_ENEMY, STOP_ENEMY,HOMING_ENEMY,DIST_HOMING_ENEMY };
+    enum { LIVING, DEATH, DUMMYLINENUM,ENEMY_NUM = 100 };
    
     int count = 0;                   //敵の累計出現数カウント 
     int     tag[ENEMY_NUM];          //敵の種類         
