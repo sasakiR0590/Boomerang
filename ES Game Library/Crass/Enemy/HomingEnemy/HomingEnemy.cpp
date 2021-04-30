@@ -11,7 +11,8 @@ HomingEnemy::~HomingEnemy()
 
 bool HomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 {
-	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemy/enemy_White.X"));
+	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemies/HomingEnemy/enemy_Eye.X"));
+
 	SimpleShape shape;
 	shape.Type = Shape_Box;
 
@@ -38,17 +39,20 @@ bool HomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 
 int HomingEnemy::Update(PlayerManager* player_manager)
 {
+	float floor_area_x = _position.x > 8.5f || _position.x < -8.5f;
+	float floor_area_z = _position.z < -8.5f;
+
 	player_pos = player_manager->PlayerGetPosition();
 
 	Move();
+
 	_animestate = ANIMESTATE::RUN;
 
-	if (_position.z <= - 8.8f) {
-		return EnemyManager::DEATH;
-	}
-	
+	if (destroy_time < 960)
+		destroy_time++;
 
-	if (_hp <= 0) {
+	if (_hp <= 0 || floor_area_x || floor_area_z || destroy_time > 960) {
+		destroy_time = 0;
 		return EnemyManager::DEATH;
 	}
 
@@ -67,8 +71,11 @@ void HomingEnemy::Draw()
 }
 
 void HomingEnemy::Move() {
+	Vector3 delta  = Vector3_Normalize(Vector3(_position - player_pos));
+	float speed = 30;
 
-	_model->Move(0, 0, -_speed.z);
+	_model->Move(-delta.x / speed,0, -delta.z / speed);
+
 }
 
 void HomingEnemy::ChangeAnimation() {

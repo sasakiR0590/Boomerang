@@ -219,10 +219,10 @@
   <ItemGroup>
     <ClInclude Include="Crass\EffectManager\EffectManager.h" />
     <ClInclude Include="Crass\Enemy\DistHomingEnemy\DistHomingEnemy.h" />
-    <ClInclude Include="Crass\Enemy\Enemy.h" />
     <ClInclude Include="Crass\Enemy\EnemyBase\EnemyBase.h" />
     <ClInclude Include="Crass\Enemy\EnemyFactory\EnemyFactory.h" />
     <ClInclude Include="Crass\Enemy\EnemyManager\EnemyManeger.h" />
+    <ClInclude Include="Crass\Enemy\Enemy\Enemy.h" />
     <ClInclude Include="Crass\Enemy\HomingEnemy\HomingEnemy.h" />
     <ClInclude Include="Crass\Enemy\StopEnemy\StopEnemy.h" />
     <ClInclude Include="Crass\Field\FieldManager.h" />
