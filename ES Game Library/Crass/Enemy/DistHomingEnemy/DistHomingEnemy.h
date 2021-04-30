@@ -16,4 +16,7 @@ private:
     void    ChangeAnimation() override;
 
     Vector3 player_pos;
+    int  destroy_time = 0;
+    bool homing_flag = false;
+
 };

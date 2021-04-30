@@ -11,7 +11,8 @@ Enemy::~Enemy()
 
 bool Enemy::Initialize(Vector3 position, Vector3 speed, int hp)
 {
-	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemy/enemy_White.X"));
+	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemies/Enemy/enemy_White.X"));
+
 	SimpleShape shape;
 	shape.Type = Shape_Box;
 
@@ -40,12 +41,8 @@ int Enemy::Update(PlayerManager* player_manager)
 	Move();
 	_animestate = ANIMESTATE::RUN;
 
-	if (_position.z <= - 8.8f) {
-		return EnemyManager::DEATH;
-	}
-	
 
-	if (_hp <= 0) {
+	if (_hp <= 0 || _position.z <= -8.8f) {
 		return EnemyManager::DEATH;
 	}
 

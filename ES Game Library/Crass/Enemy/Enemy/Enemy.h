@@ -1,8 +1,8 @@
 #pragma once
 
 #include"../../../ESGLib.h"
-#include "../EnemyBase/EnemyBase.h"
 #include "../EnemyManager/EnemyManeger.h"
+#include "../EnemyBase/EnemyBase.h"
 
 class Enemy : public EnemyBase{
 public:
@@ -14,8 +14,6 @@ public:
 private:
     void    Move();
     void    ChangeAnimation() override;
-
-    enum {HOMING,DIST_HOMING,RUN};
 
     Vector3 player_pos;
 };

@@ -505,9 +505,6 @@
     <ClInclude Include="Crass\Player\PlayerManeger.h">
       <Filter>PlayerFolder\PlayerManeger</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\Enemy\Enemy.h">
-      <Filter>EnemyFolder\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Crass\Player\Boomerang.h">
       <Filter>PlayerFolder\Boomerang</Filter>
     </ClInclude>
@@ -543,6 +540,9 @@
     </ClInclude>
     <ClInclude Include="Crass\Enemy\HomingEnemy\HomingEnemy.h">
       <Filter>EnemyFolder\HomingEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Crass\Enemy\Enemy\Enemy.h">
+      <Filter>EnemyFolder\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
