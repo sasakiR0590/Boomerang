@@ -42,14 +42,14 @@ int Enemy::Update(PlayerManager* player_manager)
 
 
 	if (_hp <= 0 || _position.z <= -8.8f) {
-		return EnemyManager::DEATH;
+		return EnemyBase::DEATH;
 	}
 
 
 	_collision->SetPosition(_model->GetPosition() + Vector3(0, 0, 0));
 	_position  = _model->GetPosition();
 
-	return EnemyManager::LIVING;
+	return EnemyBase::LIVING;
 }
 
 void Enemy::Draw()
