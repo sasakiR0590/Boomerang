@@ -110,20 +110,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Crass\EffectManager\EffectManager.cpp" />
-    <ClCompile Include="Crass\Enemy\DistHomingEnemy\DistHomingEnemy.cpp" />
-    <ClCompile Include="Crass\Enemy\EnemyBase\EnemyBase.cpp" />
-    <ClCompile Include="Crass\Enemy\EnemyFactory\EnemyFactory.cpp" />
-    <ClCompile Include="Crass\Enemy\EnemyManager\EnemyManeger.cpp" />
-    <ClCompile Include="Crass\Enemy\Enemy\Enemy.cpp" />
-    <ClCompile Include="Crass\Enemy\HomingEnemy\HomingEnemy.cpp" />
-    <ClCompile Include="Crass\Enemy\StopEnemy\StopEnemy.cpp" />
-    <ClCompile Include="Crass\Field\FieldManager.cpp" />
-    <ClCompile Include="Crass\LoadCSV\LoadCSV.cpp" />
-    <ClCompile Include="Crass\Ovserver\Ovserver.cpp" />
-    <ClCompile Include="Crass\ParticleSystem\Particle.cpp" />
-    <ClCompile Include="Crass\Player\Boomerang.cpp" />
-    <ClCompile Include="Crass\Player\PlayerManeger.cpp" />
     <ClCompile Include="Extension\Direct2D\Direct2D.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -178,6 +164,20 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="MyClass\EffectManager\EffectManager.cpp" />
+    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\DistHomingEnemy\DistHomingEnemy.cpp" />
+    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\EnemyBase\EnemyBase.cpp" />
+    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\EnemyFactory.cpp" />
+    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\HomingEnemy\HomingEnemy.cpp" />
+    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\NomalEnemy\Enemy.cpp" />
+    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\StopEnemy\StopEnemy.cpp" />
+    <ClCompile Include="MyClass\EnemyManager\EnemyManeger.cpp" />
+    <ClCompile Include="MyClass\Field\FieldManager.cpp" />
+    <ClCompile Include="MyClass\LoadCSV\LoadCSV.cpp" />
+    <ClCompile Include="MyClass\Ovserver\Ovserver.cpp" />
+    <ClCompile Include="MyClass\ParticleSystem\Particle.cpp" />
+    <ClCompile Include="MyClass\PlayerManager\Boomerang\Boomerang.cpp" />
+    <ClCompile Include="MyClass\PlayerManager\PlayerManeger.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -217,20 +217,6 @@
     <ClCompile Include="Framework\Thread.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Crass\EffectManager\EffectManager.h" />
-    <ClInclude Include="Crass\Enemy\DistHomingEnemy\DistHomingEnemy.h" />
-    <ClInclude Include="Crass\Enemy\EnemyBase\EnemyBase.h" />
-    <ClInclude Include="Crass\Enemy\EnemyFactory\EnemyFactory.h" />
-    <ClInclude Include="Crass\Enemy\EnemyManager\EnemyManeger.h" />
-    <ClInclude Include="Crass\Enemy\Enemy\Enemy.h" />
-    <ClInclude Include="Crass\Enemy\HomingEnemy\HomingEnemy.h" />
-    <ClInclude Include="Crass\Enemy\StopEnemy\StopEnemy.h" />
-    <ClInclude Include="Crass\Field\FieldManager.h" />
-    <ClInclude Include="Crass\LoadCSV\LoadCSV.h" />
-    <ClInclude Include="Crass\Ovserver\Ovserver.h" />
-    <ClInclude Include="Crass\ParticleSystem\Particle.h" />
-    <ClInclude Include="Crass\Player\Boomerang.h" />
-    <ClInclude Include="Crass\Player\PlayerManeger.h" />
     <ClInclude Include="Extension\Direct2D\Direct2D.hpp" />
     <ClInclude Include="Extension\DirectX11\DXGraphics11.hpp" />
     <ClInclude Include="Extension\DirectX11\Model11.hpp" />
@@ -245,6 +231,20 @@
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="GameScene\SceneShared.hpp" />
     <ClInclude Include="GameScene\TemplateScene.hpp" />
+    <ClInclude Include="MyClass\EffectManager\EffectManager.h" />
+    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\DistHomingEnemy\DistHomingEnemy.h" />
+    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\EnemyBase\EnemyBase.h" />
+    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\EnemyFactory.h" />
+    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\HomingEnemy\HomingEnemy.h" />
+    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\NomalEnemy\Enemy.h" />
+    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\StopEnemy\StopEnemy.h" />
+    <ClInclude Include="MyClass\EnemyManager\EnemyManeger.h" />
+    <ClInclude Include="MyClass\Field\FieldManager.h" />
+    <ClInclude Include="MyClass\LoadCSV\LoadCSV.h" />
+    <ClInclude Include="MyClass\Ovserver\Ovserver.h" />
+    <ClInclude Include="MyClass\ParticleSystem\Particle.h" />
+    <ClInclude Include="MyClass\PlayerManager\Boomerang\Boomerang.h" />
+    <ClInclude Include="MyClass\PlayerManager\PlayerManeger.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ESGLib.h" />
     <ClInclude Include="DirectX\Audio\DXAudio8.hpp" />

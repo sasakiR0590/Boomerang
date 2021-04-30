@@ -1,7 +1,6 @@
 #pragma once
 
-#include"../../../ESGLib.h"
-#include "../EnemyManager/EnemyManeger.h"
+#include "../../EnemyManeger.h"
 #include "../EnemyBase/EnemyBase.h"
 
 class Enemy : public EnemyBase{

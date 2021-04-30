@@ -1,4 +1,4 @@
-#include "../EnemyFactory/EnemyFactory.h"
+#include "EnemyFactory.h"
 #include <fstream>
 
 EnemyFactory::EnemyFactory() {

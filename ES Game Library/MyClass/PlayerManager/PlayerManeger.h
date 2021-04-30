@@ -1,7 +1,6 @@
 #pragma once
 
-#include"../../ESGLib.h"
-#include"Boomerang.h"
+#include"Boomerang/Boomerang.h"
 #include"../LoadCSV/LoadCSV.h"
 
 class PlayerManager {

@@ -1,8 +1,8 @@
 #pragma once
 
 #include"../../ESGLib.h"
-#include"../Player/PlayerManeger.h"
-#include"../Enemy/EnemyManager/EnemyManeger.h";
+#include"../PlayerManager/PlayerManeger.h"
+#include"../EnemyManager/EnemyManeger.h";
 class Ovserver {
 public:
     Ovserver::Ovserver();

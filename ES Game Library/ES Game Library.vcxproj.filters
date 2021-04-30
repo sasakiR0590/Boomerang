@@ -112,53 +112,50 @@
     <Filter Include="変換用アセット">
       <UniqueIdentifier>{82621faf-8306-44c1-bdbf-bfdd763ca17c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EnemyFolder">
-      <UniqueIdentifier>{390fca60-f502-47b5-81d5-ffbd44a2db54}</UniqueIdentifier>
+    <Filter Include="MyClass">
+      <UniqueIdentifier>{67fe464e-8aee-49e0-9bc5-e043bac5ddd0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EnemyFolder\EnemyManeger">
-      <UniqueIdentifier>{facbcbe5-2684-4a3f-9955-ae7c9c226ba2}</UniqueIdentifier>
+    <Filter Include="MyClass\EffectManager">
+      <UniqueIdentifier>{cf126a58-4895-46f9-a34e-bce88980aef3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EnemyFolder\EnemyBase">
-      <UniqueIdentifier>{744f2a67-22aa-4dad-a610-c12e543378f0}</UniqueIdentifier>
+    <Filter Include="MyClass\EnemyManager">
+      <UniqueIdentifier>{e31cca96-be42-4eaa-b17f-88d09973e9bb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EnemyFolder\Enemy">
-      <UniqueIdentifier>{ec6946dd-e770-4fc2-aa77-eb787ae03396}</UniqueIdentifier>
+    <Filter Include="MyClass\Field">
+      <UniqueIdentifier>{c074b02a-82e6-4b72-b943-46b70da02b43}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlayerFolder">
-      <UniqueIdentifier>{dd9be38c-dab8-40e3-8fd2-454057ddad7b}</UniqueIdentifier>
+    <Filter Include="MyClass\LoadCSV">
+      <UniqueIdentifier>{aaa9ce5e-a397-4c77-a763-f4799cd22817}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlayerFolder\PlayerManeger">
-      <UniqueIdentifier>{adf571cc-3598-43cf-a69c-bb484d4f6744}</UniqueIdentifier>
+    <Filter Include="MyClass\Ovserver">
+      <UniqueIdentifier>{a0d318e6-49ce-4bf9-8c8a-6c76d19733bd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlayerFolder\Boomerang">
-      <UniqueIdentifier>{4bc24eff-aa04-4452-8ebe-3eb55b25e7e3}</UniqueIdentifier>
+    <Filter Include="MyClass\ParticleSystem">
+      <UniqueIdentifier>{e137aba8-d1fc-4524-9729-e7fa2f1a28c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OvserverFolder">
-      <UniqueIdentifier>{d8038519-f50e-471e-9915-1b01a7794168}</UniqueIdentifier>
+    <Filter Include="MyClass\PlayerManager">
+      <UniqueIdentifier>{dc30102a-8c9f-4658-acf1-aef8cdc3b52d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EnemyFolder\StopEnemy">
-      <UniqueIdentifier>{92929bec-6b00-49c4-aa39-fa43d9b3a725}</UniqueIdentifier>
+    <Filter Include="MyClass\EnemyManager\EnemyFactory">
+      <UniqueIdentifier>{f614e1e5-756f-4bb6-87f6-fe65c610adff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Field">
-      <UniqueIdentifier>{2c936671-a109-447c-a7e5-472575407f78}</UniqueIdentifier>
+    <Filter Include="MyClass\EnemyManager\EnemyFactory\DistHomingEnemy">
+      <UniqueIdentifier>{8d3aedcf-bf5d-44f7-a09e-11be2651e09e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LoadCSV">
-      <UniqueIdentifier>{b4f2841c-7017-4a95-ae01-14994c003ca6}</UniqueIdentifier>
+    <Filter Include="MyClass\EnemyManager\EnemyFactory\NomalEnemy">
+      <UniqueIdentifier>{91dac724-61fa-4b57-ac73-e6679fe442de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EffectManager">
-      <UniqueIdentifier>{526521f3-cec3-43e2-a89a-114aeafbd4b8}</UniqueIdentifier>
+    <Filter Include="MyClass\EnemyManager\EnemyFactory\EnemyBase">
+      <UniqueIdentifier>{77b43d0c-9750-442e-af8e-5c75530b744f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ParticleSystem">
-      <UniqueIdentifier>{0d7cd423-6512-4a8b-a8b4-88b1c71e19ae}</UniqueIdentifier>
+    <Filter Include="MyClass\EnemyManager\EnemyFactory\HomingEnemy">
+      <UniqueIdentifier>{c5899162-82c2-41be-8809-707753e25df0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EnemyFolder\EnemyFactory">
-      <UniqueIdentifier>{fcd47412-7b48-470e-b02b-2d45e342e416}</UniqueIdentifier>
+    <Filter Include="MyClass\EnemyManager\EnemyFactory\StopEnemy">
+      <UniqueIdentifier>{38317678-ab1d-4601-a80e-746e958706d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EnemyFolder\HomingEnemy">
-      <UniqueIdentifier>{02eae122-99f7-4349-adfd-c7a93dcd6ece}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EnemyFolder\DistHomingEnemy">
-      <UniqueIdentifier>{d2e5a513-1e97-4787-b3ff-b7cb9fb62442}</UniqueIdentifier>
+    <Filter Include="MyClass\PlayerManager\Boomerang">
+      <UniqueIdentifier>{d029db55-b97a-4ffd-a550-8dd9bd68cf88}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -304,47 +301,47 @@
     <ClCompile Include="Extension\Direct2D\Direct2D.cpp">
       <Filter>ソース ファイル\拡張\Direct2D</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\Player\PlayerManeger.cpp">
-      <Filter>PlayerFolder\PlayerManeger</Filter>
+    <ClCompile Include="MyClass\EffectManager\EffectManager.cpp">
+      <Filter>MyClass\EffectManager</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\Player\Boomerang.cpp">
-      <Filter>PlayerFolder\Boomerang</Filter>
+    <ClCompile Include="MyClass\EnemyManager\EnemyManeger.cpp">
+      <Filter>MyClass\EnemyManager</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\Ovserver\Ovserver.cpp">
-      <Filter>OvserverFolder</Filter>
+    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\EnemyFactory.cpp">
+      <Filter>MyClass\EnemyManager\EnemyFactory</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\Field\FieldManager.cpp">
-      <Filter>Field</Filter>
+    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\DistHomingEnemy\DistHomingEnemy.cpp">
+      <Filter>MyClass\EnemyManager\EnemyFactory\DistHomingEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\LoadCSV\LoadCSV.cpp">
-      <Filter>LoadCSV</Filter>
+    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\NomalEnemy\Enemy.cpp">
+      <Filter>MyClass\EnemyManager\EnemyFactory\NomalEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\EffectManager\EffectManager.cpp">
-      <Filter>EffectManager</Filter>
+    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\StopEnemy\StopEnemy.cpp">
+      <Filter>MyClass\EnemyManager\EnemyFactory\StopEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\ParticleSystem\Particle.cpp">
-      <Filter>ParticleSystem</Filter>
+    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\HomingEnemy\HomingEnemy.cpp">
+      <Filter>MyClass\EnemyManager\EnemyFactory\HomingEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\Enemy\EnemyBase\EnemyBase.cpp">
-      <Filter>EnemyFolder\EnemyBase</Filter>
+    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\EnemyBase\EnemyBase.cpp">
+      <Filter>MyClass\EnemyManager\EnemyFactory\EnemyBase</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\Enemy\StopEnemy\StopEnemy.cpp">
-      <Filter>EnemyFolder\StopEnemy</Filter>
+    <ClCompile Include="MyClass\Field\FieldManager.cpp">
+      <Filter>MyClass\Field</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\Enemy\EnemyManager\EnemyManeger.cpp">
-      <Filter>EnemyFolder\EnemyManeger</Filter>
+    <ClCompile Include="MyClass\LoadCSV\LoadCSV.cpp">
+      <Filter>MyClass\LoadCSV</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\Enemy\Enemy\Enemy.cpp">
-      <Filter>EnemyFolder\Enemy</Filter>
+    <ClCompile Include="MyClass\Ovserver\Ovserver.cpp">
+      <Filter>MyClass\Ovserver</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\Enemy\EnemyFactory\EnemyFactory.cpp">
-      <Filter>EnemyFolder\EnemyFactory</Filter>
+    <ClCompile Include="MyClass\ParticleSystem\Particle.cpp">
+      <Filter>MyClass\ParticleSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\Enemy\DistHomingEnemy\DistHomingEnemy.cpp">
-      <Filter>EnemyFolder\DistHomingEnemy</Filter>
+    <ClCompile Include="MyClass\PlayerManager\PlayerManeger.cpp">
+      <Filter>MyClass\PlayerManager</Filter>
     </ClCompile>
-    <ClCompile Include="Crass\Enemy\HomingEnemy\HomingEnemy.cpp">
-      <Filter>EnemyFolder\HomingEnemy</Filter>
+    <ClCompile Include="MyClass\PlayerManager\Boomerang\Boomerang.cpp">
+      <Filter>MyClass\PlayerManager\Boomerang</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -502,47 +499,47 @@
     <ClInclude Include="Extension\Direct2D\Direct2D.hpp">
       <Filter>ヘッダー ファイル\拡張\Direct2D</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\Player\PlayerManeger.h">
-      <Filter>PlayerFolder\PlayerManeger</Filter>
+    <ClInclude Include="MyClass\EffectManager\EffectManager.h">
+      <Filter>MyClass\EffectManager</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\Player\Boomerang.h">
-      <Filter>PlayerFolder\Boomerang</Filter>
+    <ClInclude Include="MyClass\EnemyManager\EnemyManeger.h">
+      <Filter>MyClass\EnemyManager</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\Ovserver\Ovserver.h">
-      <Filter>OvserverFolder</Filter>
+    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\EnemyFactory.h">
+      <Filter>MyClass\EnemyManager\EnemyFactory</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\Field\FieldManager.h">
-      <Filter>Field</Filter>
+    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\DistHomingEnemy\DistHomingEnemy.h">
+      <Filter>MyClass\EnemyManager\EnemyFactory\DistHomingEnemy</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\LoadCSV\LoadCSV.h">
-      <Filter>LoadCSV</Filter>
+    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\NomalEnemy\Enemy.h">
+      <Filter>MyClass\EnemyManager\EnemyFactory\NomalEnemy</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\EffectManager\EffectManager.h">
-      <Filter>EffectManager</Filter>
+    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\StopEnemy\StopEnemy.h">
+      <Filter>MyClass\EnemyManager\EnemyFactory\StopEnemy</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\ParticleSystem\Particle.h">
-      <Filter>ParticleSystem</Filter>
+    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\HomingEnemy\HomingEnemy.h">
+      <Filter>MyClass\EnemyManager\EnemyFactory\HomingEnemy</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\Enemy\EnemyBase\EnemyBase.h">
-      <Filter>EnemyFolder\EnemyBase</Filter>
+    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\EnemyBase\EnemyBase.h">
+      <Filter>MyClass\EnemyManager\EnemyFactory\EnemyBase</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\Enemy\StopEnemy\StopEnemy.h">
-      <Filter>EnemyFolder\StopEnemy</Filter>
+    <ClInclude Include="MyClass\Field\FieldManager.h">
+      <Filter>MyClass\Field</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\Enemy\EnemyManager\EnemyManeger.h">
-      <Filter>EnemyFolder\EnemyManeger</Filter>
+    <ClInclude Include="MyClass\LoadCSV\LoadCSV.h">
+      <Filter>MyClass\LoadCSV</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\Enemy\EnemyFactory\EnemyFactory.h">
-      <Filter>EnemyFolder\EnemyFactory</Filter>
+    <ClInclude Include="MyClass\Ovserver\Ovserver.h">
+      <Filter>MyClass\Ovserver</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\Enemy\DistHomingEnemy\DistHomingEnemy.h">
-      <Filter>EnemyFolder\DistHomingEnemy</Filter>
+    <ClInclude Include="MyClass\ParticleSystem\Particle.h">
+      <Filter>MyClass\ParticleSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\Enemy\HomingEnemy\HomingEnemy.h">
-      <Filter>EnemyFolder\HomingEnemy</Filter>
+    <ClInclude Include="MyClass\PlayerManager\PlayerManeger.h">
+      <Filter>MyClass\PlayerManager</Filter>
     </ClInclude>
-    <ClInclude Include="Crass\Enemy\Enemy\Enemy.h">
-      <Filter>EnemyFolder\Enemy</Filter>
+    <ClInclude Include="MyClass\PlayerManager\Boomerang\Boomerang.h">
+      <Filter>MyClass\PlayerManager\Boomerang</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

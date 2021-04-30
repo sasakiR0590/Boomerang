@@ -1,17 +1,16 @@
-#include"HomingEnemy.h"
-#include"../EnemyBase/EnemyBase.h"
+#include"DistHomingEnemy.h"
 
-HomingEnemy::HomingEnemy()
+DistHomingEnemy::DistHomingEnemy()
 {
 }
 
-HomingEnemy::~HomingEnemy()
+DistHomingEnemy::~DistHomingEnemy()
 {
 }
 
-bool HomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
+bool DistHomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 {
-	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemies/HomingEnemy/enemy_Eye.X"));
+	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemies/DistHomingEnemy/enemy_c3.X"));
 
 	SimpleShape shape;
 	shape.Type = Shape_Box;
@@ -30,6 +29,7 @@ bool HomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 	_collision->SetMaterial(mtrl);
 	_position = position;
 	_model->SetPosition(_position);
+
 	_hp = hp;
 	_speed.z = speed.z;
 
@@ -37,21 +37,27 @@ bool HomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 	return true;
 }
 
-int HomingEnemy::Update(PlayerManager* player_manager)
+int DistHomingEnemy::Update(PlayerManager* player_manager)
 {
-	float floor_area_x = _position.x > 8.5f || _position.x < -8.5f;
-	float floor_area_z = _position.z < -8.5f;
+	 float floor_area_x = _position.x > 8.5f || _position.x < -8.5f;
+	 float floor_area_z = _position.z < -8.5f;
 
 	player_pos = player_manager->PlayerGetPosition();
-
 	Move();
 
 	_animestate = ANIMESTATE::RUN;
 
+	float dist = Vector3_Distance(player_pos, Vector3(_position.x,0,_position.z));
+	if (dist <= 7.0f) {
+		homing_flag = true;
+	}
+	else
+		homing_flag = false;
+
 	if (destroy_time < 960)
 		destroy_time++;
 
-	if (_hp <= 0 || floor_area_x || floor_area_z || destroy_time > 960) {
+	if (_hp <= 0 || floor_area_x  || floor_area_z || destroy_time > 960) {
 		destroy_time = 0;
 		return EnemyManager::DEATH;
 	}
@@ -59,26 +65,28 @@ int HomingEnemy::Update(PlayerManager* player_manager)
 
 	_collision->SetPosition(_model->GetPosition() + Vector3(0, 0, 0));
 	_position  = _model->GetPosition();
-
 	return EnemyManager::LIVING;
 }
 
-void HomingEnemy::Draw()
+void DistHomingEnemy::Draw()
 {
 	ChangeAnimation();
 	_model->Draw();
 	//_collision->Draw();
 }
 
-void HomingEnemy::Move() {
-	Vector3 delta  = Vector3_Normalize(Vector3(_position - player_pos));
-	float speed = 30;
+void DistHomingEnemy::Move() {
+	if (homing_flag) {
+		Vector3 delta = Vector3_Normalize(Vector3(_position - player_pos));
+		float speed = 40;
 
-	_model->Move(-delta.x / speed,0, -delta.z / speed);
-
+		_model->Move(-delta.x / speed, 0, -delta.z / speed);
+	}
+	else
+		_model->Move(0, 0, -_speed.z / 4);
 }
 
-void HomingEnemy::ChangeAnimation() {
+void DistHomingEnemy::ChangeAnimation() {
 	auto index = _oldanimestate;
 
 	_animation_count += GameTimer.GetElapsedSecond() * 2;

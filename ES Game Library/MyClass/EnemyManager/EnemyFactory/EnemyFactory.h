@@ -1,12 +1,11 @@
 #pragma once
 
-#include "../../../ESGLib.h"
 #include "../../LoadCSV/LoadCSV.h"
-#include "../EnemyBase/EnemyBase.h"
-#include "../StopEnemy/StopEnemy.h"
-#include "../Enemy/Enemy.h"
-#include "../HomingEnemy/HomingEnemy.h"
-#include "../DistHomingEnemy/DistHomingEnemy.h"
+#include "EnemyBase/EnemyBase.h"
+#include "StopEnemy/StopEnemy.h"
+#include "NomalEnemy/Enemy.h"
+#include "HomingEnemy/HomingEnemy.h"
+#include "DistHomingEnemy/DistHomingEnemy.h"
 
 class EnemyFactory {
 public:
