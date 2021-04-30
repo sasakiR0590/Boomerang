@@ -26,5 +26,6 @@ private:
 
     //!スピード
     float   _speed;
+    float   _addspeed;
     float   _rotatespeed;
 };

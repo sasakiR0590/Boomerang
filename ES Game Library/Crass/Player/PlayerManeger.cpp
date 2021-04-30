@@ -60,8 +60,8 @@ bool PlayerManager::Initialize()
 	                      //‚Pc”ò‹——£‚ªL‚Ñ‚é
 	                      //‚QcˆÚ“®‘¬“x‚ªã‚ª‚é
 
-	_boomerang_addspeed    = 0.0f;
-	_boomerang_adddistance = 0.0f;
+	_boomerang_addspeed    = 0.01f;
+	_boomerang_adddistance = 1.0f;
 
 	_player_position = Vector3_Zero;
 
@@ -93,61 +93,64 @@ int PlayerManager::Update()
 
 
 	if ((key.IsKeyDown(Keys_Space) || pad.Buttons[3]) && _animstate != AnimationState::SHOOT) {
-		if (_attack_pattern == 0) {
+		if (_attack_pattern == 0)
+		{
 			_power += 0.01;
-			if (_power >= 2.0f) {
+			if (_power >= 2.0f)
 				_power = 2.0f;
-			}
 		}
-		else if (_attack_pattern == 1) {
-			_boomerang_adddistance += 0.1f;
-			if (_boomerang_adddistance >= 5.0f) {
-				_boomerang_adddistance = 5.0f;
-			}
+		else if (_attack_pattern == 1)
+		{
+			_boomerang_adddistance += 0.01f;
+			if (_boomerang_adddistance >= 2.0f)
+				_boomerang_adddistance = 2.0f;
 		}
-		else if (_attack_pattern == 2) {
+		else if (_attack_pattern == 2)
+		{
 			_boomerang_addspeed += 0.001f;
-			if (_boomerang_addspeed >= 0.02f) {
-				_boomerang_addspeed = 0.02f;
-			}
+			if (_boomerang_addspeed >= 0.03f)
+				_boomerang_addspeed = 0.03f;
 		}
 	}
 
-	if (pad_buffer.IsPressed(GamePad_Button2) && !pad.Buttons[3] && _animstate != AnimationState::SHOOT) {
+	if (pad_buffer.IsPressed(GamePad_Button2) && !pad.Buttons[3] && _animstate != AnimationState::SHOOT)
+	{
 		_attack_pattern += 1;
-		if (_attack_pattern == 3) {
+		if (_attack_pattern == 3)
 			_attack_pattern = 0;
-		}
 	}
 
-	if ((key_buffer.IsReleased(Keys_Space) || pad_buffer.IsReleased(GamePad_Button4)) && !_shootstate) {
+	if ((key_buffer.IsReleased(Keys_Space) || pad_buffer.IsReleased(GamePad_Button4)) && !_shootstate)
+	{
 		_animstate = AnimationState::SHOOT;
 	}
 
-	if (_shootstate) {
+	if (_shootstate)
+	{
 		if (_boomerang.Update(_model->GetPosition()) == 1)
 		{
 			_power = 0.0f;
-			_boomerang_adddistance = 0.0f;
-			_boomerang_addspeed = 0.0f;
+			_boomerang_adddistance = 1.0f;
+			_boomerang_addspeed = 0.01f;
  			_shootstate = false;
 		}
 	}
 
-	if (_animstate == AnimationState::DAMAGE) {
+	if (_animstate == AnimationState::DAMAGE)
+	{
 		_invincibletime += 1;
 
 		if (_invincibletime <= _max_invincibletime) {
 			_invincibleflag = true;
 		}
-		else {
+		else
+		{
 			_invincibleflag = false;
 			_animstate = AnimationState::WAIT;
 		}
 	}
-	else {
+	else
 		_invincibletime = 0;
-	}
 
 	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 0.0f, 0.0f));
 	return 0;
@@ -169,29 +172,24 @@ void PlayerManager::Draw()
 	GraphicsDevice.EndAlphaBlend();
 #endif
 
-	if (_shootstate) {
+	if (_shootstate)
 		_boomerang.Draw();
-	}
 }
 
 void PlayerManager::KeyboardMove(KeyboardState key)
 {
 	auto old_pos = _model->GetPosition();
-	if (key.IsKeyDown(Keys_W)) {
+	if (key.IsKeyDown(Keys_W))
 		_model->Move(0.0f, 0.0f, _playermove);
-	}
 
-	if (key.IsKeyDown(Keys_A)) {
+	if (key.IsKeyDown(Keys_A))
 		_model->Move(-_playermove, 0.0f, 0.0f);
-	}
 
-	if (key.IsKeyDown(Keys_S)) {
+	if (key.IsKeyDown(Keys_S))
 		_model->Move(0.0f, 0.0f, -_playermove);
-	}
 
-	if (key.IsKeyDown(Keys_D)) {
+	if (key.IsKeyDown(Keys_D))
 		_model->Move(_playermove, 0.0f, 0.0f);
-	}
 
 	if (key.IsKeyDown(Keys_Right)) {
 		_model->Rotation(0.0f, 1.0f, 0.0f);
@@ -282,8 +280,13 @@ void PlayerManager::ChangeAnimation()
 void PlayerManager::Shoot()
 {
 	Vector3 start_position = _model->GetPosition() + _model->GetFrontVector();
-	Vector3 control_position1 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance + _model->GetRightVector() * (_sidedistance += _boomerang_adddistance);
-	Vector3 control_position2 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance + (-_model->GetRightVector()) * (_sidedistance += _boomerang_adddistance);
+
+	Vector3 control_position1 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance * _boomerang_adddistance
+		                       + _model->GetRightVector() * _sidedistance * _boomerang_adddistance;
+
+	Vector3 control_position2 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance * _boomerang_adddistance
+		                       + (-_model->GetRightVector()) * _sidedistance * _boomerang_adddistance;
+
 	_boomerang.Initialize(start_position, control_position1, control_position2, _power, _boomerang_addspeed);
 
 	_animstate = AnimationState::WAIT;
