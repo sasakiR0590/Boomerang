@@ -1,21 +1,20 @@
 #include "EffectManager.h"
+#include <codecvt>
 EffectManager::EffectManager()
 {
-	_hit_effect.reset(new ParticleSystem);
+	
 }
 
 EffectManager::~EffectManager()
 {
-//	_hit_effect.reset();
 }
 
 bool EffectManager::Initialize()
 {
 	Effekseer.Attach(GraphicsDevice, 8192);
-	auto&& hit = Effekseer.CreateEffectFromFile(_T("Effect/damage_effect01/damege_0127.efk"));
-	_hit_effect->RegisterParticle(hit);
-	_hit_effect->SetNomalEffect();
-
+	ParticleSystem* hiteffect = new ParticleSystem;
+	_effect.insert(std::make_pair(HITEFFECT, std::move(SetEffectInit("Effect/hiteffect/hit_effect.efk", 1.0f, 0.1f))));
+	_effect.insert(std::make_pair("aaaa", std::move(SetEffectInit("Effect/explosion/explosion.efk", 1.0f, 0.1f))));
 	return true;
 }
 
@@ -26,27 +25,22 @@ int EffectManager::Update()
 
 void EffectManager::Draw()
 {
-	//auto itr = _effect.begin();
-	//while (itr != _effect.end()) {
-
-	//	//Updateでreturnされた値 0・・生きてる 1・・消去
-	//	if (!(*itr)->GetPlayEnd())
-	//	{
-	//		itr->get()->Draw();
-	//		itr++;
-	//	}
-	//	else
-	//		//要素数が 1 なら消去
-	//		//itrの値を変更して値を一つ進める
-	//		itr = _effect.erase(itr);
-	//}
-	_hit_effect->Draw();
 }
 
 void EffectManager::Create(string tag, Vector3 pos)
 {
-	_hit_effect->SetPosition(pos);
-	_hit_effect->Play();
-	//ParticleSystem* effect = _effect.back().get();
-	//effect->SetPosition(pos);
+	_effect.at(tag)->Play();
+	_effect.at(tag)->SetPosition(pos);
+	_effect.at(tag)->Draw();
+}
+
+ParticleSystem* EffectManager::SetEffectInit(string filename, float speed, float scale)
+{
+	auto filepath = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(filename);
+	auto&& particle = Effekseer.CreateEffectFromFile(filepath.c_str());
+	ParticleSystem* effect = new ParticleSystem;
+	effect->RegisterParticle(particle);
+	effect->SetSpeed(speed);
+	effect->SetScale(scale);
+	return effect;
 }

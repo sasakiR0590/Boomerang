@@ -17,7 +17,7 @@ public:
         return instance;
     };
 private:
-    std::list<std::unique_ptr<ParticleSystem>> _effect;
-    std::unique_ptr<ParticleSystem>       _hit_effect;
+    std::map<string, ParticleSystem*> _effect;
+    ParticleSystem* SetEffectInit(string filename,float speed,float scale);
     string HITEFFECT = "HitEffect";
 };
