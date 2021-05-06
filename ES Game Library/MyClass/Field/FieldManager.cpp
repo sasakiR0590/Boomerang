@@ -12,9 +12,9 @@ FieldManeger::~FieldManeger()
 
 bool FieldManeger::Initialize()
 {
-	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Floor/floor_tst_02.X"));
+	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Floor/bg_v03.X"));
 
-	_model->SetScale(1.25);
+	_model->SetScale(1.0);
 	_model->SetPosition(0.0f, 0.0f, 0.0f);
 	_model->SetRotation(0.0f, 0.0f, 0.0f);
 

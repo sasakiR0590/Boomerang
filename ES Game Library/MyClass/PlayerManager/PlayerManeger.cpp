@@ -12,7 +12,7 @@ PlayerManager::~PlayerManager()
 
 bool PlayerManager::Initialize()
 {
-	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero_0430.X"));
+	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero_0506.X"));
 
 	_model->SetScale(1.0f);
 	_model->SetPosition(0, 0, 0);
@@ -91,33 +91,25 @@ int PlayerManager::Update()
 	KeyboardMove(key);
 	PadMove(pad);
 
-
 	if ((key.IsKeyDown(Keys_Space) || pad.Buttons[3]) && _animstate != AnimationState::SHOOT) {
-		if (_attack_pattern == 0)
+
+		switch (_attack_pattern)
 		{
-			_power += 0.01;
-			if (_power >= 2.0f)
-				_power = 2.0f;
-		}
-		else if (_attack_pattern == 1)
-		{
-			_boomerang_adddistance += 0.01f;
-			if (_boomerang_adddistance >= 2.0f)
-				_boomerang_adddistance = 2.0f;
-		}
-		else if (_attack_pattern == 2)
-		{
-			_boomerang_addspeed += 0.001f;
-			if (_boomerang_addspeed >= 0.03f)
-				_boomerang_addspeed = 0.03f;
+		case 0:
+			BoomerangSizeUp();
+		    break;
+		case 1:
+			BoomerangDistanceUp();
+	        break;
+		case 2:
+			BoomerangSpeedUp();
+		    break;
 		}
 	}
 
 	if (pad_buffer.IsPressed(GamePad_Button2) && !pad.Buttons[3] && _animstate != AnimationState::SHOOT)
 	{
-		_attack_pattern += 1;
-		if (_attack_pattern == 3)
-			_attack_pattern = 0;
+		ChangeAttackPattern();
 	}
 
 	if ((key_buffer.IsReleased(Keys_Space) || pad_buffer.IsReleased(GamePad_Button4)) && !_shootstate)
@@ -224,7 +216,7 @@ void PlayerManager::PadMove(GamePadState pad)
 		_rotate_direction = MathHelper_Atan2(pad.Y, pad.X) + 90.0f;
 		Vector3 target_foward(MathHelper_Cos(_rotate_direction), 0.0f, MathHelper_Sin(_rotate_direction));
 		Vector3 rotate_foward(MathHelper_Cos(_rotation), 0.0f, MathHelper_Sin(_rotation));
-		rotate_foward = Vector3_Hermite(rotate_foward, target_foward, GameTimer.GetElapsedSecond() * 10);
+		rotate_foward = Vector3_Hermite(rotate_foward, target_foward, GameTimer.GetElapsedSecond() * 20);
 		_rotation = MathHelper_Atan2(rotate_foward.z, rotate_foward.x);
 
 		_model->SetRotation(0.0f, _rotation, 0.0f);
@@ -310,9 +302,37 @@ Vector3 PlayerManager::PlayerGetPosition()
 	return _player_position;
 }
 
+void PlayerManager::ChangeAttackPattern()
+{
+	_attack_pattern += 1;
+	if (_attack_pattern == 3)
+		_attack_pattern = 0;
+}
+
 int PlayerManager::AttackPattern()
 {
 	return _attack_pattern;
+}
+
+void PlayerManager::BoomerangSizeUp()
+{
+	_power += 0.01;
+	if (_power >= 2.0f)
+		_power = 2.0f;
+}
+
+void PlayerManager::BoomerangDistanceUp()
+{
+	_boomerang_adddistance += 0.01f;
+	if (_boomerang_adddistance >= 2.0f)
+		_boomerang_adddistance = 2.0f;
+}
+
+void PlayerManager::BoomerangSpeedUp()
+{
+	_boomerang_addspeed += 0.001f;
+	if (_boomerang_addspeed >= 0.03f)
+		_boomerang_addspeed = 0.03f;
 }
 
 

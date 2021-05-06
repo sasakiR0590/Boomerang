@@ -34,6 +34,8 @@ private:
     void    KeyboardMove(KeyboardState);
     void    PadMove(GamePadState);
     void    Damage();
+
+    void    ChangeAttackPattern();
     void    BoomerangSizeUp();
     void    BoomerangSpeedUp();
     void    BoomerangDistanceUp();
