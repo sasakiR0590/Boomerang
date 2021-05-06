@@ -12,7 +12,7 @@ PlayerManager::~PlayerManager()
 
 bool PlayerManager::Initialize()
 {
-	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero_animetion_02.X"));
+	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero_0430.X"));
 
 	_model->SetScale(1.0f);
 	_model->SetPosition(0, 0, 0);
@@ -251,7 +251,7 @@ void PlayerManager::ChangeAnimation()
 {
 	auto index = _oldanimstate;
 
-	_animation_count += GameTimer.GetElapsedSecond() * 2;
+	_animation_count += GameTimer.GetElapsedSecond();
 
 	//! 全てのアニメーショントラックを停止
 	for (int i = 0; i < AnimationState::ALLTYPE; ++i)
@@ -314,3 +314,5 @@ int PlayerManager::AttackPattern()
 {
 	return _attack_pattern;
 }
+
+

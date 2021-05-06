@@ -34,6 +34,9 @@ private:
     void    KeyboardMove(KeyboardState);
     void    PadMove(GamePadState);
     void    Damage();
+    void    BoomerangSizeUp();
+    void    BoomerangSpeedUp();
+    void    BoomerangDistanceUp();
 
     MODEL           _collision;
     ANIMATIONMODEL  _model;
