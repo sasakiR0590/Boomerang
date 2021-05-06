@@ -7,6 +7,7 @@
 /// This is where it can query for any required services and load all of your content.
 /// Initialize will enumerate through any components and initialize them as well.
 /// </summary>
+
 bool GameMain::Initialize()
 {
 	WindowTitle(_T("ES Game Library"));
