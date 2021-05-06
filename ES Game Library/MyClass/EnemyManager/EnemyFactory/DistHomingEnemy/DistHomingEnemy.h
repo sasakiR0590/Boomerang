@@ -11,6 +11,7 @@ public:
     void   Draw() override;
 private:
     void    Move();
+    void    Rotate();
     void    ChangeAnimation() override;
 
     Vector3 player_pos;

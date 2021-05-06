@@ -3,7 +3,7 @@
 #include "../../LoadCSV/LoadCSV.h"
 #include "EnemyBase/EnemyBase.h"
 #include "StopEnemy/StopEnemy.h"
-#include "NomalEnemy/Enemy.h"
+#include "NomalEnemy/NormalEnemy.h"
 #include "HomingEnemy/HomingEnemy.h"
 #include "DistHomingEnemy/DistHomingEnemy.h"
 

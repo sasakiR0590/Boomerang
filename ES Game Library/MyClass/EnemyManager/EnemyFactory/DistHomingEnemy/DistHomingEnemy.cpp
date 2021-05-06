@@ -29,6 +29,7 @@ bool DistHomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 	_collision->SetMaterial(mtrl);
 	_position = position;
 	_model->SetPosition(_position);
+	_model->SetRotation(Vector3_Zero);
 
 	_hp = hp;
 	_speed.z = speed.z;
@@ -44,6 +45,7 @@ int DistHomingEnemy::Update(PlayerManager* player_manager)
 
 	player_pos = player_manager->PlayerGetPosition();
 	Move();
+	Rotate();
 
 	_animestate = ANIMESTATE::RUN;
 
@@ -71,19 +73,31 @@ int DistHomingEnemy::Update(PlayerManager* player_manager)
 void DistHomingEnemy::Draw()
 {
 	ChangeAnimation();
+	_model->Rotation(0.0f, 180.0f, 0.0f);
 	_model->Draw();
+	_model->Rotation(0.0f, 180.0f, 0.0f);
 	//_collision->Draw();
 }
 
 void DistHomingEnemy::Move() {
 	if (homing_flag) {
 		Vector3 delta = Vector3_Normalize(Vector3(_position - player_pos));
-		float speed = 40;
+		float speed = 30;
 
-		_model->Move(-delta.x / speed, 0, -delta.z / speed);
+		if(_position.z > player_pos.z)
+			_model->Move(0, 0, delta.z / speed);
+		else
+			_model->Move(0, 0, -delta.z / speed);
 	}
 	else
-		_model->Move(0, 0, -_speed.z / 4);
+		_model->Move(0, 0, _speed.z / 4);
+	    _model->Rotation(Vector3_Zero);
+}
+
+void DistHomingEnemy::Rotate() {
+	//プレイヤーの座標 - 敵の座標でプレイヤーのいる方向に向く
+	_rotation = MathHelper_Atan2(-(player_pos.z - _position.z), (player_pos.x - _position.x)) + 90.0f;
+	_model->SetRotation(0.0f, _rotation, 0.0f);
 }
 
 void DistHomingEnemy::ChangeAnimation() {

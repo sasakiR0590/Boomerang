@@ -313,9 +313,6 @@
     <ClCompile Include="MyClass\EnemyManager\EnemyFactory\DistHomingEnemy\DistHomingEnemy.cpp">
       <Filter>MyClass\EnemyManager\EnemyFactory\DistHomingEnemy</Filter>
     </ClCompile>
-    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\NomalEnemy\Enemy.cpp">
-      <Filter>MyClass\EnemyManager\EnemyFactory\NomalEnemy</Filter>
-    </ClCompile>
     <ClCompile Include="MyClass\EnemyManager\EnemyFactory\StopEnemy\StopEnemy.cpp">
       <Filter>MyClass\EnemyManager\EnemyFactory\StopEnemy</Filter>
     </ClCompile>
@@ -342,6 +339,9 @@
     </ClCompile>
     <ClCompile Include="MyClass\PlayerManager\Boomerang\Boomerang.cpp">
       <Filter>MyClass\PlayerManager\Boomerang</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\NomalEnemy\NormalEnemy.cpp">
+      <Filter>MyClass\EnemyManager\EnemyFactory\NomalEnemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -511,9 +511,6 @@
     <ClInclude Include="MyClass\EnemyManager\EnemyFactory\DistHomingEnemy\DistHomingEnemy.h">
       <Filter>MyClass\EnemyManager\EnemyFactory\DistHomingEnemy</Filter>
     </ClInclude>
-    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\NomalEnemy\Enemy.h">
-      <Filter>MyClass\EnemyManager\EnemyFactory\NomalEnemy</Filter>
-    </ClInclude>
     <ClInclude Include="MyClass\EnemyManager\EnemyFactory\StopEnemy\StopEnemy.h">
       <Filter>MyClass\EnemyManager\EnemyFactory\StopEnemy</Filter>
     </ClInclude>
@@ -540,6 +537,9 @@
     </ClInclude>
     <ClInclude Include="MyClass\PlayerManager\Boomerang\Boomerang.h">
       <Filter>MyClass\PlayerManager\Boomerang</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\NomalEnemy\NormalEnemy.h">
+      <Filter>MyClass\EnemyManager\EnemyFactory\NomalEnemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -169,7 +169,7 @@
     <ClCompile Include="MyClass\EnemyManager\EnemyFactory\EnemyBase\EnemyBase.cpp" />
     <ClCompile Include="MyClass\EnemyManager\EnemyFactory\EnemyFactory.cpp" />
     <ClCompile Include="MyClass\EnemyManager\EnemyFactory\HomingEnemy\HomingEnemy.cpp" />
-    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\NomalEnemy\Enemy.cpp" />
+    <ClCompile Include="MyClass\EnemyManager\EnemyFactory\NomalEnemy\NormalEnemy.cpp" />
     <ClCompile Include="MyClass\EnemyManager\EnemyFactory\StopEnemy\StopEnemy.cpp" />
     <ClCompile Include="MyClass\EnemyManager\EnemyManeger.cpp" />
     <ClCompile Include="MyClass\Field\FieldManager.cpp" />
@@ -236,7 +236,7 @@
     <ClInclude Include="MyClass\EnemyManager\EnemyFactory\EnemyBase\EnemyBase.h" />
     <ClInclude Include="MyClass\EnemyManager\EnemyFactory\EnemyFactory.h" />
     <ClInclude Include="MyClass\EnemyManager\EnemyFactory\HomingEnemy\HomingEnemy.h" />
-    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\NomalEnemy\Enemy.h" />
+    <ClInclude Include="MyClass\EnemyManager\EnemyFactory\NomalEnemy\NormalEnemy.h" />
     <ClInclude Include="MyClass\EnemyManager\EnemyFactory\StopEnemy\StopEnemy.h" />
     <ClInclude Include="MyClass\EnemyManager\EnemyManeger.h" />
     <ClInclude Include="MyClass\Field\FieldManager.h" />

@@ -3,10 +3,10 @@
 #include "../../EnemyManeger.h"
 #include "../EnemyBase/EnemyBase.h"
 
-class Enemy : public EnemyBase{
+class NormalEnemy : public EnemyBase{
 public:
-    Enemy::Enemy();
-    Enemy::~Enemy();
+    NormalEnemy:: NormalEnemy();
+    NormalEnemy::~NormalEnemy();
     bool   Initialize(Vector3 position, Vector3 speed, int hp) override;
     int    Update(PlayerManager* player_manager) override;
     void   Draw() override;

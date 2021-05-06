@@ -27,6 +27,7 @@ protected:
     int     _animestate = 0;
     int     _oldanimestate = 0;
     float   _animation_count = 0.0f;
+    float   _rotation = 0.0f;
 
     enum  ANIMESTATE
     {
