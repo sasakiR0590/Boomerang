@@ -2,6 +2,7 @@
 #include"EnemyFactory/EnemyBase/EnemyBase.h"
 #include <fstream>
 #include"../EffectManager/EffectManager.h"
+#include "../Data/WordsTable.h"
 EnemyManager::EnemyManager()
 {
 	_enemy = {};
@@ -50,9 +51,11 @@ int EnemyManager::Update(PlayerManager* playermanager)
 			if ((*itr)->Update(playermanager) == LIVING && (*itr)->AutoDead() == LIVING)
 				itr++;
 			else
-				//要素数が 1 なら消去
+			{//要素数が 1 なら消去
 				//itrの値を変更して値を一つ進める
+				EffectManager::Instance().Create(EffectTag::EXPLOSION, (*itr)->GetPosition());
 				itr = _enemy.erase(itr);
+			}
 	}
 
 	return 0;
@@ -80,7 +83,7 @@ void EnemyManager::Generate(PlayerManager* player_manager)
 void EnemyManager::OnCollisionEnter(EnemyBase* enemy)
 {
 	enemy->Damage();
-	EffectManager::Instance().Create("debug", enemy->GetPosition());
+	EffectManager::Instance().Create(EffectTag::HIT, enemy->GetPosition());
 }
 
 void EnemyManager::LoadCSV() {
