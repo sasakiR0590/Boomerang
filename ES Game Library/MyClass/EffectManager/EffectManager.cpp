@@ -29,9 +29,9 @@ void EffectManager::Draw()
 
 void EffectManager::Create(string tag, Vector3 pos)
 {
-	_effect.at(tag)->Play();
-	_effect.at(tag)->SetPosition(pos);
-	_effect.at(tag)->Draw();
+	_effect.at("aaaa")->Play();
+	_effect.at("aaaa")->SetPosition(pos);
+	_effect.at("aaaa")->Draw();
 }
 
 ParticleSystem* EffectManager::SetEffectInit(string filename, float speed, float scale)
