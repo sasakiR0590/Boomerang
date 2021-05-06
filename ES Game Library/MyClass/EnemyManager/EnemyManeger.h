@@ -20,7 +20,7 @@ private:
     float _time  = 0.0f;
 
     enum EnemyType{ MOVE_ENEMY, STOP_ENEMY,HOMING_ENEMY,DIST_HOMING_ENEMY };
-    enum { LIVING, DEATH, DUMMYLINENUM,ENEMY_NUM = 100 };
+    enum { LIVING, DEATH, DUMMYLINENUM = 3,ENEMY_NUM = 100 };
    
     int count = 0;                   //敵の累計出現数カウント 
     int     tag[ENEMY_NUM];          //敵の種類         
