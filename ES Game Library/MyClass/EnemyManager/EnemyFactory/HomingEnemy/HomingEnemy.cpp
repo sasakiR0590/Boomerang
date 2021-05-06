@@ -15,13 +15,13 @@ bool HomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 	SimpleShape shape;
 	shape.Type = Shape_Box;
 
-	shape.Width  = 1;
+	shape.Width = 1;
 	shape.Height = 1;
 	shape.Length = 1;
 
 	Material mtrl;
-	mtrl.Diffuse  = Color(1.0f, 1.0f, 1.0f);
-	mtrl.Ambient  = Color(1.0f, 1.0f, 1.0f);
+	mtrl.Diffuse = Color(1.0f, 1.0f, 1.0f);
+	mtrl.Ambient = Color(1.0f, 1.0f, 1.0f);
 	mtrl.Specular = Color(1.0f, 1.0f, 1.0f);
 
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
@@ -29,6 +29,8 @@ bool HomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 	_collision->SetMaterial(mtrl);
 	_position = position;
 	_model->SetPosition(_position);
+	_model->SetRotation(Vector3_Zero);
+
 	_hp = hp;
 	_speed.z = speed.z;
 
@@ -44,6 +46,7 @@ int HomingEnemy::Update(PlayerManager* player_manager)
 	player_pos = player_manager->PlayerGetPosition();
 
 	Move();
+	Rotate();
 
 	_animestate = ANIMESTATE::RUN;
 
@@ -73,8 +76,16 @@ void HomingEnemy::Move() {
 	Vector3 delta  = Vector3_Normalize(Vector3(_position - player_pos));
 	float speed = 30;
 
-	_model->Move(-delta.x / speed,0, -delta.z / speed);
+	if(_position.z > player_pos.z)
+		_model->Move(0,0, -delta.z / speed);
+	else
+		_model->Move(0, 0, delta.z / speed);
 
+}
+
+void HomingEnemy::Rotate() {
+	_rotation = MathHelper_Atan2((player_pos.z - _position.z), -(player_pos.x - _position.x)) + 90.0f;
+	_model->SetRotation(0.0f, _rotation, 0.0f);
 }
 
 void HomingEnemy::ChangeAnimation() {

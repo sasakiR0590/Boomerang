@@ -70,26 +70,9 @@ void EnemyManager::Generate(PlayerManager* player_manager)
 	unique_ptr<EnemyFactory> factory = std::make_unique<EnemyFactory>();
 
 	if (!appear_flag[count])
-	{		
-		switch (tag[count])
-		{
-		case MOVE_ENEMY:
-			_enemy.push_back(factory->Create("move_enemy", appear_pos[count], player_manager));
-			appear_flag[count] = true;
-			break;
-		case STOP_ENEMY:
-			_enemy.push_back(factory->Create("stop_enemy", appear_pos[count], player_manager));
-			appear_flag[count] = true;
-			break;
-		case HOMING_ENEMY:
-			_enemy.push_back(factory->Create("homing_enemy", appear_pos[count], player_manager));
-			appear_flag[count] = true;
-			break;
-		case DIST_HOMING_ENEMY:
-			_enemy.push_back(factory->Create("dist_homing_enemy", appear_pos[count], player_manager));
-			appear_flag[count] = true;
-			break;
-		}
+	{
+		_enemy.push_back(factory->Create(tag[count], appear_pos[count], player_manager));
+		appear_flag[count] = true;
 	}
 
 }
