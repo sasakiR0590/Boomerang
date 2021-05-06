@@ -35,6 +35,11 @@ private:
     void    PadMove(GamePadState);
     void    Damage();
 
+    void    ChangeAttackPattern();
+    void    BoomerangSizeUp();
+    void    BoomerangSpeedUp();
+    void    BoomerangDistanceUp();
+
     MODEL           _collision;
     ANIMATIONMODEL  _model;
 
