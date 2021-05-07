@@ -25,7 +25,7 @@ bool DistHomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 	mtrl.Specular = Color(1.0f, 1.0f, 1.0f);
 
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
-	_collision->SetScale(1);
+	_collision->SetScale(0.7f);
 	_collision->SetMaterial(mtrl);
 	_position = position;
 	_model->SetPosition(_position);
@@ -44,8 +44,11 @@ int DistHomingEnemy::Update(PlayerManager* player_manager)
 	 float floor_area_z = _position.z < -8.5f;
 
 	player_pos = player_manager->PlayerGetPosition();
-	Move();
-	Rotate();
+
+	if (!EnemyBase::IsDamage()) {
+		Move();
+		Rotate();
+	}
 
 	_animestate = ANIMESTATE::RUN;
 

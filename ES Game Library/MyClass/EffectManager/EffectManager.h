@@ -19,4 +19,5 @@ public:
 private:
     std::map<string, ParticleSystem*> _effect;
     ParticleSystem* SetEffectInit(string filename,float speed,float scale);
+    string HITEFFECT = "HitEffect";
 };
