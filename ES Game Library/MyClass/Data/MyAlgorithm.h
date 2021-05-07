@@ -38,12 +38,13 @@ static float FloatWrap(float x, float low, float high)
 //@param (path) 変換する文字列 
 static ::wstring ConvertStringFilePath(string pathname)
 {
-	auto filepath = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(pathname);
-	return filepath;
+	return std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(pathname);
 }
 //@fn 文字列をファイル読み込みに使えるように変換
 //@param (path) 変換する文字列 
 static LPCWSTR ConvertStringFileName(string filename)
 {
-	return ConvertStringFilePath(filename).c_str();
+	static ::wstring path;
+	path = ConvertStringFilePath(filename);
+	return path.c_str();
 }
