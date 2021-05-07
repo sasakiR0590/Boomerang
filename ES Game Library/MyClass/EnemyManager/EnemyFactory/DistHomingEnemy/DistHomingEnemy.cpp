@@ -44,8 +44,11 @@ int DistHomingEnemy::Update(PlayerManager* player_manager)
 	 float floor_area_z = _position.z < -8.5f;
 
 	player_pos = player_manager->PlayerGetPosition();
-	Move();
-	Rotate();
+
+	if (!EnemyBase::IsDamage()) {
+		Move();
+		Rotate();
+	}
 
 	_animestate = ANIMESTATE::RUN;
 

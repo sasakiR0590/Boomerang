@@ -45,8 +45,10 @@ int HomingEnemy::Update(PlayerManager* player_manager)
 
 	player_pos = player_manager->PlayerGetPosition();
 
-	Move();
-	Rotate();
+	if (!EnemyBase::IsDamage()) {
+		Move();
+		Rotate();
+	}
 
 	_animestate = ANIMESTATE::RUN;
 

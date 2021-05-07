@@ -2,6 +2,7 @@
 #include"EnemyFactory/EnemyBase/EnemyBase.h"
 #include <fstream>
 #include"../EffectManager/EffectManager.h"
+#include "../Data/WordsTable.h"
 EnemyManager::EnemyManager()
 {
 	_enemy = {};
@@ -31,6 +32,7 @@ bool EnemyManager::Initialize()
 
 int EnemyManager::Update(PlayerManager* playermanager)
 {
+	_playermanager = playermanager;
 	if(_frame < 60)
 	   _frame++;
 	else {
@@ -39,7 +41,7 @@ int EnemyManager::Update(PlayerManager* playermanager)
 	}
 
 	if (_time > appear_time[count] && count < ENEMY_NUM) {
-		Generate(playermanager);
+		Generate(_playermanager);
 		count++;
 	}
 
@@ -47,12 +49,14 @@ int EnemyManager::Update(PlayerManager* playermanager)
 	while (itr != _enemy.end()) {
 
 		//Updateでreturnされた値 0・・生きてる 1・・消去
-			if ((*itr)->Update(playermanager) == LIVING && (*itr)->AutoDead() == LIVING)
+			if ((*itr)->Update(_playermanager) == LIVING && (*itr)->AutoDead() == LIVING)
 				itr++;
 			else
-				//要素数が 1 なら消去
+			{//要素数が 1 なら消去
 				//itrの値を変更して値を一つ進める
+				EffectManager::Instance().Create(EffectTag::EXPLOSION, (*itr)->GetPosition());
 				itr = _enemy.erase(itr);
+			}
 	}
 
 	return 0;
@@ -80,7 +84,7 @@ void EnemyManager::Generate(PlayerManager* player_manager)
 void EnemyManager::OnCollisionEnter(EnemyBase* enemy)
 {
 	enemy->Damage();
-	EffectManager::Instance().Create("debug", enemy->GetPosition());
+	EffectManager::Instance().Create(EffectTag::HIT, _playermanager->GetBoomerang().GetCollision()->GetPosition());
 }
 
 void EnemyManager::LoadCSV() {

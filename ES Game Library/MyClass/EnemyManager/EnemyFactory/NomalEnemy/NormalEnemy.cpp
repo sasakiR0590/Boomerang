@@ -36,7 +36,9 @@ bool NormalEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 
 int NormalEnemy::Update(PlayerManager* player_manager)
 {
-	Move();
+	if (!EnemyBase::IsDamage())
+		Move();
+
 	_animestate = ANIMESTATE::RUN;
 
 
