@@ -38,7 +38,7 @@ static float float_wrap(float x, float low, float high)
 
 //! @fn  •¶Žš—ñ‚ÌPath•ÏŠ·
 //! @param (path) •ÏŠ·‚·‚é•¶Žš—ñ 
-static wstring ConvertFilePath(string path)
+static ::wstring ConvertFilePath(string path)
 {
 	auto filepath = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(path);
 	return filepath;

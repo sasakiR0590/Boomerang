@@ -1,7 +1,7 @@
 #include "EffectManager.h"
 #include "../Data/WordsTable.h"
 #include"../Data/MyAlgorithm.h"
-#include <codecvt>
+
 EffectManager::EffectManager()
 {
 	
