@@ -1,4 +1,5 @@
 #include"PlayerManeger.h"
+#include"../Data/MyAlgorithm.h"
 #include <fstream>
 PlayerManager::PlayerManager()
 {
@@ -213,16 +214,10 @@ void PlayerManager::PadMove(GamePadState pad)
 
 	if (pad.X != 0.0f || pad.Y != 0.0f) {
 
-		_rotate_direction = MathHelper_Atan2(pad.Y, pad.X) + 90.0f;
-		Vector3 target_foward(MathHelper_Cos(_rotate_direction), 0.0f, MathHelper_Sin(_rotate_direction));
-		Vector3 rotate_foward(MathHelper_Cos(_rotation), 0.0f, MathHelper_Sin(_rotation));
-		rotate_foward = Vector3_Hermite(rotate_foward, target_foward, GameTimer.GetElapsedSecond() * 20);
-		_rotation = MathHelper_Atan2(rotate_foward.z, rotate_foward.x);
-
+		PlayerRotate(pad);
 		_model->SetRotation(0.0f, _rotation, 0.0f);
 		_model->Move(0.0f, 0.0f, _playermove);
 	}
-
 
 	if (_animstate == AnimationState::SHOOT)
 	{
@@ -287,6 +282,15 @@ void  PlayerManager::Damage()
 {
 	if(!_invincibleflag)
 		_hp -= 1;
+}
+
+void PlayerManager::PlayerRotate(GamePadState pad)
+{
+	_rotate_direction = MathHelper_Atan2(pad.Y, pad.X) + 90.0f;
+	Vector3 target_foward(MathHelper_Cos(_rotate_direction), 0.0f, MathHelper_Sin(_rotate_direction));
+	Vector3 rotate_foward(MathHelper_Cos(_rotation), 0.0f, MathHelper_Sin(_rotation));
+	rotate_foward = Vector3_Hermite(rotate_foward, target_foward, GameTimer.GetElapsedSecond() * 20);
+	_rotation = MathHelper_Atan2(rotate_foward.z, rotate_foward.x);
 }
 
 void PlayerManager::FlyPoint()
