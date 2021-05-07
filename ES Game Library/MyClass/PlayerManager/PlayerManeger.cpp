@@ -309,6 +309,7 @@ void PlayerManager::ChangeAttackPattern()
 		_attack_pattern = 0;
 }
 
+#ifdef _DEBUG
 int PlayerManager::AttackPattern()
 {
 	return _attack_pattern;
@@ -334,5 +335,4 @@ void PlayerManager::BoomerangSpeedUp()
 	if (_boomerang_addspeed >= 0.03f)
 		_boomerang_addspeed = 0.03f;
 }
-
-
+#endif
