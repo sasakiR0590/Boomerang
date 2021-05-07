@@ -157,6 +157,9 @@
     <Filter Include="MyClass\PlayerManager\Boomerang">
       <UniqueIdentifier>{d029db55-b97a-4ffd-a550-8dd9bd68cf88}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\Data">
+      <UniqueIdentifier>{67bca871-82de-4869-a632-45794820f991}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -540,6 +543,12 @@
     </ClInclude>
     <ClInclude Include="MyClass\EnemyManager\EnemyFactory\NomalEnemy\NormalEnemy.h">
       <Filter>MyClass\EnemyManager\EnemyFactory\NomalEnemy</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\Data\MyAlgorithm.h">
+      <Filter>MyClass\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\Data\WordsTable.h">
+      <Filter>MyClass\Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
