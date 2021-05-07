@@ -38,7 +38,7 @@ void EffectManager::Create(string tag, Vector3 pos)
 
 ParticleSystem* EffectManager::SetEffectInit(string filename, float speed, float scale)
 {
-	auto&& particle = Effekseer.CreateEffectFromFile(ConvertFilePath(filename).c_str());
+	auto&& particle = Effekseer.CreateEffectFromFile(ConvertStringFileName(filename));
 	ParticleSystem* effect = new ParticleSystem;
 	effect->RegisterParticle(particle);
 	effect->SetSpeed(speed);

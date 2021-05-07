@@ -3,8 +3,6 @@
 #include "../../ESGLib.h"
 #include <codecvt>
 
-using namespace std;
-
 //! @fn 値を指定された範囲に収める関数
 //! @param (value) 範囲内に収める値
 //! @param (min) 収める値の下限値 
@@ -36,10 +34,17 @@ static float FloatWrap(float x, float low, float high)
 	return (n >= 0) ? (n + low) : (n + high);
 }
 
-//! @fn  文字列のPath変換
-//! @param (path) 変換する文字列 
-static ::wstring ConvertFilePath(string path)
+//@fn 文字列のPath変換
+//@param (path) 変換する文字列 
+static ::wstring ConvertStringFilePath(string pathname)
 {
-	auto filepath = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(path);
-	return filepath;
+	return std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(pathname);
+}
+//@fn 文字列をファイル読み込みに使えるように変換
+//@param (path) 変換する文字列 
+static LPCWSTR ConvertStringFileName(string filename)
+{
+	static ::wstring path;
+	path = ConvertStringFilePath(filename);
+	return path.c_str();
 }
