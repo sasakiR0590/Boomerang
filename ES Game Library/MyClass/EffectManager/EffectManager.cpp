@@ -1,4 +1,5 @@
 #include "EffectManager.h"
+#include "../Data/WordsTable.h"
 #include <codecvt>
 EffectManager::EffectManager()
 {
@@ -13,8 +14,8 @@ bool EffectManager::Initialize()
 {
 	Effekseer.Attach(GraphicsDevice, 8192);
 	ParticleSystem* hiteffect = new ParticleSystem;
-	_effect.insert(std::make_pair(HITEFFECT, std::move(SetEffectInit("Effect/hiteffect/hit_effect.efk", 1.0f, 0.1f))));
-	_effect.insert(std::make_pair("aaaa", std::move(SetEffectInit("Effect/explosion/explosion.efk", 1.0f, 0.1f))));
+	_effect.insert(std::make_pair(EffectTag::HIT, std::move(SetEffectInit("Effect/hiteffect/hit_effect.efk", 1.0f, 0.1f))));
+	_effect.insert(std::make_pair(EffectTag::EXPLOSION, std::move(SetEffectInit("Effect/explosion/explosion.efk", 1.0f, 0.1f))));
 	return true;
 }
 
@@ -29,9 +30,9 @@ void EffectManager::Draw()
 
 void EffectManager::Create(string tag, Vector3 pos)
 {
-	_effect.at("aaaa")->Play();
-	_effect.at("aaaa")->SetPosition(pos);
-	_effect.at("aaaa")->Draw();
+	_effect.at(tag)->Play();
+	_effect.at(tag)->SetPosition(pos);
+	_effect.at(tag)->Draw();
 }
 
 ParticleSystem* EffectManager::SetEffectInit(string filename, float speed, float scale)
