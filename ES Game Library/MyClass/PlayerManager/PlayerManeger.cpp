@@ -271,15 +271,7 @@ void PlayerManager::ChangeAnimation()
 
 void PlayerManager::Shoot()
 {
-	Vector3 start_position = _model->GetPosition() + _model->GetFrontVector();
-
-	Vector3 control_position1 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance * _boomerang_adddistance
-		                       + _model->GetRightVector() * _sidedistance * _boomerang_adddistance;
-
-	Vector3 control_position2 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance * _boomerang_adddistance
-		                       + (-_model->GetRightVector()) * _sidedistance * _boomerang_adddistance;
-
-	_boomerang.Initialize(start_position, control_position1, control_position2, _power, _boomerang_addspeed);
+	FlyPoint();
 
 	_animstate = AnimationState::WAIT;
 	_shootstate = true;
@@ -295,6 +287,19 @@ void  PlayerManager::Damage()
 {
 	if(!_invincibleflag)
 		_hp -= 1;
+}
+
+void PlayerManager::FlyPoint()
+{
+	Vector3 _start_position = _model->GetPosition() + _model->GetFrontVector();
+
+	Vector3 _control_position1 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance * _boomerang_adddistance
+		+ _model->GetRightVector() * _sidedistance * _boomerang_adddistance;
+
+	Vector3 _control_position2 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance * _boomerang_adddistance
+		+ (-_model->GetRightVector()) * _sidedistance * _boomerang_adddistance;
+
+	_boomerang.Initialize(_start_position, _control_position1, _control_position2, _power, _boomerang_addspeed);
 }
 
 Vector3 PlayerManager::PlayerGetPosition()

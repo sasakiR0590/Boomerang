@@ -35,6 +35,9 @@ private:
     void    PadMove(GamePadState);
     void    Damage();
 
+    void    FlyPoint();
+    void    PlayerRotate();
+
     void    ChangeAttackPattern();
     void    BoomerangSizeUp();
     void    BoomerangSpeedUp();
