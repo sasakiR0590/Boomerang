@@ -1,5 +1,6 @@
 #include "EffectManager.h"
 #include "../Data/WordsTable.h"
+#include"../Data/MyAlgorithm.h"
 #include <codecvt>
 EffectManager::EffectManager()
 {
@@ -37,8 +38,7 @@ void EffectManager::Create(string tag, Vector3 pos)
 
 ParticleSystem* EffectManager::SetEffectInit(string filename, float speed, float scale)
 {
-	auto filepath = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(filename);
-	auto&& particle = Effekseer.CreateEffectFromFile(filepath.c_str());
+	auto&& particle = Effekseer.CreateEffectFromFile(ConvertFilePath(filename).c_str());
 	ParticleSystem* effect = new ParticleSystem;
 	effect->RegisterParticle(particle);
 	effect->SetSpeed(speed);

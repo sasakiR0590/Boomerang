@@ -231,6 +231,8 @@
     <ClInclude Include="GameMain.h" />
     <ClInclude Include="GameScene\SceneShared.hpp" />
     <ClInclude Include="GameScene\TemplateScene.hpp" />
+    <ClInclude Include="MyClass\Data\MyAlgorithm.h" />
+    <ClInclude Include="MyClass\Data\WordsTable.h" />
     <ClInclude Include="MyClass\EffectManager\EffectManager.h" />
     <ClInclude Include="MyClass\EnemyManager\EnemyFactory\DistHomingEnemy\DistHomingEnemy.h" />
     <ClInclude Include="MyClass\EnemyManager\EnemyFactory\EnemyBase\EnemyBase.h" />
