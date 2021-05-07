@@ -20,7 +20,7 @@ static float Clamp(float value, float min, float max)
 
 // @fn
 //int型のラップアラウンド型関数（上限値に達した時に下限値に戻す）
-static int int_wrap(int x, int low, int high)
+static int IntWrap(int x, int low, int high)
 {
 	assert(low < high && "下限値が上限値を超えています");
 	const int n = (x - low) % (high - low);
@@ -29,7 +29,7 @@ static int int_wrap(int x, int low, int high)
 
 // @fn
 //float型のラップアラウンド型関数（上限値に達した時に下限値に戻す）
-static float float_wrap(float x, float low, float high)
+static float FloatWrap(float x, float low, float high)
 {
 	assert(low < high && "下限値が上限値を超えています");
 	const float n = std::fmod(x - low, high - low);
