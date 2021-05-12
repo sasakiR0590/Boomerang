@@ -27,6 +27,7 @@ public:
         WAIT,
         RUN,
         SHOOT,
+        STANCE,
         DAMAGE,
         ALLTYPE
     };
@@ -81,4 +82,6 @@ private:
     //!ブーメランの性質変化用の数値を入れる
     float _boomerang_addspeed;
     float _boomerang_adddistance;
+
+    std::vector<Vector3> padstick;
 };

@@ -10,7 +10,7 @@ Boomerang::~Boomerang()
 
 }
 
-bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2, float power, float speed)
+bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2, float power, float speed, std::vector<Vector3> stick)
 {
 	_model = GraphicsDevice.CreateModelFromFile(_T("MODEL/Boomerang/boomerang_v2.X"));
 	_model->SetScale(1.0f + power);
@@ -42,8 +42,8 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2, fl
 	_rotatespeed = 0.0f;
 
 	_point[0] = start;
-	_point[1] = control1;
-	_point[2] = control2;
+	_point[1] = control1 + stick[stick.size() - 2];
+	_point[2] = control2 + stick[stick.size() - 1];
 
 	_angle = Vector3_Zero;
 
@@ -60,10 +60,10 @@ int Boomerang::Update(Vector3 playerposition, GamePadState pad)
 	}
 
 	if (pad.Y2 != 0.0f || pad.X3 != 0.0f) {
-		_point[1].x += pad.Y2 * 0.00001;
-		_point[2].x += pad.Y2 * 0.00001;
-		_point[1].z += pad.X3 * -0.00001;
-		_point[2].z += pad.X3 * -0.00001;
+		_point[1].x += pad.Y2 * 0.000005;
+		_point[2].x += pad.Y2 * 0.000005;
+		_point[1].z += pad.X3 * -0.00005;
+		_point[2].z += pad.X3 * -0.00005;
 	}
 	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 0.0f, 0.0f));
 	_model->SetPosition(Move(playerposition));

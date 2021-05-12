@@ -39,7 +39,7 @@ protected:
     enum { LIVING, DEATH };
 private:
     enum {
-        DAMAGE_STOP_FRAME = 30, AUTODEADTIME = 970
+        DAMAGE_STOP_FRAME = 30, AUTODEADTIME = INT_MAX
     };
     bool IsDead();
     int _destroy_time = 0;
