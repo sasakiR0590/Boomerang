@@ -34,6 +34,7 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2, fl
 
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetScale(0.1f + power);
+	_collision->SetScale(_collision->GetScale() * 5);
 	_collision->SetMaterial(mat);
 
 	_addspeed    = speed;
@@ -49,12 +50,21 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2, fl
 	return true;
 }
 
-int Boomerang::Update(Vector3 playerposition)
+int Boomerang::Update(Vector3 playerposition, GamePadState pad)
 {
 
 	if (_speed >= 0.5f && Vector3_Distance(_model->GetPosition(), playerposition) <= 1)
+	{
+		_model->SetPosition(Vector3_Zero);
 		return 1;
+	}
 
+	if (pad.Y2 != 0.0f || pad.X3 != 0.0f) {
+		_point[1].x += pad.Y2 * 0.00001;
+		_point[2].x += pad.Y2 * 0.00001;
+		_point[1].z += pad.X3 * -0.00001;
+		_point[2].z += pad.X3 * -0.00001;
+	}
 	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 0.0f, 0.0f));
 	_model->SetPosition(Move(playerposition));
 

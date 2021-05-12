@@ -120,7 +120,7 @@ int PlayerManager::Update()
 
 	if (_shootstate)
 	{
-		if (_boomerang.Update(_model->GetPosition()) == 1)
+		if (_boomerang.Update(_model->GetPosition(),pad) == 1)
 		{
 			_power = 0.0f;
 			_boomerang_adddistance = 1.0f;
