@@ -25,7 +25,6 @@ int HomingEnemy::Update(PlayerManager* player_manager)
 		return EnemyBase::DEATH;
 	}
 
-
 	_collision->SetPosition(_model->GetPosition());
 	_position  = _model->GetPosition();
 
