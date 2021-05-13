@@ -52,11 +52,7 @@ int HomingEnemy::Update(PlayerManager* player_manager)
 
 	_animestate = ANIMESTATE::RUN;
 
-	if (destroy_time < 960)
-		destroy_time++;
-
-	if (_hp <= 0 || floor_area_x || floor_area_z || destroy_time > 960) {
-		destroy_time = 0;
+	if (_hp <= 0 || floor_area_x || floor_area_z) {
 		return EnemyBase::DEATH;
 	}
 
@@ -93,7 +89,7 @@ void HomingEnemy::Rotate() {
 void HomingEnemy::ChangeAnimation() {
 	auto index = _oldanimestate;
 
-	_animation_count += GameTimer.GetElapsedSecond() * 2;
+	_animation_count += GameTimer.GetElapsedSecond() * 2.0;
 
 	//全てのアニメーションの停止
 	for (int i = 0; i < ANIMESTATE::ALLTYPE; ++i) {

@@ -7,23 +7,26 @@ class EnemyBase {
 public:
     EnemyBase::EnemyBase();
     EnemyBase::~EnemyBase();
-    virtual bool Initialize(Vector3 position, Vector3 speed, int hp) { return true; };
+    virtual bool Initialize(Vector3 position, Vector3 speed, int hp);
     virtual int  Update(PlayerManager* playermanager);
     virtual void Draw()       {};
     MODEL GetCollision()      { return _collision; }
     Vector3 GetPosition()     { return _position; }
     void Damage();
-    bool IsDamage();
     virtual int AutoDead();
 protected:
     virtual void ChangeAnimation() = 0;
-
+    bool IsDamage();
     Vector3 _position;
     Vector3 _angle;
     Vector3 _speed;
+    Vector3 player_pos;
     int     _hp;
     MODEL   _collision;
     ANIMATIONMODEL   _model;
+
+    SimpleShape shape;
+    Material    mtrl;
 
     int     _animestate = 0;
     int     _oldanimestate = 0;

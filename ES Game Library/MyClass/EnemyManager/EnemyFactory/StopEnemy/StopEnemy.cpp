@@ -14,21 +14,26 @@ bool StopEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 	SimpleShape shape;
 	shape.Type = Shape_Box;
 
-	shape.Width  = 1;
+	shape.Width = 1;
 	shape.Height = 1;
 	shape.Length = 1;
 
 	Material mtrl;
-	mtrl.Diffuse  = Color(1.0f, 1.0f, 1.0f);
-	mtrl.Ambient  = Color(1.0f, 1.0f, 1.0f);
+	mtrl.Diffuse = Color(1.0f, 1.0f, 1.0f);
+	mtrl.Ambient = Color(1.0f, 1.0f, 1.0f);
 	mtrl.Specular = Color(1.0f, 1.0f, 1.0f);
 
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetScale(1);
 	_collision->SetMaterial(mtrl);
-	_position =  position;
+	_position = position;
 	_model->SetPosition(_position);
+	_model->SetRotation(Vector3_Zero);
+
 	_hp = hp;
+	_speed.z = speed.z;
+
+	player_pos = Vector3_Zero;
 	return true;
 }
 
@@ -56,7 +61,7 @@ void StopEnemy::Draw()
 void StopEnemy::ChangeAnimation() {
 	auto index = _oldanimestate;
 
-	_animation_count += GameTimer.GetElapsedSecond() * 2;
+	_animation_count += GameTimer.GetElapsedSecond() * 2.0;
 
 	for (int i = 0; i < ANIMESTATE::ALLTYPE; ++i) {
 		_model->SetTrackEnable(i, FALSE);

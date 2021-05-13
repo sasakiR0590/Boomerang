@@ -15,17 +15,17 @@ bool DistHomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
 	SimpleShape shape;
 	shape.Type = Shape_Box;
 
-	shape.Width  = 1;
+	shape.Width = 1;
 	shape.Height = 1;
 	shape.Length = 1;
 
 	Material mtrl;
-	mtrl.Diffuse  = Color(1.0f, 1.0f, 1.0f);
-	mtrl.Ambient  = Color(1.0f, 1.0f, 1.0f);
+	mtrl.Diffuse = Color(1.0f, 1.0f, 1.0f);
+	mtrl.Ambient = Color(1.0f, 1.0f, 1.0f);
 	mtrl.Specular = Color(1.0f, 1.0f, 1.0f);
 
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
-	_collision->SetScale(0.7f);
+	_collision->SetScale(1);
 	_collision->SetMaterial(mtrl);
 	_position = position;
 	_model->SetPosition(_position);
@@ -59,11 +59,7 @@ int DistHomingEnemy::Update(PlayerManager* player_manager)
 	else
 		homing_flag = false;
 
-	if (destroy_time < 960)
-		destroy_time++;
-
-	if (_hp <= 0 || floor_area_x  || floor_area_z || destroy_time > 960) {
-		destroy_time = 0;
+	if (_hp <= 0 || floor_area_x  || floor_area_z) {
 		return EnemyBase::DEATH;
 	}
 
@@ -106,7 +102,7 @@ void DistHomingEnemy::Rotate() {
 void DistHomingEnemy::ChangeAnimation() {
 	auto index = _oldanimestate;
 
-	_animation_count += GameTimer.GetElapsedSecond() * 2;
+	_animation_count += GameTimer.GetElapsedSecond() * 2.0;
 
 	//全てのアニメーションの停止
 	for (int i = 0; i < ANIMESTATE::ALLTYPE; ++i) {

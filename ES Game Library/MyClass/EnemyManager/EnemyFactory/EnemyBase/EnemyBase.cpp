@@ -8,6 +8,9 @@ EnemyBase::EnemyBase()
 EnemyBase::~EnemyBase()
 {
 }
+bool EnemyBase::Initialize(Vector3 position, Vector3 speed, int hp) {
+	return true;
+}
 
 int EnemyBase::Update(PlayerManager* playermanager) {
 	IsDamage();
