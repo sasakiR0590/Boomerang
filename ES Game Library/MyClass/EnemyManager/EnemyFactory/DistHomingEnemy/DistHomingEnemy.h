@@ -6,9 +6,8 @@ class DistHomingEnemy : public EnemyBase{
 public:
     DistHomingEnemy::DistHomingEnemy();
     DistHomingEnemy::~DistHomingEnemy();
-    bool   Initialize(Vector3 position, Vector3 speed, int hp) override;
     int    Update(PlayerManager* player_manager) override;
-    void   Draw() override;
+    void   Draw();
 private:
     void    Move();
     void    Rotate();

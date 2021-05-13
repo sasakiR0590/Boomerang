@@ -33,7 +33,7 @@ bool EnemyManager::Initialize()
 int EnemyManager::Update(PlayerManager* playermanager)
 {
 	_playermanager = playermanager;
-	if(_frame < 60)
+	if(_frame < GAME_FRAME)
 	   _frame++;
 	else {
 		_frame = 0;
@@ -48,7 +48,7 @@ int EnemyManager::Update(PlayerManager* playermanager)
 	auto itr = _enemy.begin();
 	while (itr != _enemy.end()) {
 
-		//Updateでreturnされた値 0・・生きてる 1・・消去
+		//Updateでreturnされた値 LIVING・・生きてる DEATH・・消去
 			if ((*itr)->Update(_playermanager) == LIVING && (*itr)->AutoDead() == LIVING)
 				itr++;
 			else

@@ -7,9 +7,8 @@ class NormalEnemy : public EnemyBase{
 public:
     NormalEnemy:: NormalEnemy();
     NormalEnemy::~NormalEnemy();
-    bool   Initialize(Vector3 position, Vector3 speed, int hp) override;
     int    Update(PlayerManager* player_manager) override;
-    void   Draw() override;
+    void   Draw();
 private:
     void    Move();
     void    ChangeAnimation() override;

@@ -8,40 +8,10 @@ DistHomingEnemy::~DistHomingEnemy()
 {
 }
 
-bool DistHomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
-{
-	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemies/DistHomingEnemy/enemy_c3.X"));
-
-	SimpleShape shape;
-	shape.Type = Shape_Box;
-
-	shape.Width = 1;
-	shape.Height = 1;
-	shape.Length = 1;
-
-	Material mtrl;
-	mtrl.Diffuse = Color(1.0f, 1.0f, 1.0f);
-	mtrl.Ambient = Color(1.0f, 1.0f, 1.0f);
-	mtrl.Specular = Color(1.0f, 1.0f, 1.0f);
-
-	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
-	_collision->SetScale(1);
-	_collision->SetMaterial(mtrl);
-	_position = position;
-	_model->SetPosition(_position);
-	_model->SetRotation(Vector3_Zero);
-
-	_hp = hp;
-	_speed.z = speed.z;
-
-	player_pos = Vector3_Zero;
-	return true;
-}
-
 int DistHomingEnemy::Update(PlayerManager* player_manager)
 {
-	 float floor_area_x = _position.x > 8.5f || _position.x < -8.5f;
-	 float floor_area_z = _position.z < -8.5f;
+	 float floor_area_x = _position.x >  _homing_area || _position.x < -_homing_area;
+	 float floor_area_z = _position.z < -_homing_area;
 
 	player_pos = player_manager->PlayerGetPosition();
 
@@ -72,10 +42,6 @@ int DistHomingEnemy::Update(PlayerManager* player_manager)
 void DistHomingEnemy::Draw()
 {
 	ChangeAnimation();
-	_model->Rotation(0.0f, 180.0f, 0.0f);
-	_model->Draw();
-	_model->Rotation(0.0f, 180.0f, 0.0f);
-	//_collision->Draw();
 }
 
 void DistHomingEnemy::Move() {

@@ -7,9 +7,9 @@ class EnemyBase {
 public:
     EnemyBase::EnemyBase();
     EnemyBase::~EnemyBase();
-    virtual bool Initialize(Vector3 position, Vector3 speed, int hp);
+    virtual bool Initialize(string _model_name, Vector3 position, Vector3 speed, int hp);
     virtual int  Update(PlayerManager* playermanager);
-    virtual void Draw()       {};
+    void Draw();
     MODEL GetCollision()      { return _collision; }
     Vector3 GetPosition()     { return _position; }
     void Damage();
@@ -25,13 +25,11 @@ protected:
     MODEL   _collision;
     ANIMATIONMODEL   _model;
 
-    SimpleShape shape;
-    Material    mtrl;
-
     int     _animestate = 0;
     int     _oldanimestate = 0;
     float   _animation_count = 0.0f;
     float   _rotation = 0.0f;
+    const float  _homing_area = 8.5f;
 
     enum  ANIMESTATE
     {

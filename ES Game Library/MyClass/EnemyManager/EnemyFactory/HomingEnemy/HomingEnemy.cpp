@@ -7,41 +7,10 @@ HomingEnemy::HomingEnemy()
 HomingEnemy::~HomingEnemy()
 {
 }
-
-bool HomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
-{
-	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemies/HomingEnemy/enemy_Eye.X"));
-
-	SimpleShape shape;
-	shape.Type = Shape_Box;
-
-	shape.Width = 1;
-	shape.Height = 1;
-	shape.Length = 1;
-
-	Material mtrl;
-	mtrl.Diffuse = Color(1.0f, 1.0f, 1.0f);
-	mtrl.Ambient = Color(1.0f, 1.0f, 1.0f);
-	mtrl.Specular = Color(1.0f, 1.0f, 1.0f);
-
-	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
-	_collision->SetScale(1);
-	_collision->SetMaterial(mtrl);
-	_position = position;
-	_model->SetPosition(_position);
-	_model->SetRotation(Vector3_Zero);
-
-	_hp = hp;
-	_speed.z = speed.z;
-
-	player_pos = Vector3_Zero;
-	return true;
-}
-
 int HomingEnemy::Update(PlayerManager* player_manager)
 {
-	float floor_area_x = _position.x > 8.5f || _position.x < -8.5f;
-	float floor_area_z = _position.z < -8.5f;
+	float floor_area_x = _position.x >  _homing_area || _position.x < -_homing_area;
+	float floor_area_z = _position.z < -_homing_area;
 
 	player_pos = player_manager->PlayerGetPosition();
 
@@ -57,7 +26,7 @@ int HomingEnemy::Update(PlayerManager* player_manager)
 	}
 
 
-	_collision->SetPosition(_model->GetPosition() + Vector3(0, 0, 0));
+	_collision->SetPosition(_model->GetPosition());
 	_position  = _model->GetPosition();
 
 	return EnemyBase::LIVING;
@@ -66,8 +35,6 @@ int HomingEnemy::Update(PlayerManager* player_manager)
 void HomingEnemy::Draw()
 {
 	ChangeAnimation();
-	_model->Draw();
-	//_collision->Draw();
 }
 
 void HomingEnemy::Move() {

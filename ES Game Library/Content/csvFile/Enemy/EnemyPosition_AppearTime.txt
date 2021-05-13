@@ -1,18 +1,19 @@
 (move 動く敵  stop 動かない敵 homing ホーミングする敵 dist_homing 一定座標でホーミングする敵)
 (x,z座標 最小 -8.5 ～ 最大 8.5内で設定)
   敵の種類    x座標 ｙ座標  ｚ座標   出現時間(秒)
-    move        -3      0     8.5       2.5
-    stop         5     0     0       2.5
-    stop         3     0     0       2.5
-    stop         1     0     0       2.5
-    stop         -1     0     0       2.5
-    stop         -3     0     0       2.5
-    stop         -5     0     0       2.5
-   homing        5      0     8.5        5
- dist_homing    -5      0     8.5        5
-    move         4      0     8.5       7.5
-    stop         3      0      3        7.5
-    move        -7      0     8.5      12.5
-    stop       -1.5     0      2       12.5
-    move         8      0     8.5      17.5
-    stop        -7      0     -7       17.5
+    move        -3      0    8.5       2.5
+    stop         5      0     0        2.5
+ dist_homing     0      0    8.5       2.5
+    stop         3      0     0        2.5
+    stop         1      0     0        2.5
+    stop         -1     0     0        2.5
+    stop         -3     0     0        2.5
+    stop         -5     0     0        2.5
+   homing        5      0    8.5        5
+ dist_homing    -5      0    8.5        5
+    move         4      0    8.5       7.5
+    stop         3      0     3        7.5
+    move        -7      0    8.5      12.5
+    stop       -1.5     0     2       12.5
+    move         8      0    8.5      17.5
+    stop        -7      0    -7       17.5
