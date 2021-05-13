@@ -29,7 +29,13 @@ bool EnemyBase::Initialize(string _model_name,Vector3 position, Vector3 speed, i
 
 	_position = position;
 	_model->SetPosition(_position);
+
+	if (_model_name == "MODEL/Enemies/DistHomingEnemy/enemy_c3_v3.X")
+		_model->SetRotation(0, 180.0f, 0.0f);
+	else
 	_model->SetRotation(Vector3_Zero);
+
+	dist_homing = _model_name;
 
 	_hp = hp;
 	_speed.z = speed.z;
