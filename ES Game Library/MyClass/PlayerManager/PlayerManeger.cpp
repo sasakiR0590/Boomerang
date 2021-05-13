@@ -219,15 +219,18 @@ void PlayerManager::PadMove(GamePadState pad)
 	}
 	auto old_pos = _model->GetPosition();
 
-	float slow = 1;
-	if (_animstate == AnimationState::STANCE)
-		slow = 0.5;
-
-	if (pad.X != 0.0f || pad.Y != 0.0f) {
-
-		PlayerRotate(pad);
-		_model->SetRotation(0.0f, _rotation, 0.0f);
-		_model->Move(0.0f, 0.0f, _playermove * slow);
+	if (_animstate != AnimationState::STANCE) {
+		if (pad.X != 0.0f || pad.Y != 0.0f && _animstate != AnimationState::DAMAGE) {
+			MovePlayerRotate(pad);
+			_model->SetRotation(0.0f, _rotation, 0.0f);
+			_model->Move(0.0f, 0.0f, _playermove);
+		}
+	}
+	else {
+		if (pad.X != 0.0f || pad.Y != 0.0f && _animstate != AnimationState::DAMAGE) {
+			MovePlayerRotate(pad);
+			_model->SetRotation(0.0f, _rotation, 0.0f);
+		}
 	}
 
 	if (_animstate == AnimationState::SHOOT||_animstate == AnimationState::STANCE)
@@ -295,7 +298,7 @@ void  PlayerManager::Damage()
 		_hp -= 1;
 }
 
-void PlayerManager::PlayerRotate(GamePadState pad)
+void PlayerManager::MovePlayerRotate(GamePadState pad)
 {
 	_rotate_direction = MathHelper_Atan2(pad.Y, pad.X) + 90.0f;
 	Vector3 target_foward(MathHelper_Cos(_rotate_direction), 0.0f, MathHelper_Sin(_rotate_direction));
