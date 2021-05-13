@@ -27,4 +27,6 @@ private:
 	//!動かない敵キャラのステータス
 	Vector3 _stopenemy_speed;
 	int     _stopenemy_hp;
+
+	std::vector<string> _enemytag;
 };

@@ -13,6 +13,10 @@ EnemyFactory::EnemyFactory() {
 	_stopenemy_speed.y = LoadCSV::Instance()._status.at("#“®‚­•ûŒü(YÀ•W)");
 	_stopenemy_speed.z = LoadCSV::Instance()._status.at("#“®‚­•ûŒü(ZÀ•W)");
 	_stopenemy_hp      = LoadCSV::Instance()._status.at("#~‚Ü‚Á‚Ä‚¢‚é“G‚ÌHP");
+	_enemytag.push_back("move");
+	_enemytag.push_back("stop");
+	_enemytag.push_back("homing");
+	_enemytag.push_back("dist_homing");
 }
 
 EnemyFactory::~EnemyFactory() {
@@ -36,11 +40,11 @@ EnemyBase* EnemyFactory::CreateProduct(string tag, Vector3 _position) {
 }
 
 Vector3 EnemyFactory::SetSpeed(string tag){
-	if (tag == "move")        { _speed = _moveenemy_speed; }
-	if (tag == "stop")        { _speed = _stopenemy_speed; }
-	if (tag == "homing")      { _speed = _moveenemy_speed; }
-	if (tag == "dist_homing") { _speed = _moveenemy_speed; }
-
+	Vector3 speeds[] = { _moveenemy_speed ,_stopenemy_speed ,_moveenemy_speed ,_moveenemy_speed };
+	for (int i = 0; i < _enemytag.size(); i++)
+	{
+		if (tag == _enemytag[i]){ _speed = speeds[i]; }
+	}
 	return _speed;
 }
 
