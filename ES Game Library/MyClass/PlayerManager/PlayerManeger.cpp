@@ -93,21 +93,24 @@ int PlayerManager::Update()
 	PadMove(pad);
 
 	if ((key.IsKeyDown(Keys_Space) || pad.Buttons[3]) && _animstate != AnimationState::SHOOT) {
-
-		switch (_attack_pattern)
-		{
-		case 0:
-			BoomerangSizeUp();
-		    break;
-		case 1:
-			BoomerangDistanceUp();
-	        break;
-		case 2:
-			BoomerangSpeedUp();
-		    break;
-		}
+		_animstate = AnimationState::STANCE;
+		//switch (_attack_pattern)
+		//{
+		//case 0:
+		//	BoomerangSizeUp();
+		//    break;
+		//case 1:
+		//	BoomerangDistanceUp();
+	 //       break;
+		//case 2:
+		//	BoomerangSpeedUp();
+		//    break;
+		//}
 	}
-
+	if (pad.Y2 != 0.0f || pad.X3 != 0.0f)
+	{
+		padstick.push_back(Vector3(pad.Y2 * 0.0002, 0, -pad.X3 * 0.0002));
+	}
 	if (pad_buffer.IsPressed(GamePad_Button2) && !pad.Buttons[3] && _animstate != AnimationState::SHOOT)
 	{
 		ChangeAttackPattern();
@@ -120,7 +123,7 @@ int PlayerManager::Update()
 
 	if (_shootstate)
 	{
-		if (_boomerang.Update(_model->GetPosition()) == 1)
+		if (_boomerang.Update(_model->GetPosition(),pad) == 1)
 		{
 			_power = 0.0f;
 			_boomerang_adddistance = 1.0f;
@@ -194,7 +197,7 @@ void PlayerManager::KeyboardMove(KeyboardState key)
 		_collision->Rotation(0.0f, -1.0f, 0.0f);
 	}
 
-	if (_animstate == AnimationState::SHOOT)
+	if (_animstate == AnimationState::SHOOT || _animstate == AnimationState::STANCE)
 	{
 		return;
 	}
@@ -210,16 +213,24 @@ void PlayerManager::KeyboardMove(KeyboardState key)
 
 void PlayerManager::PadMove(GamePadState pad)
 {
+	if (_animstate == AnimationState::SHOOT)
+	{
+		return;
+	}
 	auto old_pos = _model->GetPosition();
+
+	float slow = 1;
+	if (_animstate == AnimationState::STANCE)
+		slow = 0.5;
 
 	if (pad.X != 0.0f || pad.Y != 0.0f) {
 
 		PlayerRotate(pad);
 		_model->SetRotation(0.0f, _rotation, 0.0f);
-		_model->Move(0.0f, 0.0f, _playermove);
+		_model->Move(0.0f, 0.0f, _playermove * slow);
 	}
 
-	if (_animstate == AnimationState::SHOOT)
+	if (_animstate == AnimationState::SHOOT||_animstate == AnimationState::STANCE)
 	{
 		return;
 	}
@@ -303,7 +314,7 @@ void PlayerManager::FlyPoint()
 	Vector3 _control_position2 = _model->GetPosition() + _model->GetFrontVector() * _frontdistance * _boomerang_adddistance
 		+ (-_model->GetRightVector()) * _sidedistance * _boomerang_adddistance;
 
-	_boomerang.Initialize(_start_position, _control_position1, _control_position2, _power, _boomerang_addspeed);
+	_boomerang.Initialize(_start_position, _control_position1, _control_position2, _power, _boomerang_addspeed,padstick);
 }
 
 Vector3 PlayerManager::PlayerGetPosition()

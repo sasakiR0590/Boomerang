@@ -7,8 +7,8 @@ public:
     Boomerang::Boomerang();
     Boomerang::~Boomerang();
 
-    bool    Initialize(Vector3 start, Vector3 control1, Vector3 control2, float power, float speed);
-    int     Update(Vector3 playerposition);
+    bool    Initialize(Vector3 start, Vector3 control1, Vector3 control2, float power, float speed,std::vector<Vector3> stick);
+    int     Update(Vector3 playerposition,GamePadState pad);
     void    Draw();
 
     MODEL GetCollision() { return _collision; }
