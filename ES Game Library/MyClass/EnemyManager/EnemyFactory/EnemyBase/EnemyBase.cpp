@@ -1,6 +1,6 @@
 #include"EnemyBase.h"
 #include "../../EnemyManeger.h"
-
+#include "../../../Data/MyAlgorithm.h"
 EnemyBase::EnemyBase()
 {
 }
@@ -8,10 +8,47 @@ EnemyBase::EnemyBase()
 EnemyBase::~EnemyBase()
 {
 }
+bool EnemyBase::Initialize(string _model_name,Vector3 position, Vector3 speed, int hp) {
+
+	_model = GraphicsDevice.CreateAnimationModelFromFile(ConvertStringFileName(_model_name));
+	SimpleShape shape;
+	shape.Type = Shape_Box;
+
+	shape.Width = 1;
+	shape.Height = 1;
+	shape.Length = 1;
+
+	Material mtrl;
+	mtrl.Diffuse = Color(1.0f, 1.0f, 1.0f);
+	mtrl.Ambient = Color(1.0f, 1.0f, 1.0f);
+	mtrl.Specular = Color(1.0f, 1.0f, 1.0f);
+
+	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
+	_collision->SetScale(1);
+	_collision->SetMaterial(mtrl);
+
+	_position = position;
+	_model->SetPosition(_position);
+
+	_model->SetRotation(Vector3_Zero);
+
+	dist_homing = _model_name;
+
+	_hp = hp;
+	_speed.z = speed.z;
+
+	player_pos = Vector3_Zero;
+	return true;
+}
 
 int EnemyBase::Update(PlayerManager* playermanager) {
 	IsDamage();
 	return 0;
+}
+void EnemyBase::Draw() {
+	if (dist_homing == "MODEL/Enemies/DistHomingEnemy/enemy_c3_v3.X")
+		_model->Rotation(0, 180.0f, 0.0f);
+	_model->Draw();
 }
 
 void EnemyBase::Damage() {

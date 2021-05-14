@@ -1,5 +1,6 @@
 #include "EnemyFactory.h"
 #include <fstream>
+#include "../../Data/MyAlgorithm.h"
 
 EnemyFactory::EnemyFactory() {
 	LoadCSV::Instance().LoadStatus("csvFile/Enemy/EnemyStatus.csv");
@@ -17,6 +18,11 @@ EnemyFactory::EnemyFactory() {
 	_enemytag.push_back("stop");
 	_enemytag.push_back("homing");
 	_enemytag.push_back("dist_homing");
+
+	_enemy_model[MOVE]        = "MODEL/Enemies/Enemy/enemy_White.X";
+	_enemy_model[STOP]        = "MODEL/Enemies/StopEnemy/enemy_round.X";
+	_enemy_model[HOMING]      = "MODEL/Enemies/HomingEnemy/enemy_Eye.X";
+	_enemy_model[DIST_HOMING] = "MODEL/Enemies/DistHomingEnemy/enemy_c3_v3.X";
 }
 
 EnemyFactory::~EnemyFactory() {
@@ -25,23 +31,37 @@ EnemyFactory::~EnemyFactory() {
 
 EnemyBase* EnemyFactory::Create(string tag, Vector3 _position, PlayerManager* player_manager)
 {
+	SetModel(tag);
 	SetSpeed(tag);
 	SetHp(tag);
 	EnemyBase* enemy_factory = CreateProduct(tag, _position);
-	enemy_factory->Initialize(_position,_speed, _hp);
+	enemy_factory->Initialize(_model_name,_position,_speed, _hp);
 	return enemy_factory;
 }
 
 EnemyBase* EnemyFactory::CreateProduct(string tag, Vector3 _position) {
-	if (tag == "move")        { return new NormalEnemy; }
-	if (tag	== "stop")        { return new StopEnemy; }
-	if (tag == "homing")      { return new HomingEnemy; }
-	if (tag == "dist_homing") { return new DistHomingEnemy; }
+	EnemyBase* classes[] = { new NormalEnemy,new StopEnemy,new HomingEnemy,new DistHomingEnemy};
+
+	for (int i = 0; i < _enemytag.size(); ++i)
+	{
+		if (tag == _enemytag[i]) { _enemy = classes[i]; }
+	}
+
+	return _enemy;
+}
+
+string  EnemyFactory::SetModel(string tag) {
+	string models[] = { _enemy_model[MOVE],_enemy_model[STOP],_enemy_model[HOMING] ,_enemy_model[DIST_HOMING] };
+	for (int i = 0; i < _enemytag.size(); ++i)
+	{
+		if (tag == _enemytag[i]) { _model_name = models[i]; }
+	}
+	return _model_name;
 }
 
 Vector3 EnemyFactory::SetSpeed(string tag){
 	Vector3 speeds[] = { _moveenemy_speed ,_stopenemy_speed ,_moveenemy_speed ,_moveenemy_speed };
-	for (int i = 0; i < _enemytag.size(); i++)
+	for (int i = 0; i < _enemytag.size(); ++i)
 	{
 		if (tag == _enemytag[i]){ _speed = speeds[i]; }
 	}
@@ -49,10 +69,11 @@ Vector3 EnemyFactory::SetSpeed(string tag){
 }
 
 int EnemyFactory::SetHp(string tag) {
-	if (tag == "move")        { _hp = _moveenemy_hp; }
-	if (tag == "stop")        { _hp = _stopenemy_hp; }
-	if (tag == "homing")      { _hp = _moveenemy_hp; }
-	if (tag == "dist_homing") { _hp = _moveenemy_hp; }
+	int hps[] = { _moveenemy_hp,_stopenemy_hp,_moveenemy_hp,_moveenemy_hp };
 
+	for (int i = 0; i < _enemytag.size(); ++i)
+	{
+		if (tag == _enemytag[i]) { _hp = hps[i]; }
+	}
 	return _hp;
 }

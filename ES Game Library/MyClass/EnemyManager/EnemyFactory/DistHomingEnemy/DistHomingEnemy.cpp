@@ -8,40 +8,10 @@ DistHomingEnemy::~DistHomingEnemy()
 {
 }
 
-bool DistHomingEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
-{
-	_model		= GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemies/DistHomingEnemy/enemy_c3.X"));
-
-	SimpleShape shape;
-	shape.Type = Shape_Box;
-
-	shape.Width  = 1;
-	shape.Height = 1;
-	shape.Length = 1;
-
-	Material mtrl;
-	mtrl.Diffuse  = Color(1.0f, 1.0f, 1.0f);
-	mtrl.Ambient  = Color(1.0f, 1.0f, 1.0f);
-	mtrl.Specular = Color(1.0f, 1.0f, 1.0f);
-
-	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
-	_collision->SetScale(0.7f);
-	_collision->SetMaterial(mtrl);
-	_position = position;
-	_model->SetPosition(_position);
-	_model->SetRotation(Vector3_Zero);
-
-	_hp = hp;
-	_speed.z = speed.z;
-
-	player_pos = Vector3_Zero;
-	return true;
-}
-
 int DistHomingEnemy::Update(PlayerManager* player_manager)
 {
-	 float floor_area_x = _position.x > 8.5f || _position.x < -8.5f;
-	 float floor_area_z = _position.z < -8.5f;
+	 float floor_area_x = _position.x >  _homing_area || _position.x < -_homing_area;
+	 float floor_area_z = _position.z < -_homing_area;
 
 	player_pos = player_manager->PlayerGetPosition();
 
@@ -59,11 +29,7 @@ int DistHomingEnemy::Update(PlayerManager* player_manager)
 	else
 		homing_flag = false;
 
-	if (destroy_time < 960)
-		destroy_time++;
-
-	if (_hp <= 0 || floor_area_x  || floor_area_z || destroy_time > 960) {
-		destroy_time = 0;
+	if (_hp <= 0 || floor_area_x  || floor_area_z) {
 		return EnemyBase::DEATH;
 	}
 
@@ -76,10 +42,6 @@ int DistHomingEnemy::Update(PlayerManager* player_manager)
 void DistHomingEnemy::Draw()
 {
 	ChangeAnimation();
-	_model->Rotation(0.0f, 180.0f, 0.0f);
-	_model->Draw();
-	_model->Rotation(0.0f, 180.0f, 0.0f);
-	//_collision->Draw();
 }
 
 void DistHomingEnemy::Move() {
@@ -88,12 +50,12 @@ void DistHomingEnemy::Move() {
 		float speed = 30;
 
 		if(_position.z > player_pos.z)
-			_model->Move(0, 0, delta.z / speed);
-		else
 			_model->Move(0, 0, -delta.z / speed);
+		else
+			_model->Move(0, 0, +delta.z / speed);
 	}
 	else
-		_model->Move(0, 0, _speed.z / 4);
+		_model->Move(0, 0, - _speed.z / 4);
 	    _model->Rotation(Vector3_Zero);
 }
 
@@ -106,7 +68,7 @@ void DistHomingEnemy::Rotate() {
 void DistHomingEnemy::ChangeAnimation() {
 	auto index = _oldanimestate;
 
-	_animation_count += GameTimer.GetElapsedSecond() * 2;
+	_animation_count += GameTimer.GetElapsedSecond() * 2.0;
 
 	//全てのアニメーションの停止
 	for (int i = 0; i < ANIMESTATE::ALLTYPE; ++i) {

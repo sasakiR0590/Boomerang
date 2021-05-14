@@ -7,33 +7,6 @@ NormalEnemy::~NormalEnemy() {
 
 }
 
-bool NormalEnemy::Initialize(Vector3 position, Vector3 speed, int hp)
-{
-	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Enemies/Enemy/enemy_White.X"));
-
-	SimpleShape shape;
-	shape.Type = Shape_Box;
-
-	shape.Width  = 1;
-	shape.Height = 1;
-	shape.Length = 1;
-
-	Material mtrl;
-	mtrl.Diffuse  = Color(1.0f, 1.0f, 1.0f);
-	mtrl.Ambient  = Color(1.0f, 1.0f, 1.0f);
-	mtrl.Specular = Color(1.0f, 1.0f, 1.0f);
-
-	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
-	_collision->SetMaterial(mtrl);
-	_collision->SetScale(1);
-	_position = position;
-	_model->SetPosition(_position);
-
-	_hp = hp;
-	_speed.z = speed.z;
-	return true;
-}
-
 int NormalEnemy::Update(PlayerManager* player_manager)
 {
 	if (!EnemyBase::IsDamage())
@@ -67,7 +40,7 @@ void NormalEnemy::Move() {
 void NormalEnemy::ChangeAnimation() {
 	auto index = _oldanimestate;
 
-	_animation_count += GameTimer.GetElapsedSecond() * 2;
+	_animation_count += GameTimer.GetElapsedSecond() * 2.0;
 
 	//全てのアニメーションの停止
 	for (int i = 0; i < ANIMESTATE::ALLTYPE; ++i) {
