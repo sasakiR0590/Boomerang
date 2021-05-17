@@ -84,6 +84,7 @@ void GameMain::Draw()
 	GraphicsDevice.SetRenderState(DepthBufferFunction_Less);
 	GraphicsDevice.SetRenderState(DepthBuffer_Enable);
 
+#ifdef _DEBUG
 	SpriteBatch.Begin();
 	if (playermanager->AttackPattern() == 0) {
 		SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("サイズ拡大"));
@@ -94,6 +95,7 @@ void GameMain::Draw()
 	else if (playermanager->AttackPattern() == 2) {
 		SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("速度が上がる"));
 	}
+#endif
 
 	SpriteBatch.End();
 

@@ -113,7 +113,9 @@ int PlayerManager::Update()
 	}
 	if (pad_buffer.IsPressed(GamePad_Button2) && !pad.Buttons[3] && _animstate != AnimationState::SHOOT)
 	{
+#ifdef DEBUG
 		ChangeAttackPattern();
+#endif
 	}
 
 	if ((key_buffer.IsReleased(Keys_Space) || pad_buffer.IsReleased(GamePad_Button4)) && !_shootstate)
@@ -325,6 +327,7 @@ Vector3 PlayerManager::PlayerGetPosition()
 	return _player_position;
 }
 
+#ifdef _DEBUG
 void PlayerManager::ChangeAttackPattern()
 {
 	_attack_pattern += 1;
@@ -332,7 +335,6 @@ void PlayerManager::ChangeAttackPattern()
 		_attack_pattern = 0;
 }
 
-#ifdef _DEBUG
 int PlayerManager::AttackPattern()
 {
 	return _attack_pattern;

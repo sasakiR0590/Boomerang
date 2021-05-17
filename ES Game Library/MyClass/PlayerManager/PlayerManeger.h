@@ -20,7 +20,6 @@ public:
     void Shoot();
     void ChangeAnimation();
     void OnCollisionEnter();
-    int AttackPattern();
     Vector3 PlayerGetPosition();
     enum AnimationState
     {
@@ -38,12 +37,13 @@ private:
 
     void    FlyPoint();
     void    MovePlayerRotate(GamePadState);
-
+#ifdef _DEBUG
+    int AttackPattern();
     void    ChangeAttackPattern();
     void    BoomerangSizeUp();
     void    BoomerangSpeedUp();
     void    BoomerangDistanceUp();
-
+#endif
     MODEL           _collision;
     ANIMATIONMODEL  _model;
 
