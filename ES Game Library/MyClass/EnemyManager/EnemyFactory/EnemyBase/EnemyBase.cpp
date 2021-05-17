@@ -32,8 +32,6 @@ bool EnemyBase::Initialize(string _model_name,Vector3 position, Vector3 speed, i
 
 	_model->SetRotation(Vector3_Zero);
 
-	dist_homing = _model_name;
-
 	_hp = hp;
 	_speed.z = speed.z;
 
@@ -46,8 +44,6 @@ int EnemyBase::Update(PlayerManager* playermanager) {
 	return 0;
 }
 void EnemyBase::Draw() {
-	if (dist_homing == "MODEL/Enemies/DistHomingEnemy/enemy_c3_v3.X")
-		_model->Rotation(0, 180.0f, 0.0f);
 	_model->Draw();
 }
 

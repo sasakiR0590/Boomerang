@@ -47,13 +47,13 @@ int EnemyManager::Update(PlayerManager* playermanager)
 
 	auto itr = _enemy.begin();
 	while (itr != _enemy.end()) {
-
 		//Updateでreturnされた値 LIVING・・生きてる DEATH・・消去
 			if ((*itr)->Update(_playermanager) == LIVING && (*itr)->AutoDead() == LIVING)
 				itr++;
 			else
-			{//要素数が 1 なら消去
-				//itrの値を変更して値を一つ進める
+			{
+				//要素数が DEATH なら消去
+				//itrの値の場所を削除しその場所から監視再開
 				EffectManager::Instance().Create(EffectTag::EXPLOSION, (*itr)->GetPosition());
 				itr = _enemy.erase(itr);
 			}

@@ -50,12 +50,12 @@ void DistHomingEnemy::Move() {
 		float speed = 30;
 
 		if(_position.z > player_pos.z)
-			_model->Move(0, 0, -delta.z / speed);
+			_model->Move(0, 0,   delta.z / speed);
 		else
-			_model->Move(0, 0, +delta.z / speed);
+			_model->Move(0, 0, - delta.z / speed);
 	}
 	else
-		_model->Move(0, 0, - _speed.z / 4);
+		_model->Move(0, 0,_speed.z / 4);
 	    _model->Rotation(Vector3_Zero);
 }
 
