@@ -46,5 +46,4 @@ private:
     int _destroy_time = 0;
     bool  damage_flag = false;
     float damage_frame = 0.0f;
-    string dist_homing;
 };
