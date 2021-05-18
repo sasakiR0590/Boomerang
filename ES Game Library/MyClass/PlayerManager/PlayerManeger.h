@@ -30,13 +30,6 @@ public:
         DAMAGE,
         ALLTYPE
     };
-private:
-    void    KeyboardMove(KeyboardState);
-    void    PadMove(GamePadState);
-    void    Damage();
-
-    void    FlyPoint();
-    void    MovePlayerRotate(GamePadState);
 #ifdef _DEBUG
     int AttackPattern();
     void    ChangeAttackPattern();
@@ -44,6 +37,13 @@ private:
     void    BoomerangSpeedUp();
     void    BoomerangDistanceUp();
 #endif
+private:
+    void    KeyboardMove(KeyboardState);
+    void    PadMove(GamePadState);
+    void    Damage();
+
+    void    FlyPoint();
+    void    MovePlayerRotate(GamePadState);
     MODEL           _collision;
     ANIMATIONMODEL  _model;
 
