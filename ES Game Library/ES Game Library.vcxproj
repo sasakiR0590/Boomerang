@@ -178,6 +178,9 @@
     <ClCompile Include="MyClass\ParticleSystem\Particle.cpp" />
     <ClCompile Include="MyClass\PlayerManager\Boomerang\Boomerang.cpp" />
     <ClCompile Include="MyClass\PlayerManager\PlayerManeger.cpp" />
+    <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Tittle\TitleManager.cpp" />
+    <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Tittle\TitleScene\TitleScene.cpp" />
+    <ClCompile Include="MyClass\SceneManager\SceneManager.cpp" />
     <ClCompile Include="MyClass\TimeManager\TimeManager.cpp" />
     <ClCompile Include="MyClass\UI\UI.cpp" />
     <ClCompile Include="StdAfx.cpp">
@@ -249,6 +252,10 @@
     <ClInclude Include="MyClass\ParticleSystem\Particle.h" />
     <ClInclude Include="MyClass\PlayerManager\Boomerang\Boomerang.h" />
     <ClInclude Include="MyClass\PlayerManager\PlayerManeger.h" />
+    <ClInclude Include="MyClass\SceneManager\BaseScene\BaseScene.h" />
+    <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Tittle\TitleManager.h" />
+    <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Tittle\TitleScene\TitleScene.h" />
+    <ClInclude Include="MyClass\SceneManager\SceneManager.h" />
     <ClInclude Include="MyClass\TimeManager\TimeManager.h" />
     <ClInclude Include="MyClass\UI\UI.h" />
     <ClInclude Include="StdAfx.h" />

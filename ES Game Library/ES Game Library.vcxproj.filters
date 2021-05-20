@@ -163,8 +163,20 @@
     <Filter Include="MyClass\TimeManager">
       <UniqueIdentifier>{beadb441-6431-4d2a-8f13-256fba721171}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\SceneManager">
+      <UniqueIdentifier>{77f263e9-0392-4a16-858e-d397689425e0}</UniqueIdentifier>
+    </Filter>
     <Filter Include="MyClass\UI">
-      <UniqueIdentifier>{f9c49750-8438-464d-88ed-a262935c7d33}</UniqueIdentifier>
+      <UniqueIdentifier>{309ae100-165c-41c4-a515-b5f8dcf6a941}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\SceneManager\BaseScene">
+      <UniqueIdentifier>{72902972-ef7f-4afc-9537-8ecb186e5e63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\SceneManager\BaseScene\Title">
+      <UniqueIdentifier>{509e21c7-c4df-4185-97f3-b1185956f466}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\SceneManager\BaseScene\Title\TitleScene">
+      <UniqueIdentifier>{f9a2977e-2709-4bbe-a419-ba4d2096d121}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -355,8 +367,17 @@
     <ClCompile Include="MyClass\TimeManager\TimeManager.cpp">
       <Filter>MyClass\TimeManager</Filter>
     </ClCompile>
+    <ClCompile Include="MyClass\SceneManager\SceneManager.cpp">
+      <Filter>MyClass\SceneManager</Filter>
+    </ClCompile>
     <ClCompile Include="MyClass\UI\UI.cpp">
       <Filter>MyClass\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Tittle\TitleManager.cpp">
+      <Filter>MyClass\SceneManager\BaseScene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Tittle\TitleScene\TitleScene.cpp">
+      <Filter>MyClass\SceneManager\BaseScene\Title\TitleScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -565,8 +586,20 @@
     <ClInclude Include="MyClass\TimeManager\TimeManager.h">
       <Filter>MyClass\TimeManager</Filter>
     </ClInclude>
+    <ClInclude Include="MyClass\SceneManager\SceneManager.h">
+      <Filter>MyClass\SceneManager</Filter>
+    </ClInclude>
     <ClInclude Include="MyClass\UI\UI.h">
       <Filter>MyClass\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\SceneManager\BaseScene\BaseScene.h">
+      <Filter>MyClass\SceneManager\BaseScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Tittle\TitleManager.h">
+      <Filter>MyClass\SceneManager\BaseScene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Tittle\TitleScene\TitleScene.h">
+      <Filter>MyClass\SceneManager\BaseScene\Title\TitleScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
