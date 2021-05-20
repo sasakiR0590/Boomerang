@@ -15,7 +15,7 @@ int StopEnemy::Update(PlayerManager* player_manager)
 		return EnemyBase::DEATH;
 	}
 
-	_collision->SetPosition(_model->GetPosition() + Vector3(0, 0, 0));
+	_collision->SetPosition(_model->GetPosition());
 	_position = _model->GetPosition();
 
 	return EnemyBase::LIVING;

@@ -163,6 +163,9 @@
     <Filter Include="MyClass\TimeManager">
       <UniqueIdentifier>{beadb441-6431-4d2a-8f13-256fba721171}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\UI">
+      <UniqueIdentifier>{f9c49750-8438-464d-88ed-a262935c7d33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -351,6 +354,9 @@
     </ClCompile>
     <ClCompile Include="MyClass\TimeManager\TimeManager.cpp">
       <Filter>MyClass\TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\UI\UI.cpp">
+      <Filter>MyClass\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -558,6 +564,9 @@
     </ClInclude>
     <ClInclude Include="MyClass\TimeManager\TimeManager.h">
       <Filter>MyClass\TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\UI\UI.h">
+      <Filter>MyClass\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

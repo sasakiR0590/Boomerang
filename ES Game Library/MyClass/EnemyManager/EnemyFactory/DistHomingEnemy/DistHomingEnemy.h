@@ -15,5 +15,5 @@ private:
 
     Vector3 player_pos;
     bool homing_flag = false;
-
+    enum { DIST_POS = 7 };
 };

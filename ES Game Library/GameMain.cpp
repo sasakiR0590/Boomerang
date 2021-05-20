@@ -15,6 +15,7 @@ bool GameMain::Initialize()
 	playermanager->Initialize();
 	enemymanager->Initialize();
 	fieldManeger->Initialize();
+	ui.Initialize();
 	EffectManager::Instance().Initialize();
 	TimeManager::Instance().Initialize();
 	player = playermanager->GetModel();
@@ -61,6 +62,7 @@ int GameMain::Update()
 	EffectManager::Instance().Update();
 	TimeManager::Instance().Update();
 	Effekseer.Update();
+	ui.Update();
 	return 0;
 }
 
@@ -100,6 +102,7 @@ void GameMain::Draw()
 	}
 #endif
 	SpriteBatch.DrawString(DefaultFont, Vector2(200, 0), Color(255, 255, 255), _T("%f"), TimeManager::Instance().GetTimeLeft());
+	ui.Draw();
 	SpriteBatch.End();
 
 	GraphicsDevice.EndScene();
