@@ -1,5 +1,5 @@
 #include"Boomerang.h"
-
+#include"../../Data/MyAlgorithm.h"
 Boomerang::Boomerang()
 {
 
@@ -51,17 +51,27 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2, fl
 		_point[2] = control2;
 	}
 	_angle = Vector3_Zero;
-
+	for (int i = 0; i < AFTERIMAGE; i++)
+	{
+		_oldpos[i] = Vector3_Zero;
+	}
+	_count = 0;
 	return true;
 }
 
 int Boomerang::Update(Vector3 playerposition, GamePadState pad)
 {
-
+	_oldpos[_count] = _model->GetPosition();
+	_count++;
+	_count = IntWrap(_count, 0, AFTERIMAGE);
 	if (_speed >= 0.5f && Vector3_Distance(_model->GetPosition(), playerposition) <= 1)
 	{
-		_model->SetPosition(Vector3_Zero);
-		return 1;
+		if (_oldpos[AFTERIMAGE - 1] == _model->GetPosition())
+		{
+			_model->SetPosition(Vector3_Zero);
+			return 1;
+		}
+		return 0;
 	}
 
 	if (pad.Y2 != 0.0f || pad.X3 != 0.0f) {
@@ -78,7 +88,17 @@ int Boomerang::Update(Vector3 playerposition, GamePadState pad)
 
 void Boomerang::Draw()
 {
+	auto pos = _model->GetPosition();
 	_model->Draw();
+	for (int i = 0; i < AFTERIMAGE; i++)
+	{
+		if (_oldpos[i] != Vector3_Zero && i % 3 == 0)
+		{
+			_model->SetPosition(_oldpos[i]);
+			_model->DrawAlpha(0.1 + i*0.04);
+		}
+	}
+	_model->SetPosition(pos);
 #ifdef DEBUG
 	GraphicsDevice.BeginAlphaBlend();
 	_collision->DrawAlpha(0.5f);
