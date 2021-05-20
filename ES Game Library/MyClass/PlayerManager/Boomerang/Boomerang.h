@@ -17,7 +17,12 @@ private:
 
     Vector3 _position;
     Vector3 _angle;
-
+    enum MyEnum
+    {
+        AFTERIMAGE = 15
+    };
+    Vector3 _oldpos[AFTERIMAGE];
+    int _count = 0;
     //! ベジエ用ポイント
     Vector3 _point[4];
 
