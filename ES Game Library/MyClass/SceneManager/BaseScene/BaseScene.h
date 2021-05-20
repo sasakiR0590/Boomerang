@@ -8,8 +8,8 @@ public:
 	~BaseScene() {};
 
 	virtual bool Initialize() = 0;
-	//int BeginScene(std::list<std::unique_ptr<BaseScene>> scene) = 0;
-	virtual int Update() = 0;
+	int BeginScene(std::list<BaseScene*> scene);
+	virtual int Update();
 	virtual void Draw2D() {};
 	virtual void Draw3D() {};
 	enum Scene { NOW, NEXT };

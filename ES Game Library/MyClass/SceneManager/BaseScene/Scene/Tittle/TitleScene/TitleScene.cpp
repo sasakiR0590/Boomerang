@@ -17,8 +17,8 @@ bool TitleScene::Initialize()
 
 int TitleScene::Update()
 {
-	KeyboardState key;
-	if(key.IsKeyDown(Keys_Space))
+	KeyboardState key = Keyboard->GetState();
+	if (key.IsKeyDown(Keys_Space))
 		return Scene::NEXT;
 	return Scene::NOW;
 }

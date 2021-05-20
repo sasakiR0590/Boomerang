@@ -20,20 +20,6 @@ bool TitleManager::Initialize()
 	return true;
 }
 
-int TitleManager::Update()
-{
-	int next = Scene::NEXT;
-	for (auto&& childscene : _child_scene)
-	{
-		if (childscene->Update() == childscene->NOW)
-		{
-			next = Scene::NOW;
-			break;
-		}
-	}
-	return next;
-}
-
 void TitleManager::Draw2D()
 {
 	for (auto&& childscene : _child_scene)

@@ -66,7 +66,6 @@ private:
 	FONT DefaultFont;
 
 private:
-	SceneManager scenemanager;
 	PlayerManager* playermanager;
 	EnemyManager*  enemymanager;
 	Ovserver*      ovserver;

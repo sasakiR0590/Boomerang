@@ -12,7 +12,7 @@
 bool GameMain::Initialize()
 {
 	WindowTitle(_T("ES Game Library"));
-	scenemanager.Initialize();
+	SceneManager::Instance().Initialize();
 	//playermanager->Initialize();
 	//enemymanager->Initialize();
 	//fieldManeger->Initialize();
@@ -57,7 +57,7 @@ void GameMain::Finalize()
 /// </returns>
 int GameMain::Update()
 {
-	scenemanager.Update();
+	SceneManager::Instance().Update();
 	//playermanager->Update();
 	//enemymanager->Update(playermanager);
 	//ovserver->Update(playermanager, enemymanager);
@@ -73,7 +73,7 @@ int GameMain::Update()
 /// </summary>
 void GameMain::Draw()
 {
-	scenemanager.Draw();
+	SceneManager::Instance().Draw();
 //	GraphicsDevice.Clear(Color_CornflowerBlue);
 //
 //	GraphicsDevice.BeginScene();

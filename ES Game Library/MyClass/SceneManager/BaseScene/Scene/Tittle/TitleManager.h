@@ -6,7 +6,6 @@ public:
 	TitleManager();
 	~TitleManager();
 	bool Initialize() override;
-	int Update() override;
 	void Draw2D() override;
 private:
 };
