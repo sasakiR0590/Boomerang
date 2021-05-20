@@ -6,7 +6,6 @@
 #include "MyClass/EnemyManager/EnemyManeger.h"
 #include "MyClass/Ovserver/Ovserver.h"
 #include "MyClass/Field/FieldManager.h"
-#include "MyClass/EffectManager/EffectManager.h"
 class GameMain : public CGameScene {
 public:
 	GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())

@@ -1,7 +1,8 @@
 // #include "Extension\DirectX11\DXGraphics11.hpp"
 #include "StdAfx.h"
 #include "GameMain.h"
-
+#include "MyClass/EffectManager/EffectManager.h"
+#include"MyClass/TimeManager/TimeManager.h"
 /// <summary>
 /// Allows the game to perform any initialization it needs to before starting to run.
 /// This is where it can query for any required services and load all of your content.
@@ -15,6 +16,7 @@ bool GameMain::Initialize()
 	enemymanager->Initialize();
 	fieldManeger->Initialize();
 	EffectManager::Instance().Initialize();
+	TimeManager::Instance().Initialize();
 	player = playermanager->GetModel();
 
 	Light light;
@@ -57,6 +59,7 @@ int GameMain::Update()
 	enemymanager->Update(playermanager);
 	ovserver->Update(playermanager, enemymanager);
 	EffectManager::Instance().Update();
+	TimeManager::Instance().Update();
 	Effekseer.Update();
 	return 0;
 }
@@ -96,7 +99,7 @@ void GameMain::Draw()
 		SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("ë¨ìxÇ™è„Ç™ÇÈ"));
 	}
 #endif
-
+	SpriteBatch.DrawString(DefaultFont, Vector2(200, 0), Color(255, 255, 255), _T("%f"), TimeManager::Instance().GetTimeLeft());
 	SpriteBatch.End();
 
 	GraphicsDevice.EndScene();
