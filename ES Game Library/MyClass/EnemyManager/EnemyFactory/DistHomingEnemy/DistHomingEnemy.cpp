@@ -23,7 +23,7 @@ int DistHomingEnemy::Update(PlayerManager* player_manager)
 	_animestate = ANIMESTATE::RUN;
 
 	float dist = Vector3_Distance(player_pos, Vector3(_position.x,0,_position.z));
-	if (dist <= 7.0f) {
+	if (dist <= DIST_POS) {
 		homing_flag = true;
 	}
 	else
@@ -34,7 +34,7 @@ int DistHomingEnemy::Update(PlayerManager* player_manager)
 	}
 
 
-	_collision->SetPosition(_model->GetPosition() + Vector3(0, 0, 0));
+	_collision->SetPosition(_model->GetPosition());
 	_position  = _model->GetPosition();
 	return EnemyBase::LIVING;
 }
@@ -47,12 +47,13 @@ void DistHomingEnemy::Draw()
 void DistHomingEnemy::Move() {
 	if (homing_flag) {
 		Vector3 delta = Vector3_Normalize(Vector3(_position - player_pos));
-		float speed = 30;
+		float speed_index = 30;
+		float move_speed = delta.z / speed_index;
 
 		if(_position.z > player_pos.z)
-			_model->Move(0, 0,   delta.z / speed);
+			_model->Move(0, 0,   move_speed);
 		else
-			_model->Move(0, 0, - delta.z / speed);
+			_model->Move(0, 0, - move_speed);
 	}
 	else
 		_model->Move(0, 0,_speed.z / 4);

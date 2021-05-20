@@ -14,4 +14,5 @@ private:
     void    ChangeAnimation() override;
 
     Vector3 player_pos;
+    const float enemy_living_area_z = -8.8f;
 };
