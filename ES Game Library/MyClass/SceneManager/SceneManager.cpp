@@ -4,7 +4,7 @@
 #include"../Data/WordsTable.h"
 SceneManager::SceneManager()
 {
-	_child_scene.reset();
+	_scene = nullptr;
 }
 
 SceneManager::~SceneManager()
@@ -12,12 +12,12 @@ SceneManager::~SceneManager()
 }
 void SceneManager::ChangeScene(string scene)
 {
-	_child_scene.reset();
+	_scene.reset();
 
-	if (scene == SceneNumber::TITLE)_child_scene.reset(new TitleManager);
-	if (scene == SceneNumber::MAIN)_child_scene.reset(new MainManager);
+	if (scene == SceneNumber::TITLE)_scene.reset(new TitleManager);
+	if (scene == SceneNumber::MAIN)_scene.reset(new MainManager);
 
-	_child_scene->Initialize();
+	_scene->Initialize();
 }
 bool SceneManager::Initialize(string scene)
 {
@@ -27,9 +27,9 @@ bool SceneManager::Initialize(string scene)
 
 int SceneManager::Update()
 {
-	if (_child_scene->Update() == _child_scene->NEXT)
+	if (_scene->Update() == _scene->NEXT)
 	{
-		ChangeScene(_child_scene->GetNextScene());
+		ChangeScene(_scene->GetNextScene());
 	}
 	return 0;
 }
@@ -38,11 +38,11 @@ void SceneManager::Draw()
 {
 	GraphicsDevice.BeginScene();
 
-	_child_scene->Draw3D();
+	_scene->Draw3D();
 
 	SpriteBatch.Begin();
 
-	_child_scene->Draw2D();
+	_scene->Draw2D();
 
 	SpriteBatch.End();
 

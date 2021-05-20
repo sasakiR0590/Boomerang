@@ -19,10 +19,7 @@ int MainGame::Update()
 
 void MainGame::Draw2D()
 {
-	for (auto&& childscene : _child_scene)
-	{
-		childscene->Draw2D();
-	}
+
 }
 
 void MainGame::Draw3D()

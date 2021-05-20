@@ -17,5 +17,5 @@ public:
 	void Draw();
 	void ChangeScene(string scene);
 private:
-	std::unique_ptr<BaseScene> _child_scene;
+	std::unique_ptr<BaseScene> _scene;
 };

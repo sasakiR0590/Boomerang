@@ -1,6 +1,11 @@
 #include"BaseScene.h"
 BaseScene::~BaseScene()
 {
+	for (auto& it = _child_scene.rbegin(); it != _child_scene.rend(); ++it)
+	{
+		delete (*it);
+	}
+	_child_scene.clear();
 }
 int BaseScene::BeginScene(std::list<BaseScene*> scene)
 {
