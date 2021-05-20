@@ -6,7 +6,7 @@
 #include "MyClass/EnemyManager/EnemyManeger.h"
 #include "MyClass/Ovserver/Ovserver.h"
 #include "MyClass/Field/FieldManager.h"
-#include "MyClass/EffectManager/EffectManager.h"
+#include "MyClass/UI/UI.h"
 class GameMain : public CGameScene {
 public:
 	GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
@@ -71,6 +71,6 @@ private:
 	FieldManeger* fieldManeger;
 
 	CAMERA camera;
-	
 	ANIMATIONMODEL player;
+	UI ui;
 };

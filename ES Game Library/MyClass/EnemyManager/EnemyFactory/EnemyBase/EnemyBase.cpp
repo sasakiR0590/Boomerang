@@ -10,6 +10,8 @@ EnemyBase::~EnemyBase()
 }
 bool EnemyBase::Initialize(string _model_name,Vector3 position, Vector3 speed, int hp) {
 
+
+
 	_model = GraphicsDevice.CreateAnimationModelFromFile(ConvertStringFileName(_model_name));
 	SimpleShape shape;
 	shape.Type = Shape_Box;
