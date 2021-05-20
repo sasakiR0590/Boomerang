@@ -1,6 +1,6 @@
 #pragma once
 #include "../../ESGLib.h"
-
+#include"BaseScene/BaseScene.h"
 class SceneManager
 {
 public:
@@ -12,8 +12,9 @@ public:
 		return instance;
 	};
 
-	void Initialize();
-	void Update();
+	bool Initialize();
+	int Update();
 	void Draw();
 private:
+	std::unique_ptr<BaseScene> _child_scene;
 };

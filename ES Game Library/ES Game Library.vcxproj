@@ -178,6 +178,7 @@
     <ClCompile Include="MyClass\ParticleSystem\Particle.cpp" />
     <ClCompile Include="MyClass\PlayerManager\Boomerang\Boomerang.cpp" />
     <ClCompile Include="MyClass\PlayerManager\PlayerManeger.cpp" />
+    <ClCompile Include="MyClass\SceneManager\BaseScene\BaseScene.cpp" />
     <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Tittle\TitleManager.cpp" />
     <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Tittle\TitleScene\TitleScene.cpp" />
     <ClCompile Include="MyClass\SceneManager\SceneManager.cpp" />

@@ -2,6 +2,7 @@
 
 TitleScene::TitleScene()
 {
+	_child_scene.clear();
 }
 
 TitleScene::~TitleScene()
@@ -16,7 +17,10 @@ bool TitleScene::Initialize()
 
 int TitleScene::Update()
 {
-	return Scene::NEXT;
+	KeyboardState key;
+	if(key.IsKeyDown(Keys_Space))
+		return Scene::NEXT;
+	return Scene::NOW;
 }
 
 void TitleScene::Draw2D()

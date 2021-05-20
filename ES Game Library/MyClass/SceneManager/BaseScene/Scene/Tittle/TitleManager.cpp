@@ -2,6 +2,7 @@
 #include"TitleScene/TitleScene.h"
 TitleManager::TitleManager()
 {
+	_child_scene.clear();
 }
 
 TitleManager::~TitleManager()
@@ -10,7 +11,7 @@ TitleManager::~TitleManager()
 
 bool TitleManager::Initialize()
 {
-	unique_ptr<BaseScene> scene = make_unique<TitleScene>();
+	BaseScene* scene = new TitleScene;
 	_child_scene.push_back(scene);
 	for (auto&& childscene : _child_scene)
 	{
@@ -21,12 +22,16 @@ bool TitleManager::Initialize()
 
 int TitleManager::Update()
 {
+	int next = Scene::NEXT;
 	for (auto&& childscene : _child_scene)
 	{
-		if (childscene->Update() == Scene::NOW)
+		if (childscene->Update() == childscene->NOW)
+		{
+			next = Scene::NOW;
 			break;
+		}
 	}
-	return 0;
+	return next;
 }
 
 void TitleManager::Draw2D()

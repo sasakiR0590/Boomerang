@@ -379,6 +379,9 @@
     <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Tittle\TitleScene\TitleScene.cpp">
       <Filter>MyClass\SceneManager\BaseScene\Title\TitleScene</Filter>
     </ClCompile>
+    <ClCompile Include="MyClass\SceneManager\BaseScene\BaseScene.cpp">
+      <Filter>MyClass\SceneManager\BaseScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h">

@@ -7,6 +7,7 @@
 #include "MyClass/Ovserver/Ovserver.h"
 #include "MyClass/Field/FieldManager.h"
 #include "MyClass/UI/UI.h"
+#include "MyClass/SceneManager/SceneManager.h"
 class GameMain : public CGameScene {
 public:
 	GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
@@ -65,6 +66,7 @@ private:
 	FONT DefaultFont;
 
 private:
+	SceneManager scenemanager;
 	PlayerManager* playermanager;
 	EnemyManager*  enemymanager;
 	Ovserver*      ovserver;

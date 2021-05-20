@@ -8,11 +8,12 @@ public:
 	~BaseScene() {};
 
 	virtual bool Initialize() = 0;
+	//int BeginScene(std::list<std::unique_ptr<BaseScene>> scene) = 0;
 	virtual int Update() = 0;
 	virtual void Draw2D() {};
 	virtual void Draw3D() {};
+	enum Scene { NOW, NEXT };
 protected:
-	std::list<std::unique_ptr<BaseScene>> _child_scene;
-	enum Scene{NOW,NEXT};
+	std::list<BaseScene*> _child_scene;
 private:
 };
