@@ -1,8 +1,9 @@
 #include"TitleManager.h"
 #include"TitleScene/TitleScene.h"
+#include"../../../../Data/WordsTable.h"
 TitleManager::TitleManager()
 {
-	_child_scene.clear();
+	_next_scene = SceneNumber::MAIN;
 }
 
 TitleManager::~TitleManager()

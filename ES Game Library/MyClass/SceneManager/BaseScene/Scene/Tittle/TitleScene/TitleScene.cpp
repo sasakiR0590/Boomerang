@@ -2,9 +2,7 @@
 
 TitleScene::TitleScene()
 {
-	_child_scene.clear();
 }
-
 TitleScene::~TitleScene()
 {
 }

@@ -1,4 +1,7 @@
 #include"BaseScene.h"
+BaseScene::~BaseScene()
+{
+}
 int BaseScene::BeginScene(std::list<BaseScene*> scene)
 {
 	int next = Scene::NEXT;

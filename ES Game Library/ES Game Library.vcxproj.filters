@@ -178,6 +178,12 @@
     <Filter Include="MyClass\SceneManager\BaseScene\Title\TitleScene">
       <UniqueIdentifier>{f9a2977e-2709-4bbe-a419-ba4d2096d121}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\SceneManager\BaseScene\Main">
+      <UniqueIdentifier>{ec4d8130-a45e-4439-b763-8ade3fe07006}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\SceneManager\BaseScene\Main\MainGame">
+      <UniqueIdentifier>{5d0fae45-229c-482f-8a3f-79f09686f8d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -381,6 +387,12 @@
     </ClCompile>
     <ClCompile Include="MyClass\SceneManager\BaseScene\BaseScene.cpp">
       <Filter>MyClass\SceneManager\BaseScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Main\MainManager.cpp">
+      <Filter>MyClass\SceneManager\BaseScene\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Main\MainGame\MainGame.cpp">
+      <Filter>MyClass\SceneManager\BaseScene\Main\MainGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -603,6 +615,12 @@
     </ClInclude>
     <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Tittle\TitleScene\TitleScene.h">
       <Filter>MyClass\SceneManager\BaseScene\Title\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Main\MainManager.h">
+      <Filter>MyClass\SceneManager\BaseScene\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Main\MainGame\MainGame.h">
+      <Filter>MyClass\SceneManager\BaseScene\Main\MainGame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

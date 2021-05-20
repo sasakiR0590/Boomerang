@@ -2,7 +2,8 @@
 #include "StdAfx.h"
 #include "GameMain.h"
 #include "MyClass/EffectManager/EffectManager.h"
-#include"MyClass/TimeManager/TimeManager.h"
+#include "MyClass/TimeManager/TimeManager.h"
+#include "MyClass/Data/WordsTable.h"
 /// <summary>
 /// Allows the game to perform any initialization it needs to before starting to run.
 /// This is where it can query for any required services and load all of your content.
@@ -12,7 +13,7 @@
 bool GameMain::Initialize()
 {
 	WindowTitle(_T("ES Game Library"));
-	SceneManager::Instance().Initialize();
+	SceneManager::Instance().Initialize(SceneNumber::TITLE);
 	//playermanager->Initialize();
 	//enemymanager->Initialize();
 	//fieldManeger->Initialize();

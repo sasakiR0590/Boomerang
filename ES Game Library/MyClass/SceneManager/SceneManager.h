@@ -12,9 +12,10 @@ public:
 		return instance;
 	};
 
-	bool Initialize();
+	bool Initialize(string scene);
 	int Update();
 	void Draw();
+	void ChangeScene(string scene);
 private:
 	std::unique_ptr<BaseScene> _child_scene;
 };
