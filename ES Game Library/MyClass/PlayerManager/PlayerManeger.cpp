@@ -13,7 +13,7 @@ PlayerManager::~PlayerManager()
 
 bool PlayerManager::Initialize()
 {
-	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero_0506.X"));
+	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero_0520.X"));
 
 	_model->SetScale(1.0f);
 	_model->SetPosition(0, 0, 0);
@@ -269,7 +269,7 @@ void PlayerManager::ChangeAnimation()
 		_animation_count = 0;
 	}
 
-	if (_animstate == AnimationState::SHOOT && _animation_count >= 1)
+	if (_animstate == AnimationState::SHOOT && _animation_count >= 0.1f)
 	{
 		Shoot();
 	}

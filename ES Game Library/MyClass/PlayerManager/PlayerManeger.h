@@ -25,9 +25,9 @@ public:
     {
         WAIT,
         RUN,
-        SHOOT,
         STANCE,
         DAMAGE,
+        SHOOT,
         ALLTYPE
     };
 #ifdef _DEBUG
