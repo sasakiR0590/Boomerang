@@ -160,6 +160,9 @@
     <Filter Include="MyClass\Data">
       <UniqueIdentifier>{67bca871-82de-4869-a632-45794820f991}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\TimeManager">
+      <UniqueIdentifier>{beadb441-6431-4d2a-8f13-256fba721171}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -345,6 +348,9 @@
     </ClCompile>
     <ClCompile Include="MyClass\EnemyManager\EnemyFactory\NomalEnemy\NormalEnemy.cpp">
       <Filter>MyClass\EnemyManager\EnemyFactory\NomalEnemy</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\TimeManager\TimeManager.cpp">
+      <Filter>MyClass\TimeManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -549,6 +555,9 @@
     </ClInclude>
     <ClInclude Include="MyClass\Data\WordsTable.h">
       <Filter>MyClass\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\TimeManager\TimeManager.h">
+      <Filter>MyClass\TimeManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
