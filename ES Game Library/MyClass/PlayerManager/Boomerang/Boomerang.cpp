@@ -95,7 +95,7 @@ void Boomerang::Draw()
 		if (_oldpos[i] != Vector3_Zero && i % 3 == 0)
 		{
 			_model->SetPosition(_oldpos[i]);
-			_model->DrawAlpha(0.1 + i*0.04);
+			_model->DrawAlpha(0.1f + i * 0.01f);
 		}
 	}
 	_model->SetPosition(pos);
