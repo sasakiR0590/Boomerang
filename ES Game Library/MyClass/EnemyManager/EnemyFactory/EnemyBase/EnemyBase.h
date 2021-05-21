@@ -27,7 +27,7 @@ protected:
 
     int     _animestate = 0;
     int     _oldanimestate = 0;
-    float   _animation_count = 0.0f;
+    double   _animation_count = 0.0;
     float   _rotation = 0.0f;
     const float  _homing_area = 8.5f;
 
@@ -40,7 +40,7 @@ protected:
     enum { LIVING, DEATH };
 private:
     enum {
-        DAMAGE_STOP_FRAME = 30, AUTODEADTIME = INT_MAX
+        DAMAGE_STOP_FRAME = 30, AUTODEADTIME = 1200
     };
     bool IsDead();
     int _destroy_time = 0;

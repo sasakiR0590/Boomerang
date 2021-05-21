@@ -25,7 +25,7 @@ public:
 	inline float GetTime()		const { return time; }
 	//c‚èŠÔ‚Ìæ“¾
 	inline float GetTimeLeft()  const { return limitTime - time; }
-
+	bool StartFlag();
 private:
 	inline float GetLimitTime() const { return limitTime; }
 	int GetTimeMinutes();
@@ -34,7 +34,6 @@ private:
 	int GetTimeTensPlace();
 	int Countdown();
 	float GetStartTime();
-	bool StartFlag();
 	float GetTransitionTimer() const { return transition_time; }
 	//! §ŒÀŠÔ
 	float limitTime;

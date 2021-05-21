@@ -26,7 +26,7 @@ bool EnemyBase::Initialize(string _model_name,Vector3 position, Vector3 speed, i
 	mtrl.Specular = Color(1.0f, 1.0f, 1.0f);
 
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
-	_collision->SetScale(1);
+	_collision->SetScale(0.8);
 	_collision->SetMaterial(mtrl);
 
 	_position = position;
@@ -78,7 +78,7 @@ int EnemyBase::AutoDead()
 
 bool EnemyBase::IsDead()
 {
-	if (_destroy_time < AUTODEADTIME)return true;
+	if (_destroy_time < AUTODEADTIME || time_left < time_over)return true;
 	return false;
 }
 

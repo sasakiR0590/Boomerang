@@ -33,7 +33,7 @@ bool EnemyManager::Initialize()
 int EnemyManager::Update(PlayerManager* playermanager)
 {
 	_playermanager = playermanager;
-	if(_frame < GAME_FRAME)
+	if(_frame < GAME_FRAME && _timemanager.StartFlag())
 	   _frame++;
 	else {
 		_frame = 0;
@@ -41,8 +41,8 @@ int EnemyManager::Update(PlayerManager* playermanager)
 	}
 
 	if (_time > appear_time[count] && count < ENEMY_NUM) {
-		Generate(_playermanager);
-		count++;
+			Generate(_playermanager);
+			count++;
 	}
 
 	auto itr = _enemy.begin();
