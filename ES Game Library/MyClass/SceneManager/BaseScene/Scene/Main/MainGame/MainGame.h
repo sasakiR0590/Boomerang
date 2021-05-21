@@ -1,5 +1,9 @@
 #include"../../../BaseScene.h"
-
+#include "../../../../../PlayerManager/PlayerManeger.h"
+#include "../../../../../EnemyManager/EnemyManeger.h"
+#include "../../../../../Ovserver/Ovserver.h"
+#include "../../../../../Field/FieldManager.h"
+#include "../../../../../UI/UI.h"
 class MainGame :public BaseScene
 {
 public:
@@ -10,4 +14,13 @@ public:
 	void Draw2D() override;
 	void Draw3D() override;
 private:
+	FONT DefaultFont;
+	PlayerManager* playermanager;
+	EnemyManager* enemymanager;
+	Ovserver* ovserver;
+	FieldManeger* fieldManeger;
+
+	CAMERA camera;
+	ANIMATIONMODEL player;
+	UI ui;
 };

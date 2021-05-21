@@ -1,9 +1,8 @@
 // #include "Extension\DirectX11\DXGraphics11.hpp"
 #include "StdAfx.h"
 #include "GameMain.h"
-#include "MyClass/EffectManager/EffectManager.h"
-#include "MyClass/TimeManager/TimeManager.h"
 #include "MyClass/Data/WordsTable.h"
+#include "MyClass/SceneManager/SceneManager.h"
 /// <summary>
 /// Allows the game to perform any initialization it needs to before starting to run.
 /// This is where it can query for any required services and load all of your content.
@@ -14,25 +13,7 @@ bool GameMain::Initialize()
 {
 	WindowTitle(_T("ES Game Library"));
 	SceneManager::Instance().Initialize(SceneNumber::TITLE);
-	//playermanager->Initialize();
-	//enemymanager->Initialize();
-	//fieldManeger->Initialize();
-	//ui.Initialize();
-	//EffectManager::Instance().Initialize();
-	//TimeManager::Instance().Initialize();
-	//player = playermanager->GetModel();
 
-	//Light light;
-	//light.Type = Light_Directional;
-	//light.Direction = Vector3(1.0f, 1.0f, 1.0f);
-	//light.Ambient = Color(1.0f, 1.0f, 1.0f);
-	//light.Diffuse = Color(1.0f, 1.0f, 1.0f);
-	//light.Specular = Color(1.0f, 1.0f, 1.0f);
-	//GraphicsDevice.SetLight(light);
-
-	//camera->SetView(Vector3(0, 0, -650), Vector3(0, 0, 0));
-	//camera->SetPerspectiveFieldOfView(45.0f, 16.0f / 9.0f, 1.0f, 10000.0f);
-	//GraphicsDevice.SetCamera(camera);
 
 	return true;
 }
@@ -43,10 +24,6 @@ bool GameMain::Initialize()
 /// </summary>
 void GameMain::Finalize()
 {
-	delete ovserver;
-	delete enemymanager;
-	delete playermanager;
-	delete fieldManeger;
 }
 
 /// <summary>
@@ -59,13 +36,6 @@ void GameMain::Finalize()
 int GameMain::Update()
 {
 	SceneManager::Instance().Update();
-	//playermanager->Update();
-	//enemymanager->Update(playermanager);
-	//ovserver->Update(playermanager, enemymanager);
-	//EffectManager::Instance().Update();
-	//TimeManager::Instance().Update();
-	//Effekseer.Update();
-	//ui.Update();
 	return 0;
 }
 

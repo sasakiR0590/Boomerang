@@ -2,20 +2,11 @@
 
 #include "ESGLib.h"
 #include "GameScene/GameScene.hpp"
-#include "MyClass/PlayerManager/PlayerManeger.h"
-#include "MyClass/EnemyManager/EnemyManeger.h"
-#include "MyClass/Ovserver/Ovserver.h"
-#include "MyClass/Field/FieldManager.h"
-#include "MyClass/UI/UI.h"
-#include "MyClass/SceneManager/SceneManager.h"
 class GameMain : public CGameScene {
 public:
 	GameMain() : DefaultFont(GraphicsDevice.CreateDefaultFont())
 	{
-		playermanager = new PlayerManager;
-		enemymanager  = new EnemyManager;
-		ovserver      = new Ovserver;
-		fieldManeger  = new FieldManeger;
+
 //		ContentRootDirectory(_T("Content"));
 	}
 
@@ -66,12 +57,5 @@ private:
 	FONT DefaultFont;
 
 private:
-	PlayerManager* playermanager;
-	EnemyManager*  enemymanager;
-	Ovserver*      ovserver;
-	FieldManeger* fieldManeger;
 
-	CAMERA camera;
-	ANIMATIONMODEL player;
-	UI ui;
 };

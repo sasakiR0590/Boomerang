@@ -26,3 +26,10 @@ void MainManager::Draw2D()
 		childscene->Draw2D();
 	}
 }
+void MainManager::Draw3D()
+{
+	for (auto&& childscene : _child_scene)
+	{
+		childscene->Draw3D();
+	}
+}
