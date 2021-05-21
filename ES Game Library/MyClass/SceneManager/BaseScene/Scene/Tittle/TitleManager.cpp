@@ -12,8 +12,7 @@ TitleManager::~TitleManager()
 
 bool TitleManager::Initialize()
 {
-	BaseScene* scene = new TitleScene;
-	_child_scene.push_back(scene);
+	_child_scene.push_back(std::make_unique<TitleScene>());
 	for (auto&& childscene : _child_scene)
 	{
 		childscene->Initialize();

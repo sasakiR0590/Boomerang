@@ -10,8 +10,7 @@ MainManager::~MainManager()
 
 bool MainManager::Initialize()
 {
-	BaseScene* scene = new MainGame;
-	_child_scene.push_back(scene);
+	_child_scene.push_back(std::make_unique<MainGame>());
 	for (auto&& childscene : _child_scene)
 	{
 		childscene->Initialize();
