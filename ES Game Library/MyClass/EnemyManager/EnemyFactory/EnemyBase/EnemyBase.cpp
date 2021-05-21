@@ -78,7 +78,7 @@ int EnemyBase::AutoDead()
 
 bool EnemyBase::IsDead()
 {
-	if (_destroy_time < AUTODEADTIME || time_left < time_over)return true;
+	if (_destroy_time < AUTODEADTIME)return true;
 	return false;
 }
 
