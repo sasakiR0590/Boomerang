@@ -36,6 +36,7 @@ int SceneManager::Update()
 
 void SceneManager::Draw()
 {
+	GraphicsDevice.Clear(Color_CornflowerBlue);
 	GraphicsDevice.BeginScene();
 
 	_scene->Draw3D();

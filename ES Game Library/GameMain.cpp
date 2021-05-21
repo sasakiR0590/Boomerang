@@ -75,7 +75,7 @@ int GameMain::Update()
 void GameMain::Draw()
 {
 	SceneManager::Instance().Draw();
-//	GraphicsDevice.Clear(Color_CornflowerBlue);
+	//GraphicsDevice.Clear(Color_CornflowerBlue);
 //
 //	GraphicsDevice.BeginScene();
 //

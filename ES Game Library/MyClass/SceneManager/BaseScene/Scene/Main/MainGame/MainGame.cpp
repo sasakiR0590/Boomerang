@@ -19,7 +19,7 @@ int MainGame::Update()
 
 void MainGame::Draw2D()
 {
-
+	GraphicsDevice.Clear(Color_Black);
 }
 
 void MainGame::Draw3D()
