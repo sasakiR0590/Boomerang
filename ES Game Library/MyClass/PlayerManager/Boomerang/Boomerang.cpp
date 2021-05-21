@@ -135,3 +135,13 @@ void Boomerang::PowerManagement() {
 	else if (_combo >= 300)
 		_attack_power = 4;
 }
+
+int Boomerang::ComboCheck()
+{
+	return _combo;
+}
+
+int Boomerang::PowerCheck()
+{
+	return _attack_power;
+}

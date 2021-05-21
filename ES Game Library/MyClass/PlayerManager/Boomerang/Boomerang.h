@@ -13,6 +13,10 @@ public:
 
     MODEL GetCollision() { return _collision; }
     void  NotifiCombo(int combo);
+
+    int ComboCheck();
+    int PowerCheck();
+
 private:
     Vector3 Move(Vector3 endpos);
     void PowerManagement();

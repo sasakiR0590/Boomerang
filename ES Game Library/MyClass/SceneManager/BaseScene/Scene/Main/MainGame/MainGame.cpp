@@ -66,6 +66,9 @@ void MainGame::Draw2D()
 	else if (playermanager->AttackPattern() == 2) {
 		SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("‘¬“x‚ªã‚ª‚é"));
 	}
+
+	SpriteBatch.DrawString(DefaultFont, Vector2(0, 200), Color(255, 255, 255), _T("%d"), playermanager->GetBoomerang().ComboCheck());
+	SpriteBatch.DrawString(DefaultFont, Vector2(0, 300), Color(255, 255, 255), _T("%d"), playermanager->GetBoomerang().PowerCheck());
 #endif
 	SpriteBatch.DrawString(DefaultFont, Vector2(200, 0), Color(255, 255, 255), _T("%f"), TimeManager::Instance().GetTimeLeft());
 	ui.Draw();
