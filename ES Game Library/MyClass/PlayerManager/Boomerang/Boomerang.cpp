@@ -56,6 +56,7 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2, fl
 		_oldpos[i] = Vector3_Zero;
 	}
 	_count = 0;
+
 	return true;
 }
 
@@ -83,6 +84,7 @@ int Boomerang::Update(Vector3 playerposition, GamePadState pad)
 	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 0.0f, 0.0f));
 	_model->SetPosition(Move(playerposition));
 
+	PowerManagement();
 	return 0;
 }
 
@@ -114,4 +116,22 @@ Vector3 Boomerang::Move(Vector3 endpos)
 	Vector3 _bezier = Vector3_Bezier(_point[0], _point[1], _point[2], endpos, _speed);
 
 	return _bezier;
+}
+
+void Boomerang::NotifiCombo(int combo) {
+	_combo = combo;
+}
+
+void Boomerang::PowerManagement() {
+	if (_combo >= 0 && _combo < 100)
+		_attack_power = 1;
+
+	else if (_combo >= 100 && _combo < 200)
+		_attack_power = 2;
+
+	else if (_combo >= 200 && _combo < 300)
+		_attack_power = 3;
+
+	else if (_combo >= 300)
+		_attack_power = 4;
 }

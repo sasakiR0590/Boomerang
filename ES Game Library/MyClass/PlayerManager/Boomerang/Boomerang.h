@@ -12,8 +12,10 @@ public:
     void    Draw();
 
     MODEL GetCollision() { return _collision; }
+    void  NotifiCombo(int combo);
 private:
     Vector3 Move(Vector3 endpos);
+    void PowerManagement();
 
     Vector3 _position;
     Vector3 _angle;
@@ -33,4 +35,10 @@ private:
     float   _speed;
     float   _addspeed;
     float   _rotatespeed;
+
+    //ƒRƒ“ƒ{
+    int _combo;
+
+    //UŒ‚—Í
+    int _attack_power;
 };

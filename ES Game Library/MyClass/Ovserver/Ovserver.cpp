@@ -36,6 +36,8 @@ void Ovserver::ColisionDetection(PlayerManager* playerdata, EnemyManager* enemyd
 				a_pos.z + a_scale.z > b_pos.z - b_scale.z)
 			{
 				enemydata->OnCollisionEnter(enemy);
+				_combo++;
+				playerdata->GetBoomerang().NotifiCombo(_combo);
 			}
 		}
 	}
