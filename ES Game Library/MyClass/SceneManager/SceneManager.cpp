@@ -1,7 +1,9 @@
 #include"SceneManager.h"
 #include"BaseScene/Scene/Tittle/TitleManager.h"
 #include"BaseScene/Scene/Main/MainManager.h"
+#include"BaseScene/Scene/Result/ResultManager.h"
 #include"../Data/WordsTable.h"
+
 SceneManager::SceneManager()
 {
 	_scene = nullptr;
@@ -14,9 +16,11 @@ void SceneManager::ChangeScene(string scene)
 {
 	_scene.reset();
 
-	if (scene == SceneNumber::TITLE)_scene.reset(new TitleManager);
-	if (scene == SceneNumber::MAIN)_scene.reset(new MainManager);
+	if (scene == SceneNumber::TITLE)		_scene = std::make_unique<TitleManager>();
+	else if (scene == SceneNumber::MAIN)	_scene = std::make_unique<MainManager>();
+	else if (scene == SceneNumber::RESULT)	_scene = std::make_unique<ResultManager>();
 
+	assert(_scene && "ŠY“–scene‚È‚µ");
 	_scene->Initialize();
 }
 bool SceneManager::Initialize(string scene)
