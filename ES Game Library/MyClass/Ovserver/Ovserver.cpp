@@ -1,6 +1,7 @@
 #include"Ovserver.h"
 Ovserver::Ovserver()
 {
+	_combo = 0;
 }
 
 Ovserver::~Ovserver()
@@ -36,7 +37,7 @@ void Ovserver::ColisionDetection(PlayerManager* playerdata, EnemyManager* enemyd
 				a_pos.z + a_scale.z > b_pos.z - b_scale.z)
 			{
 				enemydata->OnCollisionEnter(enemy);
-				_combo++;
+				_combo += 1;
 				playerdata->GetBoomerang().NotifiCombo(_combo);
 			}
 		}

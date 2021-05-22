@@ -2,7 +2,8 @@
 #include"../../Data/MyAlgorithm.h"
 Boomerang::Boomerang()
 {
-
+	_attack_power = 1;
+	_combo = 0;
 }
 
 Boomerang::~Boomerang()
