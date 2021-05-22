@@ -38,8 +38,8 @@ void HomingEnemy::Draw()
 
 void HomingEnemy::Move() {
 	Vector3 delta  = Vector3_Normalize(Vector3(_position - player_pos));
-	float speed_index = 30;
-	float move_speed = delta.z / speed_index;
+	float speed_index = 0.015f;
+	float move_speed = delta.z * speed_index;
 
 	if (_position.z > player_pos.z)
 		_model->Move(0, 0, - move_speed);

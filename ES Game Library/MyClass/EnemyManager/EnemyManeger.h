@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EnemyFactory/EnemyFactory.h"
+#include "../TimeManager/TimeManager.h"
 
 class EnemyManager {
 public:
@@ -19,7 +20,7 @@ private:
     float _frame = 0.0f;
     float _time  = 0.0f;
 
-    enum { LIVING, DEATH, DUMMYLINENUM = 3,ENEMY_NUM = 100 };
+    enum { LIVING, DEATH, DUMMYLINENUM = 3,ENEMY_NUM = 250 };
     enum {GAME_FRAME = 60};
    
     int count = 0;                   //敵の累計出現数カウント 
@@ -30,4 +31,5 @@ private:
 
 
     PlayerManager* _playermanager;
+    TimeManager    _timemanager;
 };

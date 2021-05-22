@@ -41,8 +41,8 @@ int EnemyManager::Update(PlayerManager* playermanager)
 	}
 
 	if (_time > appear_time[count] && count < ENEMY_NUM) {
-		Generate(_playermanager);
-		count++;
+			Generate(_playermanager);
+			count++;
 	}
 
 	auto itr = _enemy.begin();
