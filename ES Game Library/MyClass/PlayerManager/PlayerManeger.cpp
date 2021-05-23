@@ -36,7 +36,7 @@ bool PlayerManager::Initialize()
 
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetMaterial(mat);
-	_collision->SetScale(1.0f, 2.0f, 1.0f);
+	_collision->SetScale(0.5f, 3.0f, 0.5f);
 
 	_invincibletime = 0;
 	_invincibleflag = false;
@@ -165,7 +165,7 @@ void PlayerManager::Draw()
 	{
 	}
 	else
-		//_collision->DrawAlpha(0.5f);
+		_collision->DrawAlpha(0.5f);
 
 	GraphicsDevice.EndAlphaBlend();
 #endif
