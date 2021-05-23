@@ -10,8 +10,6 @@ EnemyBase::~EnemyBase()
 }
 bool EnemyBase::Initialize(string _model_name,Vector3 position, Vector3 speed, int hp) {
 
-
-
 	_model = GraphicsDevice.CreateAnimationModelFromFile(ConvertStringFileName(_model_name));
 	SimpleShape shape;
 	shape.Type = Shape_Box;
@@ -43,10 +41,12 @@ bool EnemyBase::Initialize(string _model_name,Vector3 position, Vector3 speed, i
 
 int EnemyBase::Update(PlayerManager* playermanager) {
 	IsDamage();
+
 	return 0;
 }
 void EnemyBase::Draw() {
 	_model->Draw();
+	//_collision->Draw();
 }
 
 void EnemyBase::Damage() {
@@ -67,7 +67,7 @@ bool EnemyBase::IsDamage() {
 
 int EnemyBase::AutoDead()
 {
-	if (IsDead()) {
+	if (!IsDead() && !LimitDestruction()) {
 		_destroy_time++;
 	}
 	else {
@@ -78,7 +78,12 @@ int EnemyBase::AutoDead()
 
 bool EnemyBase::IsDead()
 {
-	if (_destroy_time < AUTODEADTIME)return true;
+	if (_destroy_time > AUTODEADTIME)return true;
+	return false;
+}
+
+bool EnemyBase::LimitDestruction() {
+	if (TimeManager::Instance().GetTimeLeft() < time_over) return true;
 	return false;
 }
 

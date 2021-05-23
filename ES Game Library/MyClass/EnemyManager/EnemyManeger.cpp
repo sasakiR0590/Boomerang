@@ -33,6 +33,7 @@ bool EnemyManager::Initialize()
 int EnemyManager::Update(PlayerManager* playermanager)
 {
 	_playermanager = playermanager;
+
 	if(_frame < GAME_FRAME)
 	   _frame++;
 	else {

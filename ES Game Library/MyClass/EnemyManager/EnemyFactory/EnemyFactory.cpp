@@ -35,7 +35,7 @@ EnemyBase* EnemyFactory::Create(string tag, Vector3 _position, PlayerManager* pl
 	SetSpeed(tag);
 	SetHp(tag);
 	EnemyBase* enemy_factory = CreateProduct(tag, _position);
-	enemy_factory->Initialize(_model_name,_position,_speed, _hp);
+	enemy_factory->Initialize(_model_name,_position,_speed,_hp);
 	return enemy_factory;
 }
 
