@@ -1,7 +1,6 @@
 #pragma once
 
 #include "EnemyFactory/EnemyFactory.h"
-#include "../TimeManager/TimeManager.h"
 
 class EnemyManager {
 public:
@@ -31,5 +30,4 @@ private:
 
 
     PlayerManager* _playermanager;
-    TimeManager    _timemanager;
 };
