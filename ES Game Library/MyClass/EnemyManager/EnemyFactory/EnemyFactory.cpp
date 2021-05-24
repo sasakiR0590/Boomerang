@@ -36,7 +36,8 @@ EnemyBase* EnemyFactory::Create(string tag, Vector3 _position, PlayerManager* pl
 	return enemy_factory;
 }
 
-EnemyBase* EnemyFactory::CreateProduct(string tag, Vector3 _position) {
+EnemyBase* EnemyFactory::CreateProduct(string tag, Vector3 _position)
+{
 	EnemyBase* classes[] = { new NormalEnemy,new StopEnemy,new HomingEnemy,new DistHomingEnemy};
 
 	for (int i = 0; i < _enemytag.size(); ++i)
@@ -47,7 +48,8 @@ EnemyBase* EnemyFactory::CreateProduct(string tag, Vector3 _position) {
 	return _enemy;
 }
 
-string  EnemyFactory::SetModel(string tag) {
+string  EnemyFactory::SetModel(string tag)
+{
 	string models[] = { _enemy_model[MOVE],_enemy_model[STOP],_enemy_model[HOMING] ,_enemy_model[DIST_HOMING] };
 	for (int i = 0; i < _enemytag.size(); ++i)
 	{
@@ -56,7 +58,8 @@ string  EnemyFactory::SetModel(string tag) {
 	return _model_name;
 }
 
-Vector3 EnemyFactory::SetSpeed(string tag){
+Vector3 EnemyFactory::SetSpeed(string tag)
+{
 	Vector3 speeds[] = { _moveenemy_speed ,_stopenemy_speed ,_moveenemy_speed ,_moveenemy_speed };
 	for (int i = 0; i < _enemytag.size(); ++i)
 	{
@@ -65,7 +68,8 @@ Vector3 EnemyFactory::SetSpeed(string tag){
 	return _speed;
 }
 
-int EnemyFactory::SetHp(string tag) {
+int EnemyFactory::SetHp(string tag)
+{
 	int hps[] = { _moveenemy_hp,_stopenemy_hp,_moveenemy_hp,_moveenemy_hp };
 
 	for (int i = 0; i < _enemytag.size(); ++i)

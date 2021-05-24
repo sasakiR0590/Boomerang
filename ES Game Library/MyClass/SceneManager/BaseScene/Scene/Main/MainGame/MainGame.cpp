@@ -43,6 +43,9 @@ bool MainGame::Initialize()
 
 int MainGame::Update()
 {
+	if (ui.Update() == 1)
+		return Scene::NEXT;
+
 	playermanager->Update();
 	enemymanager->Update(playermanager);
 	ovserver->Update(playermanager, enemymanager);

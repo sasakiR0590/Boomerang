@@ -1,4 +1,5 @@
 #include"ResultManager.h"
+#include"ResultScene/ResultScene.h"
 #include"../../../../Data/WordsTable.h"
 ResultManager::ResultManager()
 {
@@ -11,6 +12,7 @@ ResultManager::~ResultManager()
 
 bool ResultManager::Initialize()
 {
+	_child_scene.push_back(std::unique_ptr<ResultScene>());
 	for (auto&& childscene : _child_scene)
 	{
 		childscene->Initialize();

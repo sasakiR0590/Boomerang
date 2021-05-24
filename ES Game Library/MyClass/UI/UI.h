@@ -14,6 +14,8 @@ private:
 	Boomerang boomerang;
 
 	int SpriteAlpha();
+	int StringAlpha();
+
 	Color TimeColor();
 	Color color;
 	SPRITE ui,time;
@@ -22,12 +24,16 @@ private:
 	int   combo_counter = 0;
 	bool  time_over_flag = false;
 	bool  test_flag = false;
-	float frame = 0.0f;
-
+	bool  clear_flag = false;
+	float now_time;
 	int   sprite_alpha = MIN_ALPHA;
+	int   string_alpha = MIN_ALPHA;
+	int   count        = MIN_COUNT;
+	float frame        = MIN_FRAME;
 
-	enum { BONUS_FRAME = 120 };
-	enum { MIN_ALPHA = 0, MAX_ALPHA = 255 };
-	enum Time { START = 61, HARF = 30, END = 10 };
+	enum Alpha { MIN_ALPHA  =  0, ALPHA_NUM  =  2, MAX_ALPHA = 255 };
+	enum Time  { START      = 60, HARF       = 30, END       = 10  };
+	enum Frame { MIN_FRAME  =  0, MAX_FRAME  = 360 };
+	enum Count { MIN_COUNT  =  0, MAX_COUNT  = 3   };
 protected:
 };
