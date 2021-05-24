@@ -1,5 +1,6 @@
 #include"Boomerang.h"
 #include"../../Data/MyAlgorithm.h"
+#include"../../SceneManager/SceneManager.h"
 Boomerang::Boomerang()
 {
 	_attack_power = 1;
@@ -93,6 +94,8 @@ void Boomerang::Draw()
 {
 	auto pos = _model->GetPosition();
 	_model->Draw();
+	GraphicsDevice.BeginAlphaBlend();
+	GraphicsDevice.SetRenderState(CullMode_None);
 	for (int i = 0; i < AFTERIMAGE; i++)
 	{
 		if (_oldpos[i] != Vector3_Zero && i % 3 == 0)
@@ -101,6 +104,8 @@ void Boomerang::Draw()
 			_model->DrawAlpha(0.1f + i * 0.01f);
 		}
 	}
+	GraphicsDevice.SetRenderState(CullMode_CullCounterClockwiseFace);
+	GraphicsDevice.EndAlphaBlend();
 	_model->SetPosition(pos);
 #ifdef DEBUG
 	GraphicsDevice.BeginAlphaBlend();
@@ -119,11 +124,8 @@ Vector3 Boomerang::Move(Vector3 endpos)
 	return _bezier;
 }
 
-void Boomerang::NotifiCombo(int combo) {
-	_combo = combo;
-}
-
 void Boomerang::PowerManagement() {
+	_combo = SceneManager::Instance().GetCombo();
 	if (_combo >= 0 && _combo < 100)
 		_attack_power = 1;
 
@@ -135,11 +137,6 @@ void Boomerang::PowerManagement() {
 
 	else if (_combo >= 300)
 		_attack_power = 4;
-}
-
-int Boomerang::ComboCheck()
-{
-	return _combo;
 }
 
 int Boomerang::PowerCheck()

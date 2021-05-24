@@ -1,6 +1,7 @@
 #include"MainGame.h"
 #include "../../../../../EffectManager/EffectManager.h"
 #include "../../../../../TimeManager/TimeManager.h"
+#include"../../../../SceneManager.h"
 MainGame::MainGame():DefaultFont(GraphicsDevice.CreateDefaultFont())
 {
 	playermanager = new PlayerManager;
@@ -67,7 +68,7 @@ void MainGame::Draw2D()
 		SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("‘¬“x‚ªã‚ª‚é"));
 	}
 
-	SpriteBatch.DrawString(DefaultFont, Vector2(0, 200), Color(255, 255, 255), _T("%d"), playermanager->GetBoomerang().ComboCheck());
+	SpriteBatch.DrawString(DefaultFont, Vector2(0, 200), Color(255, 255, 255), _T("%d"), SceneManager::Instance().GetCombo());
 	SpriteBatch.DrawString(DefaultFont, Vector2(0, 300), Color(255, 255, 255), _T("%d"), playermanager->GetBoomerang().PowerCheck());
 #endif
 	ui.Draw();
