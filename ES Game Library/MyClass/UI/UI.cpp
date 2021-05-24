@@ -18,7 +18,6 @@ bool UI::Initialize() {
 
 int UI::Update() {
 	now_time      = TimeManager::Instance().GetTimeLeft();
-	combo_counter = boomerang.ComboCheck();
 	SpriteAlpha();
 
 	KeyboardState key = Keyboard->GetState();

@@ -7,6 +7,12 @@
 SceneManager::SceneManager()
 {
 	_scene = nullptr;
+	this->SetCombo(0);
+}
+
+SceneManager::SceneManager(int combo)
+{
+	this->SetCombo(combo);
 }
 
 SceneManager::~SceneManager()
@@ -53,3 +59,20 @@ void SceneManager::Draw()
 
 	GraphicsDevice.EndScene();
 }
+
+void SceneManager::AddCombo()
+{
+	_combo += 1;
+}
+
+void SceneManager::SetCombo(int combo)
+{
+	if (combo < 0) return;
+	this->_combo = combo;
+}
+
+int SceneManager::GetCombo()
+{
+	return this->_combo;
+}
+

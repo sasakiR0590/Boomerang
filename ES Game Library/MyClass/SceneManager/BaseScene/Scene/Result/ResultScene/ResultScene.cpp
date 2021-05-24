@@ -14,7 +14,10 @@ bool ResultScene::Initialize() {
 }
 
 int ResultScene::Update() {
-	return 0;
+	KeyboardState key = Keyboard->GetState();
+	if (key.IsKeyDown(Keys_Space))
+		return Scene::NEXT;
+	return Scene::NOW;
 }
 
 void ResultScene::Draw2D() {

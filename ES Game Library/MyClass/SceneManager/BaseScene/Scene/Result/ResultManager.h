@@ -3,9 +3,9 @@ class ResultManager :public BaseScene
 {
 public:
 	ResultManager();
-	virtual ~ResultManager();
+	 ~ResultManager();
 	bool Initialize() override;
-	int Update() override;
+	//int Update() override;
 	void Draw2D() override;
 
 private:
