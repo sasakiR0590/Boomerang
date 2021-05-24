@@ -28,18 +28,27 @@ bool PlayerManager::Initialize()
 	shape.Height = 1;
 	shape.Depth  = 1;
 
-	Material mat;
-	mat.Diffuse = Color(1.0f, 1.0f, 1.0f);
-	mat.Ambient = Color(1.0f, 1.0f, 1.0f);
-	mat.Specular = Color(1.0f, 1.0f, 1.0f);
-	mat.Power = 1.0f;
+	Material _collision_material;
+	_collision_material.Diffuse = Color(1.0f, 1.0f, 1.0f);
+	_collision_material.Ambient = Color(0.5f, 0.5f, 0.5f);
+	_collision_material.Specular = Color(1.0f, 1.0f, 1.0f);
+	_collision_material.Power = 1.0f;
+
+	Material _player_material;
+	_player_material.Diffuse = Color(1.0f, 1.0f, 1.0f);
+	_player_material.Ambient = Color(0.5f, 0.5f, 0.5f);
+	_player_material.Specular = Color(1.0f, 1.0f, 1.0f);
+	_player_material.Power = 1.0f;
+
+	_model->SetMaterial(_player_material);
 
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
-	_collision->SetMaterial(mat);
+	_collision->SetMaterial(_collision_material);
 	_collision->SetScale(0.5f, 3.0f, 0.5f);
 
 	_invincibletime = 0;
 	_invincibleflag = false;
+	_invincible_countstart = false;
 
 	for (int i = 0; i < AnimationState::ALLTYPE; i++)
 	{
@@ -60,6 +69,10 @@ bool PlayerManager::Initialize()
 	_attack_pattern   = 0;//‚OcƒTƒCƒY‚ª‘å‚«‚­‚È‚é
 	                      //‚Pc”ò‹——£‚ªL‚Ñ‚é
 	                      //‚QcˆÚ“®‘¬“x‚ªã‚ª‚é
+
+	_knock_back = 0.01f;
+
+	_blinking = 1.0f;
 
 	_boomerang_addspeed    = 0.01f;
 	_boomerang_adddistance = 1.0f;
@@ -89,23 +102,23 @@ int PlayerManager::Update()
 	GamePadState pad = GamePad(0)->GetState();
 	GamePadBuffer pad_buffer = GamePad(0)->GetBuffer();
 
-	KeyboardMove(key);
-	PadMove(pad);
+	if (_animstate != AnimationState::DAMAGE) {
+		KeyboardMove(key);
+		PadMove(pad);
+	}
+	else {
+		_invincible_countstart = true;
+		_model->Move(-_model->GetFrontVector() * _knock_back);
+		if (_animation_count >= 1) {
+			_animstate = AnimationState::WAIT;
+		}
+	}
+
+	if (_invincible_countstart)
+		InvincibleManagement();
 
 	if ((key.IsKeyDown(Keys_Space) || pad.Buttons[3]) && _animstate != AnimationState::SHOOT) {
 		_animstate = AnimationState::STANCE;
-		//switch (_attack_pattern)
-		//{
-		//case 0:
-		//	BoomerangSizeUp();
-		//    break;
-		//case 1:
-		//	BoomerangDistanceUp();
-	 //       break;
-		//case 2:
-		//	BoomerangSpeedUp();
-		//    break;
-		//}
 	}
 	if (pad.Y2 != 0.0f || pad.X3 != 0.0f)
 	{
@@ -134,22 +147,6 @@ int PlayerManager::Update()
 		}
 	}
 
-	if (_animstate == AnimationState::DAMAGE)
-	{
-		_invincibletime += 1;
-
-		if (_invincibletime <= _max_invincibletime) {
-			_invincibleflag = true;
-		}
-		else
-		{
-			_invincibleflag = false;
-			_animstate = AnimationState::WAIT;
-		}
-	}
-	else
-		_invincibletime = 0;
-
 	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 0.0f, 0.0f));
 	return 0;
 }
@@ -157,7 +154,8 @@ int PlayerManager::Update()
 void PlayerManager::Draw()
 {
 	ChangeAnimation();
-	_model->Draw();
+	//_model->Draw();
+	_model->DrawAlpha(_blinking);
 
 #ifdef DEBUG
 	GraphicsDevice.BeginAlphaBlend();
@@ -165,7 +163,7 @@ void PlayerManager::Draw()
 	{
 	}
 	else
-		_collision->DrawAlpha(0.5f);
+		//_collision->DrawAlpha(0.5f);
 
 	GraphicsDevice.EndAlphaBlend();
 #endif
@@ -290,14 +288,15 @@ void PlayerManager::Shoot()
 
 void PlayerManager::OnCollisionEnter()
 {
-	Damage();
-	_animstate = AnimationState::DAMAGE;
+	if (!_invincibleflag) {
+		Damage();
+		_animstate = AnimationState::DAMAGE;
+	}
 }
 
 void  PlayerManager::Damage()
 {
-	if(!_invincibleflag)
-		_hp -= 1;
+	_hp -= 1;
 }
 
 void PlayerManager::MovePlayerRotate(GamePadState pad)
@@ -325,6 +324,19 @@ void PlayerManager::FlyPoint()
 Vector3 PlayerManager::PlayerGetPosition()
 {
 	return _player_position;
+}
+
+void PlayerManager::InvincibleManagement()
+{
+	if (_invincibletime <= _max_invincibletime) {
+		_invincibletime += 1;
+		_invincibleflag = true;
+	}
+	else
+	{
+		_invincible_countstart = false;
+		_invincibleflag = false;
+	}
 }
 
 #ifdef _DEBUG

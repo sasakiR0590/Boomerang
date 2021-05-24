@@ -68,8 +68,8 @@ void MainGame::Draw2D()
 		SpriteBatch.DrawString(DefaultFont, Vector2(0, 0), Color(255, 255, 255), _T("速度が上がる"));
 	}
 
-	SpriteBatch.DrawString(DefaultFont, Vector2(0, 200), Color(255, 255, 255), _T("%d"), SceneManager::Instance().GetCombo());
-	SpriteBatch.DrawString(DefaultFont, Vector2(0, 300), Color(255, 255, 255), _T("%d"), playermanager->GetBoomerang().PowerCheck());
+	SpriteBatch.DrawString(DefaultFont, Vector2(0, 200), Color(255, 255, 255), _T("コンボ数　%d"), SceneManager::Instance().GetCombo());
+	SpriteBatch.DrawString(DefaultFont, Vector2(0, 300), Color(255, 255, 255), _T("現在の攻撃力　%d"), playermanager->GetBoomerang().PowerCheck());
 #endif
 	ui.Draw();
 }
