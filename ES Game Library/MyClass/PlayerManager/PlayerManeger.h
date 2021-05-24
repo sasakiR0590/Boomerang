@@ -44,6 +44,7 @@ private:
 
     void    FlyPoint();
     void    MovePlayerRotate(GamePadState);
+    void    InvincibleManagement();
     MODEL           _collision;
     ANIMATIONMODEL  _model;
 
@@ -58,8 +59,10 @@ private:
     Boomerang       _boomerang;
 
     //!無敵
-    int   _invincibletime;
-    bool  _invincibleflag;
+    int   _invincibletime;//無敵時間をカウントする
+    bool  _invincibleflag;//ダメージをくらう状態かどうか
+    bool  _invincible_countstart;
+    float _blinking;
 
     //!csvファイルを読み込んでその値を入れる変数
     int   _hp = 1;
@@ -75,6 +78,9 @@ private:
     Vector3 _frontvector;
     float   _rotation;
     float   _atan2_change;
+
+    //!プレイヤーのノックバックする距離
+    float _knock_back;
 
     //!ブーメランの性質を切り替える
     int _attack_pattern;

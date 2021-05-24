@@ -9,6 +9,4 @@ public:
     Ovserver::~Ovserver();
     int     Update(PlayerManager*, EnemyManager*);
     void    ColisionDetection(PlayerManager* playerdata, EnemyManager* enemydata);
-private:
-    int _combo;
 };

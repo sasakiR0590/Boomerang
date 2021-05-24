@@ -12,9 +12,7 @@ public:
     void    Draw();
 
     MODEL GetCollision() { return _collision; }
-    void  NotifiCombo(int combo);
 
-    int ComboCheck();
     int PowerCheck();
 
 private:
