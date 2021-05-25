@@ -1,7 +1,9 @@
 #include"MainManager.h"
 #include"MainGame/MainGame.h"
+#include"../../../../Data/WordsTable.h"
 MainManager::MainManager()
 {
+	_next_scene = SceneNumber::RESULT;
 }
 
 MainManager::~MainManager()
