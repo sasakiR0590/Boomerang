@@ -44,7 +44,7 @@ bool MainGame::Initialize()
 
 int MainGame::Update()
 {
-	if (ui.Update() == 1)
+	if (ui.Update() == 1 && TimeManager::Instance().GetTimeLeft() < 0)
 		return Scene::NEXT;
 
 	playermanager->Update();

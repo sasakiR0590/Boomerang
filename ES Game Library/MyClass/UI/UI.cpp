@@ -28,7 +28,7 @@ int UI::Update() {
 		StringAlpha();
 #endif
 
-	if (clear_flag)
+	if (next_scene_flag)
 		return 1;
 
 	return 0;
@@ -36,13 +36,13 @@ int UI::Update() {
 
 int  UI::SpriteAlpha() {
 	auto start_sprite_alpha = !TimeManager::Instance().StartFlag() && sprite_alpha < MAX_ALPHA && count < MAX_COUNT ||
-                               now_time < time_over && sprite_alpha < MAX_ALPHA && count < MAX_COUNT;
+                               now_time < time_over                && sprite_alpha < MAX_ALPHA && count < MAX_COUNT;
 
 	auto between_game       = TimeManager::Instance().StartFlag() && TimeManager::Instance().GetTimeLeft() > time_over;
 
 	int  over_sprite_alpha  = sprite_alpha >= MAX_ALPHA;
 
-	auto game_clear         = now_time < time_over&& sprite_alpha < MAX_ALPHA&& count >= MAX_COUNT;
+	auto next_scene         = TimeManager::Instance().StartFlag() || now_time < time_over && sprite_alpha < MAX_ALPHA && count >= MAX_COUNT;
 
 	if (start_sprite_alpha)
 		sprite_alpha += ALPHA_NUM;
@@ -50,12 +50,14 @@ int  UI::SpriteAlpha() {
 		sprite_alpha = MIN_ALPHA;
 		count++;
 	}
-	else if (between_game)
+	else if (between_game) {
 		count = MIN_COUNT;
-
-
-	if (game_clear)
-		clear_flag = true;
+		sprite_alpha = MIN_ALPHA;
+	}
+	if (next_scene)
+		next_scene_flag = true;
+	else
+		next_scene_flag = false;
 
 	return sprite_alpha;
 }
@@ -107,7 +109,7 @@ void UI::Draw() {
 		SpriteBatch.DrawString(time_over_font, Vector2(200, 150), Color(255,255, 255, StringAlpha()), _T("{›•b"));
 	}
 #endif
-	if(now_time > time_over)
+	if(now_time > time_over  || now_time != NULL)
 		SpriteBatch.DrawString(time_font, Vector2(260, 10), TimeColor(), _T("%.3f"), TimeManager::Instance().GetTimeLeft());
 	else {
 		SpriteBatch.DrawString(time_over_font, Vector2(230, 25), Color_Red, _T("TIME OVER"));

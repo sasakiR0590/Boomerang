@@ -190,6 +190,12 @@
     <Filter Include="MyClass\SceneManager\BaseScene\ResultManager\ResultScene">
       <UniqueIdentifier>{e72f2bf0-0fe5-4857-ac57-6ff2a6e81d7a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\SceneManager\BaseScene\Main\MainStart">
+      <UniqueIdentifier>{ebfa6f89-11b6-4f68-b18c-0dea4d422523}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyClass\SceneManager\BaseScene\Main\MainEnd">
+      <UniqueIdentifier>{541a4d38-3905-4b4a-8eee-7e5b7c838b41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -405,6 +411,12 @@
     </ClCompile>
     <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Result\ResultScene\ResultScene.cpp">
       <Filter>MyClass\SceneManager\BaseScene\ResultManager\ResultScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Main\MainStart\MainStart.cpp">
+      <Filter>MyClass\SceneManager\BaseScene\Main\MainStart</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Main\MainEnd\MainEnd.cpp">
+      <Filter>MyClass\SceneManager\BaseScene\Main\MainEnd</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -639,6 +651,12 @@
     </ClInclude>
     <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Result\ResultScene\ResultScene.h">
       <Filter>MyClass\SceneManager\BaseScene\ResultManager\ResultScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Main\MainStart\MainStart.h">
+      <Filter>MyClass\SceneManager\BaseScene\Main\MainStart</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Main\MainEnd\MainEnd.h">
+      <Filter>MyClass\SceneManager\BaseScene\Main\MainEnd</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

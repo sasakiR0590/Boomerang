@@ -3,6 +3,7 @@
 #include <fstream>
 #include"../EffectManager/EffectManager.h"
 #include "../Data/WordsTable.h"
+#include"../TimeManager/TimeManager.h"
 EnemyManager::EnemyManager()
 {
 	_enemy = {};
@@ -56,6 +57,7 @@ int EnemyManager::Update(PlayerManager* playermanager)
 				//—v‘f”‚ª DEATH ‚È‚çÁ‹Ž
 				//itr‚Ì’l‚ÌêŠ‚ðíœ‚µ‚»‚ÌêŠ‚©‚çŠÄŽ‹ÄŠJ
 				EffectManager::Instance().Create(EffectTag::EXPLOSION, (*itr)->GetPosition());
+				TimeManager::Instance().AddTime(ENEMYADDTIME);
 				itr = _enemy.erase(itr);
 			}
 	}

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../../ESGLib.h"
 #include "../../StdAfx.h"
 #include "../TimeManager/TimeManager.h"
@@ -24,16 +26,16 @@ private:
 	int   combo_counter = 0;
 	bool  time_over_flag = false;
 	bool  test_flag = false;
-	bool  clear_flag = false;
+	bool  next_scene_flag = false;
 	float now_time;
 	int   sprite_alpha = MIN_ALPHA;
 	int   string_alpha = MIN_ALPHA;
 	int   count        = MIN_COUNT;
 	float frame        = MIN_FRAME;
 
-	enum Alpha { MIN_ALPHA  =  0, ALPHA_NUM  =  2, MAX_ALPHA = 255 };
-	enum Time  { START      = 60, HARF       = 30, END       = 10  };
+	enum Alpha { MIN_ALPHA  =  0, ALPHA_NUM  =   2, MAX_ALPHA = 255 };
+	enum Time  { START      = 60, HARF       =  30, END       = 10  };
 	enum Frame { MIN_FRAME  =  0, MAX_FRAME  = 360 };
-	enum Count { MIN_COUNT  =  0, MAX_COUNT  = 3   };
+	enum Count { MIN_COUNT  =  0, MAX_COUNT  =   3 };
 protected:
 };
