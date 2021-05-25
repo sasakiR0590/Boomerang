@@ -45,6 +45,7 @@ private:
     void    FlyPoint();
     void    MovePlayerRotate(GamePadState);
     void    InvincibleManagement();
+
     MODEL           _collision;
     ANIMATIONMODEL  _model;
 
@@ -63,6 +64,7 @@ private:
     bool  _invincibleflag;//ダメージをくらう状態かどうか
     bool  _invincible_countstart;
     float _blinking;
+    bool  _blinking_state;
 
     //!csvファイルを読み込んでその値を入れる変数
     int   _hp = 1;

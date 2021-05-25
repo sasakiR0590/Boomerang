@@ -73,6 +73,7 @@ bool PlayerManager::Initialize()
 	_knock_back = 0.01f;
 
 	_blinking = 1.0f;
+	_blinking_state = true;
 
 	_boomerang_addspeed    = 0.01f;
 	_boomerang_adddistance = 1.0f;
@@ -154,7 +155,6 @@ int PlayerManager::Update()
 void PlayerManager::Draw()
 {
 	ChangeAnimation();
-	//_model->Draw();
 	_model->DrawAlpha(_blinking);
 
 #ifdef DEBUG
@@ -331,9 +331,32 @@ void PlayerManager::InvincibleManagement()
 	if (_invincibletime <= _max_invincibletime) {
 		_invincibletime += 1;
 		_invincibleflag = true;
+
+		if (_blinking_state == 1 && _blinking >= 1.0f)
+		{
+			_blinking_state = 0;
+		}
+
+		if (_blinking_state == 0 && _blinking <= 0.3f)
+		{
+			_blinking_state = 1;
+		}
+
+
+		if (_blinking_state) {
+
+			_blinking += 0.1f;
+		}
+		else {
+
+			_blinking -= 0.1f;
+		}
+
 	}
 	else
 	{
+		_blinking = 1.0f;
+		_invincibletime = 0;
 		_invincible_countstart = false;
 		_invincibleflag = false;
 	}
