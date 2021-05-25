@@ -13,7 +13,7 @@ PlayerManager::~PlayerManager()
 
 bool PlayerManager::Initialize()
 {
-	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero_0520.X"));
+	_model = GraphicsDevice.CreateAnimationModelFromFile(_T("MODEL/Player/hero_0524.X"));
 
 	_model->SetScale(1.0f);
 	_model->SetPosition(0, 0, 0);
@@ -149,6 +149,8 @@ int PlayerManager::Update()
 	}
 
 	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 0.0f, 0.0f));
+
+	_model->SetPosition(Clamp(_model->GetPosition().x,-8.5,8.5), 0.0f, Clamp(_model->GetPosition().z, -8.5, 8.5));
 	return 0;
 }
 
