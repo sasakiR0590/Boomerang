@@ -19,13 +19,14 @@ bool UI::Initialize() {
 int UI::Update() {
 	now_time      = TimeManager::Instance().GetTimeLeft();
 	SpriteAlpha();
-
+#ifdef _DEBUG
 	KeyboardState key = Keyboard->GetState();
 	if (key.IsKeyDown(Keys_Z))
 		test_flag = true;
 
-	if(test_flag)
+	if (test_flag)
 		StringAlpha();
+#endif
 
 	if (clear_flag)
 		return 1;
@@ -100,12 +101,12 @@ void UI::Draw() {
 
 	SpriteBatch.Draw(*time, Vector3(0,0, 1));
 
-
+#ifdef _DEBUG
 	if (test_flag) {
 		SpriteBatch.DrawString(time_over_font, Vector2(130, 100), Color(255,255, 255, StringAlpha()), _T("“GŒ‚”jƒ{[ƒiƒX"));
 		SpriteBatch.DrawString(time_over_font, Vector2(200, 150), Color(255,255, 255, StringAlpha()), _T("{›•b"));
 	}
-
+#endif
 	if(now_time > time_over)
 		SpriteBatch.DrawString(time_font, Vector2(260, 10), TimeColor(), _T("%.3f"), TimeManager::Instance().GetTimeLeft());
 	else {

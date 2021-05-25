@@ -31,12 +31,14 @@ void SceneManager::ChangeScene(string scene)
 }
 bool SceneManager::Initialize(string scene)
 {
+	Effekseer.Attach(GraphicsDevice, 8192);
 	ChangeScene(scene);
 	return 0;
 }
 
 int SceneManager::Update()
 {
+	Effekseer.Update();
 	if (_scene->Update() == _scene->NEXT)
 	{
 		ChangeScene(_scene->GetNextScene());

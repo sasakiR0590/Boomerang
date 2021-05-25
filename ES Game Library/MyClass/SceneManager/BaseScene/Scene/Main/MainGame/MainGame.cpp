@@ -52,7 +52,6 @@ int MainGame::Update()
 	ovserver->Update(playermanager, enemymanager);
 	EffectManager::Instance().Update();
 	TimeManager::Instance().Update();
-	Effekseer.Update();
 	ui.Update();
 	return 0;
 }

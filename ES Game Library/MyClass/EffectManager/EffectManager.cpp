@@ -13,7 +13,6 @@ EffectManager::~EffectManager()
 
 bool EffectManager::Initialize()
 {
-	Effekseer.Attach(GraphicsDevice, 8192);
 	ParticleSystem* hiteffect = new ParticleSystem;
 	_effect.insert(std::make_pair(EffectTag::HIT, std::move(SetEffectInit("Effect/hiteffect/hit_effect.efk", 1.0f, 0.1f))));
 	_effect.insert(std::make_pair(EffectTag::EXPLOSION, std::move(SetEffectInit("Effect/explosion/explosion.efk", 1.0f, 0.1f))));
