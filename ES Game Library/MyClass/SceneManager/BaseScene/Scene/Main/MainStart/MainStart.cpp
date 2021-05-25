@@ -49,11 +49,3 @@ void MainStart::Draw2D()
 {
 	ui.Draw();
 }
-
-void MainStart::Draw3D()
-{
-	if (ui.Update() == 1)
-		return;
-	playermanager->Draw();
-	fieldManeger->Draw();
-}

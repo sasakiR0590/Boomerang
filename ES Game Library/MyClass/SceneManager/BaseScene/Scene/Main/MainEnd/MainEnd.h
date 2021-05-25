@@ -10,7 +10,6 @@ public:
 	bool Initialize() override;
 	int Update() override;
 	void Draw2D() override;
-	void Draw3D() override;
 private:
 	//SPRITE bg;
 	FieldManeger* fieldManeger;

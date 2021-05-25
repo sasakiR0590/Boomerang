@@ -51,18 +51,3 @@ void MainEnd::Draw2D()
 {
 	ui.Draw();
 }
-
-void MainEnd::Draw3D()
-{
-	camera->SetLookAt(player->GetPosition() + Vector3_Backward * 5 + Vector3(0.0f, 7.0f, 0.0f), player->GetPosition() + player->GetUpVector(), Vector3_Up);
-	GraphicsDevice.SetCamera(camera);
-	playermanager->Draw();
-	fieldManeger->Draw();
-
-	GraphicsDevice.SetRenderState(DepthBuffer_Disable);
-	GraphicsDevice.SetRenderState(DepthBufferFunction_Always);
-	Effekseer.SetCamera(camera);
-	Effekseer.Draw();
-	GraphicsDevice.SetRenderState(DepthBufferFunction_Less);
-	GraphicsDevice.SetRenderState(DepthBuffer_Enable);
-}
