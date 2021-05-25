@@ -38,7 +38,9 @@ protected:
         RUN,
         ALLTYPE
     };
-    enum { LIVING, DEATH };
+
+    //ê∂ë∂ÅAé©ìÆçÌèúÅAéÄñS
+    enum { LIVING,DESTROY, DEATH };
 private:
     enum { DAMAGE_STOP_FRAME = 30, AUTODEADTIME = 900 };
     bool IsDead();

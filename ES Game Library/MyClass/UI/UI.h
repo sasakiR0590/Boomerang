@@ -15,19 +15,19 @@ public:
 private:
 	Boomerang boomerang;
 
-	int SpriteAlpha();
-	int StringAlpha();
+	int  SpriteAlpha();
+	int  StringAlpha();
+	bool SceneFlag();
 
 	Color TimeColor();
 	Color color;
-	SPRITE ui,time;
+	SPRITE start_finish,combo,time;
 	FONT time_font,time_over_font;
+
 	const float time_over = 0.9f;
-	int   combo_counter = 0;
 	bool  time_over_flag = false;
 	bool  test_flag = false;
 	bool  next_scene_flag = false;
-	float now_time;
 	int   sprite_alpha = MIN_ALPHA;
 	int   string_alpha = MIN_ALPHA;
 	int   count        = MIN_COUNT;

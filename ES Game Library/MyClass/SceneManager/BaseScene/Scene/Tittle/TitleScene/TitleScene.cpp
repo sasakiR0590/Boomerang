@@ -10,6 +10,8 @@ TitleScene::~TitleScene()
 bool TitleScene::Initialize()
 {
 	bg = GraphicsDevice.CreateSpriteFromFile(_T("Title/bg.png"));
+
+	SceneManager::Instance().SetCombo(0);
 	return true;
 }
 

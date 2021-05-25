@@ -11,9 +11,8 @@ int StopEnemy::Update(PlayerManager* player_manager)
 {
 	_animestate = ANIMESTATE::WAIT;
 
-	if (_hp <= 0) {
+	if (_hp <= 0)
 		return EnemyBase::DEATH;
-	}
 
 	_collision->SetPosition(_model->GetPosition());
 	_position = _model->GetPosition();

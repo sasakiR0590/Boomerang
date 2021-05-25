@@ -1,5 +1,5 @@
 #include "UI.h"
-
+#include"../SceneManager/SceneManager.h"
 UI::UI() {
 
 }
@@ -11,14 +11,19 @@ UI::~UI() {
 bool UI::Initialize() {
 	time_font      = GraphicsDevice.CreateSpriteFont(_T("Ÿà–¾’© Demibold"), 80);
 	time_over_font = GraphicsDevice.CreateSpriteFont(_T("Ÿà–¾’© Demibold"), 50);
-	ui             = GraphicsDevice.CreateSpriteFromFile(_T("ui/STARTA‚e‚h‚m‚h‚r‚g.png"));
+	start_finish   = GraphicsDevice.CreateSpriteFromFile(_T("ui/STARTA‚e‚h‚m‚h‚r‚g.png"));
+	combo          = GraphicsDevice.CreateSpriteFromFile(_T("ui/‚b‚n‚l‚a‚n.png"));
 	time           = GraphicsDevice.CreateSpriteFromFile(_T("ui/TIME_2.png"));
 	return true;
 }
 
 int UI::Update() {
-	now_time      = TimeManager::Instance().GetTimeLeft();
+
 	SpriteAlpha();
+
+	if (SceneFlag())
+		return 1;
+
 #ifdef _DEBUG
 	KeyboardState key = Keyboard->GetState();
 	if (key.IsKeyDown(Keys_Z))
@@ -28,21 +33,28 @@ int UI::Update() {
 		StringAlpha();
 #endif
 
-	if (next_scene_flag)
-		return 1;
-
 	return 0;
 }
 
-int  UI::SpriteAlpha() {
-	auto start_sprite_alpha = !TimeManager::Instance().StartFlag() && sprite_alpha < MAX_ALPHA && count < MAX_COUNT ||
-                               now_time < time_over                && sprite_alpha < MAX_ALPHA && count < MAX_COUNT;
+bool UI::SceneFlag() {
+	//ƒXƒ^[ƒg‚µ‚Ä‚¢‚ÄŠÔ‚ª §ŒÀŠÔ ‚æ‚è‘å‚«‚¢ê‡@‚Ü‚½‚Í §ŒÀŠÔ‚ÅI—¹ˆ—‚ªI‚í‚Á‚½
+	auto flag = TimeManager::Instance().StartFlag() && TimeManager::Instance().GetTimeLeft() > time_over ||
+			    TimeManager::Instance().GetTimeLeft() < time_over && sprite_alpha < MAX_ALPHA&& count >= MAX_COUNT;
 
+	if (flag)return true;
+
+	return false;
+}
+
+int  UI::SpriteAlpha() {
+	//ƒQ[ƒ€ŠJn‘Oˆ— ‚Ü‚½‚Í ƒQ[ƒ€I—¹ˆ—
+	auto start_sprite_alpha = !TimeManager::Instance().StartFlag()                && sprite_alpha < MAX_ALPHA && count < MAX_COUNT ||
+		                       TimeManager::Instance().GetTimeLeft() < time_over  && sprite_alpha < MAX_ALPHA && count < MAX_COUNT;
+
+	//ƒQ[ƒ€’†
 	auto between_game       = TimeManager::Instance().StartFlag() && TimeManager::Instance().GetTimeLeft() > time_over;
 
 	int  over_sprite_alpha  = sprite_alpha >= MAX_ALPHA;
-
-	auto next_scene         = TimeManager::Instance().StartFlag() || now_time < time_over && sprite_alpha < MAX_ALPHA && count >= MAX_COUNT;
 
 	if (start_sprite_alpha)
 		sprite_alpha += ALPHA_NUM;
@@ -54,10 +66,6 @@ int  UI::SpriteAlpha() {
 		count = MIN_COUNT;
 		sprite_alpha = MIN_ALPHA;
 	}
-	if (next_scene)
-		next_scene_flag = true;
-	else
-		next_scene_flag = false;
 
 	return sprite_alpha;
 }
@@ -80,7 +88,7 @@ int UI::StringAlpha() {
 
 
 Color UI::TimeColor() {
-  switch ((int)now_time) {
+  switch ((int)TimeManager::Instance().GetTimeLeft()) {
     case START:
     	color = Color_White;
     	break;
@@ -97,11 +105,11 @@ Color UI::TimeColor() {
 void UI::Draw() {
 	//start
 	if(!TimeManager::Instance().StartFlag())
-	SpriteBatch.Draw(*ui, Vector3(450,320,1),RectWH(0,0,300,64),Color(255,255, 255, SpriteAlpha()));
-
-	//	SpriteBatch.DrawString(time_font, Vector2(500, 15), Color_White, _T("%d"), combo_counter);
+	SpriteBatch.Draw(*start_finish, Vector3(450,320,1),RectWH(0,0,300,64),Color(255,255, 255, SpriteAlpha()));
 
 	SpriteBatch.Draw(*time, Vector3(0,0, 1));
+	SpriteBatch.Draw(*combo, Vector3(250, 100, 1));
+	SpriteBatch.DrawString(time_font, Vector2(130, 95), Color_White, _T("%d"), SceneManager::Instance().GetCombo());
 
 #ifdef _DEBUG
 	if (test_flag) {
@@ -109,11 +117,12 @@ void UI::Draw() {
 		SpriteBatch.DrawString(time_over_font, Vector2(200, 150), Color(255,255, 255, StringAlpha()), _T("{›•b"));
 	}
 #endif
-	if(now_time > time_over  || now_time != NULL)
-		SpriteBatch.DrawString(time_font, Vector2(260, 10), TimeColor(), _T("%.3f"), TimeManager::Instance().GetTimeLeft());
-	else {
-		SpriteBatch.DrawString(time_over_font, Vector2(230, 25), Color_Red, _T("TIME OVER"));
-		//finish
-		SpriteBatch.Draw(*ui, Vector3(450, 320, 1), RectWH(400, 0, 750, 64), Color(255, 255, 255, SpriteAlpha()));
-	}
+		if (TimeManager::Instance().GetTimeLeft() > time_over)
+			SpriteBatch.DrawString(time_font, Vector2(260, 10), TimeColor(), _T("%.3f"), TimeManager::Instance().GetTimeLeft());
+		else {
+			SpriteBatch.DrawString(time_over_font, Vector2(230, 25), Color_Red, _T("TIME OVER"));
+			//finish
+			SpriteBatch.Draw(*start_finish, Vector3(450, 320, 1), RectWH(400, 0, 750, 64), Color(255, 255, 255, SpriteAlpha()));
+		}
+	
 }

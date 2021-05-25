@@ -14,11 +14,11 @@ int NormalEnemy::Update(PlayerManager* player_manager)
 
 	_animestate = ANIMESTATE::RUN;
 
-
-	if (_hp <= 0 || _position.z <= enemy_living_area_z) {
+	if (_hp <= 0)
 		return EnemyBase::DEATH;
-	}
 
+	if (_position.z <= enemy_living_area_z)
+		return EnemyBase::DESTROY;
 
 	_collision->SetPosition(_model->GetPosition());
 	_position  = _model->GetPosition();

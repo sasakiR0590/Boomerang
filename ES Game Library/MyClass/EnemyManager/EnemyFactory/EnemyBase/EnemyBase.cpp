@@ -41,7 +41,6 @@ bool EnemyBase::Initialize(string _model_name,Vector3 position, Vector3 speed, i
 
 int EnemyBase::Update(PlayerManager* playermanager) {
 	IsDamage();
-
 	return 0;
 }
 void EnemyBase::Draw() {
@@ -71,7 +70,7 @@ int EnemyBase::AutoDead()
 		_destroy_time++;
 	}
 	else {
-		return DEATH;
+		return DESTROY;
 	}
 	return LIVING;
 }

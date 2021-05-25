@@ -26,7 +26,7 @@ public:
 	//c‚èŠÔ‚Ìæ“¾
 	inline float GetTimeLeft()  const { return limitTime - time; }
 	bool StartFlag();
-	void AddTime(int count) { limitTime += count; }
+	void AddTime(float count) { limitTime += count; }
 private:
 	inline float GetLimitTime() const { return limitTime; }
 	int GetTimeMinutes();

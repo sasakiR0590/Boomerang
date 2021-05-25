@@ -23,4 +23,6 @@ private:
 	CAMERA camera;
 	ANIMATIONMODEL player;
 	UI ui;
+
+	const float time_over = 0.9f;
 };
