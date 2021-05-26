@@ -95,6 +95,6 @@ void MainGame::Draw3D()
 	GraphicsDevice.SetRenderState(DepthBuffer_Enable);
 }
 
-void MainGame::MusicPlay() {
-
-}
+//void MainGame::MusicPlay() {
+//
+//}
