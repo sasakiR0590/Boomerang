@@ -12,4 +12,5 @@ public:
 private:
 	FONT   font;
 	SPRITE bg;
+	MUSIC  title;
 };

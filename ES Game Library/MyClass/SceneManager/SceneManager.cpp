@@ -8,11 +8,13 @@ SceneManager::SceneManager()
 {
 	_scene = nullptr;
 	this->SetCombo(0);
+	this->SetDeathEnemy(0);
 }
 
 SceneManager::SceneManager(int combo)
 {
 	this->SetCombo(combo);
+	this->SetDeathEnemy(combo);
 }
 
 SceneManager::~SceneManager()
@@ -78,3 +80,15 @@ int SceneManager::GetCombo()
 	return this->_combo;
 }
 
+void SceneManager::AddDeathEnemy() {
+	_count ++;
+}
+
+void SceneManager::SetDeathEnemy(int count) {
+	if (count < 0) return;
+	this->_count = count;
+}
+
+int SceneManager::GetDeathEnemy() {
+	return _count;
+}

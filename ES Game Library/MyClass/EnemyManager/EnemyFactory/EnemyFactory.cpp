@@ -20,9 +20,9 @@ EnemyFactory::EnemyFactory() {
 	_enemytag.push_back("dist_homing");
 
 	_enemy_model[MOVE]        = "MODEL/Enemies/Enemy/enemy_White.X";
-	_enemy_model[STOP]        = "MODEL/Enemies/StopEnemy/enemy_round.X";
-	_enemy_model[HOMING]      = "MODEL/Enemies/HomingEnemy/enemy_Eye.X";
-	_enemy_model[DIST_HOMING] = "MODEL/Enemies/DistHomingEnemy/enemy_c3_v4.X";
+	_enemy_model[STOP]        = "MODEL/Enemies/StopEnemy/enemy_light blue.X";
+	_enemy_model[HOMING]      = "MODEL/Enemies/HomingEnemy/enemy_triangle.X";
+	_enemy_model[DIST_HOMING] = "MODEL/Enemies/DistHomingEnemy/enemy_Han_en.X";
 }
 
 EnemyFactory::~EnemyFactory() {
