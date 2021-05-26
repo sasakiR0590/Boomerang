@@ -22,7 +22,12 @@ public:
 	void SetCombo(int combo);
 	int GetCombo();
 
+	void AddDeathEnemy();
+	void SetDeathEnemy(int count);
+	int GetDeathEnemy();
+
 private:
 	std::unique_ptr<BaseScene> _scene;
 	int _combo;
-};
+	int _count;
+	};

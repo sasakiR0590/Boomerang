@@ -1,4 +1,5 @@
 #include "ResultScene.h"
+#include "../../../../SceneManager.h"
 
 ResultScene::ResultScene() {
 
@@ -9,7 +10,7 @@ ResultScene::~ResultScene() {
 }
 
 bool ResultScene::Initialize() {
-	//font = GraphicsDevice.CreateSpriteFont(_T("@UD デジタル 教科書体 N-B"), );
+	font = GraphicsDevice.CreateSpriteFont(_T("@UD デジタル 教科書体 N-B"), 120);
 
 	result = GraphicsDevice.CreateSpriteFromFile(_T("Result/result_background.png"));
 	record = GraphicsDevice.CreateSpriteFromFile(_T("Result/result.png"));
@@ -25,6 +26,8 @@ int ResultScene::Update() {
 }
 
 void ResultScene::Draw2D() {
-	SpriteBatch.Draw(*result, Vector3_Zero);
-	SpriteBatch.Draw(*record, Vector3(130,100,-1));
+	SpriteBatch.Draw(*result, Vector3(0,0,2));
+	SpriteBatch.Draw(*record, Vector3(130,100,1));
+	SpriteBatch.DrawString(font, Vector2(530, 260), Color_Black, _T("%d"), SceneManager::Instance().GetDeathEnemy());
+	SpriteBatch.DrawString(font, Vector2(500, 460), Color_Black, _T("%d"),SceneManager::Instance().GetCombo());
 }
