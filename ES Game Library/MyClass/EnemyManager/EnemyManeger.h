@@ -29,6 +29,7 @@ private:
     float   appear_time[ENEMY_NUM];  //敵の出現時間
     bool    appear_flag[ENEMY_NUM];  //敵の出現フラグ 
 
+    SOUND explode;
 
     PlayerManager* _playermanager;
 };

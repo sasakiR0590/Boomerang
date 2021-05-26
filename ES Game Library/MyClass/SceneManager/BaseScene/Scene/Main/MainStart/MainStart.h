@@ -19,5 +19,6 @@ private:
 
 	CAMERA camera;
 	ANIMATIONMODEL player;
+	SOUND start;
 	UI ui;
 };

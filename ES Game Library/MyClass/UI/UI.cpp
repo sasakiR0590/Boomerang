@@ -14,15 +14,19 @@ bool UI::Initialize() {
 	start_finish   = GraphicsDevice.CreateSpriteFromFile(_T("ui/STARTA‚e‚h‚m‚h‚r‚g.png"));
 	combo          = GraphicsDevice.CreateSpriteFromFile(_T("ui/‚b‚n‚l‚a‚n.png"));
 	time           = GraphicsDevice.CreateSpriteFromFile(_T("ui/TIME_2.png"));
+	start          = SoundDevice.CreateSoundFromFile(_T("Audio/SoundEffect/Item/powerup.wav"));
+	end            = SoundDevice.CreateSoundFromFile(_T("Audio/SoundEffect/whistle.wav"));
 	return true;
 }
 
 int UI::Update() {
 
 	SpriteAlpha();
+	Sound();
 
-	if (SceneFlag())
+	if (SceneFlag()) {
 		return 1;
+	}
 
 #ifdef _DEBUG
 	KeyboardState key = Keyboard->GetState();
@@ -34,6 +38,20 @@ int UI::Update() {
 #endif
 
 	return 0;
+}
+
+void UI::Sound() {
+	auto start_se = !TimeManager::Instance().StartFlag();
+	auto end_se   = TimeManager::Instance().GetTimeLeft() < time_over && sprite_alpha < MAX_ALPHA && count < MAX_COUNT;
+
+	if (start_se && sound_state == SE_START) {
+		start->Play();
+		sound_state = SE_END;
+	}
+	if (end_se && sound_state == SE_END) {
+		end->Play();
+		sound_state = NUM;
+	}
 }
 
 bool UI::SceneFlag() {

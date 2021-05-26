@@ -21,6 +21,8 @@ EnemyManager::~EnemyManager()
 
 bool EnemyManager::Initialize()
 {
+	explode = SoundDevice.CreateSoundFromFile(_T("Audio/SoundEffect/indestructible.wav"));
+
 	for (int i = 0; i < ENEMY_NUM; ++i) {
 		appear_pos [i] = Vector3_Zero;
 		tag[i]         = INT_MAX;
@@ -60,6 +62,7 @@ int EnemyManager::Update(PlayerManager* playermanager)
 				EffectManager::Instance().Create(EffectTag::EXPLOSION, (*itr)->GetPosition());
 				TimeManager::Instance().AddTime(ENEMYADDTIME);
 				SceneManager::Instance().AddDeathEnemy();
+				explode->Play();
 				itr = _enemy.erase(itr);
 			}
 			else

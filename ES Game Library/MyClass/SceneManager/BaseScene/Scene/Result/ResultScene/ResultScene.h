@@ -10,7 +10,11 @@ public:
 
 private:
 	FONT   font;
+	SOUND  dramroll;
 	SPRITE result,record;
+	bool   appear_flag = false;
+	int count = MIN_COUNT;
+	enum {MIN_COUNT = 0, MAX_COUNT = 90};
 protected:
 
 };
