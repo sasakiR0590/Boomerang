@@ -20,6 +20,9 @@ MainGame::~MainGame()
 
 bool MainGame::Initialize()
 {
+	main = SoundDevice.CreateMusicFromFile(_T("Audio/Bgm/main.wav"));
+	//main->Play();
+
 	playermanager->Initialize();
 	enemymanager->Initialize();
 	fieldManeger->Initialize();
@@ -90,4 +93,8 @@ void MainGame::Draw3D()
 	Effekseer.Draw();
 	GraphicsDevice.SetRenderState(DepthBufferFunction_Less);
 	GraphicsDevice.SetRenderState(DepthBuffer_Enable);
+}
+
+void MainGame::MusicPlay() {
+
 }
