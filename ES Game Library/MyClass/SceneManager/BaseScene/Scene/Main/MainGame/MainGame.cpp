@@ -94,3 +94,7 @@ void MainGame::Draw3D()
 	GraphicsDevice.SetRenderState(DepthBufferFunction_Less);
 	GraphicsDevice.SetRenderState(DepthBuffer_Enable);
 }
+
+//void MainGame::MusicPlay() {
+//
+//}
