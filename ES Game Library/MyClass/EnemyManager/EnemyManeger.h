@@ -11,7 +11,7 @@ public:
     void Draw();
     void OnCollisionEnter(EnemyBase*);
     std::list<EnemyBase*> GetEnemy() {return _enemy; }
-    bool EnemyDeath();
+    bool GetEnemyDeath();
 private:
     void Generate(PlayerManager* player_manager);
     void LoadCSV();
