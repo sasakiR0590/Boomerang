@@ -1,5 +1,6 @@
 #include"../../../BaseScene.h"
 #include "../../../../../Field/FieldManager.h"
+#include "../../../../../EnemyManager/EnemyManeger.h"
 #include "../../../../../PlayerManager/PlayerManeger.h"
 #include "../../../../../UI/UI.h"
 class MainEnd :public BaseScene
@@ -14,6 +15,7 @@ private:
 	//SPRITE bg;
 	FieldManeger* fieldManeger;
 	PlayerManager* playermanager;
+	EnemyManager* enemymanager;
 
 	CAMERA camera;
 	ANIMATIONMODEL player;

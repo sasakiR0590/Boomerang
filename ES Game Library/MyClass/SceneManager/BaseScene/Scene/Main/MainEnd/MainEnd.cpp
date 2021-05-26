@@ -6,10 +6,12 @@ MainEnd::MainEnd()
 {
 	playermanager = new PlayerManager;
 	fieldManeger = new FieldManeger;
+	enemymanager = new EnemyManager;
 }
 
 MainEnd::~MainEnd()
 {
+	delete enemymanager;
 	delete playermanager;
 	delete fieldManeger;
 }
@@ -42,6 +44,7 @@ int MainEnd::Update()
 		return Scene::NEXT;
 
 	playermanager->Update();
+	enemymanager->Update(playermanager);
 	TimeManager::Instance().Update();
 	ui.Update();
 	return Scene::NOW;

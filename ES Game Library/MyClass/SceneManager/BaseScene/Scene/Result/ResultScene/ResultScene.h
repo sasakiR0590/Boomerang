@@ -9,7 +9,8 @@ public:
 	void Draw2D() override;
 
 private:
-	SPRITE result;
+	FONT   font;
+	SPRITE result,record;
 protected:
 
 };
