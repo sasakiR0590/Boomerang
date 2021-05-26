@@ -22,6 +22,7 @@ private:
 
 	CAMERA camera;
 	ANIMATIONMODEL player;
+	MUSIC main;
 	UI ui;
 
 	const float time_over = 0.9f;

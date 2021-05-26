@@ -24,6 +24,8 @@ int UI::Update() {
 	SpriteAlpha();
 	Sound();
 
+
+
 	if (SceneFlag()) {
 		return 1;
 	}

@@ -8,7 +8,6 @@ public:
 	bool Initialize() override;
 	int Update() override;
 	void Draw2D() override;
-
 private:
 	FONT   font;
 	SPRITE bg;

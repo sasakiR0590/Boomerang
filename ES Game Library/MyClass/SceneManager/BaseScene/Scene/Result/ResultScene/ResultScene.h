@@ -9,10 +9,13 @@ public:
 	void Draw2D() override;
 
 private:
+	void MusicPlay();
 	FONT   font;
 	SOUND  dramroll;
+	MUSIC  bgm;
 	SPRITE result,record;
 	bool   appear_flag = false;
+
 	int count = MIN_COUNT;
 	enum {MIN_COUNT = 0, MAX_COUNT = 90};
 protected:
