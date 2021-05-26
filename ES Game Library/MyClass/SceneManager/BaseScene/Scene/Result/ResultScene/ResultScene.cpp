@@ -10,7 +10,7 @@ ResultScene::~ResultScene() {
 }
 
 bool ResultScene::Initialize() {
-	font     = GraphicsDevice.CreateSpriteFont(_T("@UD デジタル 教科書体 N-B"), 120);
+	font     = GraphicsDevice.CreateSpriteFont(_T("UD デジタル 教科書体 N-B"), 120);
 	result   = GraphicsDevice.CreateSpriteFromFile(_T("Result/result_background.png"));
 	record   = GraphicsDevice.CreateSpriteFromFile(_T("Result/result.png"));
 	dramroll = SoundDevice.CreateSoundFromFile(_T("Audio/SoundEffect/dramroll.wav"));
