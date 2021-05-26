@@ -19,8 +19,9 @@ private:
     float _frame = 0.0f;
     float _time  = 0.0f;
 
-    enum { LIVING, DEATH, DUMMYLINENUM = 3,ENEMY_NUM = 250 };
-    enum {GAME_FRAME = 60};
+    enum { LIVING,DESTROY, DEATH };
+    enum { DUMMYLINENUM = 3,ENEMY_NUM = 250 };
+    enum { GAME_FRAME = 60 };
    
     int count = 0;                   //敵の累計出現数カウント 
     string  tag[ENEMY_NUM];          //敵の種類         

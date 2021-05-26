@@ -179,8 +179,10 @@
     <ClCompile Include="MyClass\PlayerManager\Boomerang\Boomerang.cpp" />
     <ClCompile Include="MyClass\PlayerManager\PlayerManeger.cpp" />
     <ClCompile Include="MyClass\SceneManager\BaseScene\BaseScene.cpp" />
+    <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Main\MainEnd\MainEnd.cpp" />
     <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Main\MainGame\MainGame.cpp" />
     <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Main\MainManager.cpp" />
+    <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Main\MainStart\MainStart.cpp" />
     <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Result\ResultManager.cpp" />
     <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Result\ResultScene\ResultScene.cpp" />
     <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Tittle\TitleManager.cpp" />
@@ -258,8 +260,10 @@
     <ClInclude Include="MyClass\PlayerManager\Boomerang\Boomerang.h" />
     <ClInclude Include="MyClass\PlayerManager\PlayerManeger.h" />
     <ClInclude Include="MyClass\SceneManager\BaseScene\BaseScene.h" />
+    <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Main\MainEnd\MainEnd.h" />
     <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Main\MainGame\MainGame.h" />
     <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Main\MainManager.h" />
+    <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Main\MainStart\MainStart.h" />
     <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Result\ResultManager.h" />
     <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Result\ResultScene\ResultScene.h" />
     <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Tittle\TitleManager.h" />

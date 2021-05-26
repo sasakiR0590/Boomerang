@@ -3,6 +3,7 @@
 #include <fstream>
 #include"../EffectManager/EffectManager.h"
 #include "../Data/WordsTable.h"
+#include"../TimeManager/TimeManager.h"
 EnemyManager::EnemyManager()
 {
 	_enemy = {};
@@ -48,13 +49,19 @@ int EnemyManager::Update(PlayerManager* playermanager)
 
 	auto itr = _enemy.begin();
 	while (itr != _enemy.end()) {
-		//Updateでreturnされた値 LIVING・・生きてる DEATH・・消去
+		//Updateでreturnされた値 LIVING・・生きてる AUTODEAD・・自動削除　DEATH・・消去
 			if ((*itr)->Update(_playermanager) == LIVING && (*itr)->AutoDead() == LIVING)
 				itr++;
-			else
+			else if((*itr)->Update(_playermanager) == DEATH)
 			{
 				//要素数が DEATH なら消去
 				//itrの値の場所を削除しその場所から監視再開
+				EffectManager::Instance().Create(EffectTag::EXPLOSION, (*itr)->GetPosition());
+				TimeManager::Instance().AddTime(ENEMYADDTIME);
+				itr = _enemy.erase(itr);
+			}
+			else
+			{
 				EffectManager::Instance().Create(EffectTag::EXPLOSION, (*itr)->GetPosition());
 				itr = _enemy.erase(itr);
 			}

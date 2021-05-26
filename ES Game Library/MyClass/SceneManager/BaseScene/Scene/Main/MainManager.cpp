@@ -1,5 +1,7 @@
 #include"MainManager.h"
+#include"MainStart/MainStart.h"
 #include"MainGame/MainGame.h"
+#include"MainEnd/MainEnd.h"
 #include"../../../../Data/WordsTable.h"
 MainManager::MainManager()
 {
@@ -12,7 +14,9 @@ MainManager::~MainManager()
 
 bool MainManager::Initialize()
 {
+	_child_scene.push_back(std::make_unique<MainStart>());
 	_child_scene.push_back(std::make_unique<MainGame>());
+	_child_scene.push_back(std::make_unique<MainEnd>());
 	for (auto&& childscene : _child_scene)
 	{
 		childscene->Initialize();

@@ -1,4 +1,5 @@
 #include"../../../BaseScene.h"
+#include"../../../../SceneManager.h"
 class TitleScene:public BaseScene
 {
 public:
@@ -9,5 +10,6 @@ public:
 	void Draw2D() override;
 
 private:
+	FONT   font;
 	SPRITE bg;
 };

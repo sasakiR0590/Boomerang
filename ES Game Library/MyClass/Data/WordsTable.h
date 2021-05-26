@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../ESGLib.h"
-
+static const float ENEMYADDTIME = 0.5f;
 namespace EffectTag {
 	static const std::string HIT = "hit";
 	static const std::string EXPLOSION = "explosion";

@@ -28,10 +28,11 @@ int DistHomingEnemy::Update(PlayerManager* player_manager)
 	else
 		homing_flag = false;
 
-	if (_hp <= 0 || floor_area_x  || floor_area_z) {
+	if (_hp <= 0)
 		return EnemyBase::DEATH;
-	}
 
+	if (floor_area_x || floor_area_z)
+		return EnemyBase::DESTROY;
 
 	_collision->SetPosition(_model->GetPosition());
 	_position  = _model->GetPosition();

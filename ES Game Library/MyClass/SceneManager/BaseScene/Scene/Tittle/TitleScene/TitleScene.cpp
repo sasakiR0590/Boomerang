@@ -9,14 +9,18 @@ TitleScene::~TitleScene()
 
 bool TitleScene::Initialize()
 {
-	bg = GraphicsDevice.CreateSpriteFromFile(_T("Title/bg.png"));
+	//font = GraphicsDevice.CreateSpriteFont(_T("@UD ƒfƒWƒ^ƒ‹ ‹³‰È‘‘Ì N-B"), );
+	bg = GraphicsDevice.CreateSpriteFromFile(_T("Title/‚s‚h‚s‚k‚d_background.png"));
+
+	SceneManager::Instance().SetCombo(0);
 	return true;
 }
 
 int TitleScene::Update()
 {
-	KeyboardState key = Keyboard->GetState();
-	if (key.IsKeyDown(Keys_Space))
+	KeyboardBuffer key = Keyboard->GetBuffer();
+	GamePadBuffer pad = GamePad(0)->GetBuffer();
+	if (key.IsPressed(Keys_Space) || pad.IsReleased(GamePad_Button4))
 		return Scene::NEXT;
 	return Scene::NOW;
 }
