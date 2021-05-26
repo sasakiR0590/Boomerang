@@ -18,8 +18,8 @@ bool ResultScene::Initialize() {
 
 int ResultScene::Update() {
 	KeyboardBuffer key = Keyboard->GetBuffer();
-	GamePadBuffer pad = GamePad(0)->GetBuffer();
-	if (key.IsPressed(Keys_Space) || pad.IsReleased(GamePad_Button4))
+//	GamePadBuffer pad = GamePad(0)->GetBuffer();
+	if (key.IsPressed(Keys_Space))
 		return Scene::NEXT;
 	return Scene::NOW;
 }
