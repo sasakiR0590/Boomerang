@@ -77,6 +77,7 @@ void SceneManager::AddCombo()
 {
 	_combo_reset_time = 0.0f;
 	_combo += 1;
+	MaximumCombo();
 }
 
 void SceneManager::SetCombo(int combo)
@@ -88,6 +89,14 @@ void SceneManager::SetCombo(int combo)
 int SceneManager::GetCombo()
 {
 	return this->_combo;
+}
+
+int SceneManager::MaximumCombo()
+{
+	if (_combo >= _max_combo)
+		_max_combo = _combo;
+
+	return _max_combo;
 }
 
 void SceneManager::AddDeathEnemy() {

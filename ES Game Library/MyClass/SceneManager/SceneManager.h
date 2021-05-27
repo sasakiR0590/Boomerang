@@ -26,9 +26,12 @@ public:
 	void SetDeathEnemy(int count);
 	int GetDeathEnemy();
 
+	int MaximumCombo();
+
 private:
 	std::unique_ptr<BaseScene> _scene;
 	int   _combo;
+	int   _max_combo;
 	int   _count;
 	float _combo_reset_time  = 0.0f;
 };
