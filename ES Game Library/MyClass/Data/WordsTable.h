@@ -4,7 +4,9 @@
 static const float ENEMYADDTIME = 0.5f;
 namespace EffectTag {
 	static const std::string HIT = "hit";
+	static const std::string SAMLL = "small_";
 	static const std::string EXPLOSION = "explosion";
+	static const std::string SMALLEXPLOSION = "explosion";
 }
 namespace SceneNumber {
 	static const std::string TITLE  = "title";
