@@ -52,7 +52,7 @@ private:
     //!アニメーション
     int             _animstate = 0;
     int             _oldanimstate = 0;
-    float           _animation_count = 0;
+    float           _animation_count = 0.0f;
 
     //!ブーメラン
     float           _power = 0.0f;

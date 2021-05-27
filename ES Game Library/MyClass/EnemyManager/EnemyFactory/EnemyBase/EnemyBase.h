@@ -50,4 +50,7 @@ private:
     float damage_frame = 0.0f;
 
     const float time_over = 0.9f;
+
+    int _add_damage = 0;
+    int _combo = 0;
 };

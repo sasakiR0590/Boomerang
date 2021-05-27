@@ -110,7 +110,7 @@ int PlayerManager::Update()
 	else {
 		_invincible_countstart = true;
 		_model->Move(-_model->GetFrontVector() * _knock_back);
-		if (_animation_count >= 1) {
+		if (_animation_count >= 1.0f) {
 			_animstate = AnimationState::WAIT;
 		}
 	}
@@ -266,7 +266,7 @@ void PlayerManager::ChangeAnimation()
 	if (_animstate != index)
 	{
 		_oldanimstate = _animstate;
-		_animation_count = 0;
+		_animation_count = 0.0f;
 	}
 
 	if (_animstate == AnimationState::SHOOT && _animation_count >= 0.1f)

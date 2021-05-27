@@ -1,6 +1,7 @@
 #include"EnemyBase.h"
 #include "../../EnemyManeger.h"
 #include "../../../Data/MyAlgorithm.h"
+#include"../../../SceneManager/SceneManager.h"
 EnemyBase::EnemyBase()
 {
 }
@@ -49,7 +50,21 @@ void EnemyBase::Draw() {
 }
 
 void EnemyBase::Damage() {
-	_hp -= 1;
+
+	_combo = SceneManager::Instance().GetCombo();
+	if (_combo >= 0 && _combo < 100)
+		_add_damage = 1;
+
+	else if (_combo >= 100 && _combo < 200)
+		_add_damage = 2;
+
+	else if (_combo >= 200 && _combo < 300)
+		_add_damage = 3;
+
+	else if (_combo >= 300)
+ 		_add_damage = 4;
+
+	_hp -= 1 * _add_damage;
 	damage_flag = true;
 }
 
@@ -85,5 +100,3 @@ bool EnemyBase::LimitDestruction() {
 	if (TimeManager::Instance().GetTimeLeft() < time_over) return true;
 	return false;
 }
-
-
