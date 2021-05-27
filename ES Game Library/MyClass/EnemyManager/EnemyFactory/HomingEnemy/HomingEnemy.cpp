@@ -21,8 +21,11 @@ int HomingEnemy::Update(PlayerManager* player_manager)
 
 	_animestate = ANIMESTATE::RUN;
 
+	if (_hp <= 0)
+		return 2;
+
 	if (floor_area_x || floor_area_z)
-		return EnemyBase::DESTROY;
+		return 2;
 
 	_collision->SetPosition(_model->GetPosition());
 	_position  = _model->GetPosition();

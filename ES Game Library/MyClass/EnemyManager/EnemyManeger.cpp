@@ -5,6 +5,7 @@
 #include "../Data/WordsTable.h"
 #include"../TimeManager/TimeManager.h"
 #include"../SceneManager/SceneManager.h"
+
 EnemyManager::EnemyManager()
 {
 	_enemy = {};
@@ -21,7 +22,7 @@ EnemyManager::~EnemyManager()
 
 bool EnemyManager::Initialize()
 {
-	explode = SoundDevice.CreateSoundFromFile(_T("Audio/SoundEffect/indestructible.wav"));
+	explode = SoundDevice.CreateSoundFromFile(_T("Audio/SoundEffect/explosion.wav"));
 
 	for (int i = 0; i < ENEMY_NUM; ++i) {
 		appear_pos [i] = Vector3_Zero;
@@ -55,20 +56,17 @@ int EnemyManager::Update(PlayerManager* playermanager)
 		//Updateでreturnされた値 LIVING・・生きてる AUTODEAD・・自動削除　DEATH・・消去
 			if ((*itr)->Update(_playermanager) == LIVING && (*itr)->AutoDead() == LIVING)
 				itr++;
-			else if((*itr)->Update(_playermanager) == DEATH)
+			else
 			{
-				//要素数が DEATH なら消去
-				//itrの値の場所を削除しその場所から監視再開
-				EffectManager::Instance().Create(EffectTag::EXPLOSION, (*itr)->GetPosition());
+				if((*itr)->Update(_playermanager) == 2)
+					EffectManager::Instance().Create(EffectTag::SMALLEXPLOSION, (*itr)->GetPosition());
+				else
+					EffectManager::Instance().Create(EffectTag::EXPLOSION, (*itr)->GetPosition());
+				if ((*itr)->AutoDead() != LIVING) {itr = _enemy.erase(itr); continue;}
+				itr = _enemy.erase(itr);
 				TimeManager::Instance().AddTime(ENEMYADDTIME);
 				SceneManager::Instance().AddDeathEnemy();
 				explode->Play();
-				itr = _enemy.erase(itr);
-			}
-			else
-			{
-				EffectManager::Instance().Create(EffectTag::EXPLOSION, (*itr)->GetPosition());
-				itr = _enemy.erase(itr);
 			}
 	}
 
