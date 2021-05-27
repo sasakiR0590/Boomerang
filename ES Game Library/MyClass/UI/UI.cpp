@@ -1,5 +1,6 @@
 #include "UI.h"
 #include"../SceneManager/SceneManager.h"
+#include "../Data/WordsTable.h"
 UI::UI() {
 
 }
@@ -9,8 +10,8 @@ UI::~UI() {
 }
 
 bool UI::Initialize() {
-	time_font      = GraphicsDevice.CreateSpriteFont(_T("@UD ƒfƒWƒ^ƒ‹ ‹³‰È‘‘Ì N-B"), 80);
-	time_over_font = GraphicsDevice.CreateSpriteFont(_T("@UD ƒfƒWƒ^ƒ‹ ‹³‰È‘‘Ì N-B"), 50);
+	time_font      = GraphicsDevice.CreateSpriteFont(_T("UD ƒfƒWƒ^ƒ‹ ‹³‰È‘‘Ì N-B"), 80);
+	time_over_font = GraphicsDevice.CreateSpriteFont(_T("UD ƒfƒWƒ^ƒ‹ ‹³‰È‘‘Ì N-B"), 50);
 	start_finish   = GraphicsDevice.CreateSpriteFromFile(_T("ui/STARTA‚e‚h‚m‚h‚r‚g.png"));
 	combo          = GraphicsDevice.CreateSpriteFromFile(_T("ui/‚b‚n‚l‚a‚n.png"));
 	time           = GraphicsDevice.CreateSpriteFromFile(_T("ui/TIME_2.png"));
@@ -20,24 +21,13 @@ bool UI::Initialize() {
 }
 
 int UI::Update() {
-
+	//old_death = SceneManager::Instance().GetDeathEnemy();
 	SpriteAlpha();
 	Sound();
-
-
 
 	if (SceneFlag()) {
 		return 1;
 	}
-
-#ifdef _DEBUG
-	KeyboardState key = Keyboard->GetState();
-	if (key.IsKeyDown(Keys_Z))
-		test_flag = true;
-
-	if (test_flag)
-		StringAlpha();
-#endif
 
 	return 0;
 }
@@ -90,23 +80,6 @@ int  UI::SpriteAlpha() {
 	return sprite_alpha;
 }
 
-int UI::StringAlpha() {
-	if (test_flag) {
-		if (string_alpha < MAX_ALPHA && frame < MAX_COUNT) {
-			string_alpha += ALPHA_NUM;
-			frame++;
-		}
-		else
-			test_flag = false;
-	}
-	else {
-		string_alpha = MIN_ALPHA;
-		frame = MIN_FRAME;
-	}
-	return string_alpha;
-}
-
-
 Color UI::TimeColor() {
   switch ((int)TimeManager::Instance().GetTimeLeft()) {
     case START:
@@ -131,12 +104,10 @@ void UI::Draw() {
 	SpriteBatch.Draw(*combo, Vector3(250, 100, 1));
 	SpriteBatch.DrawString(time_font, Vector2(130, 97), Color_White, _T("%d"), SceneManager::Instance().GetCombo());
 
-#ifdef _DEBUG
-	if (test_flag) {
-		SpriteBatch.DrawString(time_over_font, Vector2(130, 100), Color(255,255, 255, StringAlpha()), _T("“GŒ‚”jƒ{[ƒiƒX"));
-		SpriteBatch.DrawString(time_over_font, Vector2(200, 150), Color(255,255, 255, StringAlpha()), _T("{›•b"));
-	}
-#endif
+	//if(SceneManager::Instance().GetDeathEnemy() < old_death)
+	//	SpriteBatch.DrawString(time_over_font, Vector2(510, 30), Color_Red, _T("+%.1f•b"),ENEMYADDTIME);
+
+
 		if (TimeManager::Instance().GetTimeLeft() > time_over)
 			SpriteBatch.DrawString(time_font, Vector2(240, 12), TimeColor(), _T("%.3f"), TimeManager::Instance().GetTimeLeft());
 		else {

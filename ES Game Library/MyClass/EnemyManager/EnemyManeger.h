@@ -11,7 +11,7 @@ public:
     void Draw();
     void OnCollisionEnter(EnemyBase*);
     std::list<EnemyBase*> GetEnemy() {return _enemy; }
-    bool GetEnemyDeath();
+
 private:
     void Generate(PlayerManager* player_manager);
     void LoadCSV();
@@ -29,7 +29,6 @@ private:
     Vector3 appear_pos[ENEMY_NUM];   //敵の出現座標  
     float   appear_time[ENEMY_NUM];  //敵の出現時間
     bool    appear_flag[ENEMY_NUM];  //敵の出現フラグ 
-
     SOUND explode;
 
     PlayerManager* _playermanager;

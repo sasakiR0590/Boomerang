@@ -4,6 +4,7 @@
 #include "../../StdAfx.h"
 #include "../TimeManager/TimeManager.h"
 #include "../PlayerManager/Boomerang/Boomerang.h"
+#include"../EnemyManager/EnemyManeger.h"
 
 class UI {
 public:
@@ -16,7 +17,6 @@ private:
 	Boomerang boomerang;
 
 	int  SpriteAlpha();
-	int  StringAlpha();
 	bool SceneFlag();
 	void Sound();
 
@@ -31,10 +31,10 @@ private:
 	bool  test_flag = false;
 	bool  next_scene_flag = false;
 	int   sprite_alpha = MIN_ALPHA;
-	int   string_alpha = MIN_ALPHA;
 	int   count        = MIN_COUNT;
 	float frame        = MIN_FRAME;
-	int   sound_state = SE_START;
+	int   sound_state  = SE_START;
+	//int   old_death    = 0;
 
 	enum sound { SE_START,SE_END,NUM };
 	enum Alpha { MIN_ALPHA  =  0, ALPHA_NUM  =   2, MAX_ALPHA = 255 };

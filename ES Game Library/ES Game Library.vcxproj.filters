@@ -196,6 +196,9 @@
     <Filter Include="MyClass\SceneManager\BaseScene\Main\MainEnd">
       <UniqueIdentifier>{541a4d38-3905-4b4a-8eee-7e5b7c838b41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyClass\ResouceManager">
+      <UniqueIdentifier>{71f68ef6-f561-4712-ad0d-f2eb44af9e26}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameMain.cpp">
@@ -417,6 +420,9 @@
     </ClCompile>
     <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Main\MainEnd\MainEnd.cpp">
       <Filter>MyClass\SceneManager\BaseScene\Main\MainEnd</Filter>
+    </ClCompile>
+    <ClCompile Include="MyClass\ResouceManager\ResouceManager.cpp">
+      <Filter>MyClass\ResouceManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -657,6 +663,9 @@
     </ClInclude>
     <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Main\MainEnd\MainEnd.h">
       <Filter>MyClass\SceneManager\BaseScene\Main\MainEnd</Filter>
+    </ClInclude>
+    <ClInclude Include="MyClass\ResouceManager\ResouceManager.h">
+      <Filter>MyClass\ResouceManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
