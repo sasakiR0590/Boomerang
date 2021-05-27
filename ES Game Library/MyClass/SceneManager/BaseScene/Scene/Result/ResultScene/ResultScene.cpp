@@ -1,12 +1,12 @@
 #include "ResultScene.h"
 #include "../../../../SceneManager.h"
+#include"../../../../../ResouceManager/ResouceManager.h"
 
 ResultScene::ResultScene() {
 
 }
 
 ResultScene::~ResultScene() {
-
 }
 
 bool ResultScene::Initialize() {
@@ -16,8 +16,8 @@ bool ResultScene::Initialize() {
 	dramroll = SoundDevice.CreateSoundFromFile(_T("Audio/SoundEffect/dramroll.wav"));
 	dramroll->Play();
 
-	bgm = SoundDevice.CreateMusicFromFile(_T("Audio/Bgm/result.wav"));
-	//bgm->Play();
+	bgm = ResouceManager::Instance().LordMusicFile(_T("Audio/Bgm/result.wav"));
+	bgm->Play();
 
 	InputDevice.CreateGamePad(1);
 	return true;
@@ -34,7 +34,10 @@ int ResultScene::Update() {
 	KeyboardBuffer key = Keyboard->GetBuffer();
 	GamePadBuffer pad = GamePad(0)->GetBuffer();
 	if (key.IsPressed(Keys_Space) || pad.IsPressed(GamePad_Button4))
+	{	
+		bgm->Stop();
 		return Scene::NEXT;
+	}
 
 	return Scene::NOW;
 }

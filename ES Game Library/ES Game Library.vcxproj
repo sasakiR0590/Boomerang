@@ -178,6 +178,7 @@
     <ClCompile Include="MyClass\ParticleSystem\Particle.cpp" />
     <ClCompile Include="MyClass\PlayerManager\Boomerang\Boomerang.cpp" />
     <ClCompile Include="MyClass\PlayerManager\PlayerManeger.cpp" />
+    <ClCompile Include="MyClass\ResouceManager\ResouceManager.cpp" />
     <ClCompile Include="MyClass\SceneManager\BaseScene\BaseScene.cpp" />
     <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Main\MainEnd\MainEnd.cpp" />
     <ClCompile Include="MyClass\SceneManager\BaseScene\Scene\Main\MainGame\MainGame.cpp" />
@@ -259,6 +260,7 @@
     <ClInclude Include="MyClass\ParticleSystem\Particle.h" />
     <ClInclude Include="MyClass\PlayerManager\Boomerang\Boomerang.h" />
     <ClInclude Include="MyClass\PlayerManager\PlayerManeger.h" />
+    <ClInclude Include="MyClass\ResouceManager\ResouceManager.h" />
     <ClInclude Include="MyClass\SceneManager\BaseScene\BaseScene.h" />
     <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Main\MainEnd\MainEnd.h" />
     <ClInclude Include="MyClass\SceneManager\BaseScene\Scene\Main\MainGame\MainGame.h" />

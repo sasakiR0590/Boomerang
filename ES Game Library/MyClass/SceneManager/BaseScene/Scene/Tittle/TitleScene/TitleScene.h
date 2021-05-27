@@ -10,6 +10,6 @@ public:
 	void Draw2D() override;
 private:
 	FONT   font;
-	SPRITE bg;
+	SPRITE bg,logo;
 	MUSIC  title;
 };

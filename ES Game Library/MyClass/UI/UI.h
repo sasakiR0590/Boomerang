@@ -33,7 +33,8 @@ private:
 	int   sprite_alpha = MIN_ALPHA;
 	int   count        = MIN_COUNT;
 	float frame        = MIN_FRAME;
-	int   sound_state = SE_START;
+	int   sound_state  = SE_START;
+	//int   old_death    = 0;
 
 	enum sound { SE_START,SE_END,NUM };
 	enum Alpha { MIN_ALPHA  =  0, ALPHA_NUM  =   2, MAX_ALPHA = 255 };

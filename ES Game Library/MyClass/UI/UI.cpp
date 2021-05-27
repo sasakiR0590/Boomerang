@@ -21,7 +21,7 @@ bool UI::Initialize() {
 }
 
 int UI::Update() {
-
+	//old_death = SceneManager::Instance().GetDeathEnemy();
 	SpriteAlpha();
 	Sound();
 
@@ -104,10 +104,8 @@ void UI::Draw() {
 	SpriteBatch.Draw(*combo, Vector3(250, 100, 1));
 	SpriteBatch.DrawString(time_font, Vector2(130, 97), Color_White, _T("%d"), SceneManager::Instance().GetCombo());
 
-
-	//	SpriteBatch.DrawString(time_over_font, Vector2(130, 100), Color(255,255, 255), _T("ìGåÇîjÉ{Å[ÉiÉX"));
-	//if(EnemyManager::Instance().GetEnemyDeath())
-	//	SpriteBatch.DrawString(time_over_font, Vector2(200, 150), Color_Red, _T("+%.1fïb"),ENEMYADDTIME);
+	//if(SceneManager::Instance().GetDeathEnemy() < old_death)
+	//	SpriteBatch.DrawString(time_over_font, Vector2(510, 30), Color_Red, _T("+%.1fïb"),ENEMYADDTIME);
 
 
 		if (TimeManager::Instance().GetTimeLeft() > time_over)

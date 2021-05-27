@@ -2,6 +2,7 @@
 #include "../../../../../EffectManager/EffectManager.h"
 #include "../../../../../TimeManager/TimeManager.h"
 #include"../../../../SceneManager.h"
+#include"../../../../../ResouceManager/ResouceManager.h"
 MainGame::MainGame():DefaultFont(GraphicsDevice.CreateDefaultFont())
 {
 	playermanager = new PlayerManager;
@@ -20,8 +21,8 @@ MainGame::~MainGame()
 
 bool MainGame::Initialize()
 {
-	main = SoundDevice.CreateMusicFromFile(_T("Audio/Bgm/main.wav"));
-	//main->Play();
+	main = ResouceManager::Instance().LordMusicFile(_T("Audio/Bgm/main.wav"));
+	main->Play();
 
 	playermanager->Initialize();
 	enemymanager->Initialize();
@@ -47,9 +48,11 @@ bool MainGame::Initialize()
 
 int MainGame::Update()
 {
-	if ( TimeManager::Instance().GetTimeLeft() < time_over)
+	if (TimeManager::Instance().GetTimeLeft() < time_over)
+	{	
+		main->Stop();
 		return Scene::NEXT;
-
+	}
 	playermanager->Update();
 	enemymanager->Update(playermanager);
 	ovserver->Update(playermanager, enemymanager);
