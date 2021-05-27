@@ -254,7 +254,7 @@ void PlayerManager::ChangeAnimation()
 {
 	auto index = _oldanimstate;
 
-	_animation_count += GameTimer.GetElapsedSecond();
+	_animation_count += GameTimer.GetElapsedSecond() * 2;
 
 	//! 全てのアニメーショントラックを停止
 	for (int i = 0; i < AnimationState::ALLTYPE; ++i)
