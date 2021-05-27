@@ -60,14 +60,14 @@ int EnemyManager::Update(PlayerManager* playermanager)
 			{
 				if ((*itr)->Update(_playermanager) == DEATH) {
 					EffectManager::Instance().Create(EffectTag::SMALLEXPLOSION, (*itr)->GetPosition());
+					TimeManager::Instance().AddTime(ENEMYADDTIME);
+					SceneManager::Instance().AddDeathEnemy();
 					explode->Play();
 				}
 				else
 					EffectManager::Instance().Create(EffectTag::EXPLOSION, (*itr)->GetPosition());
 				if ((*itr)->AutoDead() != LIVING) {itr = _enemy.erase(itr); continue;}
 				itr = _enemy.erase(itr);
-				TimeManager::Instance().AddTime(ENEMYADDTIME);
-				SceneManager::Instance().AddDeathEnemy();
 			}
 	}
 
