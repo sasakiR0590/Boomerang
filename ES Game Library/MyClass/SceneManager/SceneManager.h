@@ -28,6 +28,7 @@ public:
 
 private:
 	std::unique_ptr<BaseScene> _scene;
-	int _combo;
-	int _count;
-	};
+	int   _combo;
+	int   _count;
+	float _combo_reset_time  = 0.0f;
+};

@@ -45,6 +45,15 @@ int SceneManager::Update()
 	{
 		ChangeScene(_scene->GetNextScene());
 	}
+
+	_combo_reset_time += GameTimer.GetElapsedSecond();
+
+	if (_combo_reset_time >= 3.0f)
+	{
+		_combo = 0;
+		_combo_reset_time  = 0.0f;
+	}
+
 	return 0;
 }
 
@@ -66,6 +75,7 @@ void SceneManager::Draw()
 
 void SceneManager::AddCombo()
 {
+	_combo_reset_time = 0.0f;
 	_combo += 1;
 }
 
