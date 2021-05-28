@@ -1,5 +1,12 @@
 #pragma once
 
+/**
+ * @file   EnemyFactory.h
+ * @brief  敵の製造を行っているクラス
+ * @author Mitsuhide Kowata
+ * @date 　2021/03/31
+ */
+
 #include "../../LoadCSV/LoadCSV.h"
 #include "EnemyBase/EnemyBase.h"
 #include "StopEnemy/StopEnemy.h"
@@ -34,5 +41,9 @@ private:
 	std::vector<string> _enemytag;
 	string _enemy_model[4];
 
+	/**
+　　* @enum EnemyType
+　　* 敵の種類
+　　*/
 	enum EnemyType {MOVE,STOP,HOMING,DIST_HOMING};
 };

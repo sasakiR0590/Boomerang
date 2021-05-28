@@ -46,7 +46,6 @@ int EnemyBase::Update(PlayerManager* playermanager) {
 }
 void EnemyBase::Draw() {
 	_model->Draw();
-	//_collision->Draw();
 }
 
 void EnemyBase::Damage() {

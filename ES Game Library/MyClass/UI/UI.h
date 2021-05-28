@@ -1,5 +1,12 @@
 #pragma once
 
+/**
+ * @file   UI.h
+ * @brief  ゲーム内の文字・画像描画、MainGame内のシーン遷移を行っているクラス
+ * @author Mitsuhide Kowata
+ * @date   2021/05/20
+ */
+
 #include "../../ESGLib.h"
 #include "../../StdAfx.h"
 #include "../TimeManager/TimeManager.h"
@@ -32,14 +39,30 @@ private:
 	bool  next_scene_flag = false;
 	int   sprite_alpha = MIN_ALPHA;
 	int   count        = MIN_COUNT;
-	float frame        = MIN_FRAME;
 	int   sound_state  = SE_START;
-	//int   old_death    = 0;
 
-	enum sound { SE_START,SE_END,NUM };
+	/**
+    * @enum Sound
+    * SEの状態変化用
+    */
+	enum Sound { SE_START,SE_END,NUM };
+
+	/**
+    * @enum Alpha
+    * 画像のアルファ値変更用
+    */
 	enum Alpha { MIN_ALPHA  =  0, ALPHA_NUM  =   2, MAX_ALPHA = 255 };
+
+	/**
+    * @enum Time
+    * 時間を指定し処理を行う
+    */
 	enum Time  { START      = 60, HARF       =  30, END       = 10  };
-	enum Frame { MIN_FRAME  =  0, MAX_FRAME  = 360 };
+
+	/**
+    * @enum Count
+    * 画像点滅の点滅回数カウント
+    */
 	enum Count { MIN_COUNT  =  0, MAX_COUNT  =   3 };
 protected:
 };

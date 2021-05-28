@@ -1,5 +1,12 @@
 #pragma once
 
+/**
+ * @file   EnemyBase.h
+ * @brief  “G‚ÌŒ³‚É‚È‚éƒNƒ‰ƒX
+ * @author Mitsuhide Kowata
+ * @date @2021/03/31
+ */
+
 #include "../../../../ESGLib.h"
 #include"../../../PlayerManager/PlayerManeger.h"
 #include "../../../TimeManager/TimeManager.h"
@@ -16,7 +23,6 @@ public:
     void Damage();
     virtual int AutoDead();
 protected:
-    virtual void ChangeAnimation() = 0;
     bool IsDamage();
     Vector3 _position;
     Vector3 _angle;
@@ -26,23 +32,25 @@ protected:
     MODEL   _collision;
     ANIMATIONMODEL   _model;
 
-    int     _animestate = 0;
-    int     _oldanimestate = 0;
-    double   _animation_count = 0.0;
     float   _rotation = 0.0f;
     const float  _homing_area = 8.5f;
 
-    enum  ANIMESTATE
-    {
-        WAIT,
-        RUN,
-        ALLTYPE
-    };
-
-    //¶‘¶A©“®íœA€–S
-    enum { LIVING,DESTROY, DEATH };
+   /**
+    * @enum EnemyState
+    * “G‚Ìó‘Ô
+    */
+    enum EnemyState{ LIVING,DESTROY, DEATH };
 private:
-    enum { DAMAGE_STOP_FRAME = 30, AUTODEADTIME = 900 };
+    /**
+     * @enum Frame
+     * “G‚ÉŠÖŒW‚·‚éŠÔŒv‘ª—p
+     */
+    enum Frame { 
+        //!ƒ_ƒ[ƒW‚ğó‚¯‚½“G‚ª~‚Ü‚éŠÔ
+        DAMAGE_STOP_FRAME = 30, 
+        //!“G‚ª©“®íœ‚³‚ê‚éŠÔ
+        AUTODEADTIME = 900 
+    };
     bool IsDead();
     bool LimitDestruction();
     int _destroy_time = 0;
