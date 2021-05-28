@@ -47,6 +47,6 @@ void ResultScene::Draw2D() {
 	SpriteBatch.Draw(*record, Vector3(130,100,1));
 	if (appear_flag) {
 		SpriteBatch.DrawString(font, Vector2(530, 260), Color_Black, _T("%d"), SceneManager::Instance().GetDeathEnemy());
-		SpriteBatch.DrawString(font, Vector2(500, 460), Color_Black, _T("%d"), SceneManager::Instance().GetCombo());
+		SpriteBatch.DrawString(font, Vector2(270, 460), Color_Black, _T("Н≈Се %d"), SceneManager::Instance().MaximumCombo());
 	}
 }
