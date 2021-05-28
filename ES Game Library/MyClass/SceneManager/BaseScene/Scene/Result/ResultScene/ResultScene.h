@@ -9,7 +9,7 @@ public:
 	void Draw2D() override;
 
 private:
-	void MusicPlay();
+	void SaveScore();
 	FONT   font;
 	SOUND  dramroll;
 	MUSIC  bgm;

@@ -11,11 +11,7 @@ ResultScene::~ResultScene() {
 
 bool ResultScene::Initialize() {
 
-	std::ofstream outputfile("Score/Score.txt");
-	outputfile << SceneManager::Instance().GetDeathEnemy() << ',' 
-		<< SceneManager::Instance().MaximumCombo();
-	outputfile.close();
-
+	SaveScore();
 	font     = GraphicsDevice.CreateSpriteFont(_T("UD ƒfƒWƒ^ƒ‹ ‹³‰È‘‘Ì N-B"), 120);
 	result   = GraphicsDevice.CreateSpriteFromFile(_T("Result/result_background.png"));
 	record   = GraphicsDevice.CreateSpriteFromFile(_T("Result/result.png"));
@@ -55,4 +51,20 @@ void ResultScene::Draw2D() {
 		SpriteBatch.DrawString(font, Vector2(530, 260), Color_Black, _T("%d"), SceneManager::Instance().GetDeathEnemy());
 		SpriteBatch.DrawString(font, Vector2(270, 460), Color_Black, _T("Å‘å %d"), SceneManager::Instance().MaximumCombo());
 	}
+}
+
+void ResultScene::SaveScore()
+{
+	std::ifstream pos_time_infile("Score/Score.txt");
+
+	float score[2];
+	char dummy;
+	pos_time_infile >> score[0] >> dummy >> score[1];
+	if (SceneManager::Instance().GetDeathEnemy() > score[0])
+		score[0] = SceneManager::Instance().GetDeathEnemy();
+	if (SceneManager::Instance().MaximumCombo() > score[1])
+		score[1] = SceneManager::Instance().MaximumCombo();
+	std::ofstream outputfile("Score/Score.txt");
+	outputfile << score[0] << ',' << score[1];
+	outputfile.close();
 }
