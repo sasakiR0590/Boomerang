@@ -150,7 +150,7 @@ int PlayerManager::Update()
 
 	_collision->SetPosition(_model->GetPosition() + Vector3(0.0f, 0.0f, 0.0f));
 
-	_model->SetPosition(Clamp(_model->GetPosition().x,-8.5,8.5), 0.0f, Clamp(_model->GetPosition().z, -8.5, 8.5));
+	_model->SetPosition(Clamp(_model->GetPosition().x,-9.0f,9.0f), 0.0f, Clamp(_model->GetPosition().z, -9.0f, 9.0f));
 	return 0;
 }
 
