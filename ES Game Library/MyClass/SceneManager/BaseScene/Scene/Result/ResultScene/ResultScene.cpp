@@ -1,7 +1,7 @@
 #include "ResultScene.h"
 #include "../../../../SceneManager.h"
 #include"../../../../../ResouceManager/ResouceManager.h"
-
+#include <fstream>
 ResultScene::ResultScene() {
 
 }
@@ -10,6 +10,12 @@ ResultScene::~ResultScene() {
 }
 
 bool ResultScene::Initialize() {
+
+	std::ofstream outputfile("Score/Score.txt");
+	outputfile << SceneManager::Instance().GetDeathEnemy() << ',' 
+		<< SceneManager::Instance().MaximumCombo();
+	outputfile.close();
+
 	font     = GraphicsDevice.CreateSpriteFont(_T("UD ƒfƒWƒ^ƒ‹ ‹³‰È‘‘Ì N-B"), 120);
 	result   = GraphicsDevice.CreateSpriteFromFile(_T("Result/result_background.png"));
 	record   = GraphicsDevice.CreateSpriteFromFile(_T("Result/result.png"));
