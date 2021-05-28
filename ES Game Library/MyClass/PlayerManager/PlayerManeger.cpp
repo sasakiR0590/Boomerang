@@ -118,7 +118,7 @@ int PlayerManager::Update()
 	if (_invincible_countstart)
 		InvincibleManagement();
 
-	if ((key.IsKeyDown(Keys_Space) || pad.Buttons[3]) && _animstate != AnimationState::SHOOT) {
+	if ((key.IsKeyDown(Keys_Space) || pad.Buttons[3]) && _animstate != AnimationState::SHOOT && _animstate != AnimationState::STANCE && !_shootstate) {
 		_animstate = AnimationState::STANCE;
 	}
 	if (pad.Y2 != 0.0f || pad.X3 != 0.0f)
