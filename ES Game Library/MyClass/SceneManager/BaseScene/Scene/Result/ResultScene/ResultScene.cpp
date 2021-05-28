@@ -1,6 +1,7 @@
 #include "ResultScene.h"
 #include "../../../../SceneManager.h"
 #include"../../../../../ResouceManager/ResouceManager.h"
+#include"../../../../../Data/MyAlgorithm.h"
 #include <fstream>
 ResultScene::ResultScene() {
 
@@ -55,16 +56,14 @@ void ResultScene::Draw2D() {
 
 void ResultScene::SaveScore()
 {
-	std::ifstream pos_time_infile("Score/Score.txt");
+	auto data = GetSaveData();
 
-	float score[2];
-	char dummy;
-	pos_time_infile >> score[0] >> dummy >> score[1];
-	if (SceneManager::Instance().GetDeathEnemy() > score[0])
-		score[0] = SceneManager::Instance().GetDeathEnemy();
-	if (SceneManager::Instance().MaximumCombo() > score[1])
-		score[1] = SceneManager::Instance().MaximumCombo();
+	if (SceneManager::Instance().GetDeathEnemy() > data[0])
+		data[0] = SceneManager::Instance().GetDeathEnemy();
+	if (SceneManager::Instance().MaximumCombo() > data[1])
+		data[1] = SceneManager::Instance().MaximumCombo();
+
 	std::ofstream outputfile("Score/Score.txt");
-	outputfile << score[0] << ',' << score[1];
+	outputfile << data[0] << ' ' << data[1];
 	outputfile.close();
 }

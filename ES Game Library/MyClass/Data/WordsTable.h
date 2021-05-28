@@ -14,3 +14,9 @@ namespace SceneNumber {
 	static const std::string MAIN   = "main";
 	static const std::string RESULT = "result";
 }
+enum SaveData
+{
+	EnemyCount,
+	Combo,
+	ALLCOUNT
+};

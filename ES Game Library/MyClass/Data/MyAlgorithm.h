@@ -1,8 +1,9 @@
 #pragma once
 
 #include "../../ESGLib.h"
+#include"WordsTable.h"
 #include <codecvt>
-
+#include <fstream>
 //! @fn 値を指定された範囲に収める関数
 //! @param (value) 範囲内に収める値
 //! @param (min) 収める値の下限値 
@@ -47,4 +48,18 @@ static LPCWSTR ConvertStringFileName(string filename)
 	static ::wstring path;
 	path = ConvertStringFilePath(filename);
 	return path.c_str();
+}
+static std::vector<int>GetSaveData()
+{
+	std::ifstream datafile("Score/Score.txt");
+	int data[SaveData::ALLCOUNT]{};
+	std::vector<int> savedata;
+
+	datafile >> data[0]  >> data[1];
+	for (int i = 0; i < SaveData::ALLCOUNT; i++)
+	{
+		savedata.push_back(data[i]);
+	}
+
+	return savedata;
 }
