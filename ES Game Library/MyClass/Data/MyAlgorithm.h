@@ -55,7 +55,7 @@ static std::vector<int>GetSaveData()
 	int data[SaveData::ALLCOUNT]{};
 	std::vector<int> savedata;
 
-	datafile >> data[0]  >> data[1];
+	datafile >> data[EnemyCount]  >> data[Combo];
 	for (int i = 0; i < SaveData::ALLCOUNT; i++)
 	{
 		savedata.push_back(data[i]);

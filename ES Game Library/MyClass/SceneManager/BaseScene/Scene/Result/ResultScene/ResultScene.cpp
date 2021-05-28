@@ -58,12 +58,12 @@ void ResultScene::SaveScore()
 {
 	auto data = GetSaveData();
 
-	if (SceneManager::Instance().GetDeathEnemy() > data[0])
-		data[0] = SceneManager::Instance().GetDeathEnemy();
-	if (SceneManager::Instance().MaximumCombo() > data[1])
-		data[1] = SceneManager::Instance().MaximumCombo();
+	if (SceneManager::Instance().GetDeathEnemy() > data[EnemyCount])
+		data[EnemyCount] = SceneManager::Instance().GetDeathEnemy();
+	if (SceneManager::Instance().MaximumCombo() > data[Combo])
+		data[Combo] = SceneManager::Instance().MaximumCombo();
 
 	std::ofstream outputfile("Score/Score.txt");
-	outputfile << data[0] << ' ' << data[1];
+	outputfile << data[EnemyCount] << ' ' << data[Combo];
 	outputfile.close();
 }
