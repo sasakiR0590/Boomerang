@@ -1,7 +1,8 @@
 #include "ResultScene.h"
 #include "../../../../SceneManager.h"
 #include"../../../../../ResouceManager/ResouceManager.h"
-
+#include"../../../../../Data/MyAlgorithm.h"
+#include <fstream>
 ResultScene::ResultScene() {
 
 }
@@ -10,6 +11,8 @@ ResultScene::~ResultScene() {
 }
 
 bool ResultScene::Initialize() {
+
+	SaveScore();
 	font     = GraphicsDevice.CreateSpriteFont(_T("UD ƒfƒWƒ^ƒ‹ ‹³‰È‘‘Ì N-B"), 120);
 	result   = GraphicsDevice.CreateSpriteFromFile(_T("Result/result_background.png"));
 	record   = GraphicsDevice.CreateSpriteFromFile(_T("Result/result.png"));
@@ -49,4 +52,18 @@ void ResultScene::Draw2D() {
 		SpriteBatch.DrawString(font, Vector2(530, 260), Color_Black, _T("%d"), SceneManager::Instance().GetDeathEnemy());
 		SpriteBatch.DrawString(font, Vector2(270, 460), Color_Black, _T("Å‘å %d"), SceneManager::Instance().MaximumCombo());
 	}
+}
+
+void ResultScene::SaveScore()
+{
+	auto data = GetSaveData();
+
+	if (SceneManager::Instance().GetDeathEnemy() > data[EnemyCount])
+		data[EnemyCount] = SceneManager::Instance().GetDeathEnemy();
+	if (SceneManager::Instance().MaximumCombo() > data[Combo])
+		data[Combo] = SceneManager::Instance().MaximumCombo();
+
+	std::ofstream outputfile("Score/Score.txt");
+	outputfile << data[EnemyCount] << ' ' << data[Combo];
+	outputfile.close();
 }

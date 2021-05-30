@@ -1,5 +1,5 @@
 #include "TimeManager.h"
-
+#include"../Data/WordsTable.h"
 TimeManager::TimeManager()
 {
 
@@ -12,7 +12,7 @@ TimeManager::~TimeManager()
 
 void TimeManager::Initialize()
 {
-	limitTime  = 60.0f;
+	limitTime  = MAXTIME;
 	time       = 0.0f;
 
 	startTime  = 181.0f;
