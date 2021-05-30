@@ -10,7 +10,9 @@ DistHomingEnemy::~DistHomingEnemy()
 
 int DistHomingEnemy::Update(PlayerManager* player_manager)
 {
+	//!ホーミング用X座標
 	 float floor_area_x = _position.x >  _homing_area || _position.x < -_homing_area;
+	 //!ホーミング用Z座標
 	 float floor_area_z = _position.z < -_homing_area;
 
 	player_pos = player_manager->PlayerGetPosition();
@@ -19,8 +21,6 @@ int DistHomingEnemy::Update(PlayerManager* player_manager)
 		Move();
 		Rotate();
 	}
-
-	_animestate = ANIMESTATE::RUN;
 
 	float dist = Vector3_Distance(player_pos, Vector3(_position.x,0,_position.z));
 	if (dist <= DIST_POS)
@@ -37,11 +37,6 @@ int DistHomingEnemy::Update(PlayerManager* player_manager)
 	_collision->SetPosition(_model->GetPosition());
 	_position  = _model->GetPosition();
 	return EnemyBase::LIVING;
-}
-
-void DistHomingEnemy::Draw()
-{
-	ChangeAnimation();
 }
 
 void DistHomingEnemy::Move() {
@@ -61,28 +56,7 @@ void DistHomingEnemy::Move() {
 }
 
 void DistHomingEnemy::Rotate() {
-	//プレイヤーの座標 - 敵の座標でプレイヤーのいる方向に向く
+	//!プレイヤーの座標 - 敵の座標でプレイヤーのいる方向に向く
 	_rotation = MathHelper_Atan2(-(player_pos.z - _position.z), (player_pos.x - _position.x)) + 90.0f;
 	_model->SetRotation(0.0f, _rotation, 0.0f);
-}
-
-void DistHomingEnemy::ChangeAnimation() {
-	auto index = _oldanimestate;
-
-	_animation_count += GameTimer.GetElapsedSecond() * 2.0;
-
-	//全てのアニメーションの停止
-	for (int i = 0; i < ANIMESTATE::ALLTYPE; ++i) {
-		_model->SetTrackEnable(i, FALSE);
-	}
-
-	//アニメーションの状態が地がければ更新
-	if (_animestate != index) {
-		_oldanimestate = _animestate;
-		_animation_count = 0;
-	}
-
-	//アニメーションの再生
-	_model->SetTrackEnable(_animestate, TRUE);
-	_model->SetTrackPosition(_animestate, _animation_count);
 }
