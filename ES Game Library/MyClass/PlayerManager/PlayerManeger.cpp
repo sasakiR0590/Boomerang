@@ -1,5 +1,6 @@
 #include"PlayerManeger.h"
 #include"../Data/MyAlgorithm.h"
+#include"../SceneManager/SceneManager.h"
 #include <fstream>
 PlayerManager::PlayerManager()
 {
@@ -296,6 +297,7 @@ void PlayerManager::OnCollisionEnter()
 	if (!_invincibleflag) {
 		Damage();
 		_animstate = AnimationState::DAMAGE;
+		SceneManager::Instance().SetCombo(0);
 	}
 }
 
