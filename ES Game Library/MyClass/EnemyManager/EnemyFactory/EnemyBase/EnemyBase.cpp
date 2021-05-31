@@ -40,6 +40,8 @@ bool EnemyBase::Initialize(string _model_name,Vector3 position, Vector3 speed, i
 	_model->SetRotation(Vector3_Zero);
 
 	_hp = hp;
+	_hp += PlusHp();
+
 	_speed.z = speed.z;
 
 	player_pos = Vector3_Zero;
@@ -52,6 +54,13 @@ int EnemyBase::Update(PlayerManager* playermanager) {
 }
 void EnemyBase::Draw() {
 	_model->Draw();
+}
+
+int EnemyBase::PlusHp() {
+	if (SceneManager::Instance().GetDeathEnemy() % DIST_ENEMY_NUM == REMAINDER)
+		_hp++;
+
+	return _hp;
 }
 
 void EnemyBase::Damage() {
