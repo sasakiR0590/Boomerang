@@ -42,6 +42,8 @@ private:
     void    PadMove(GamePadState);
     void    Damage();
 
+    void    PullStatus();
+
     void    FlyPoint();
     void    MovePlayerRotate(GamePadState);
     void    InvincibleManagement();

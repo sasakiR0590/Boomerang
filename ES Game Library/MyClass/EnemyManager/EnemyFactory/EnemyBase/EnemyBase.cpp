@@ -24,13 +24,19 @@ bool EnemyBase::Initialize(string _model_name,Vector3 position, Vector3 speed, i
 	mtrl.Ambient = Color(1.0f, 1.0f, 1.0f);
 	mtrl.Specular = Color(1.0f, 1.0f, 1.0f);
 
+	Material _enemy_mtrl;
+	_enemy_mtrl.Diffuse = Color(1.0f, 1.0f, 1.0f);
+	_enemy_mtrl.Ambient = Color(0.5f, 0.5f, 0.5f);
+	_enemy_mtrl.Specular = Color(1.0f, 1.0f, 1.0f);
+	_enemy_mtrl.Power = 1.0f;
+
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetScale(0.8);
 	_collision->SetMaterial(mtrl);
 
 	_position = position;
 	_model->SetPosition(_position);
-
+	_model->SetMaterial(_enemy_mtrl);
 	_model->SetRotation(Vector3_Zero);
 
 	_hp = hp;

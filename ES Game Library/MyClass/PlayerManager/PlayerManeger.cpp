@@ -70,11 +70,9 @@ bool PlayerManager::Initialize()
 	                      //１…飛距離が伸びる
 	                      //２…移動速度が上がる
 
-	_knock_back = 0.01f;
-
-	_blinking = 1.0f;
-	_blinking_state = true;
-
+	_knock_back            = 0.01f;
+	_blinking              = 1.0f;
+	_blinking_state        = true;
 	_boomerang_addspeed    = 0.01f;
 	_boomerang_adddistance = 1.0f;
 
@@ -82,12 +80,7 @@ bool PlayerManager::Initialize()
 
 	InputDevice.CreateGamePad(1);
 
-	//データ読み込み
-	LoadCSV::Instance().LoadStatus("csvFile/Player/PlayerStatus.csv");
-	_playermove = LoadCSV::Instance()._status.at("#動く速度");
-	_max_invincibletime = LoadCSV::Instance()._status.at("#無敵時間");
-	_frontdistance = LoadCSV::Instance()._status.at("#ブーメランを飛ばす距離(前)");
-	_sidedistance = LoadCSV::Instance()._status.at("#ブーメランを飛ばす距離(横)");
+	PullStatus();
 
 	return true;
 }
@@ -172,6 +165,16 @@ void PlayerManager::Draw()
 
 	if (_shootstate)
 		_boomerang.Draw();
+}
+
+void PlayerManager::PullStatus()
+{
+	//!データ読み込み
+	LoadCSV::Instance().LoadStatus("csvFile/Player/PlayerStatus.csv");
+	_playermove         = LoadCSV::Instance()._status.at("#動く速度");
+	_max_invincibletime = LoadCSV::Instance()._status.at("#無敵時間");
+	_frontdistance      = LoadCSV::Instance()._status.at("#ブーメランを飛ばす距離(前)");
+	_sidedistance       = LoadCSV::Instance()._status.at("#ブーメランを飛ばす距離(横)");
 }
 
 void PlayerManager::KeyboardMove(KeyboardState key)
@@ -304,10 +307,10 @@ void  PlayerManager::Damage()
 void PlayerManager::MovePlayerRotate(GamePadState pad)
 {
 	_rotate_direction = MathHelper_Atan2(pad.Y, pad.X) + 90.0f;
-	Vector3 target_foward(MathHelper_Cos(_rotate_direction), 0.0f, MathHelper_Sin(_rotate_direction));
-	Vector3 rotate_foward(MathHelper_Cos(_rotation), 0.0f, MathHelper_Sin(_rotation));
-	rotate_foward = Vector3_Hermite(rotate_foward, target_foward, GameTimer.GetElapsedSecond() * 20);
-	_rotation = MathHelper_Atan2(rotate_foward.z, rotate_foward.x);
+	Vector3 _target_foward(MathHelper_Cos(_rotate_direction), 0.0f, MathHelper_Sin(_rotate_direction));
+	Vector3 _rotate_foward(MathHelper_Cos(_rotation), 0.0f, MathHelper_Sin(_rotation));
+	_rotate_foward    = Vector3_Hermite(_rotate_foward, _target_foward, GameTimer.GetElapsedSecond() * 20);
+	_rotation         = MathHelper_Atan2(_rotate_foward.z, _rotate_foward.x);
 }
 
 void PlayerManager::FlyPoint()
