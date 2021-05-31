@@ -10,6 +10,7 @@
 #include "../../../../ESGLib.h"
 #include"../../../PlayerManager/PlayerManeger.h"
 #include "../../../TimeManager/TimeManager.h"
+#include "../../../SceneManager/SceneManager.h"
 
 class EnemyBase {
 public:
@@ -51,6 +52,12 @@ private:
         //!“G‚ª©“®íœ‚³‚ê‚éŠÔ
         AUTODEADTIME = 900 
     };
+    enum Dist_Enemy {
+        REMAINDER = 0,
+        DIST_ENEMY_NUM = 10
+    };
+
+    int  PlusHp();
     bool IsDead();
     bool LimitDestruction();
     int _destroy_time = 0;
