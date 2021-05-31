@@ -32,6 +32,7 @@ bool EnemyManager::Initialize()
 		appear_flag[i] = false;
 	}
 
+	explode->SetVolume(0.8f);
 	LoadCSV();
 	return true;
 }

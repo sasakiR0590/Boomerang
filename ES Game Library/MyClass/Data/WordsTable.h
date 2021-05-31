@@ -2,7 +2,7 @@
 
 #include "../../ESGLib.h"
 static const float ENEMYADDTIME = 0.5f;
-static const float MAXTIME = 60.0f;
+static const float MAXTIME = 10.0f;
 namespace EffectTag {
 	static const std::string HIT = "hit";
 	static const std::string SAMLL = "small_";
