@@ -34,10 +34,17 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2, fl
 	mat.Specular = Color(1.0f, 1.0f, 1.0f);
 	mat.Power = 1.0f;
 
+	Material _boomerang_material;
+	_boomerang_material.Diffuse = Color(1.0f, 1.0f, 1.0f);
+	_boomerang_material.Ambient = Color(0.5f, 0.5f, 0.5f);
+	_boomerang_material.Specular = Color(1.0f, 1.0f, 1.0f);
+	_boomerang_material.Power = 1.0f;
+
 	_collision = GraphicsDevice.CreateModelFromSimpleShape(shape);
 	_collision->SetScale(0.1f + power);
 	_collision->SetScale(_collision->GetScale() * 5);
 	_collision->SetMaterial(mat);
+	_model->SetMaterial(_boomerang_material);
 
 	_addspeed    = speed;
 	_speed       = 0.0f;
