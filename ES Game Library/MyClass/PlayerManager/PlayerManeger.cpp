@@ -138,6 +138,7 @@ int PlayerManager::Update()
 			_power = 0.0f;
 			_boomerang_adddistance = 1.0f;
 			_boomerang_addspeed = 0.01f;
+			padstick.erase(padstick.begin(), padstick.end());
  			_shootstate = false;
 		}
 	}
