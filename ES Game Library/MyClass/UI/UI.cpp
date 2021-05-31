@@ -18,6 +18,9 @@ bool UI::Initialize() {
 	end            = ResouceManager::Instance().LordSoundFile(_T("Audio/SoundEffect/whistle.wav"));
 	time_over_font = GraphicsDevice.CreateSpriteFont(_T("UD デジタル 教科書体 N-B"), 50);
 	time_font      = GraphicsDevice.CreateSpriteFont(_T("UD デジタル 教科書体 N-B"), 80);
+
+	start->SetVolume(0.95f);
+	end->SetVolume(0.8f);
 	return true;
 }
 

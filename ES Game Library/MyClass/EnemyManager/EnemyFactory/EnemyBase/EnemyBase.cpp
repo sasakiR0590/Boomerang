@@ -41,7 +41,6 @@ bool EnemyBase::Initialize(string _model_name,Vector3 position, Vector3 speed, i
 
 	_hp = hp;
 	_hp += PlusHp();
-
 	_speed.z = speed.z;
 
 	player_pos = Vector3_Zero;

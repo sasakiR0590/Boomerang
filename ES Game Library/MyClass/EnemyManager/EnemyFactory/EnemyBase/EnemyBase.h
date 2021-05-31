@@ -41,6 +41,7 @@ protected:
     * “G‚Ìó‘Ô
     */
     enum EnemyState{ LIVING,DESTROY, DEATH };
+
 private:
     /**
      * @enum Frame
@@ -52,8 +53,15 @@ private:
         //!“G‚ª©“®íœ‚³‚ê‚éŠÔ
         AUTODEADTIME = 900 
     };
+
+    /**
+     * @enum Dist_Enemy
+     * “G‚ğ“|‚µ‚½”‚ÅHP‚ğ‘‚â‚·
+     */
     enum Dist_Enemy {
+        //!Š„‚Á‚½”‚Ì—]‚è
         REMAINDER = 0,
+        //!Š„‚é”
         DIST_ENEMY_NUM = 10
     };
 
