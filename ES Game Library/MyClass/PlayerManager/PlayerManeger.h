@@ -94,4 +94,16 @@ private:
     float _boomerang_adddistance;
 
     std::vector<Vector3> padstick;
+
+
+
+
+    //!コーディング用
+    bool NowMove(GamePadState);
+    bool DoStance(GamePadState, KeyboardState);
+
+    bool KeyShot(KeyboardState);
+    bool PadShot(GamePadState);
+    bool NotShot();
+    bool NotStance();
 };

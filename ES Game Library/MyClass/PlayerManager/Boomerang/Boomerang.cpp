@@ -52,7 +52,7 @@ bool Boomerang::Initialize(Vector3 start, Vector3 control1, Vector3 control2, fl
 
 	_point[0] = start;
 	if (stick.size() != 0) {
-		_point[1] = control1 + *(stick.rbegin() + 1);
+		_point[1] = control1 + *stick.rbegin();
 		_point[2] = control2 + *stick.rbegin();
 	}
 	else {

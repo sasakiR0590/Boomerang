@@ -112,9 +112,10 @@ int PlayerManager::Update()
 	if (_invincible_countstart)
 		InvincibleManagement();
 
-	if ((key.IsKeyDown(Keys_Space) || pad.Buttons[3]) && _animstate != AnimationState::SHOOT && _animstate != AnimationState::STANCE && !_shootstate) {
+	if (DoStance(pad,key)) {
 		_animstate = AnimationState::STANCE;
 	}
+
 	if (pad.Y2 != 0.0f || pad.X3 != 0.0f)
 	{
 		padstick.push_back(Vector3(pad.Y2 * 0.0002, 0, -pad.X3 * 0.0002));
@@ -137,7 +138,7 @@ int PlayerManager::Update()
 		{
 			_power = 0.0f;
 			_boomerang_adddistance = 1.0f;
-			_boomerang_addspeed = 0.01f;
+			_boomerang_addspeed    = 0.01f;
 			padstick.erase(padstick.begin(), padstick.end());
  			_shootstate = false;
 		}
@@ -227,14 +228,14 @@ void PlayerManager::PadMove(GamePadState pad)
 	auto old_pos = _model->GetPosition();
 
 	if (_animstate != AnimationState::STANCE) {
-		if (pad.X != 0.0f || pad.Y != 0.0f && _animstate != AnimationState::DAMAGE) {
+		if (NowMove(pad)) {
 			MovePlayerRotate(pad);
 			_model->SetRotation(0.0f, _rotation, 0.0f);
 			_model->Move(0.0f, 0.0f, _playermove);
 		}
 	}
 	else {
-		if (pad.X != 0.0f || pad.Y != 0.0f && _animstate != AnimationState::DAMAGE) {
+		if (NowMove(pad)) {
 			MovePlayerRotate(pad);
 			_model->SetRotation(0.0f, _rotation, 0.0f);
 		}
@@ -368,6 +369,36 @@ void PlayerManager::InvincibleManagement()
 		_invincible_countstart = false;
 		_invincibleflag = false;
 	}
+}
+
+bool PlayerManager::NowMove(GamePadState pad)
+{
+	return pad.X != 0.0f || pad.Y != 0.0f && _animstate != AnimationState::DAMAGE;
+}
+
+bool PlayerManager::DoStance(GamePadState pad, KeyboardState key)
+{
+	return (KeyShot(key) || PadShot(pad)) && NotShot() && NotStance() && !_shootstate;
+}
+
+bool PlayerManager::KeyShot(KeyboardState key)
+{
+	return key.IsKeyDown(Keys_Space);
+}
+
+bool PlayerManager::PadShot(GamePadState pad)
+{
+	return pad.Buttons[3];
+}
+
+bool PlayerManager::NotShot()
+{
+	return _animstate != AnimationState::SHOOT;
+}
+
+bool PlayerManager::NotStance()
+{
+	return _animstate != AnimationState::STANCE;
 }
 
 #ifdef _DEBUG
